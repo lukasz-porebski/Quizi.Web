@@ -1,0 +1,32 @@
+@if (isAnyMessage) {
+  <div class="container error-container">
+    <div class="row center-row-content">
+      <div class="col error-icon">
+        <mat-icon>{{ Icon.Error }}</mat-icon>
+      </div>
+      @if (isOnlyOneMessage) {
+        <div class="col error-text error-text-one-line">
+          @if (translateMessage()) {
+            {{ messages()[0] | translate }}
+          } @else {
+            {{ messages()[0] }}
+          }
+        </div>
+      } @else {
+        <div class="col error-text">
+          <ul class="error-text-list">
+            @for (message of messages(); track message) {
+              <li>
+                @if (translateMessage()) {
+                  {{ message | translate }}
+                } @else {
+                  {{ message }}
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+}
