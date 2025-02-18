@@ -1,3 +1,9 @@
 {
-  "ERROR": "Błąd"
+  "ERROR": "Błąd",
+  "FIELD_IS_REQUIRED": "Pole jest wymagane",
+  "MIN_VALUE": "Minimalna wartość to {{value}}",
+  "MAX_VALUE": "Minimalna wartość to {{value}}",
+  "VALID_TEXT_RANGE": "Liczba znaków musi być w przedziale {{min}} - {{max}}",
+  "MIN_TEXT_LENGTH": "Minimalna liczba znaków to {{value}}",
+  "MAX_TEXT_LENGTH": "Maksymalna liczba znaków to {{value}}"
 }
