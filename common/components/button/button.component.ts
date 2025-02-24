@@ -1,13 +1,13 @@
 import { Component, inject, input } from '@angular/core';
-import { AppButtonModel } from './models/app-button.model';
-import { AppButtonColor } from './enums/app-button-color.enum';
+import { ButtonModel } from './models/button.model';
+import { ButtonColor } from './enums/button-color.enum';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatStepperNext } from '@angular/material/stepper';
-import { AppTextModel } from '../../models/app-text.model';
+import { TextModel } from '../../models/text.model';
 import { isDefined } from '../../utils/utils';
-import { Optional } from '../types/optional.type';
+import { Optional } from '../../types/optional.type';
 
 @Component({
   selector: 'app-button',
@@ -17,22 +17,22 @@ import { Optional } from '../types/optional.type';
     MatButton,
     MatStepperNext
   ],
-  providers: [TranslatePipe],
-  styleUrls: ['./button.component.scss']
+  providers: [ TranslatePipe ],
+  styleUrls: [ './button.component.scss' ]
 })
 export class AppButtonComponent {
-  public configuration = input.required<AppButtonModel>();
+  public configuration = input.required<ButtonModel>();
 
   public get matColor(): string {
-    return this.configuration().color === AppButtonColor.Accent ||
-    this.configuration().color === AppButtonColor.Primary
+    return this.configuration().color === ButtonColor.Accent ||
+    this.configuration().color === ButtonColor.Primary
       ? this.configuration().color
       : '';
   }
 
   private readonly _translatePipe = inject(TranslatePipe)
 
-  public getText(model?: AppTextModel): Optional<string> {
+  public getText(model?: TextModel): Optional<string> {
     if (!isDefined(model))
       return null;
 

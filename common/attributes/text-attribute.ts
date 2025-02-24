@@ -1,5 +1,5 @@
 import { IAttribute } from '../interfaces/attribute.intreface';
-import { ErrorModel } from '../models/error-model';
+import { ErrorModel } from '../models/error.model';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { isDefined } from '../utils/utils';
 import { Nullable } from '../types/nullable.type';

@@ -1,6 +1,6 @@
 import { IAttribute } from '../../interfaces/attribute.intreface';
 import { isDefined } from '../../utils/utils';
-import { ErrorModel } from '../../models/error-model';
+import { ErrorModel } from '../../models/error.model';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 
 export interface ISelectAttributeConfig<TData, TValue = TData> {

@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { IAttribute } from '../interfaces/attribute.intreface';
-import { ErrorModel } from '../models/error-model';
+import { ErrorModel } from '../models/error.model';
 import { Nullable } from '../types/nullable.type';
 
 export interface IRadioAttributeConfig<TData> {

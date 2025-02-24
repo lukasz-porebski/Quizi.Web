@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppErrorComponent } from '../../common/components/error/error.component';
 import { AppButtonComponent } from '../../common/components/button/button.component';
-import { AppButtonModel } from '../../common/components/button/models/app-button.model';
-import { AppButtonColor } from '../../common/components/button/enums/app-button-color.enum';
+import { ButtonModel } from '../../common/components/button/models/button.model';
+import { ButtonColor } from '../../common/components/button/enums/button-color.enum';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,11 @@ import { AppButtonColor } from '../../common/components/button/enums/app-button-
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  public readonly buttonCfg = new AppButtonModel({
+  public readonly buttonCfg = new ButtonModel({
     label: {
       text: 'ERROR'
     },
-    color: AppButtonColor.Primary,
+    color: ButtonColor.Primary,
     tooltip: {
       text: 'ERROR'
     },
@@ -30,7 +30,7 @@ export class AppComponent {
   private _disabled = false
 
   public constructor(private readonly _translate: TranslateService) {
-    this._translate.addLangs(['pl']);
+    this._translate.addLangs([ 'pl' ]);
     this._translate.setDefaultLang('pl');
     this._translate.use('pl');
   }
