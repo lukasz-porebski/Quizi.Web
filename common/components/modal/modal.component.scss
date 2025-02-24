@@ -1,0 +1,17 @@
+.close-button {
+  position: relative;
+  left: 98%;
+  bottom: 15px;
+}
+
+::ng-deep .max-modal-width {
+  > .cdk-overlay-container > .cdk-global-overlay-wrapper > .cdk-overlay-pane {
+    max-width: 99vw !important;
+  }
+}
+
+::ng-deep .app-modal {
+  .app-modal-content-max-width {
+    padding: 0 5px !important;
+  }
+}
