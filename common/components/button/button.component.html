@@ -1,22 +1,22 @@
-<div class="app-button" [className]="configuration().color + '-color'">
-  @if (configuration().matStepperNext) {
+<div class="app-button" [className]="config().color + '-color'">
+  @if (config().matStepperNext) {
     <button
       mat-raised-button
       matStepperNext
-      [matTooltip]="getText(configuration().tooltip)"
-      [disabled]="configuration().disabled()"
+      [matTooltip]="getText(config().tooltip)"
+      [disabled]="config().disabled()"
       [color]="matColor"
-      (click)="configuration().onClick()">
-      {{ getText(configuration().label) }}
+      (click)="config().onClick()">
+      {{ config().text | textConfigTranslate }}
     </button>
   } @else {
     <button
       mat-raised-button
-      [matTooltip]="getText(configuration().tooltip)"
-      [disabled]="configuration().disabled()"
+      [matTooltip]="getText(config().tooltip)"
+      [disabled]="config().disabled()"
       [color]="matColor"
-      (click)="configuration().onClick()">
-      {{ getText(configuration().label) }}
+      (click)="config().onClick()">
+      {{ config().text | textConfigTranslate }}
     </button>
   }
 </div>

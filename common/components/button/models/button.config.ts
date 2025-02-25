@@ -1,9 +1,9 @@
 import { ButtonColor } from '../enums/button-color.enum';
-import { ITextConfig, TextModel } from '../../../models/text.model';
+import { ITextConfig, TextConfig } from '../../../models/text.config';
 import { isDefined } from '../../../utils/utils';
 
 export interface IButtonConfig {
-  label: ITextConfig;
+  text: ITextConfig;
   color?: ButtonColor;
   disabled?: () => boolean;
   matStepperNext?: boolean;
@@ -11,21 +11,21 @@ export interface IButtonConfig {
   tooltip?: ITextConfig;
 }
 
-export class ButtonModel {
-  public label?: TextModel;
+export class ButtonConfig {
+  public text?: TextConfig;
   public color: ButtonColor;
   public disabled: () => boolean;
   public matStepperNext: boolean;
   public onClick: () => void;
-  public tooltip?: TextModel;
+  public tooltip?: TextConfig;
 
-  constructor(config: IButtonConfig) {
-    this.label = isDefined(config.label) ? new TextModel(config.label) : undefined;
+  public constructor(config: IButtonConfig) {
+    this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
     this.color = config.color ?? ButtonColor.Accent;
     this.onClick = config.onClick ?? (() => {
     });
     this.disabled = config.disabled ?? (() => false);
     this.matStepperNext = config.matStepperNext ?? false;
-    this.tooltip = isDefined(config.tooltip) ? new TextModel(config.tooltip) : undefined;
+    this.tooltip = isDefined(config.tooltip) ? new TextConfig(config.tooltip) : undefined;
   }
 }

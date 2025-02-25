@@ -8,7 +8,7 @@ export function toNumber(value: any): number {
   return Number(value);
 }
 
-export function isEmpty(value: string | any[]): boolean {
+export function isEmpty(value: Optional<string> | Optional<any[]>): boolean {
   return !isDefined(value) || value.length <= 0;
 }
 

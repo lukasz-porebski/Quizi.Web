@@ -1,5 +1,5 @@
 import { isDefined } from '../../../utils/utils';
-import { ITextConfig, TextModel } from '../../../models/text.model';
+import { ITextConfig, TextConfig } from '../../../models/text.config';
 
 export interface IModalConfig {
   text?: ITextConfig;
@@ -7,14 +7,14 @@ export interface IModalConfig {
   modalContentMaxWidth?: boolean;
 }
 
-export class ModalModel {
-  public text?: TextModel;
+export class ModalConfig {
+  public text?: TextConfig;
   public modalMaxWidth: boolean = false;
   public modalContentMaxWidth: boolean = false;
 
   public constructor(config?: IModalConfig) {
     if (isDefined(config)) {
-      this.text = isDefined(config.text) ? new TextModel(config.text) : undefined;
+      this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
       this.modalMaxWidth = config.modalMaxWidth ?? false;
       this.modalContentMaxWidth = config.modalContentMaxWidth ?? false;
     }

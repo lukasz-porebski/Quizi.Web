@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { SelectModel } from './models/select.model';
+import { SelectConfig } from './models/select.config';
 import { MatFormField } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,10 +18,10 @@ import { MultipleSelectAttribute } from '../../attributes/select/multiple-select
   ],
   styleUrls: [ './select.component.scss' ]
 })
-export class AppSelectComponent {
-  public configuration = input.required<SelectModel>();
+export class SelectComponent {
+  public config = input.required<SelectConfig>();
 
   public get isMultiple(): boolean {
-    return this.configuration().attribute instanceof MultipleSelectAttribute;
+    return this.config().attribute instanceof MultipleSelectAttribute;
   }
 }

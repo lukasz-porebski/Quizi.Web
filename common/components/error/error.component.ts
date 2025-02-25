@@ -1,19 +1,19 @@
 import { Component, input } from '@angular/core';
 import { isEmpty } from '../../utils/utils';
 import { MatIcon } from '@angular/material/icon';
-import { TranslatePipe } from '@ngx-translate/core';
 import { Icon } from '../../enums/icon.enum';
+import { ConditionalTranslatePipe } from '../../pipes/conditional-translation.pipe';
 
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
   imports: [
     MatIcon,
-    TranslatePipe,
+    ConditionalTranslatePipe,
   ],
-  styleUrls: ['./error.component.scss']
+  styleUrls: [ './error.component.scss' ]
 })
-export class AppErrorComponent {
+export class ErrorComponent {
   public translateMessage = input<boolean>(true);
   public messages = input.required<string[]>();
 

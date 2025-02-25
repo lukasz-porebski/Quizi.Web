@@ -9,6 +9,6 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatProgressSpinner
   ]
 })
-export class AppAsyncPageComponent {
+export class AsyncPageComponent {
   public showSpinner = input.required<boolean>();
 }

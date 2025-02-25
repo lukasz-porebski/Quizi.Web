@@ -1,9 +1,10 @@
 import { Component, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ModalModel } from './models/modal.model';
+import { ModalConfig } from './models/modal.config';
 import { isDefined } from '../../utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { ConditionalTranslatePipe } from '../../pipes/conditional-translation.pipe';
+import { Optional } from '../../types/optional.type';
+import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-modal',
@@ -13,23 +14,23 @@ import { ConditionalTranslatePipe } from '../../pipes/conditional-translation.pi
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
-    ConditionalTranslatePipe
+    TextConfigTranslatePipe
   ],
   styleUrls: [ './modal.component.scss' ]
 })
-export class AppModalComponent implements OnInit, OnDestroy {
-  public configuration = input.required<ModalModel>();
+export class ModalComponent implements OnInit, OnDestroy {
+  public config = input.required<ModalConfig>();
 
   private readonly _renderer2 = inject(Renderer2)
 
   public ngOnInit(): void {
-    if (this.configuration().modalMaxWidth) {
+    if (this.config().modalMaxWidth) {
       this.turnOnMaxModalWidth();
     }
   }
 
   public ngOnDestroy(): void {
-    if (this.configuration().modalMaxWidth) {
+    if (this.config().modalMaxWidth) {
       this.turnOffMaxModalWidth();
     }
   }
@@ -48,7 +49,7 @@ export class AppModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _getBody(): HTMLBodyElement | null {
+  private _getBody(): Optional<HTMLBodyElement> {
     const body = document.getElementsByTagName('body');
 
     return isDefined(body) && isDefined(body[0])

@@ -3,7 +3,7 @@ export interface ITextConfig {
   translate?: boolean;
 }
 
-export class TextModel {
+export class TextConfig {
   public text: string;
   public translate: boolean;
 

@@ -6,22 +6,14 @@
       </div>
       @if (isOnlyOneMessage) {
         <div class="col error-text error-text-one-line">
-          @if (translateMessage()) {
-            {{ messages()[0] | translate }}
-          } @else {
-            {{ messages()[0] }}
-          }
+          {{ messages()[0] | conditionalTranslate: translateMessage() }}
         </div>
       } @else {
         <div class="col error-text">
           <ul class="error-text-list">
             @for (message of messages(); track message) {
               <li>
-                @if (translateMessage()) {
-                  {{ message | translate }}
-                } @else {
-                  {{ message }}
-                }
+                {{ message | conditionalTranslate: translateMessage() }}
               </li>
             }
           </ul>
