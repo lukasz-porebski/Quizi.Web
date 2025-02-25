@@ -1,0 +1,15 @@
+<mat-form-field>
+  <input
+    matInput
+    [readonly]="config().readonly"
+    type="number"
+    [disabled]="config().disabled"
+    [formControl]="config().formControl"
+    [min]="config().min"
+    [max]="config().max"
+    placeholder="{{ config().label | textConfigTranslate}}">
+
+  <app-hint [config]="config().hint" [template]="hintTemplate()"></app-hint>
+
+  <app-input-error [error]="config().attribute?.error"></app-input-error>
+</mat-form-field>

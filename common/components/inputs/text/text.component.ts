@@ -1,5 +1,5 @@
 import { Component, input, TemplateRef } from '@angular/core';
-import { TextInputConfig } from './models/text-input.config';
+import { TextInputConfig } from './models/text.config';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ import { Icon } from '../../../enums/icon.enum';
   ],
   styleUrls: [ './text.component.scss' ]
 })
-export class AppTextInputComponent {
+export class TextInputComponent {
   public config = input.required<TextInputConfig>();
   public hintTemplate = input<TemplateRef<unknown>>();
 
