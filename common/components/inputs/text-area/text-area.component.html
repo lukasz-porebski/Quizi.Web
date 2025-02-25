@@ -1,0 +1,23 @@
+<mat-form-field [class.no-overflow-textarea]="config().noOverflow">
+  <mat-label>
+    {{ config().label | textConfigTranslate }}
+  </mat-label>
+
+  <textarea
+    matInput
+    cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    [readonly]="config().readonly"
+    [disabled]="config().disabled"
+    [formControl]="config().formControl"
+    [cdkAutosizeMinRows]="config().minRows"
+    [cdkAutosizeMaxRows]="config().maxRows">
+    </textarea>
+
+  @if (config().hint) {
+    <app-hint [config]="config().hint" [template]="hintTemplate()"></app-hint>
+  }
+
+  <app-input-error [error]="config().attribute?.error"></app-input-error>
+
+</mat-form-field>

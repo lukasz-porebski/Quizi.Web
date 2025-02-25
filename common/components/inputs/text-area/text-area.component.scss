@@ -1,0 +1,10 @@
+@use "common-colors.scss" as colors;
+
+.no-overflow-textarea {
+  textarea {
+    border-left: 1px solid colors.$app-main;
+    border-right: 1px solid colors.$app-main;
+    overflow: hidden;
+    padding: 5px;
+  }
+}

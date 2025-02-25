@@ -1,0 +1,48 @@
+@use "common-colors.scss" as colors;
+
+@mixin box($color) {
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0 !important;
+    background-color: $color !important;
+  }
+
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $color !important;
+  }
+
+  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $color !important;
+  }
+}
+
+.app-radio-button-default {
+  @include box(colors.$app-secondary-light);
+}
+
+.app-radio-button-green {
+  @include box(colors.$app-success);
+}
+
+.app-radio-button-blue {
+  @include box(colors.$app-primary);
+}
+
+.app-radio-button-red {
+  @include box(colors.$app-error);
+}
+
+::ng-deep .mat-radio-label {
+  width: fit-content !important;
+  cursor: pointer !important;
+}
+
+.radio-button-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.disabled-radio-checkbox-input {
+  ::ng-deep label {
+    cursor: default !important;
+  }
+}

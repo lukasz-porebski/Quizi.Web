@@ -1,3 +1,5 @@
 export enum Icon {
-  Error = 'error'
+  Error = 'error',
+  VisibilityOff = 'visibility_off',
+  Visibility = 'visibility',
 }

@@ -12,11 +12,9 @@ export class ModalConfig {
   public modalMaxWidth: boolean = false;
   public modalContentMaxWidth: boolean = false;
 
-  public constructor(config?: IModalConfig) {
-    if (isDefined(config)) {
-      this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
-      this.modalMaxWidth = config.modalMaxWidth ?? false;
-      this.modalContentMaxWidth = config.modalContentMaxWidth ?? false;
-    }
+  public constructor(config: IModalConfig) {
+    this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
+    this.modalMaxWidth = config.modalMaxWidth ?? false;
+    this.modalContentMaxWidth = config.modalContentMaxWidth ?? false;
   }
 }

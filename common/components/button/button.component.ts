@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { ButtonConfig } from './models/button.config';
-import { ButtonColor } from './enums/button-color.enum';
+import { ButtonColor } from './enums/color.enum';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';

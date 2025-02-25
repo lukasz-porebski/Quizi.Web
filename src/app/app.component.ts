@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorComponent } from '../../common/components/error/error.component';
 import { ButtonComponent } from '../../common/components/button/button.component';
 import { ButtonConfig } from '../../common/components/button/models/button.config';
-import { ButtonColor } from '../../common/components/button/enums/button-color.enum';
+import { ButtonColor } from '../../common/components/button/enums/color.enum';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,5 @@
+@if (error()?.isAny) {
+  <mat-error>
+    {{ error()!.message | translate }}
+  </mat-error>
+}

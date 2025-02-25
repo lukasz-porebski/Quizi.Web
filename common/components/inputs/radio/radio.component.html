@@ -1,0 +1,27 @@
+@if (config().label) {
+  <div class="mb-2">
+    <mat-label>
+      {{ config().label | textConfigTranslate }}
+    </mat-label>
+  </div>
+}
+
+<mat-radio-group
+  class="radio-group"
+  [className]="getRadioButtonColorClass(config().color)"
+  [formControl]="config().formControl">
+  @for (option of config().options; track option) {
+    <mat-radio-button
+      [class.readonly-radio-checkbox-input]="config().readonly"
+      [class.disabled-radio-checkbox-input]="config().disabled"
+      class="radio-button radio-button-rows"
+      [disableRipple]="config().readonly"
+      [disabled]="config().disabled"
+      [value]="option"
+      (click)="config().readonly ? $event.preventDefault() : null">
+    <span>
+      {{ getOptionText(option) | conditionalTranslate: config().translateOptionLabel }}
+    </span>
+    </mat-radio-button>
+  }
+</mat-radio-group>

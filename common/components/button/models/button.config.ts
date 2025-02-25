@@ -1,4 +1,4 @@
-import { ButtonColor } from '../enums/button-color.enum';
+import { ButtonColor } from '../enums/color.enum';
 import { ITextConfig, TextConfig } from '../../../models/text.config';
 import { isDefined } from '../../../utils/utils';
 

@@ -1,0 +1,45 @@
+@use "common-colors.scss" as colors;
+
+.app-checkbox-input {
+  ::ng-deep .mat-ripple {
+    display: none !important;
+  }
+}
+
+.app-checkbox-input-readonly {
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+  }
+
+  cursor: default !important;
+
+  ::ng-deep .mat-checkbox-inner-container {
+    overflow: hidden;
+  }
+}
+
+@mixin app-checkbox-color($color) {
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $color !important;
+  }
+
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $color;
+  }
+}
+
+.app-checkbox-input-default {
+  @include app-checkbox-color(colors.$app-secondary-light);
+}
+
+.app-checkbox-input-green {
+  @include app-checkbox-color(colors.$app-success);
+}
+
+.app-checkbox-input-blue {
+  @include app-checkbox-color(colors.$app-primary);
+}
+
+.app-checkbox-input-red {
+  @include app-checkbox-color(colors.$app-error);
+}

@@ -1,0 +1,7 @@
+<mat-hint [align]="config().align">
+  @if (template()) {
+    <ng-template [ngTemplateOutlet]="template()!"></ng-template>
+  } @else {
+    {{ config().hint | textConfigTranslate }}
+  }
+</mat-hint>
