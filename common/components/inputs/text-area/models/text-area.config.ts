@@ -17,7 +17,9 @@ export interface ITextAreaConfig {
 
 export class TextAreaConfig {
   public get formControl(): FormControl {
-    return isDefined(this.attribute) ? this.attribute.formControl : this._formControl;
+    return isDefined(this.attribute)
+      ? this.attribute.formControl
+      : this._formControl;
   }
 
   public label: TextConfig;
@@ -39,6 +41,8 @@ export class TextAreaConfig {
     this.maxRows = config.maxRows;
     this.noOverflow = config.noOverflow ?? false;
     this.attribute = config.attribute;
-    this.hint = isDefined(config.hint) ? new HintConfig(config.hint) : undefined;
+    this.hint = isDefined(config.hint)
+      ? new HintConfig(config.hint)
+      : undefined;
   }
 }

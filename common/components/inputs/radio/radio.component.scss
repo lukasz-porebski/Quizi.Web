@@ -10,7 +10,8 @@
     background-color: $color !important;
   }
 
-  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked
+    .mat-radio-outer-circle {
     border-color: $color !important;
   }
 }

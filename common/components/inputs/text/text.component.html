@@ -7,15 +7,19 @@
     [formControl]="config().formControl"
     [minLength]="config().minLength"
     [maxLength]="config().maxLength"
-    placeholder="{{ config().label | textConfigTranslate}}">
+    placeholder="{{ config().label | textConfigTranslate }}"
+  />
 
   @if (config().passwordShowButton) {
     <button
       mat-icon-button
       matSuffix
       (click)="changePasswordHideState()"
-      [attr.aria-pressed]="isPasswordHidden">
-      <mat-icon>{{ isPasswordHidden ? Icon.VisibilityOff : Icon.Visibility }}</mat-icon>
+      [attr.aria-pressed]="isPasswordHidden"
+    >
+      <mat-icon>{{
+        isPasswordHidden ? Icon.VisibilityOff : Icon.Visibility
+      }}</mat-icon>
     </button>
   }
 

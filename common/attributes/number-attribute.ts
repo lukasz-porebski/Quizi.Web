@@ -20,15 +20,14 @@ export class NumberAttribute implements IAttribute {
     }
 
     if (this.formControl.errors?.['min']) {
-      return this._error.setMessage('MIN_VALUE',
-        {
-          value: this.min
-        });
+      return this._error.setMessage('MIN_VALUE', {
+        value: this.min,
+      });
     }
 
     if (this.formControl.errors?.['max']) {
       return this._error.setMessage('MAX_VALUE', {
-        value: this.max
+        value: this.max,
       });
     }
 
@@ -65,4 +64,3 @@ export class NumberAttribute implements IAttribute {
     this.formControl = new FormControl(this.defaultValue, this._validators);
   }
 }
-

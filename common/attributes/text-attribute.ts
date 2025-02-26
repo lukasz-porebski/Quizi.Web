@@ -20,27 +20,30 @@ export class TextAttribute implements IAttribute {
       return this._error.setMessage('FIELD_IS_REQUIRED');
     }
 
-    if (isDefined(this._config.minLength) && isDefined(this._config.maxLength)) {
-      if (this.formControl.errors?.['minlength'] || this.formControl.errors?.['maxlength']) {
-        return this._error.setMessage('VALID_TEXT_RANGE',
-          {
-            min: this._config.minLength,
-            max: this._config.maxLength
-          });
+    if (
+      isDefined(this._config.minLength) &&
+      isDefined(this._config.maxLength)
+    ) {
+      if (
+        this.formControl.errors?.['minlength'] ||
+        this.formControl.errors?.['maxlength']
+      ) {
+        return this._error.setMessage('VALID_TEXT_RANGE', {
+          min: this._config.minLength,
+          max: this._config.maxLength,
+        });
       }
     } else {
       if (this.formControl.errors?.['minlength']) {
-        return this._error.setMessage('MIN_TEXT_LENGTH',
-          {
-            value: this._config.minLength
-          });
+        return this._error.setMessage('MIN_TEXT_LENGTH', {
+          value: this._config.minLength,
+        });
       }
 
       if (this.formControl.errors?.['maxlength']) {
-        return this._error.setMessage('MAX_TEXT_LENGTH',
-          {
-            value: this._config.maxLength
-          });
+        return this._error.setMessage('MAX_TEXT_LENGTH', {
+          value: this._config.maxLength,
+        });
       }
     }
 
@@ -73,4 +76,3 @@ export class TextAttribute implements IAttribute {
     this.formControl = new FormControl(this.defaultValue, validators);
   }
 }
-

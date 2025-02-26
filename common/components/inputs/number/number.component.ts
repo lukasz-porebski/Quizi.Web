@@ -16,9 +16,9 @@ import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.
     ReactiveFormsModule,
     HintComponent,
     InputErrorComponent,
-    TextConfigTranslatePipe
+    TextConfigTranslatePipe,
   ],
-  styleUrls: [ './number.component.scss' ]
+  styleUrls: ['./number.component.scss'],
 })
 export class NumberInputComponent {
   public config = input.required<NumberInputConfig>();

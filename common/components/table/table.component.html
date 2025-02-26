@@ -1,25 +1,38 @@
 @if (config().filter) {
   <mat-form-field class="filter">
-    <mat-label>{{ 'FILTER' | translate }}</mat-label>
-    <input matInput (keyup)="applyFilter($event)" [placeholder]="config().filter!.placeholder">
+    <mat-label>{{ "FILTER" | translate }}</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      [placeholder]="config().filter!.placeholder"
+    />
   </mat-form-field>
 }
 
 <div class="table-margin mat-elevation-z8">
-  <mat-table [class.disable-table]="shouldShowSpinner" [dataSource]="dataSource" matSort>
+  <mat-table
+    [class.disable-table]="shouldShowSpinner"
+    [dataSource]="dataSource"
+    matSort
+  >
     @for (column of config().columns; track column.field) {
       <ng-container
         [matColumnDef]="column.field"
         [sticky]="column.sticky"
-        [stickyEnd]="column.stickyEnd">
+        [stickyEnd]="column.stickyEnd"
+      >
         <mat-header-cell
           *matHeaderCellDef
           [style]="'min-width:' + column.minWidth"
-          matSort>
+          matSort
+        >
           {{ column.header | textConfigTranslate }}
         </mat-header-cell>
 
-        <mat-cell *matCellDef="let data" [style]="'min-width:' + column.minWidth">
+        <mat-cell
+          *matCellDef="let data"
+          [style]="'min-width:' + column.minWidth"
+        >
           @switch (column.type) {
             @case (AppTableColumnType.Text) {
               {{ column.getValue(data) }}
@@ -34,17 +47,18 @@
               {{ column.getValue(data) | date: DateFormat.DateWithTime }}
             }
             @case (AppTableColumnType.Hours) {
-              {{ column.getValue(data) | date: DateFormat.Hours : 'UTC' }}
+              {{ column.getValue(data) | date: DateFormat.Hours : "UTC" }}
             }
             @case (AppTableColumnType.Minutes) {
-              {{ column.getValue(data) | date: DateFormat.Minutes : 'UTC' }}
+              {{ column.getValue(data) | date: DateFormat.Minutes : "UTC" }}
             }
             @case (AppTableColumnType.Boolean) {
               <div class="app-table-checkbox-input">
                 <mat-checkbox
                   [checked]="column.getValue(data)"
                   [disableRipple]="true"
-                  (click)="$event.preventDefault()"/>
+                  (click)="$event.preventDefault()"
+                />
               </div>
             }
             @case (AppTableColumnType.Percent) {
@@ -58,7 +72,11 @@
             }
             @case (AppTableColumnType.Image) {
               @if (column.imgPatch && column.imgPatch(data)) {
-                <img class="cell-img" alt="picture" [src]="column.imgPatch(data)">
+                <img
+                  class="cell-img"
+                  alt="picture"
+                  [src]="column.imgPatch(data)"
+                />
               }
             }
           }
@@ -68,13 +86,14 @@
 
     @for (column of config().columnsWithIcon; track column.columnName) {
       <ng-container [matColumnDef]="column.columnName">
-        <mat-header-cell *matHeaderCellDef class="action-column-width"/>
+        <mat-header-cell *matHeaderCellDef class="action-column-width" />
         <mat-cell *matCellDef="let data" class="action-column-width">
           <button
             mat-icon-button
             class="action-button"
             [disabled]="shouldShowSpinner"
-            (click)="column.onClick(data)">
+            (click)="column.onClick(data)"
+          >
             <mat-icon>{{ column.icon }}</mat-icon>
           </button>
         </mat-cell>
@@ -84,23 +103,29 @@
     @if (config().actionsDefinition) {
       <ng-container
         [matColumnDef]="config().actionsDefinition!.name"
-        [stickyEnd]="config().actionsDefinition!.stickyEnd">
-        <mat-header-cell *matHeaderCellDef class="action-column-width"/>
+        [stickyEnd]="config().actionsDefinition!.stickyEnd"
+      >
+        <mat-header-cell *matHeaderCellDef class="action-column-width" />
         <mat-cell *matCellDef="let data" class="action-column-width">
           <button
             mat-icon-button
             class="action-button"
             [disabled]="shouldShowSpinner"
-            [matMenuTriggerFor]="actions">
+            [matMenuTriggerFor]="actions"
+          >
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actions="matMenu">
-            @for (action of config().actionsDefinition!.actions; track action.name) {
+            @for (
+              action of config().actionsDefinition!.actions;
+              track action.name
+            ) {
               <button
                 mat-menu-item
                 [hidden]="applyBooleanOrCallableColumnValue(action.hide, data)"
                 (click)="action.onClick(data)"
-                [disabled]="action.disabled(data)">
+                [disabled]="action.disabled(data)"
+              >
                 @if (action.icon) {
                   <mat-icon>{{ action.icon }}</mat-icon>
                 }
@@ -114,20 +139,26 @@
       </ng-container>
     }
 
-    <mat-header-row *matHeaderRowDef="config().columnNames; sticky: config().headerSticky"/>
+    <mat-header-row
+      *matHeaderRowDef="config().columnNames; sticky: config().headerSticky"
+    />
     <mat-row
-      *matRowDef="let row; columns: config().columnNames;"
+      *matRowDef="let row; columns: config().columnNames"
       [class.mark-row]="config().markRowCondition(row)"
       [class.hovered]="row.hovered"
       [class.highlighted]="selection.isSelected(row)"
       (click)="onRowClick(row)"
       (mouseover)="onMouseOver(row)"
-      (mouseout)="onMouseOut(row)"/>
+      (mouseout)="onMouseOut(row)"
+    />
     @if (isTableEmpty) {
-      <mat-footer-row *matFooterRowDef="['tableIsEmptyColumn']" class="empty-table"/>
+      <mat-footer-row
+        *matFooterRowDef="['tableIsEmptyColumn']"
+        class="empty-table"
+      />
       <ng-container matColumnDef="tableIsEmptyColumn">
         <mat-footer-cell *matFooterCellDef class="empty-table-cell">
-          <span>{{ 'EMPTY_TABLE' | translate }}</span>
+          <span>{{ "EMPTY_TABLE" | translate }}</span>
         </mat-footer-cell>
       </ng-container>
     }
@@ -137,12 +168,13 @@
     <mat-paginator
       [pageSizeOptions]="config().paginator!.getPageSizes()"
       [pageSize]="config().paginator!.defaultPageSize"
-      [showFirstLastButtons]="config().paginator!.showFirstLastButtons"/>
+      [showFirstLastButtons]="config().paginator!.showFirstLastButtons"
+    />
   }
 
   @if (shouldShowSpinner) {
     <div class="inner">
-      <mat-spinner/>
+      <mat-spinner />
     </div>
   }
 </div>

@@ -26,7 +26,8 @@ export function isNumeric(num: any): boolean {
 
 export function createRandomString(length: number): string {
   let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -61,7 +62,9 @@ export function toDurationData(durationMs: number): Date {
 }
 
 export function getProperty<TObject, TPropertyValye extends keyof TObject>(
-  data: TObject, propertyName: TPropertyValye): TObject[TPropertyValye] {
+  data: TObject,
+  propertyName: TPropertyValye,
+): TObject[TPropertyValye] {
   return data[propertyName];
 }
 

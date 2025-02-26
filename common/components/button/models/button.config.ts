@@ -20,12 +20,15 @@ export class ButtonConfig {
   public tooltip?: TextConfig;
 
   public constructor(config: IButtonConfig) {
-    this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
+    this.text = isDefined(config.text)
+      ? new TextConfig(config.text)
+      : undefined;
     this.color = config.color ?? ButtonColor.Accent;
-    this.onClick = config.onClick ?? (() => {
-    });
+    this.onClick = config.onClick ?? (() => {});
     this.disabled = config.disabled ?? (() => false);
     this.matStepperNext = config.matStepperNext ?? false;
-    this.tooltip = isDefined(config.tooltip) ? new TextConfig(config.tooltip) : undefined;
+    this.tooltip = isDefined(config.tooltip)
+      ? new TextConfig(config.tooltip)
+      : undefined;
   }
 }

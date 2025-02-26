@@ -6,7 +6,8 @@
       [matTooltip]="getText(config().tooltip)"
       [disabled]="config().disabled()"
       [color]="matColor"
-      (click)="config().onClick()">
+      (click)="config().onClick()"
+    >
       {{ config().text | textConfigTranslate }}
     </button>
   } @else {
@@ -15,7 +16,8 @@
       [matTooltip]="getText(config().tooltip)"
       [disabled]="config().disabled()"
       [color]="matColor"
-      (click)="config().onClick()">
+      (click)="config().onClick()"
+    >
       {{ config().text | textConfigTranslate }}
     </button>
   }

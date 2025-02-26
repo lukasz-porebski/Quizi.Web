@@ -13,13 +13,15 @@ export interface ITableColumnActionConfig<TData> {
 export class TableColumnActionConfig<TData> {
   public icon?: Icon;
   public name?: TextConfig;
-  public disabled!: ((data: Readonly<TData>) => boolean);
+  public disabled!: (data: Readonly<TData>) => boolean;
   public hide!: boolean | ((data: Readonly<TData>) => boolean);
   public onClick!: (data: Readonly<TData>) => void;
 
   public constructor(config: ITableColumnActionConfig<TData>) {
     this.icon = config.icon;
-    this.name = isDefined(config.name) ? new TextConfig(config.name) : undefined;
+    this.name = isDefined(config.name)
+      ? new TextConfig(config.name)
+      : undefined;
     this._setDisabled(config);
     this._setHide(config);
     this._setOnClick(config);
@@ -51,8 +53,7 @@ export class TableColumnActionConfig<TData> {
 
   private _setOnClick(config: ITableColumnActionConfig<TData>): void {
     if (!isDefined(config.onClick)) {
-      this.onClick = () => {
-      };
+      this.onClick = () => {};
     } else {
       this.onClick = config.onClick;
     }

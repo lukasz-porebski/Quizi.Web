@@ -7,13 +7,9 @@ import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.
 
 @Component({
   selector: 'app-checkbox',
-  imports: [
-    MatCheckbox,
-    ReactiveFormsModule,
-    TextConfigTranslatePipe
-  ],
+  imports: [MatCheckbox, ReactiveFormsModule, TextConfigTranslatePipe],
   templateUrl: './checkbox.component.html',
-  styleUrl: './checkbox.component.scss'
+  styleUrl: './checkbox.component.scss',
 })
 export class CheckboxComponent {
   public config = input.required<CheckboxConfig>();

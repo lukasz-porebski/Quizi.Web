@@ -1,8 +1,19 @@
-import { Component, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { ModalConfig } from './models/modal.config';
 import { isDefined } from '../../utils/utils';
 import { MatIcon } from '@angular/material/icon';
-import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import {
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import { Optional } from '../../types/optional.type';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 
@@ -14,14 +25,14 @@ import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pip
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
-    TextConfigTranslatePipe
+    TextConfigTranslatePipe,
   ],
-  styleUrls: [ './modal.component.scss' ]
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public config = input.required<ModalConfig>();
 
-  private readonly _renderer2 = inject(Renderer2)
+  private readonly _renderer2 = inject(Renderer2);
 
   public ngOnInit(): void {
     if (this.config().modalMaxWidth) {
@@ -52,8 +63,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   private _getBody(): Optional<HTMLBodyElement> {
     const body = document.getElementsByTagName('body');
 
-    return isDefined(body) && isDefined(body[0])
-      ? body[0]
-      : null;
+    return isDefined(body) && isDefined(body[0]) ? body[0] : null;
   }
 }

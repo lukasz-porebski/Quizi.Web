@@ -3,5 +3,5 @@ export enum TablePaginatorPageSize {
   Ten = 10,
   TwentyFive = 25,
   Fifty = 50,
-  Hundred = 100
+  Hundred = 100,
 }

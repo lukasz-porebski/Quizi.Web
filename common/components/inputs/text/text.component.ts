@@ -22,9 +22,9 @@ import { Icon } from '../../../enums/icon.enum';
     InputErrorComponent,
     TextConfigTranslatePipe,
     MatIconButton,
-    MatIcon
+    MatIcon,
   ],
-  styleUrls: [ './text.component.scss' ]
+  styleUrls: ['./text.component.scss'],
 })
 export class TextInputComponent {
   public config = input.required<TextInputConfig>();
@@ -36,6 +36,8 @@ export class TextInputComponent {
 
   public changePasswordHideState(): void {
     this.isPasswordHidden = !this.isPasswordHidden;
-    this.config().type = this.isPasswordHidden ? TextInputType.Password : TextInputType.Text;
+    this.config().type = this.isPasswordHidden
+      ? TextInputType.Password
+      : TextInputType.Text;
   }
 }

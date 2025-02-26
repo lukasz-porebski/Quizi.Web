@@ -1,13 +1,15 @@
 <div
   class="app-checkbox-input"
-  [className]="getCheckBoxColorClass(config().color)">
+  [className]="getCheckBoxColorClass(config().color)"
+>
   <mat-checkbox
     [class.app-checkbox-input-readonly]="config().readonly"
     [labelPosition]="config().labelPosition"
     [disableRipple]="true"
     [disabled]="config().disabled"
     [formControl]="config().formControl"
-    (click)="config().readonly ? $event.preventDefault() : null">
+    (click)="config().readonly ? $event.preventDefault() : null"
+  >
     {{ config().label | textConfigTranslate }}
   </mat-checkbox>
 </div>

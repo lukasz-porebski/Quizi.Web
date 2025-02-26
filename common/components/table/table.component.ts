@@ -1,6 +1,29 @@
-import { AfterViewInit, Component, inject, input, OnInit, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  input,
+  OnInit,
+  viewChild,
+} from '@angular/core';
 import { TableConfig } from './models/table.config';
-import { MatCell, MatCellDef, MatColumnDef, MatFooterCell, MatFooterCellDef, MatFooterRow, MatFooterRowDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource } from '@angular/material/table';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatFooterCell,
+  MatFooterCellDef,
+  MatFooterRow,
+  MatFooterRowDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from '@angular/material/table';
 import { TableColumnType } from './enums/column-type.enum';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -53,7 +76,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatFooterCellDef,
     MatProgressSpinner,
   ],
-  styleUrls: [ './table.component.scss' ]
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterViewInit {
   public matSort = viewChild<MatSort>(MatSort);
@@ -84,12 +107,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   private _spinner = false;
 
   public ngOnInit(): void {
-    this.refreshDataSource()
+    this.refreshDataSource();
   }
 
-  public ngAfterViewInit(): void {
-
-  }
+  public ngAfterViewInit(): void {}
 
   public async refreshDataSource(): Promise<void> {
     this._spinner = true;
@@ -97,13 +118,17 @@ export class TableComponent implements OnInit, AfterViewInit {
     const dataSource = await this.config().dataSource;
     this.dataSource.data = dataSource;
     this.dataSource.sort = this.matSort() ?? null;
-    const itemsPerPageLabel = this._translateService.instant('ITEMS_PER_PAGE_LABEL');
+    const itemsPerPageLabel = this._translateService.instant(
+      'ITEMS_PER_PAGE_LABEL',
+    );
     if (isDefined(this.matPaginator())) {
       this.dataSource.paginator = this.matPaginator()!;
       this.matPaginator()!._intl.itemsPerPageLabel = itemsPerPageLabel;
     }
-    const initialSelectionValue = isDefined(this.config().selection?.initialSelection)
-      ? [ this.config().selection!.initialSelection!(dataSource) ]
+    const initialSelectionValue = isDefined(
+      this.config().selection?.initialSelection,
+    )
+      ? [this.config().selection!.initialSelection!(dataSource)]
       : [];
     this.selection = new SelectionModel<any>(false, initialSelectionValue);
     this._spinner = false;
@@ -132,14 +157,17 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public applyBooleanOrCallableColumnValue<T>(
     value: boolean | ((rowValue: Readonly<T>) => boolean),
-    data: T): boolean {
+    data: T,
+  ): boolean {
     return typeof value === 'boolean' ? value : value(data);
   }
 
   public onRowClick(row: any): void {
     if (this.isSelectionEnable) {
       this.selection.toggle(row);
-      const selectedRow = isEmpty(this.selection.selected) ? null : this.selection.selected[0];
+      const selectedRow = isEmpty(this.selection.selected)
+        ? null
+        : this.selection.selected[0];
       this.config().selection?.onRowSelect(selectedRow);
     }
   }
@@ -156,7 +184,10 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public getEnumText(column: TableColumnConfig<any, any>, enumValue: any): string {
-    return column.enumDefinition.find(e => e.value === enumValue)?.text ?? '';
+  public getEnumText(
+    column: TableColumnConfig<any, any>,
+    enumValue: any,
+  ): string {
+    return column.enumDefinition.find((e) => e.value === enumValue)?.text ?? '';
   }
 }

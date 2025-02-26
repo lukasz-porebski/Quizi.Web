@@ -1,4 +1,7 @@
-import { ITableColumnActionConfig, TableColumnActionConfig } from './column-action.config';
+import {
+  ITableColumnActionConfig,
+  TableColumnActionConfig,
+} from './column-action.config';
 
 export interface ITableColumnActionsConfig<TData> {
   name?: string;
@@ -13,7 +16,7 @@ export class TableColumnActionsConfig<TData> {
 
   public constructor(config: ITableColumnActionsConfig<TData>) {
     this.name = config.name ?? 'appTableActions';
-    this.actions = config.actions.map(a => new TableColumnActionConfig(a));
+    this.actions = config.actions.map((a) => new TableColumnActionConfig(a));
     this.stickyEnd = config.stickyEnd ?? true;
   }
 }

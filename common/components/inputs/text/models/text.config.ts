@@ -9,7 +9,7 @@ export interface ITextInputConfig {
   label: ITextConfig;
   readonly?: boolean;
   disabled?: boolean;
-  type?: TextInputType
+  type?: TextInputType;
   attribute?: IAttribute;
   hint?: IHintConfig;
   minLength?: number;
@@ -19,13 +19,15 @@ export interface ITextInputConfig {
 
 export class TextInputConfig {
   public get formControl(): FormControl {
-    return isDefined(this.attribute) ? this.attribute.formControl : this._formControl;
+    return isDefined(this.attribute)
+      ? this.attribute.formControl
+      : this._formControl;
   }
 
   public label: TextConfig;
   public readonly: boolean;
   public disabled: boolean;
-  public type: TextInputType
+  public type: TextInputType;
   public attribute?: IAttribute;
   public hint?: HintConfig;
   public minLength?: number;
@@ -40,7 +42,9 @@ export class TextInputConfig {
     this.disabled = config.disabled ?? false;
     this.type = config.type ?? TextInputType.Text;
     this.attribute = config.attribute;
-    this.hint = isDefined(config.hint) ? new HintConfig(config.hint) : undefined;
+    this.hint = isDefined(config.hint)
+      ? new HintConfig(config.hint)
+      : undefined;
     this.minLength = config.minLength;
     this.maxLength = config.maxLength;
     this.passwordShowButton = config.passwordShowButton;

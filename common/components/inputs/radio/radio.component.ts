@@ -16,10 +16,10 @@ import { isDefined } from '../../../utils/utils';
     TextConfigTranslatePipe,
     ReactiveFormsModule,
     MatRadioButton,
-    ConditionalTranslatePipe
+    ConditionalTranslatePipe,
   ],
   templateUrl: './radio.component.html',
-  styleUrl: './radio.component.scss'
+  styleUrl: './radio.component.scss',
 })
 export class RadioComponent<T> {
   public config = input.required<RadioConfig<T>>();
@@ -29,6 +29,8 @@ export class RadioComponent<T> {
   }
 
   public getOptionText(option: T): string | T {
-    return isDefined(this.config().optionText) ? this.config().optionText!(option) : option;
+    return isDefined(this.config().optionText)
+      ? this.config().optionText!(option)
+      : option;
   }
 }

@@ -11,9 +11,11 @@ export interface ISelectAttributeConfig<TData, TValue = TData> {
   optionTextSelector?: (data: TData) => string | number | TValue;
 }
 
-export abstract class SelectAttribute<TData, TValue = TData> implements IAttribute {
+export abstract class SelectAttribute<TData, TValue = TData>
+  implements IAttribute
+{
   public abstract get value(): TValue[] | TValue;
-  public abstract set value(v: TValue[] | TValue)
+  public abstract set value(v: TValue[] | TValue);
 
   public get error(): ErrorModel {
     this.errorModel.setMessage('');
@@ -36,15 +38,18 @@ export abstract class SelectAttribute<TData, TValue = TData> implements IAttribu
 
   protected constructor(
     config: ISelectAttributeConfig<TData, TValue>,
-    createFormControl: (validators: ValidatorFn[]) => FormControl<TValue[] | TValue| null>) {
+    createFormControl: (
+      validators: ValidatorFn[],
+    ) => FormControl<TValue[] | TValue | null>,
+  ) {
     this.translateRoute = config.translateRoute;
-    this.dataSource = [ ...config.dataSource ];
+    this.dataSource = [...config.dataSource];
     this.valueSelector = isDefined(config.valueSelector)
       ? config.valueSelector
-      : (data) => (data as unknown as TValue);
+      : (data) => data as unknown as TValue;
     this.optionTextSelector = isDefined(config.optionTextSelector)
       ? config.optionTextSelector
-      : (data) => (data as unknown as TValue);
+      : (data) => data as unknown as TValue;
 
     if (config.required) {
       this.validators.push(Validators.required);
@@ -52,5 +57,3 @@ export abstract class SelectAttribute<TData, TValue = TData> implements IAttribu
     this.formControl = createFormControl(this.validators);
   }
 }
-
-

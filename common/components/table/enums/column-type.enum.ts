@@ -9,5 +9,5 @@ export enum TableColumnType {
   Minutes,
   Price,
   Enum,
-  Image
+  Image,
 }

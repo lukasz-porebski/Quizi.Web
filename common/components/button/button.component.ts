@@ -13,30 +13,26 @@ import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pip
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  imports: [
-    MatTooltip,
-    MatButton,
-    MatStepperNext,
-    TextConfigTranslatePipe
-  ],
-  styleUrls: [ './button.component.scss' ]
+  imports: [MatTooltip, MatButton, MatStepperNext, TextConfigTranslatePipe],
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
   public config = input.required<ButtonConfig>();
 
   public get matColor(): string {
     return this.config().color === ButtonColor.Accent ||
-    this.config().color === ButtonColor.Primary
+      this.config().color === ButtonColor.Primary
       ? this.config().color
       : '';
   }
 
-  private readonly _translatePipe = inject(TranslatePipe)
+  private readonly _translatePipe = inject(TranslatePipe);
 
   public getText(model?: TextConfig): Optional<string> {
-    if (!isDefined(model))
-      return null;
+    if (!isDefined(model)) return null;
 
-    return model.translate ? this._translatePipe.transform(model.text) : model.text;
+    return model.translate
+      ? this._translatePipe.transform(model.text)
+      : model.text;
   }
 }

@@ -7,11 +7,8 @@ import { ConditionalTranslatePipe } from '../../pipes/conditional-translation.pi
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
-  imports: [
-    MatIcon,
-    ConditionalTranslatePipe,
-  ],
-  styleUrls: [ './error.component.scss' ]
+  imports: [MatIcon, ConditionalTranslatePipe],
+  styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent {
   public translateMessage = input<boolean>(true);

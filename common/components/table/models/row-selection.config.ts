@@ -8,8 +8,7 @@ export class TableRowSelectionConfig<TDataSource> {
   public readonly initialSelection?: (data: TDataSource[]) => TDataSource;
 
   constructor(config: ITableRowSelectionConfig<TDataSource>) {
-    this.onRowSelect = config.onRowSelect ?? (() => {
-    });
+    this.onRowSelect = config.onRowSelect ?? (() => {});
     this.initialSelection = config.initialSelection ?? undefined;
   }
 }

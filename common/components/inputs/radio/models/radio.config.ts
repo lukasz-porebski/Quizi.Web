@@ -23,7 +23,9 @@ export class RadioConfig<T> {
   }
 
   public get formControl(): FormControl {
-    return isDefined(this.attribute) ? this.attribute.formControl : this._formControl;
+    return isDefined(this.attribute)
+      ? this.attribute.formControl
+      : this._formControl;
   }
 
   public label?: TextConfig;
@@ -39,12 +41,15 @@ export class RadioConfig<T> {
   private readonly _formControl = new FormControl();
 
   public constructor(config: IRadioConfig<T>) {
-    this.label = isDefined(config.label) ? new TextConfig(config.label) : undefined;
+    this.label = isDefined(config.label)
+      ? new TextConfig(config.label)
+      : undefined;
     this.readonly = config.readonly ?? false;
     this.disabled = config.disabled ?? false;
-    this.options = [ ...config.options ];
+    this.options = [...config.options];
     this.attribute = config.attribute;
-    this.optionLabelPosition = config.optionLabelPosition ?? RadioLabelPosition.After;
+    this.optionLabelPosition =
+      config.optionLabelPosition ?? RadioLabelPosition.After;
     this.color = config.color ?? InputColor.Default;
     this.optionText = config.optionText;
     this.translateOptionLabel = config.translateOptionLabel ?? true;

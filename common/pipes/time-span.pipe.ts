@@ -2,10 +2,10 @@ import { inject, Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Pipe({
-  name: 'timeSpan'
+  name: 'timeSpan',
 })
 export class TimeSpanPipe implements PipeTransform {
-  private readonly _datePipe = inject(DatePipe)
+  private readonly _datePipe = inject(DatePipe);
 
   public transform(seconds: number): string | null {
     const time = new Date(0, 0, 0);

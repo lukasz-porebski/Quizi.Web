@@ -17,10 +17,10 @@ import { InputErrorComponent } from '../input-error/input-error.component';
     MatInput,
     ReactiveFormsModule,
     HintComponent,
-    InputErrorComponent
+    InputErrorComponent,
   ],
   templateUrl: './text-area.component.html',
-  styleUrl: './text-area.component.scss'
+  styleUrl: './text-area.component.scss',
 })
 export class TextAreaComponent {
   public config = input.required<TextAreaConfig>();

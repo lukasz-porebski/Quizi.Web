@@ -14,9 +14,9 @@ import { MultipleSelectAttribute } from '../../attributes/select/multiple-select
     MatSelect,
     MatOption,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
-  styleUrls: [ './select.component.scss' ]
+  styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent {
   public config = input.required<SelectConfig>();

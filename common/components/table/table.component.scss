@@ -7,7 +7,7 @@
 .spinner {
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 
 .action-button {
@@ -38,15 +38,22 @@
     display: none !important;
   }
 
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  ::ng-deep
+    .mat-checkbox-checked.mat-accent
+    .mat-checkbox-ripple
+    .mat-ripple-element {
     background-color: colors.$app-primary !important;
   }
 
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: colors.$app-primary;
   }
 
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  ::ng-deep
+    .mat-checkbox-checked.mat-accent
+    .mat-checkbox-ripple
+    .mat-ripple-element {
     opacity: 0.03 !important;
   }
 

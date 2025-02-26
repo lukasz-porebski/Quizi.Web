@@ -1,5 +1,5 @@
 export enum ButtonColor {
   Primary = 'primary',
   Accent = 'accent',
-  WhiteAndBlack = 'white-and-black'
+  WhiteAndBlack = 'white-and-black',
 }

@@ -5,7 +5,7 @@ import { ITextConfig, TextConfig } from '../../../../models/text.config';
 
 export interface ITableColumnConfig {
   field: string;
-  header: ITextConfig
+  header: ITextConfig;
   sticky?: boolean;
   stickyEnd?: boolean;
   minWidth?: string;
@@ -30,7 +30,8 @@ export class TableColumnConfig<TData, TValue> {
   public constructor(
     config: ITableColumnConfig,
     type: TableColumnType,
-    internalConfig?: ITableColumnInternalConfig<TData, TValue>) {
+    internalConfig?: ITableColumnInternalConfig<TData, TValue>,
+  ) {
     this.field = config.field;
     this.header = new TextConfig(config.header);
     this.sticky = config.sticky;
@@ -43,8 +44,9 @@ export class TableColumnConfig<TData, TValue> {
   }
 
   public getValue(dataSource: TData): TValue {
-    return getProperty(dataSource, this.field as keyof TData) as unknown as TValue;
+    return getProperty(
+      dataSource,
+      this.field as keyof TData,
+    ) as unknown as TValue;
   }
 }
-
-

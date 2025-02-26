@@ -6,13 +6,9 @@ import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pip
 
 @Component({
   selector: 'app-hint',
-  imports: [
-    MatHint,
-    NgTemplateOutlet,
-    TextConfigTranslatePipe
-  ],
+  imports: [MatHint, NgTemplateOutlet, TextConfigTranslatePipe],
   templateUrl: './hint.component.html',
-  styleUrl: './hint.component.scss'
+  styleUrl: './hint.component.scss',
 })
 export class HintComponent {
   public config = input.required<HintConfig>();

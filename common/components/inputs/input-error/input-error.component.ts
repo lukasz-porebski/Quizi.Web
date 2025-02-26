@@ -5,12 +5,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-input-error',
-  imports: [
-    MatError,
-    TranslatePipe
-  ],
+  imports: [MatError, TranslatePipe],
   templateUrl: './input-error.component.html',
-  styleUrl: './input-error.component.scss'
+  styleUrl: './input-error.component.scss',
 })
 export class InputErrorComponent {
   public error = input<ErrorModel>();

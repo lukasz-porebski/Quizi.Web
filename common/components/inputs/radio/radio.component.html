@@ -9,7 +9,8 @@
 <mat-radio-group
   class="radio-group"
   [className]="getRadioButtonColorClass(config().color)"
-  [formControl]="config().formControl">
+  [formControl]="config().formControl"
+>
   @for (option of config().options; track option) {
     <mat-radio-button
       [class.readonly-radio-checkbox-input]="config().readonly"
@@ -18,10 +19,14 @@
       [disableRipple]="config().readonly"
       [disabled]="config().disabled"
       [value]="option"
-      (click)="config().readonly ? $event.preventDefault() : null">
-    <span>
-      {{ getOptionText(option) | conditionalTranslate: config().translateOptionLabel }}
-    </span>
+      (click)="config().readonly ? $event.preventDefault() : null"
+    >
+      <span>
+        {{
+          getOptionText(option)
+            | conditionalTranslate: config().translateOptionLabel
+        }}
+      </span>
     </mat-radio-button>
   }
 </mat-radio-group>

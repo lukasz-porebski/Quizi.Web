@@ -5,9 +5,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Pipe({
   name: 'textConfigTranslate',
-  pure: false
+  pure: false,
 })
-export class TextConfigTranslatePipe extends TranslatePipe implements PipeTransform {
+export class TextConfigTranslatePipe
+  extends TranslatePipe
+  implements PipeTransform
+{
   // @ts-ignore
   public override transform(value: Optional<TextConfig>): string {
     return value!.translate ? super.transform(value!.text) : value;

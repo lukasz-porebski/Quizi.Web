@@ -11,13 +11,13 @@
     [disabled]="config().disabled"
     [formControl]="config().formControl"
     [cdkAutosizeMinRows]="config().minRows"
-    [cdkAutosizeMaxRows]="config().maxRows">
-    </textarea>
+    [cdkAutosizeMaxRows]="config().maxRows"
+  >
+  </textarea>
 
   @if (config().hint) {
     <app-hint [config]="config().hint" [template]="hintTemplate()"></app-hint>
   }
 
   <app-input-error [error]="config().attribute?.error"></app-input-error>
-
 </mat-form-field>
