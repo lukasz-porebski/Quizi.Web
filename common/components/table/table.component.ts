@@ -1,13 +1,12 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { TableConfig } from './configs/table-config';
+import { AfterViewInit, Component, inject, input, OnInit, viewChild } from '@angular/core';
+import { TableConfig } from './models/table.config';
 import { MatCell, MatCellDef, MatColumnDef, MatFooterCell, MatFooterCellDef, MatFooterRow, MatFooterRowDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
-import { AppTableColumnType } from './enums/table-column-type.enum';
+import { TableColumnType } from './enums/column-type.enum';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { TableColumnConfig } from './configs/columns/table-column-config';
+import { TableColumnConfig } from './models/columns/column.config';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
@@ -52,18 +51,15 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatMenuItem,
     TranslatePipe,
     MatFooterCellDef,
-    MatProgressSpinner
+    MatProgressSpinner,
   ],
   styleUrls: [ './table.component.scss' ]
 })
-export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild(MatPaginator, {static: true})
-  public readonly matPaginator!: MatPaginator;
+export class TableComponent implements OnInit, AfterViewInit {
+  public matSort = viewChild<MatSort>(MatSort);
+  public matPaginator = viewChild<MatPaginator>(MatPaginator);
 
-  @ViewChild(MatSort, {static: true})
-  public readonly matSort!: MatSort;
-
-  @Input() configuration!: TableConfig<any>;
+  public config = input.required<TableConfig<any>>();
 
   public get shouldShowSpinner(): boolean {
     return this._spinner;
@@ -74,47 +70,40 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public get isSelectionEnable(): boolean {
-    return isDefined(this.configuration.selection);
+    return isDefined(this.config().selection);
   }
 
-  public readonly AppTableColumnType = AppTableColumnType;
+  public readonly AppTableColumnType = TableColumnType;
   public readonly DateFormat = DateFormat;
 
-  public selection: SelectionModel<any> = new SelectionModel<any>();
-  public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  public selection = new SelectionModel<any>();
+  public dataSource = new MatTableDataSource<any>();
 
-  private readonly _subscription = new Subscription();
+  private readonly _translateService = inject(TranslateService);
 
   private _spinner = false;
 
-  constructor(private readonly _translateService: TranslateService) {
-  }
-
   public ngOnInit(): void {
-
+    this.refreshDataSource()
   }
 
   public ngAfterViewInit(): void {
-    Promise.resolve().then(() => this.refreshDataSource());
-  }
 
-  public ngOnDestroy(): void {
-    this._subscription.unsubscribe();
   }
 
   public async refreshDataSource(): Promise<void> {
     this._spinner = true;
 
-    const dataSource = await this.configuration.dataSource;
-    this.dataSource = new MatTableDataSource<any>(dataSource);
-    this.dataSource.sort = this.matSort;
+    const dataSource = await this.config().dataSource;
+    this.dataSource.data = dataSource;
+    this.dataSource.sort = this.matSort() ?? null;
     const itemsPerPageLabel = this._translateService.instant('ITEMS_PER_PAGE_LABEL');
-    this.dataSource.paginator = this.matPaginator;
-    if (isDefined(this.matPaginator)) {
-      this.matPaginator._intl.itemsPerPageLabel = itemsPerPageLabel;
+    if (isDefined(this.matPaginator())) {
+      this.dataSource.paginator = this.matPaginator()!;
+      this.matPaginator()!._intl.itemsPerPageLabel = itemsPerPageLabel;
     }
-    const initialSelectionValue = isDefined(this.configuration?.selection?.initialSelection)
-      ? [ this.configuration?.selection?.initialSelection(dataSource) ]
+    const initialSelectionValue = isDefined(this.config().selection?.initialSelection)
+      ? [ this.config().selection!.initialSelection!(dataSource) ]
       : [];
     this.selection = new SelectionModel<any>(false, initialSelectionValue);
     this._spinner = false;
@@ -151,7 +140,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.isSelectionEnable) {
       this.selection.toggle(row);
       const selectedRow = isEmpty(this.selection.selected) ? null : this.selection.selected[0];
-      this.configuration.selection?.onRowSelect(selectedRow);
+      this.config().selection?.onRowSelect(selectedRow);
     }
   }
 

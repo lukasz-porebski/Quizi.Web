@@ -1,5 +1,5 @@
-export enum AppTableColumnType {
-  Text,
+export enum TableColumnType {
+  Text = 1,
   Number,
   Date,
   DateWithTime,

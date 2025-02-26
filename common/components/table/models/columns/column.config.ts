@@ -1,4 +1,4 @@
-import { AppTableColumnType } from '../../enums/table-column-type.enum';
+import { TableColumnType } from '../../enums/column-type.enum';
 import { getProperty } from '../../../../utils/utils';
 import { ValueTextPairModel } from '../../../../models/value-text-pair-model';
 import { ITextConfig, TextConfig } from '../../../../models/text.config';
@@ -23,13 +23,13 @@ export class TableColumnConfig<TData, TValue> {
   public stickyEnd?: boolean;
   public minWidth: string;
   public markRow: boolean;
-  public type: AppTableColumnType;
+  public type: TableColumnType;
   public enumDefinition: ReadonlyArray<ValueTextPairModel<TValue>>;
   public imgPatch?: (data: TData) => string;
 
   public constructor(
     config: ITableColumnConfig,
-    type: AppTableColumnType,
+    type: TableColumnType,
     internalConfig?: ITableColumnInternalConfig<TData, TValue>) {
     this.field = config.field;
     this.header = new TextConfig(config.header);

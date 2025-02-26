@@ -1,20 +1,15 @@
-import { inject, Pipe, PipeTransform } from '@angular/core';
-import { isEmpty } from '../utils/utils';
+import { Pipe, PipeTransform } from '@angular/core';
 import { TextConfig } from '../models/text.config';
 import { Optional } from '../types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Pipe({
   name: 'textConfigTranslate',
+  pure: false
 })
-export class TextConfigTranslatePipe implements PipeTransform {
-  private readonly _translatePipe = inject(TranslatePipe)
-
-  public transform(value: Optional<TextConfig>): string {
-    if (isEmpty(value?.text)) {
-      return '';
-    }
-
-    return value!.translate ? this._translatePipe.transform(value!.text) : value;
+export class TextConfigTranslatePipe extends TranslatePipe implements PipeTransform {
+  // @ts-ignore
+  public override transform(value: Optional<TextConfig>): string {
+    return value!.translate ? super.transform(value!.text) : value;
   }
 }

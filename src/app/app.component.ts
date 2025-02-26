@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TableComponent } from '../../common/components/table/table.component';
-import { TableConfig } from '../../common/components/table/configs/table-config';
+import { TableConfig } from '../../common/components/table/models/table.config';
 
 export interface IMyRow {
   text: string

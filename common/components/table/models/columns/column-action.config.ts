@@ -1,6 +1,6 @@
-import { isDefined } from '../../../utils/utils';
-import { Icon } from '../../../enums/icon.enum';
-import { ITextConfig, TextConfig } from '../../../models/text.config';
+import { isDefined } from '../../../../utils/utils';
+import { Icon } from '../../../../enums/icon.enum';
+import { ITextConfig, TextConfig } from '../../../../models/text.config';
 
 export interface ITableColumnActionConfig<TData> {
   icon?: Icon;
@@ -17,7 +17,7 @@ export class TableColumnActionConfig<TData> {
   public hide!: boolean | ((data: Readonly<TData>) => boolean);
   public onClick!: (data: Readonly<TData>) => void;
 
-  constructor(config: ITableColumnActionConfig<TData>) {
+  public constructor(config: ITableColumnActionConfig<TData>) {
     this.icon = config.icon;
     this.name = isDefined(config.name) ? new TextConfig(config.name) : undefined;
     this._setDisabled(config);

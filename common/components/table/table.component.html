@@ -1,13 +1,13 @@
-@if (configuration.filter) {
+@if (config().filter) {
   <mat-form-field class="filter">
     <mat-label>{{ 'FILTER' | translate }}</mat-label>
-    <input matInput (keyup)="applyFilter($event)" [placeholder]="configuration.filter.placeholder">
+    <input matInput (keyup)="applyFilter($event)" [placeholder]="config().filter!.placeholder">
   </mat-form-field>
 }
 
 <div class="table-margin mat-elevation-z8">
   <mat-table [class.disable-table]="shouldShowSpinner" [dataSource]="dataSource" matSort>
-    @for (column of configuration.columns; track column.field) {
+    @for (column of config().columns; track column.field) {
       <ng-container
         [matColumnDef]="column.field"
         [sticky]="column.sticky"
@@ -15,7 +15,7 @@
         <mat-header-cell
           *matHeaderCellDef
           [style]="'min-width:' + column.minWidth"
-          mat-sort-header>
+          matSort>
           {{ column.header | textConfigTranslate }}
         </mat-header-cell>
 
@@ -44,8 +44,7 @@
                 <mat-checkbox
                   [checked]="column.getValue(data)"
                   [disableRipple]="true"
-                  (click)="$event.preventDefault()">
-                </mat-checkbox>
+                  (click)="$event.preventDefault()"/>
               </div>
             }
             @case (AppTableColumnType.Percent) {
@@ -67,10 +66,9 @@
       </ng-container>
     }
 
-    @for (column of configuration.columnsWithIcon; track column.columnName) {
-      <ng-container
-        [matColumnDef]="column.columnName">
-        <mat-header-cell *matHeaderCellDef class="action-column-width"></mat-header-cell>
+    @for (column of config().columnsWithIcon; track column.columnName) {
+      <ng-container [matColumnDef]="column.columnName">
+        <mat-header-cell *matHeaderCellDef class="action-column-width"/>
         <mat-cell *matCellDef="let data" class="action-column-width">
           <button
             mat-icon-button
@@ -83,11 +81,11 @@
       </ng-container>
     }
 
-    @if (configuration.actionsDefinition) {
+    @if (config().actionsDefinition) {
       <ng-container
-        [matColumnDef]="configuration.actionsDefinition.name"
-        [stickyEnd]="configuration.actionsDefinition.stickyEnd">
-        <mat-header-cell *matHeaderCellDef class="action-column-width"></mat-header-cell>
+        [matColumnDef]="config().actionsDefinition!.name"
+        [stickyEnd]="config().actionsDefinition!.stickyEnd">
+        <mat-header-cell *matHeaderCellDef class="action-column-width"/>
         <mat-cell *matCellDef="let data" class="action-column-width">
           <button
             mat-icon-button
@@ -97,7 +95,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actions="matMenu">
-            @for (action of configuration.actionsDefinition.actions; track action.name) {
+            @for (action of config().actionsDefinition!.actions; track action.name) {
               <button
                 mat-menu-item
                 [hidden]="applyBooleanOrCallableColumnValue(action.hide, data)"
@@ -116,19 +114,17 @@
       </ng-container>
     }
 
-    <mat-header-row *matHeaderRowDef="configuration.columnNames; sticky: configuration.headerSticky">
-    </mat-header-row>
+    <mat-header-row *matHeaderRowDef="config().columnNames; sticky: config().headerSticky"/>
     <mat-row
-      *matRowDef="let row; columns: configuration.columnNames;"
-      [class.mark-row]="configuration.markRowCondition(row)"
+      *matRowDef="let row; columns: config().columnNames;"
+      [class.mark-row]="config().markRowCondition(row)"
       [class.hovered]="row.hovered"
       [class.highlighted]="selection.isSelected(row)"
       (click)="onRowClick(row)"
       (mouseover)="onMouseOver(row)"
-      (mouseout)="onMouseOut(row)">
-    </mat-row>
+      (mouseout)="onMouseOut(row)"/>
     @if (isTableEmpty) {
-      <mat-footer-row *matFooterRowDef="['tableIsEmptyColumn']" class="empty-table"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['tableIsEmptyColumn']" class="empty-table"/>
       <ng-container matColumnDef="tableIsEmptyColumn">
         <mat-footer-cell *matFooterCellDef class="empty-table-cell">
           <span>{{ 'EMPTY_TABLE' | translate }}</span>
@@ -137,17 +133,16 @@
     }
   </mat-table>
 
-  @if (configuration.paginator) {
+  @if (config().paginator) {
     <mat-paginator
-      [pageSizeOptions]="configuration.paginator.getPageSizes()"
-      [pageSize]="configuration.paginator.defaultPageSize"
-      [showFirstLastButtons]="configuration.paginator.showFirstLastButtons">
-    </mat-paginator>
+      [pageSizeOptions]="config().paginator!.getPageSizes()"
+      [pageSize]="config().paginator!.defaultPageSize"
+      [showFirstLastButtons]="config().paginator!.showFirstLastButtons"/>
   }
 
   @if (shouldShowSpinner) {
     <div class="inner">
-      <mat-spinner></mat-spinner>
+      <mat-spinner/>
     </div>
   }
 </div>

@@ -1,4 +1,4 @@
-import { ITableColumnActionConfig, TableColumnActionConfig } from './table-column-action-config';
+import { ITableColumnActionConfig, TableColumnActionConfig } from './column-action.config';
 
 export interface ITableColumnActionsConfig<TData> {
   name?: string;

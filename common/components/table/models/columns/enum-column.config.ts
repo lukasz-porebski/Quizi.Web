@@ -1,4 +1,4 @@
-import { ITableColumnConfig } from './table-column-config';
+import { ITableColumnConfig } from './column.config';
 import { ValueTextPairModel } from '../../../../models/value-text-pair-model';
 
 export interface ITableEnumColumnConfig<TValue> extends ITableColumnConfig {

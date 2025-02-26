@@ -1,10 +1,10 @@
-import { TableColumnConfig } from './columns/table-column-config';
-import { ITableColumnActionsConfig, TableColumnActionsConfig } from './table-column-actions-config';
-import { ITableColumnWithIconConfig, TableColumnWithIconConfig } from './table-column-with-icon-config';
-import { ITablePaginatorConfig, TablePaginatorConfig } from './table-paginator-config';
-import { ITableFilterConfig, TableFilterConfig } from './table-filter-config';
-import { ITableRowSelectionConfig, TableRowSelectionConfig } from './table-row-selection-config';
-import { TableColumnBuilder } from '../utils/table-column-builder';
+import { TableColumnConfig } from './columns/column.config';
+import { ITableColumnActionsConfig, TableColumnActionsConfig } from './columns/column-actions.config';
+import { ITableColumnWithIconConfig, TableColumnWithIconConfig } from './columns/column-with-icon.config';
+import { ITablePaginatorConfig, TablePaginatorConfig } from './paginator.config';
+import { ITableFilterConfig, TableFilterConfig } from './filter.config';
+import { ITableRowSelectionConfig, TableRowSelectionConfig } from './row-selection.config';
+import { TableColumnBuilder } from '../utils/column.builder';
 import { isDefined } from '../../../utils/utils';
 import { Optional } from '../../../types/optional.type';
 
