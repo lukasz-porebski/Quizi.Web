@@ -19,7 +19,6 @@ import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pip
     MatStepperNext,
     TextConfigTranslatePipe
   ],
-  providers: [ TranslatePipe ],
   styleUrls: [ './button.component.scss' ]
 })
 export class ButtonComponent {

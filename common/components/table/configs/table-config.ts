@@ -1,0 +1,75 @@
+import { TableColumnConfig } from './columns/table-column-config';
+import { ITableColumnActionsConfig, TableColumnActionsConfig } from './table-column-actions-config';
+import { ITableColumnWithIconConfig, TableColumnWithIconConfig } from './table-column-with-icon-config';
+import { ITablePaginatorConfig, TablePaginatorConfig } from './table-paginator-config';
+import { ITableFilterConfig, TableFilterConfig } from './table-filter-config';
+import { ITableRowSelectionConfig, TableRowSelectionConfig } from './table-row-selection-config';
+import { TableColumnBuilder } from '../utils/table-column-builder';
+import { isDefined } from '../../../utils/utils';
+import { Optional } from '../../../types/optional.type';
+
+export interface ITableConfig<TData> {
+  dataSource: Promise<TData[]>;
+  columns: (builder: TableColumnBuilder<TData>) => ReadonlyArray<TableColumnConfig<TData, any>>;
+  columnsWithIcon?: ITableColumnWithIconConfig<TData>[];
+  actionsDefinition?: ITableColumnActionsConfig<TData>;
+  headerSticky?: boolean;
+  paginator?: ITablePaginatorConfig;
+  filter?: ITableFilterConfig;
+  markRowCondition?: (row: TData) => boolean;
+  selection?: ITableRowSelectionConfig<TData>;
+}
+
+export class TableConfig<TData> {
+  public readonly dataSource: Promise<TData[]>;
+  public readonly columns: ReadonlyArray<TableColumnConfig<TData, any>>;
+  public readonly columnsWithIcon: TableColumnWithIconConfig<TData>[];
+  public readonly actionsDefinition?: TableColumnActionsConfig<TData>;
+  public readonly columnNames: string[];
+  public readonly headerSticky: boolean;
+  public readonly paginator?: TablePaginatorConfig;
+  public readonly filter?: TableFilterConfig;
+  public readonly markRowCondition: (row: TData) => boolean;
+  public readonly selection?: TableRowSelectionConfig<TData>;
+
+  public constructor(config: ITableConfig<TData>) {
+    this.dataSource = config.dataSource;
+    this.columns = config.columns(new TableColumnBuilder<TData>());
+
+    this.columnsWithIcon = (config?.columnsWithIcon ?? [])
+      .map(c => new TableColumnWithIconConfig<TData>(c));
+
+    if (isDefined(config.actionsDefinition)) {
+      this.actionsDefinition = new TableColumnActionsConfig(config.actionsDefinition);
+    }
+
+    this.columnNames = this._getColumnNames(this.columns, this.columnsWithIcon, this.actionsDefinition);
+    this.headerSticky = isDefined(config.headerSticky) ? config.headerSticky : false;
+
+    if (isDefined(config.paginator)) {
+      this.paginator = new TablePaginatorConfig(config.paginator);
+    }
+    if (isDefined(config.filter)) {
+      this.filter = new TableFilterConfig(config.filter);
+    }
+    this.markRowCondition = config.markRowCondition ?? (() => false);
+    if (isDefined(config.selection)) {
+      this.selection = new TableRowSelectionConfig<TData>(config.selection);
+    }
+  }
+
+  private _getColumnNames(
+    columns: ReadonlyArray<TableColumnConfig<TData, any>>,
+    columnsWithIcon: TableColumnWithIconConfig<TData>[],
+    actionsDefinition: Optional<TableColumnActionsConfig<TData>>): string[] {
+    const columnNames = columns.map(c => c.field);
+
+    columnsWithIcon.forEach(c => columnNames.push(c.columnName));
+
+    if (isDefined(actionsDefinition) && isDefined(actionsDefinition.name)) {
+      columnNames.push(actionsDefinition.name);
+    }
+
+    return columnNames;
+  }
+}

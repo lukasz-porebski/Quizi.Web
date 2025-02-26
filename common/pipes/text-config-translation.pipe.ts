@@ -5,7 +5,7 @@ import { Optional } from '../types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Pipe({
-  name: 'textConfigTranslate'
+  name: 'textConfigTranslate',
 })
 export class TextConfigTranslatePipe implements PipeTransform {
   private readonly _translatePipe = inject(TranslatePipe)

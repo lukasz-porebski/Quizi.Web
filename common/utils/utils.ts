@@ -59,3 +59,46 @@ export function toDurationData(durationMs: number): Date {
   date.setTime(durationMs);
   return date;
 }
+
+export function getProperty<TObject, TPropertyValye extends keyof TObject>(
+  data: TObject, propertyName: TPropertyValye): TObject[TPropertyValye] {
+  return data[propertyName];
+}
+
+export function toPercent(value: number, hideZeros: boolean = true): string {
+  const result = value.toFixed(2);
+  if (!hideZeros) {
+    return result + '%';
+  }
+
+  let resultWithoutZeros = result;
+
+  if (result.endsWith('.00')) {
+    resultWithoutZeros = result.substring(0, result.length - 3);
+  }
+
+  if (result.endsWith('.0')) {
+    resultWithoutZeros = result.substring(0, result.length - 2);
+  }
+
+  return resultWithoutZeros + '%';
+}
+
+export function toPrice(value: number, hideZeros: boolean = true): string {
+  const result = value.toFixed(2);
+  if (!hideZeros) {
+    return result + ' zł';
+  }
+
+  let resultWithoutZeros = result;
+
+  if (result.endsWith('.00')) {
+    resultWithoutZeros = result.substring(0, result.length - 3);
+  }
+
+  if (result.endsWith('.0')) {
+    resultWithoutZeros = result.substring(0, result.length - 2);
+  }
+
+  return resultWithoutZeros + ' zł';
+}

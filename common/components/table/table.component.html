@@ -1,0 +1,153 @@
+@if (configuration.filter) {
+  <mat-form-field class="filter">
+    <mat-label>{{ 'FILTER' | translate }}</mat-label>
+    <input matInput (keyup)="applyFilter($event)" [placeholder]="configuration.filter.placeholder">
+  </mat-form-field>
+}
+
+<div class="table-margin mat-elevation-z8">
+  <mat-table [class.disable-table]="shouldShowSpinner" [dataSource]="dataSource" matSort>
+    @for (column of configuration.columns; track column.field) {
+      <ng-container
+        [matColumnDef]="column.field"
+        [sticky]="column.sticky"
+        [stickyEnd]="column.stickyEnd">
+        <mat-header-cell
+          *matHeaderCellDef
+          [style]="'min-width:' + column.minWidth"
+          mat-sort-header>
+          {{ column.header | textConfigTranslate }}
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let data" [style]="'min-width:' + column.minWidth">
+          @switch (column.type) {
+            @case (AppTableColumnType.Text) {
+              {{ column.getValue(data) }}
+            }
+            @case (AppTableColumnType.Number) {
+              <span>{{ column.getValue(data) }}</span>
+            }
+            @case (AppTableColumnType.Date) {
+              {{ column.getValue(data) | date: DateFormat.Date }}
+            }
+            @case (AppTableColumnType.DateWithTime) {
+              {{ column.getValue(data) | date: DateFormat.DateWithTime }}
+            }
+            @case (AppTableColumnType.Hours) {
+              {{ column.getValue(data) | date: DateFormat.Hours : 'UTC' }}
+            }
+            @case (AppTableColumnType.Minutes) {
+              {{ column.getValue(data) | date: DateFormat.Minutes : 'UTC' }}
+            }
+            @case (AppTableColumnType.Boolean) {
+              <div class="app-table-checkbox-input">
+                <mat-checkbox
+                  [checked]="column.getValue(data)"
+                  [disableRipple]="true"
+                  (click)="$event.preventDefault()">
+                </mat-checkbox>
+              </div>
+            }
+            @case (AppTableColumnType.Percent) {
+              {{ getPercent(column.getValue(data)) }}
+            }
+            @case (AppTableColumnType.Price) {
+              {{ getPrice(column.getValue(data)) }}
+            }
+            @case (AppTableColumnType.Enum) {
+              {{ getEnumText(column, column.getValue(data)) }}
+            }
+            @case (AppTableColumnType.Image) {
+              @if (column.imgPatch && column.imgPatch(data)) {
+                <img class="cell-img" alt="picture" [src]="column.imgPatch(data)">
+              }
+            }
+          }
+        </mat-cell>
+      </ng-container>
+    }
+
+    @for (column of configuration.columnsWithIcon; track column.columnName) {
+      <ng-container
+        [matColumnDef]="column.columnName">
+        <mat-header-cell *matHeaderCellDef class="action-column-width"></mat-header-cell>
+        <mat-cell *matCellDef="let data" class="action-column-width">
+          <button
+            mat-icon-button
+            class="action-button"
+            [disabled]="shouldShowSpinner"
+            (click)="column.onClick(data)">
+            <mat-icon>{{ column.icon }}</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    }
+
+    @if (configuration.actionsDefinition) {
+      <ng-container
+        [matColumnDef]="configuration.actionsDefinition.name"
+        [stickyEnd]="configuration.actionsDefinition.stickyEnd">
+        <mat-header-cell *matHeaderCellDef class="action-column-width"></mat-header-cell>
+        <mat-cell *matCellDef="let data" class="action-column-width">
+          <button
+            mat-icon-button
+            class="action-button"
+            [disabled]="shouldShowSpinner"
+            [matMenuTriggerFor]="actions">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actions="matMenu">
+            @for (action of configuration.actionsDefinition.actions; track action.name) {
+              <button
+                mat-menu-item
+                [hidden]="applyBooleanOrCallableColumnValue(action.hide, data)"
+                (click)="action.onClick(data)"
+                [disabled]="action.disabled(data)">
+                @if (action.icon) {
+                  <mat-icon>{{ action.icon }}</mat-icon>
+                }
+                @if (action.name) {
+                  <span>{{ action.name | textConfigTranslate }}</span>
+                }
+              </button>
+            }
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+    }
+
+    <mat-header-row *matHeaderRowDef="configuration.columnNames; sticky: configuration.headerSticky">
+    </mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: configuration.columnNames;"
+      [class.mark-row]="configuration.markRowCondition(row)"
+      [class.hovered]="row.hovered"
+      [class.highlighted]="selection.isSelected(row)"
+      (click)="onRowClick(row)"
+      (mouseover)="onMouseOver(row)"
+      (mouseout)="onMouseOut(row)">
+    </mat-row>
+    @if (isTableEmpty) {
+      <mat-footer-row *matFooterRowDef="['tableIsEmptyColumn']" class="empty-table"></mat-footer-row>
+      <ng-container matColumnDef="tableIsEmptyColumn">
+        <mat-footer-cell *matFooterCellDef class="empty-table-cell">
+          <span>{{ 'EMPTY_TABLE' | translate }}</span>
+        </mat-footer-cell>
+      </ng-container>
+    }
+  </mat-table>
+
+  @if (configuration.paginator) {
+    <mat-paginator
+      [pageSizeOptions]="configuration.paginator.getPageSizes()"
+      [pageSize]="configuration.paginator.defaultPageSize"
+      [showFirstLastButtons]="configuration.paginator.showFirstLastButtons">
+    </mat-paginator>
+  }
+
+  @if (shouldShowSpinner) {
+    <div class="inner">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</div>
