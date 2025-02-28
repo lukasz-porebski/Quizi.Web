@@ -100,7 +100,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly DateFormat = DateFormat;
 
   public selection = new SelectionModel<any>();
-  public dataSource = new MatTableDataSource<any>();
+  public dataSource = new MatTableDataSource<any>([]);
 
   private readonly _translateService = inject(TranslateService);
 

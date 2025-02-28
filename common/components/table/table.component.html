@@ -139,6 +139,12 @@
       </ng-container>
     }
 
+    <ng-container matColumnDef="tableIsEmptyColumn">
+      <mat-footer-cell *matFooterCellDef class="empty-table-cell">
+        <span>{{ "EMPTY_TABLE" | translate }}</span>
+      </mat-footer-cell>
+    </ng-container>
+
     <mat-header-row
       *matHeaderRowDef="config().columnNames; sticky: config().headerSticky"
     />
@@ -151,17 +157,11 @@
       (mouseover)="onMouseOver(row)"
       (mouseout)="onMouseOut(row)"
     />
-    @if (isTableEmpty) {
-      <mat-footer-row
-        *matFooterRowDef="['tableIsEmptyColumn']"
-        class="empty-table"
-      />
-      <ng-container matColumnDef="tableIsEmptyColumn">
-        <mat-footer-cell *matFooterCellDef class="empty-table-cell">
-          <span>{{ "EMPTY_TABLE" | translate }}</span>
-        </mat-footer-cell>
-      </ng-container>
-    }
+    <mat-footer-row
+      *matFooterRowDef="['tableIsEmptyColumn']"
+      class="empty-table"
+      [class.hide-element]="!isTableEmpty"
+    />
   </mat-table>
 
   @if (config().paginator) {

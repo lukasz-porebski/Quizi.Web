@@ -9,7 +9,7 @@ export function toNumber(value: any): number {
 }
 
 export function isEmpty(value: Optional<string> | Optional<any[]>): boolean {
-  return !isDefined(value) || value.length <= 0;
+  return !isDefined(value) || value.length === 0;
 }
 
 export function replaceIfNotDefined<T>(value: T, replaceValue: T): T {
