@@ -30,52 +30,52 @@
         </mat-header-cell>
 
         <mat-cell
-          *matCellDef="let data"
+          *matCellDef="let row"
           [style]="'min-width:' + column.minWidth"
         >
           @switch (column.type) {
             @case (AppTableColumnType.Text) {
-              {{ column.getValue(data) }}
+              {{ column.getValue(row.data) }}
             }
             @case (AppTableColumnType.Number) {
-              <span>{{ column.getValue(data) }}</span>
+              <span>{{ column.getValue(row.data) }}</span>
             }
             @case (AppTableColumnType.Date) {
-              {{ column.getValue(data) | date: DateFormat.Date }}
+              {{ column.getValue(row.data) | date: DateFormat.Date }}
             }
             @case (AppTableColumnType.DateWithTime) {
-              {{ column.getValue(data) | date: DateFormat.DateWithTime }}
+              {{ column.getValue(row.data) | date: DateFormat.DateWithTime }}
             }
             @case (AppTableColumnType.Hours) {
-              {{ column.getValue(data) | date: DateFormat.Hours : "UTC" }}
+              {{ column.getValue(row.data) | date: DateFormat.Hours : "UTC" }}
             }
             @case (AppTableColumnType.Minutes) {
-              {{ column.getValue(data) | date: DateFormat.Minutes : "UTC" }}
+              {{ column.getValue(row.data) | date: DateFormat.Minutes : "UTC" }}
             }
             @case (AppTableColumnType.Boolean) {
               <div class="app-table-checkbox-input">
                 <mat-checkbox
-                  [checked]="column.getValue(data)"
+                  [checked]="column.getValue(row.data)"
                   [disableRipple]="true"
                   (click)="$event.preventDefault()"
                 />
               </div>
             }
             @case (AppTableColumnType.Percent) {
-              {{ getPercent(column.getValue(data)) }}
+              {{ getPercent(column.getValue(row.data)) }}
             }
             @case (AppTableColumnType.Price) {
-              {{ getPrice(column.getValue(data)) }}
+              {{ getPrice(column.getValue(row.data)) }}
             }
             @case (AppTableColumnType.Enum) {
-              {{ getEnumText(column, column.getValue(data)) }}
+              {{ getEnumText(column, column.getValue(row.data)) }}
             }
             @case (AppTableColumnType.Image) {
-              @if (column.imgPatch && column.imgPatch(data)) {
+              @if (column.imgPatch && column.imgPatch(row.data)) {
                 <img
                   class="cell-img"
                   alt="picture"
-                  [src]="column.imgPatch(data)"
+                  [src]="column.imgPatch(row.data)"
                 />
               }
             }
@@ -87,12 +87,12 @@
     @for (column of config().columnsWithIcon; track column.columnName) {
       <ng-container [matColumnDef]="column.columnName">
         <mat-header-cell *matHeaderCellDef class="action-column-width" />
-        <mat-cell *matCellDef="let data" class="action-column-width">
+        <mat-cell *matCellDef="let row" class="action-column-width">
           <button
             mat-icon-button
             class="action-button"
             [disabled]="shouldShowSpinner"
-            (click)="column.onClick(data)"
+            (click)="column.onClick(row.data)"
           >
             <mat-icon>{{ column.icon }}</mat-icon>
           </button>
@@ -106,7 +106,7 @@
         [stickyEnd]="config().actionsDefinition!.stickyEnd"
       >
         <mat-header-cell *matHeaderCellDef class="action-column-width" />
-        <mat-cell *matCellDef="let data" class="action-column-width">
+        <mat-cell *matCellDef="let row" class="action-column-width">
           <button
             mat-icon-button
             class="action-button"
@@ -122,9 +122,11 @@
             ) {
               <button
                 mat-menu-item
-                [hidden]="applyBooleanOrCallableColumnValue(action.hide, data)"
-                (click)="action.onClick(data)"
-                [disabled]="action.disabled(data)"
+                [hidden]="
+                  applyBooleanOrCallableColumnValue(action.hide, row.data)
+                "
+                (click)="action.onClick(row.data)"
+                [disabled]="action.disabled(row.data)"
               >
                 @if (action.icon) {
                   <mat-icon>{{ action.icon }}</mat-icon>
@@ -150,7 +152,7 @@
     />
     <mat-row
       *matRowDef="let row; columns: config().columnNames"
-      [class.mark-row]="config().markRowCondition(row)"
+      [class.mark-row]="config().markRowCondition(row.data)"
       [class.hovered]="row.hovered"
       [class.highlighted]="selection.isSelected(row)"
       (click)="onRowClick(row)"

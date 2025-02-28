@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  inject,
-  input,
-  OnInit,
-  viewChild,
-} from '@angular/core';
+import { Component, input, OnInit, viewChild } from '@angular/core';
 import { TableConfig } from './models/table.config';
 import {
   MatCell,
@@ -26,8 +19,8 @@ import {
 } from '@angular/material/table';
 import { TableColumnType } from './enums/column-type.enum';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableColumnConfig } from './models/columns/column.config';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -41,6 +34,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { TablePaginatorIntl } from './providers/paginator-intl';
+import { TableRow } from './models/row.model';
 
 @Component({
   selector: 'app-table',
@@ -77,12 +72,13 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatProgressSpinner,
   ],
   styleUrls: ['./table.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent<TData> implements OnInit {
   public matSort = viewChild<MatSort>(MatSort);
   public matPaginator = viewChild<MatPaginator>(MatPaginator);
 
-  public config = input.required<TableConfig<any>>();
+  public config = input.required<TableConfig<TData>>();
 
   public get shouldShowSpinner(): boolean {
     return this._spinner;
@@ -99,10 +95,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly AppTableColumnType = TableColumnType;
   public readonly DateFormat = DateFormat;
 
-  public selection = new SelectionModel<any>();
-  public dataSource = new MatTableDataSource<any>([]);
-
-  private readonly _translateService = inject(TranslateService);
+  public selection = new SelectionModel<TableRow<TData>>();
+  public dataSource = new MatTableDataSource<TableRow<TData>>([]);
 
   private _spinner = false;
 
@@ -110,27 +104,30 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.refreshDataSource();
   }
 
-  public ngAfterViewInit(): void {}
-
   public async refreshDataSource(): Promise<void> {
     this._spinner = true;
 
-    const dataSource = await this.config().dataSource;
+    const dataSource = (await this.config().dataSource).map(
+      (d) => new TableRow(d),
+    );
     this.dataSource.data = dataSource;
     this.dataSource.sort = this.matSort() ?? null;
-    const itemsPerPageLabel = this._translateService.instant(
-      'ITEMS_PER_PAGE_LABEL',
-    );
     if (isDefined(this.matPaginator())) {
       this.dataSource.paginator = this.matPaginator()!;
-      this.matPaginator()!._intl.itemsPerPageLabel = itemsPerPageLabel;
     }
     const initialSelectionValue = isDefined(
       this.config().selection?.initialSelection,
     )
-      ? [this.config().selection!.initialSelection!(dataSource)]
+      ? [
+          this.config().selection!.initialSelection!(
+            dataSource.map((d) => d.data),
+          ),
+        ]
       : [];
-    this.selection = new SelectionModel<any>(false, initialSelectionValue);
+    this.selection = new SelectionModel<TableRow<TData>>(
+      false,
+      initialSelectionValue.map((d) => new TableRow(d)),
+    );
     this._spinner = false;
   }
 
@@ -162,30 +159,30 @@ export class TableComponent implements OnInit, AfterViewInit {
     return typeof value === 'boolean' ? value : value(data);
   }
 
-  public onRowClick(row: any): void {
+  public onRowClick(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {
       this.selection.toggle(row);
       const selectedRow = isEmpty(this.selection.selected)
         ? null
         : this.selection.selected[0];
-      this.config().selection?.onRowSelect(selectedRow);
+      this.config().selection?.onRowSelect(selectedRow?.data);
     }
   }
 
-  public onMouseOver(row: any): void {
+  public onMouseOver(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {
-      (row as any).hovered = true;
+      row.hovered = true;
     }
   }
 
-  public onMouseOut(row: any): void {
+  public onMouseOut(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {
-      (row as any).hovered = false;
+      row.hovered = false;
     }
   }
 
   public getEnumText(
-    column: TableColumnConfig<any, any>,
+    column: TableColumnConfig<TData, any>,
     enumValue: any,
   ): string {
     return column.enumDefinition.find((e) => e.value === enumValue)?.text ?? '';

@@ -6,7 +6,8 @@
   "VALID_TEXT_RANGE": "Liczba znaków musi być w przedziale {{min}} - {{max}}",
   "MIN_TEXT_LENGTH": "Minimalna liczba znaków to {{value}}",
   "MAX_TEXT_LENGTH": "Maksymalna liczba znaków to {{value}}",
-  "ITEMS_PER_PAGE_LABEL": "test",
+  "NUMBER_OF_ROWS": "Liczba wierszy",
   "EMPTY_TABLE": "Brak danych",
-  "FILTER": "Filtr"
+  "FILTER": "Filtr",
+  "OF": "z"
 }
