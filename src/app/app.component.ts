@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TableComponent } from '../../common/components/table/table.component';
 import { TableConfig } from '../../common/components/table/models/table.config';
 import { TablePaginatorPageSize } from '../../common/components/table/enums/paginator-page-size.enum';
+import { RouterOutlet } from '@angular/router';
 
 export interface IMyRow {
   text: string;
@@ -11,7 +12,7 @@ export interface IMyRow {
 
 @Component({
   selector: 'app-root',
-  imports: [TableComponent],
+  imports: [TableComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
