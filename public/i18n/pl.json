@@ -9,5 +9,6 @@
   "NUMBER_OF_ROWS": "Liczba wierszy",
   "EMPTY_TABLE": "Brak danych",
   "FILTER": "Filtr",
-  "OF": "z"
+  "OF": "z",
+  "LOG_OUT": "Wyloguj"
 }

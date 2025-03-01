@@ -1,0 +1,129 @@
+import { Component, input, OnDestroy, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { MenuFirstLevelModel } from './models/menu-first-level.model';
+import { MenuSecondLevelModel } from './models/menu-second-level.model';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
+import { isDefined, isEmpty } from '../../utils/utils';
+import { MenuThirdLevelModel } from './models/menu-third-level.model';
+import { Subscription } from 'rxjs';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatAnchor, MatIconButton } from '@angular/material/button';
+import { NavigationConfig } from './models/navigation.config';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AuthenticationService } from '../../identity/services/authentication.service';
+
+@Component({
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatExpansionPanelTitle,
+    MatSidenav,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatIcon,
+    MatToolbar,
+    RouterLink,
+    RouterOutlet,
+    MatAnchor,
+    MatIconButton,
+    TranslatePipe,
+  ],
+})
+export class NavigationComponent implements OnInit, OnDestroy {
+  public config = input.required<NavigationConfig>();
+
+  public readonly expandedHeight = '48px';
+
+  private readonly _subscription = new Subscription();
+
+  constructor(
+    private readonly _breakpointObserver: BreakpointObserver,
+    private readonly _activatedRoute: ActivatedRoute,
+    public readonly authenticationService: AuthenticationService,
+    private readonly _router: Router,
+  ) {}
+
+  public ngOnInit(): void {
+    this._setActiveMenuElements(this._router.url);
+
+    const sub = this._router.events.subscribe((navEvent) => {
+      if (navEvent instanceof NavigationEnd) {
+        this._setActiveMenuElements(navEvent.urlAfterRedirects);
+      }
+    });
+
+    this._subscription.add(sub);
+  }
+
+  public ngOnDestroy(): void {
+    this._subscription.unsubscribe();
+  }
+
+  public onClickNotLastLevel(
+    tLevel: MatExpansionPanelHeader,
+    menuLevel: MenuFirstLevelModel | MenuSecondLevelModel,
+  ): void {
+    if (isEmpty(menuLevel.nextLevels)) {
+      tLevel._toggle();
+      this._router.navigateByUrl(menuLevel.navigateUrl!);
+    }
+  }
+
+  public onClickLastLevel(
+    tLevel: MatExpansionPanelHeader,
+    menuLevel: MenuThirdLevelModel,
+  ): void {
+    tLevel._toggle();
+    this._router.navigateByUrl(menuLevel.navigateUrl!);
+  }
+
+  public navigateToHome(): void {
+    this._router.navigateByUrl('/');
+  }
+
+  private _setActiveMenuElements(url: string): void {
+    if (isEmpty(url)) {
+      return;
+    }
+
+    this.config().menu.forEach((m) => {
+      m.isActive = isDefined(m.navigateUrl)
+        ? url.includes(m.navigateUrl)
+        : false;
+
+      m.nextLevels?.forEach((nl) => {
+        nl.isActive = isDefined(nl.navigateUrl)
+          ? url.includes(nl.navigateUrl)
+          : false;
+
+        nl.nextLevels?.forEach((ll) => {
+          ll.isActive = isDefined(ll.navigateUrl)
+            ? url.includes(ll.navigateUrl)
+            : false;
+        });
+      });
+    });
+  }
+}

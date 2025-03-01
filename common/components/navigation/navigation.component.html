@@ -1,0 +1,126 @@
+<div class="app-sidebar-nav">
+  <mat-sidenav-container>
+    <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="true">
+      <div class="logo" (click)="navigateToHome()">
+        <img src="assets/images/Logo.png" />
+      </div>
+
+      <mat-accordion displayMode="flat" multi>
+        @for (firstLevel of config().menu; track firstLevel) {
+          <div
+            class="first-level"
+            [class.active-first-level]="firstLevel.isActive"
+          >
+            <mat-expansion-panel
+              [hideToggle]="!firstLevel.isSecondLevel()"
+              [expanded]="firstLevel.isActive"
+            >
+              <mat-expansion-panel-header
+                #fLevel
+                (click)="onClickNotLastLevel(fLevel, firstLevel)"
+                [expandedHeight]="expandedHeight"
+              >
+                <mat-panel-title
+                  [class.active-menu-element]="firstLevel.isActive"
+                  [class.active-final-menu-element]="firstLevel.isFianlActive"
+                >
+                  @if (firstLevel.icon) {
+                    <mat-icon>{{ firstLevel.icon }}</mat-icon>
+                  }
+                  <span class="menu-title menu-title-first">{{
+                    firstLevel.text | translate
+                  }}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              @for (secondLevel of firstLevel.nextLevels; track secondLevel) {
+                <div
+                  [class.active-menu-element]="secondLevel.isActive"
+                  [class.active-second-level]="secondLevel.isActive"
+                >
+                  <mat-expansion-panel
+                    [hideToggle]="!secondLevel.isThirdLevel()"
+                    [expanded]="secondLevel.isActive"
+                  >
+                    <mat-expansion-panel-header
+                      #sLevel
+                      (click)="onClickNotLastLevel(sLevel, secondLevel)"
+                      [expandedHeight]="expandedHeight"
+                    >
+                      <mat-panel-title
+                        [class.active-menu-element]="secondLevel.isActive"
+                        [class.active-final-menu-element]="
+                          secondLevel.isFianlActive
+                        "
+                      >
+                        @if (secondLevel.icon) {
+                          <mat-icon>{{ secondLevel.icon }}</mat-icon>
+                        }
+                        <span class="menu-title">{{
+                          secondLevel.text | translate
+                        }}</span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    @for (
+                      thirdLevel of secondLevel.nextLevels;
+                      track thirdLevel
+                    ) {
+                      <div
+                        [class.active-menu-element]="thirdLevel.isActive"
+                        [class.active-third-level]="thirdLevel.isActive"
+                      >
+                        <mat-expansion-panel [hideToggle]="true">
+                          <mat-expansion-panel-header
+                            #tLevel
+                            (click)="onClickLastLevel(tLevel, thirdLevel)"
+                            [expandedHeight]="expandedHeight"
+                          >
+                            <mat-panel-title
+                              [class.active-menu-element]="thirdLevel.isActive"
+                              [class.active-final-menu-element]="
+                                thirdLevel.isFianlActive
+                              "
+                            >
+                              @if (thirdLevel.icon) {
+                                <mat-icon>{{ thirdLevel.icon }}</mat-icon>
+                              }
+                              <span class="menu-title">{{
+                                thirdLevel.text | translate
+                              }}</span>
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                        </mat-expansion-panel>
+                      </div>
+                    }
+                  </mat-expansion-panel>
+                </div>
+              }
+            </mat-expansion-panel>
+          </div>
+        }
+      </mat-accordion>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="nav-conatainer">
+          @if (authenticationService.isUserLogIn) {
+            <a
+              mat-button
+              [routerLink]="'../'"
+              (click)="authenticationService.logout()"
+            >
+              <mat-icon class="navigation-icon-padding">exit_to_app</mat-icon>
+              <span class="nav-caption">{{ "LOG_OUT" | translate }}</span>
+            </a>
+          }
+        </div>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,88 @@
+@use "common-colors" as colors;
+
+.app-sidebar-nav {
+  height: 100%;
+
+  mat-sidenav-container {
+    height: 100%;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+
+  .second-level {
+    ::ng-deep mat-expansion-panel {
+      padding-left: 15px !important;
+    }
+  }
+
+  mat-sidenav {
+    background-color: colors.$app-secondary-dark !important;
+  }
+
+  ::ng-deep .mat-toolbar {
+    background-color: colors.$app-secondary-dark;
+  }
+}
+
+mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+.menu-title {
+  padding-left: 10px;
+}
+
+.active-menu-element {
+  color: colors.$app-secondary-dark;
+}
+
+.active-final-menu-element {
+  color: colors.$app-light-blue !important;
+}
+
+.active-first-level {
+  mat-expansion-panel-header {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+}
+
+.active-second-level {
+  mat-expansion-panel-header {
+    background: rgba(0, 0, 0, 0.06) !important;
+  }
+}
+
+.active-third-level {
+  mat-expansion-panel-header {
+    background: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.nav-conatainer {
+  width: 100%;
+
+  > a {
+    float: right;
+
+    mat-icon {
+      padding-right: 26px;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
+
+  > img {
+    height: 70px;
+  }
+}
+
+.menu-title-first {
+  font-size: larger;
+}
