@@ -2,7 +2,7 @@
   <mat-sidenav-container>
     <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="true">
       <div class="logo" (click)="navigateToHome()">
-        <img src="assets/images/Logo.png" />
+        <img [ngSrc]="config().logoPath" />
       </div>
 
       <mat-accordion displayMode="flat" multi>
@@ -70,7 +70,10 @@
                         [class.active-menu-element]="thirdLevel.isActive"
                         [class.active-third-level]="thirdLevel.isActive"
                       >
-                        <mat-expansion-panel [hideToggle]="true">
+                        <mat-expansion-panel
+                          [hideToggle]="true"
+                          class="third-level"
+                        >
                           <mat-expansion-panel-header
                             #tLevel
                             (click)="onClickLastLevel(tLevel, thirdLevel)"

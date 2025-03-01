@@ -1,7 +1,6 @@
 import { Component, input, OnDestroy, OnInit } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { MenuFirstLevelModel } from './models/menu-first-level.model';
-import { MenuSecondLevelModel } from './models/menu-second-level.model';
+import { NavigationMenuFirstLevelConfig } from './models/menu-first-level.config';
+import { NavigationMenuSecondLevelConfig } from './models/menu-second-level.config';
 import {
   MatAccordion,
   MatExpansionPanel,
@@ -9,14 +8,13 @@ import {
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
 import {
-  ActivatedRoute,
   NavigationEnd,
   Router,
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
 import { isDefined, isEmpty } from '../../utils/utils';
-import { MenuThirdLevelModel } from './models/menu-third-level.model';
+import { NavigationMenuThirdLevelConfig } from './models/menu-third-level.config';
 import { Subscription } from 'rxjs';
 import {
   MatSidenav,
@@ -29,6 +27,7 @@ import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { NavigationConfig } from './models/navigation.config';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '../../identity/services/authentication.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -49,6 +48,7 @@ import { AuthenticationService } from '../../identity/services/authentication.se
     MatAnchor,
     MatIconButton,
     TranslatePipe,
+    NgOptimizedImage,
   ],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
@@ -59,8 +59,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   private readonly _subscription = new Subscription();
 
   constructor(
-    private readonly _breakpointObserver: BreakpointObserver,
-    private readonly _activatedRoute: ActivatedRoute,
     public readonly authenticationService: AuthenticationService,
     private readonly _router: Router,
   ) {}
@@ -83,7 +81,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   public onClickNotLastLevel(
     tLevel: MatExpansionPanelHeader,
-    menuLevel: MenuFirstLevelModel | MenuSecondLevelModel,
+    menuLevel: NavigationMenuFirstLevelConfig | NavigationMenuSecondLevelConfig,
   ): void {
     if (isEmpty(menuLevel.nextLevels)) {
       tLevel._toggle();
@@ -93,7 +91,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   public onClickLastLevel(
     tLevel: MatExpansionPanelHeader,
-    menuLevel: MenuThirdLevelModel,
+    menuLevel: NavigationMenuThirdLevelConfig,
   ): void {
     tLevel._toggle();
     this._router.navigateByUrl(menuLevel.navigateUrl!);

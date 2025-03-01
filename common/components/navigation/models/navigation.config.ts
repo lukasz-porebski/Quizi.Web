@@ -1,5 +1,19 @@
-import { MenuFirstLevelModel } from './menu-first-level.model';
+import {
+  INavigationMenuFirstLevelConfig,
+  NavigationMenuFirstLevelConfig,
+} from './menu-first-level.config';
+
+export interface INavigationConfig {
+  logoPath: string;
+  menu: INavigationMenuFirstLevelConfig[];
+}
 
 export class NavigationConfig {
-  public constructor(public menu: MenuFirstLevelModel[]) {}
+  public logoPath: string;
+  public menu: NavigationMenuFirstLevelConfig[];
+
+  public constructor(config: INavigationConfig) {
+    this.logoPath = config.logoPath;
+    this.menu = config.menu.map((m) => new NavigationMenuFirstLevelConfig(m));
+  }
 }
