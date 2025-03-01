@@ -1,17 +1,13 @@
 @use "common-colors" as colors;
 
 .action-column-width {
-  flex: 0 0 60px;
+  flex: 0 0 4rem;
 }
 
 .spinner {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.action-button {
-  padding: 0 25px;
 }
 
 .disable-table {
