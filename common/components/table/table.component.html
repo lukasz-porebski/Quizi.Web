@@ -16,7 +16,26 @@
     matSort
   >
     @for (column of config().columns; track column.columnDef) {
-      <app-table-column [column]="column"></app-table-column>
+      <ng-container
+        [matColumnDef]="column.columnDef"
+        [sticky]="column.sticky"
+        [stickyEnd]="column.stickyEnd"
+      >
+        <mat-header-cell
+          *matHeaderCellDef
+          [style]="'min-width:' + column.minWidth"
+          matSort
+        >
+          {{ column.header | textConfigTranslate }}
+        </mat-header-cell>
+
+        <mat-cell
+          *matCellDef="let row"
+          [style]="'min-width:' + column.minWidth"
+        >
+          <app-table-row [column]="column" [row]="row"></app-table-row>
+        </mat-cell>
+      </ng-container>
     }
 
     @for (column of config().columnsWithIcon; track column.columnName) {

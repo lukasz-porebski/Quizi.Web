@@ -29,8 +29,9 @@ import { MatIconButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { TablePaginatorIntl } from './providers/paginator-intl';
 import { TableRow } from './models/row.model';
-import { TableColumnComponent } from './components/column/column.component';
 import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
+import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
+import { TableRowComponent } from './components/row/row.component';
 
 @Component({
   selector: 'app-table',
@@ -59,8 +60,9 @@ import { TableActionsDefinitionComponent } from './components/actions-definition
     TranslatePipe,
     MatFooterCellDef,
     MatProgressSpinner,
-    TableColumnComponent,
     TableActionsDefinitionComponent,
+    TextConfigTranslatePipe,
+    TableRowComponent,
   ],
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
