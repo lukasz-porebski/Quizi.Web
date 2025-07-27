@@ -17,25 +17,20 @@ import {
   MatTable,
   MatTableDataSource,
 } from '@angular/material/table';
-import { TableColumnType } from './enums/column-type.enum';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { TableColumnConfig } from './models/columns/column.config';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
-import { DatePipe } from '@angular/common';
-import { isDefined, isEmpty, toPercent, toPrice } from '../../utils/utils';
-import { DateFormat } from '../../enums/date-format.enum';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { isDefined, isEmpty } from '../../utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { TablePaginatorIntl } from './providers/paginator-intl';
 import { TableRow } from './models/row.model';
+import { TableColumnComponent } from './components/column/column.component';
+import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
 
 @Component({
   selector: 'app-table',
@@ -58,20 +53,16 @@ import { TableRow } from './models/row.model';
     MatFooterRow,
     MatFooterRowDef,
     MatPaginator,
-    TextConfigTranslatePipe,
     MatCellDef,
-    DatePipe,
-    MatCheckbox,
     MatIcon,
     MatIconButton,
-    MatMenuTrigger,
-    MatMenu,
-    MatMenuItem,
     TranslatePipe,
     MatFooterCellDef,
     MatProgressSpinner,
+    TableColumnComponent,
+    TableActionsDefinitionComponent,
   ],
-  styleUrls: ['./table.component.scss'],
+  styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
 })
 export class TableComponent<TData> implements OnInit {
@@ -91,9 +82,6 @@ export class TableComponent<TData> implements OnInit {
   public get isSelectionEnable(): boolean {
     return isDefined(this.config().selection);
   }
-
-  public readonly AppTableColumnType = TableColumnType;
-  public readonly DateFormat = DateFormat;
 
   public selection = new SelectionModel<TableRow<TData>>();
   public dataSource = new MatTableDataSource<TableRow<TData>>([]);
@@ -131,18 +119,6 @@ export class TableComponent<TData> implements OnInit {
     this._spinner = false;
   }
 
-  public showSpinner(): void {
-    this._spinner = true;
-  }
-
-  public getPercent(value: number): string {
-    return toPercent(value);
-  }
-
-  public getPrice(value: number): string {
-    return toPrice(value);
-  }
-
   public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -150,13 +126,6 @@ export class TableComponent<TData> implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  public applyBooleanOrCallableColumnValue<T>(
-    value: boolean | ((rowValue: Readonly<T>) => boolean),
-    data: T,
-  ): boolean {
-    return typeof value === 'boolean' ? value : value(data);
   }
 
   public onRowClick(row: TableRow<TData>): void {
@@ -179,12 +148,5 @@ export class TableComponent<TData> implements OnInit {
     if (this.isSelectionEnable) {
       row.hovered = false;
     }
-  }
-
-  public getEnumText(
-    column: TableColumnConfig<TData, any>,
-    enumValue: any,
-  ): string {
-    return column.enumDefinition.find((e) => e.value === enumValue)?.text ?? '';
   }
 }

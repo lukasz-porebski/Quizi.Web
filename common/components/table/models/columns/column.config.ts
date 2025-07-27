@@ -3,8 +3,8 @@ import { getProperty } from '../../../../utils/utils';
 import { ValueTextPairModel } from '../../../../models/value-text-pair-model';
 import { ITextConfig, TextConfig } from '../../../../models/text.config';
 
-export interface ITableColumnConfig {
-  field: string;
+export interface ITableColumnConfig<TData> {
+  field: keyof TData;
   header: ITextConfig;
   sticky?: boolean;
   stickyEnd?: boolean;
@@ -17,7 +17,11 @@ export interface ITableColumnInternalConfig<TData, TValue> {
 }
 
 export class TableColumnConfig<TData, TValue> {
-  public field: string;
+  public get columnDef(): string {
+    return this.field as string;
+  }
+
+  public field: keyof TData;
   public header: TextConfig;
   public sticky?: boolean;
   public stickyEnd?: boolean;
@@ -28,7 +32,7 @@ export class TableColumnConfig<TData, TValue> {
   public imgPatch?: (data: TData) => string;
 
   public constructor(
-    config: ITableColumnConfig,
+    config: ITableColumnConfig<TData>,
     type: TableColumnType,
     internalConfig?: ITableColumnInternalConfig<TData, TValue>,
   ) {
@@ -44,9 +48,6 @@ export class TableColumnConfig<TData, TValue> {
   }
 
   public getValue(dataSource: TData): TValue {
-    return getProperty(
-      dataSource,
-      this.field as keyof TData,
-    ) as unknown as TValue;
+    return getProperty(dataSource, this.field) as unknown as TValue;
   }
 }

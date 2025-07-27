@@ -1,9 +1,5 @@
 @use "common-colors" as colors;
 
-.action-column-width {
-  flex: 0 0 4rem;
-}
-
 .spinner {
   display: flex;
   justify-content: center;
@@ -68,12 +64,6 @@
   left: 50%;
   margin: 0 -50% 0 0;
   transform: translate(-50%, -50%);
-}
-
-.cell-img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
 }
 
 .filter {

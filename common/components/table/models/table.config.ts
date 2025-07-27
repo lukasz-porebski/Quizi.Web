@@ -86,7 +86,7 @@ export class TableConfig<TData> {
     columnsWithIcon: TableColumnWithIconConfig<TData>[],
     actionsDefinition: Optional<TableColumnActionsConfig<TData>>,
   ): string[] {
-    const columnNames = columns.map((c) => c.field);
+    const columnNames = columns.map((c) => c.columnDef);
 
     columnsWithIcon.forEach((c) => columnNames.push(c.columnName));
 

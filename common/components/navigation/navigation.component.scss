@@ -18,11 +18,13 @@
   }
 
   mat-sidenav {
-    background-color: colors.$app-secondary-dark !important;
+    border-radius: 0;
+    background: var(--mat-sys-primary-container);
+    border-right: 1px solid var(--mat-sys-outline-variant);
   }
 
   ::ng-deep .mat-toolbar {
-    background-color: colors.$app-secondary-dark;
+    background: var(--mat-sys-primary-container);
   }
 }
 

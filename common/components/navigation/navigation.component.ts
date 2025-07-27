@@ -7,12 +7,7 @@ import {
   MatExpansionPanelHeader,
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import {
-  NavigationEnd,
-  Router,
-  RouterLink,
-  RouterOutlet,
-} from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { isDefined, isEmpty } from '../../utils/utils';
 import { NavigationMenuThirdLevelConfig } from './models/menu-third-level.config';
 import { Subscription } from 'rxjs';
@@ -44,7 +39,6 @@ import { NgOptimizedImage } from '@angular/common';
     MatIcon,
     MatToolbar,
     RouterLink,
-    RouterOutlet,
     MatAnchor,
     MatIconButton,
     TranslatePipe,
@@ -58,7 +52,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   private readonly _subscription = new Subscription();
 
-  constructor(
+  public constructor(
     public readonly authenticationService: AuthenticationService,
     private readonly _router: Router,
   ) {}

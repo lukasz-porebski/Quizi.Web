@@ -5,6 +5,7 @@ import { TablePaginatorPageSize } from '../../common/components/table/enums/pagi
 import { NavigationComponent } from '../../common/components/navigation/navigation.component';
 import { NavigationConfig } from '../../common/components/navigation/models/navigation.config';
 import { Icon } from '../../common/enums/icon.enum';
+import { RouterOutlet } from '@angular/router';
 
 export interface IMyRow {
   text: string;
@@ -13,7 +14,7 @@ export interface IMyRow {
 
 @Component({
   selector: 'app-root',
-  imports: [NavigationComponent],
+  imports: [NavigationComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
