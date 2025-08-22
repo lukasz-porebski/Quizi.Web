@@ -19,9 +19,11 @@ import {
 import { TableColumnBuilder } from '../utils/column.builder';
 import { isDefined } from '../../../utils/utils';
 import { Optional } from '../../../types/optional.type';
+import { BaseTableDataSource } from '../data-source/base-data-source';
+import { TableRow } from './row.model';
 
 export interface ITableConfig<TData> {
-  dataSource: Promise<TData[]>;
+  dataSource: BaseTableDataSource<TableRow<TData>>;
   columns: (
     builder: TableColumnBuilder<TData>,
   ) => ReadonlyArray<TableColumnConfig<TData, any>>;
@@ -35,7 +37,7 @@ export interface ITableConfig<TData> {
 }
 
 export class TableConfig<TData> {
-  public readonly dataSource: Promise<TData[]>;
+  public readonly dataSource: BaseTableDataSource<TableRow<TData>>;
   public readonly columns: ReadonlyArray<TableColumnConfig<TData, any>>;
   public readonly columnsWithIcon: TableColumnWithIconConfig<TData>[];
   public readonly actionsDefinition?: TableColumnActionsConfig<TData>;

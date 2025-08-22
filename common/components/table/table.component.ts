@@ -15,10 +15,13 @@ import {
   MatRow,
   MatRowDef,
   MatTable,
-  MatTableDataSource,
 } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorIntl,
+  PageEvent,
+} from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -32,6 +35,9 @@ import { TableRow } from './models/row.model';
 import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 import { TableRowComponent } from './components/row/row.component';
+import { BaseTableDataSource } from './data-source/base-data-source';
+import { TableEmptyDataSource } from './data-source/empty-data-source';
+import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
 
 @Component({
   selector: 'app-table',
@@ -86,48 +92,53 @@ export class TableComponent<TData> implements OnInit {
   }
 
   public selection = new SelectionModel<TableRow<TData>>();
-  public dataSource = new MatTableDataSource<TableRow<TData>>([]);
+  public dataSource: BaseTableDataSource<TableRow<TData>> =
+    new TableEmptyDataSource();
 
   private _spinner = false;
 
   public ngOnInit(): void {
-    this.refreshDataSource();
+    this.initDataSource();
   }
 
-  public async refreshDataSource(): Promise<void> {
-    this._spinner = true;
-
-    const dataSource = (await this.config().dataSource).map(
-      (d) => new TableRow(d),
+  public async initDataSource(): Promise<void> {
+    this.dataSource = this.config().dataSource;
+    this.dataSource.fetchData(
+      1,
+      this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten,
     );
-    this.dataSource.data = dataSource;
-    this.dataSource.sort = this.matSort() ?? null;
-    if (isDefined(this.matPaginator())) {
-      this.dataSource.paginator = this.matPaginator()!;
-    }
-    const initialSelectionValue = isDefined(
-      this.config().selection?.initialSelection,
-    )
-      ? [
-          this.config().selection!.initialSelection!(
-            dataSource.map((d) => d.data),
-          ),
-        ]
-      : [];
-    this.selection = new SelectionModel<TableRow<TData>>(
-      false,
-      initialSelectionValue.map((d) => new TableRow(d)),
-    );
-    this._spinner = false;
+    this.dataSource.loading$.subscribe((value) => {
+      this._spinner = value;
+    });
   }
+
+  // public async refreshDataSource(): Promise<void> {
+  //   this._spinner = true;
+  //
+  //   this.dataSource = this.config().dataSource;
+  //   const initialSelectionValue = isDefined(
+  //     this.config().selection?.initialSelection,
+  //   )
+  //     ? [
+  //         this.config().selection!.initialSelection!(
+  //           dataSource.map((d) => d.data),
+  //         ),
+  //       ]
+  //     : [];
+  //   this.selection = new SelectionModel<TableRow<TData>>(
+  //     false,
+  //     initialSelectionValue.map((d) => new TableRow(d)),
+  //   );
+  //   this._spinner = false;
+  // }
 
   public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    // const filterValue = (event.target as HTMLInputElement).value;
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
+    //
+    // if (this.dataSource.paginator) {
+    //   this.dataSource.paginator.firstPage();
+    // }
   }
 
   public onRowClick(row: TableRow<TData>): void {
@@ -150,5 +161,9 @@ export class TableComponent<TData> implements OnInit {
     if (this.isSelectionEnable) {
       row.hovered = false;
     }
+  }
+
+  public onPageChange(event: PageEvent): void {
+    this.dataSource.fetchData(event.pageIndex + 1, event.pageSize);
   }
 }

@@ -89,8 +89,11 @@
   @if (config().paginator) {
     <mat-paginator
       [pageSizeOptions]="config().paginator!.getPageSizes()"
-      [pageSize]="config().paginator!.defaultPageSize"
+      [pageSize]="dataSource.pagination.pageSize"
+      [pageIndex]="dataSource.pagination.pageNumber - 1"
       [showFirstLastButtons]="config().paginator!.showFirstLastButtons"
+      [length]="dataSource.totalCount"
+      (page)="onPageChange($event)"
     />
   }
 
