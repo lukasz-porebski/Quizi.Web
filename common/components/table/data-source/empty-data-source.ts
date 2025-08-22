@@ -1,19 +1,12 @@
 import { BaseTableDataSource } from './base-data-source';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable, of } from 'rxjs';
-import { PaginationResponse } from '../../../models/responses/pagination.response';
+import { PaginationRequest } from '../../../models/requests/pagination.request';
+import { PaginatedListResponse } from '../../../models/responses/paginated-list.response';
 
 export class TableEmptyDataSource<T> extends BaseTableDataSource<T> {
-  public get data(): T[] {
-    return [];
-  }
-
-  public get totalCount(): number {
-    return 0;
-  }
-
-  public get pagination(): PaginationResponse {
-    return new PaginationResponse();
+  public override get response(): PaginatedListResponse<T> {
+    return new PaginatedListResponse<T>();
   }
 
   public readonly loading$: Observable<boolean> = of(false);
@@ -24,5 +17,5 @@ export class TableEmptyDataSource<T> extends BaseTableDataSource<T> {
 
   public disconnect(collectionViewer: CollectionViewer): void {}
 
-  public fetchData(pageNumber: number, pageSize: number): void {}
+  public fetchData(request: PaginationRequest): void {}
 }

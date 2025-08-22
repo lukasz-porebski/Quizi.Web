@@ -4,21 +4,12 @@ import { PaginationRequest } from '../../../models/requests/pagination.request';
 import { PaginatedListResponse } from '../../../models/responses/paginated-list.response';
 import { BaseTableDataSource } from './base-data-source';
 import { TableRow } from '../models/row.model';
-import { PaginationResponse } from '../../../models/responses/pagination.response';
 
 export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<
   TableRow<T>
 > {
-  public get data(): TableRow<T>[] {
-    return this._dataSubject.value.items;
-  }
-
-  public get totalCount(): number {
-    return this._dataSubject.value.totalCount;
-  }
-
-  public get pagination(): PaginationResponse {
-    return this._dataSubject.value.pagination;
+  public get response(): PaginatedListResponse<TableRow<T>> {
+    return this._dataSubject.value;
   }
 
   public readonly loading$: Observable<boolean>;
@@ -44,10 +35,10 @@ export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<
     this._loadingSubject.complete();
   }
 
-  public fetchData(pageNumber: number, pageSize: number): void {
+  public fetchData(request: PaginationRequest): void {
     this._loadingSubject.next(true);
 
-    this.getData(new PaginationRequest(pageNumber, pageSize))
+    this.getData(request)
       .then((response) => {
         this._dataSubject.next(
           new PaginatedListResponse({

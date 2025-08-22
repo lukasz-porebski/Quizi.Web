@@ -17,6 +17,12 @@ export namespace QuizzesTableConfigFactory {
               text: 'Idk',
             },
           })
+          .addText({
+            field: 'title',
+            header: {
+              text: 'Tytuł',
+            },
+          })
           .build(),
     });
   }

@@ -16,7 +16,7 @@ import {
   MatRowDef,
   MatTable,
 } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import {
   MatPaginator,
   MatPaginatorIntl,
@@ -38,6 +38,9 @@ import { TableRowComponent } from './components/row/row.component';
 import { BaseTableDataSource } from './data-source/base-data-source';
 import { TableEmptyDataSource } from './data-source/empty-data-source';
 import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
+import { PaginationRequest } from '../../models/requests/pagination.request';
+import { SortRequest } from '../../models/requests/sort.request';
+import { Optional } from '../../types/optional.type';
 
 @Component({
   selector: 'app-table',
@@ -46,7 +49,6 @@ import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
     MatFormField,
     MatInput,
     MatTable,
-    MatSort,
     MatLabel,
     MatColumnDef,
     MatHeaderCell,
@@ -69,6 +71,7 @@ import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
     TableActionsDefinitionComponent,
     TextConfigTranslatePipe,
     TableRowComponent,
+    MatSortModule,
   ],
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
@@ -84,7 +87,9 @@ export class TableComponent<TData> implements OnInit {
   }
 
   public get isTableEmpty(): boolean {
-    return isDefined(this.dataSource) && isEmpty(this.dataSource.data);
+    return (
+      isDefined(this.dataSource) && isEmpty(this.dataSource.response.items)
+    );
   }
 
   public get isSelectionEnable(): boolean {
@@ -104,8 +109,10 @@ export class TableComponent<TData> implements OnInit {
   public async initDataSource(): Promise<void> {
     this.dataSource = this.config().dataSource;
     this.dataSource.fetchData(
-      1,
-      this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten,
+      new PaginationRequest(
+        1,
+        this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten,
+      ),
     );
     this.dataSource.loading$.subscribe((value) => {
       this._spinner = value;
@@ -164,6 +171,32 @@ export class TableComponent<TData> implements OnInit {
   }
 
   public onPageChange(event: PageEvent): void {
-    this.dataSource.fetchData(event.pageIndex + 1, event.pageSize);
+    this.dataSource.fetchData(
+      new PaginationRequest(
+        event.pageIndex + 1,
+        event.pageSize,
+        isDefined(this.dataSource.response.pagination.sort)
+          ? new SortRequest(
+              this.dataSource.response.pagination.sort.columnName,
+              this.dataSource.response.pagination.sort.isAscending,
+            )
+          : undefined,
+      ),
+    );
+  }
+
+  public onSortChange(event: Sort): void {
+    let sort: Optional<SortRequest> = undefined;
+    if (event.direction !== '') {
+      sort = new SortRequest(event.active, event.direction === 'asc');
+    }
+
+    this.dataSource.fetchData(
+      new PaginationRequest(
+        this.dataSource.response.pagination.pageNumber,
+        this.dataSource.response.pagination.pageSize,
+        sort,
+      ),
+    );
   }
 }
