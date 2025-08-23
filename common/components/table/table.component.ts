@@ -1,4 +1,11 @@
-import { Component, input, OnInit, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  input,
+  OnInit,
+  viewChild,
+} from '@angular/core';
 import { TableConfig } from './models/table.config';
 import {
   MatCell,
@@ -16,7 +23,7 @@ import {
   MatRowDef,
   MatTable,
 } from '@angular/material/table';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 import {
   MatPaginator,
   MatPaginatorIntl,
@@ -41,6 +48,7 @@ import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
 import { PaginationRequest } from '../../models/requests/pagination.request';
 import { SortRequest } from '../../models/requests/sort.request';
 import { Optional } from '../../types/optional.type';
+import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -76,9 +84,8 @@ import { Optional } from '../../types/optional.type';
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
 })
-export class TableComponent<TData> implements OnInit {
-  public matSort = viewChild<MatSort>(MatSort);
-  public matPaginator = viewChild<MatPaginator>(MatPaginator);
+export class TableComponent<TData> implements OnInit, AfterViewInit {
+  public searchInput = viewChild<ElementRef>('searchInput');
 
   public config = input.required<TableConfig<TData>>();
 
@@ -104,6 +111,20 @@ export class TableComponent<TData> implements OnInit {
 
   public ngOnInit(): void {
     this.initDataSource();
+  }
+
+  public ngAfterViewInit(): void {
+    if (!isDefined(this.searchInput()?.nativeElement)) {
+      return;
+    }
+
+    fromEvent(this.searchInput()?.nativeElement, 'input')
+      .pipe(
+        map((event: any) => event.data),
+        debounceTime(500),
+        distinctUntilChanged(),
+      )
+      .subscribe((value) => this._applySearch(value));
   }
 
   public async initDataSource(): Promise<void> {
@@ -139,15 +160,6 @@ export class TableComponent<TData> implements OnInit {
   //   this._spinner = false;
   // }
 
-  public applyFilter(event: Event): void {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
-    //
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    // }
-  }
-
   public onRowClick(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {
       this.selection.toggle(row);
@@ -181,6 +193,7 @@ export class TableComponent<TData> implements OnInit {
               this.dataSource.response.pagination.sort.isAscending,
             )
           : undefined,
+        this.dataSource.response.pagination.search,
       ),
     );
   }
@@ -196,6 +209,23 @@ export class TableComponent<TData> implements OnInit {
         this.dataSource.response.pagination.pageNumber,
         this.dataSource.response.pagination.pageSize,
         sort,
+        this.dataSource.response.pagination.search,
+      ),
+    );
+  }
+
+  private _applySearch(value: string): void {
+    this.dataSource.fetchData(
+      new PaginationRequest(
+        this.dataSource.response.pagination.pageNumber,
+        this.dataSource.response.pagination.pageSize,
+        isDefined(this.dataSource.response.pagination.sort)
+          ? new SortRequest(
+              this.dataSource.response.pagination.sort.columnName,
+              this.dataSource.response.pagination.sort.isAscending,
+            )
+          : undefined,
+        (value ?? '').trim().toLowerCase(),
       ),
     );
   }

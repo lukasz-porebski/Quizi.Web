@@ -5,5 +5,6 @@ export class PaginationRequest {
     public readonly pageNumber: number,
     public readonly pageSize: number,
     public readonly sort?: SortRequest,
+    public readonly search?: string,
   ) {}
 }

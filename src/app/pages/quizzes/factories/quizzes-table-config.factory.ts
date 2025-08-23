@@ -9,6 +9,9 @@ export namespace QuizzesTableConfigFactory {
     return new TableConfig<QuizzesListItemResponse>({
       dataSource: dataSourceService,
       paginator: {},
+      search: {
+        fields: ['title'],
+      },
       columns: (builder) =>
         builder
           .addText({

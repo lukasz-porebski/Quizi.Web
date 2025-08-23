@@ -5,6 +5,7 @@ export class PaginationResponse {
   public readonly pageNumber: number;
   public readonly pageSize: number;
   public readonly sort?: SortResponse;
+  public readonly search?: string;
 
   public constructor(data?: PaginationResponse) {
     this.pageNumber = data?.pageNumber ?? 0;
@@ -12,5 +13,6 @@ export class PaginationResponse {
     this.sort = isDefined(data?.sort)
       ? new SortResponse(data!.sort)
       : undefined;
+    this.search = data?.search;
   }
 }

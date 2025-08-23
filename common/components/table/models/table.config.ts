@@ -11,7 +11,7 @@ import {
   ITablePaginatorConfig,
   TablePaginatorConfig,
 } from './paginator.config';
-import { ITableFilterConfig, TableFilterConfig } from './filter.config';
+import { ITableSearchConfig, TableSearchConfig } from './search.config';
 import {
   ITableRowSelectionConfig,
   TableRowSelectionConfig,
@@ -31,7 +31,7 @@ export interface ITableConfig<TData> {
   actionsDefinition?: ITableColumnActionsConfig<TData>;
   headerSticky?: boolean;
   paginator?: ITablePaginatorConfig;
-  filter?: ITableFilterConfig;
+  search?: ITableSearchConfig<TData>;
   markRowCondition?: (row: TData) => boolean;
   selection?: ITableRowSelectionConfig<TData>;
 }
@@ -44,7 +44,7 @@ export class TableConfig<TData> {
   public readonly columnNames: string[];
   public readonly headerSticky: boolean;
   public readonly paginator?: TablePaginatorConfig;
-  public readonly filter?: TableFilterConfig;
+  public readonly search?: TableSearchConfig;
   public readonly markRowCondition: (row: TData) => boolean;
   public readonly selection?: TableRowSelectionConfig<TData>;
 
@@ -74,8 +74,11 @@ export class TableConfig<TData> {
     if (isDefined(config.paginator)) {
       this.paginator = new TablePaginatorConfig(config.paginator);
     }
-    if (isDefined(config.filter)) {
-      this.filter = new TableFilterConfig(config.filter);
+    if (isDefined(config.search)) {
+      const fieldHeaders = config.search.fields.map(
+        (f) => this.columns.find((c) => c.field === f)!.header.text,
+      );
+      this.search = new TableSearchConfig(fieldHeaders);
     }
     this.markRowCondition = config.markRowCondition ?? (() => false);
     if (isDefined(config.selection)) {
