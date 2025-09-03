@@ -1,32 +1,24 @@
-<ng-container
-  [matColumnDef]="actionsDefinition().name"
-  [stickyEnd]="actionsDefinition().stickyEnd"
+<button
+  mat-icon-button
+  [disabled]="shouldShowSpinner()"
+  [matMenuTriggerFor]="actions"
 >
-  <mat-header-cell *matHeaderCellDef class="action-column-width" />
-  <mat-cell *matCellDef="let row" class="action-column-width">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #actions="matMenu">
+  @for (action of actionsDefinition().actions; track action.name) {
     <button
-      mat-icon-button
-      [disabled]="shouldShowSpinner()"
-      [matMenuTriggerFor]="actions"
+      mat-menu-item
+      [hidden]="applyBooleanOrCallableColumnValue(action.hide, data())"
+      (click)="action.onClick(data())"
+      [disabled]="action.disabled(data())"
     >
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #actions="matMenu">
-      @for (action of actionsDefinition().actions; track action.name) {
-        <button
-          mat-menu-item
-          [hidden]="applyBooleanOrCallableColumnValue(action.hide, row.data)"
-          (click)="action.onClick(row.data)"
-          [disabled]="action.disabled(row.data)"
-        >
-          @if (action.icon) {
-            <mat-icon>{{ action.icon }}</mat-icon>
-          }
-          @if (action.name) {
-            <span>{{ action.name | textConfigTranslate }}</span>
-          }
-        </button>
+      @if (action.icon) {
+        <mat-icon>{{ action.icon }}</mat-icon>
       }
-    </mat-menu>
-  </mat-cell>
-</ng-container>
+      @if (action.name) {
+        <span>{{ action.name | textConfigTranslate }}</span>
+      }
+    </button>
+  }
+</mat-menu>

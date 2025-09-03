@@ -9,10 +9,14 @@ import { QuizzesDataSourceService } from './services/quizzes-data-source.service
   imports: [TableComponent],
   templateUrl: './quizzes.component.html',
   styleUrl: './quizzes.component.scss',
-  providers: [QuizzesListApiService, QuizzesDataSourceService],
+  providers: [
+    QuizzesListApiService,
+    QuizzesDataSourceService,
+    QuizzesTableConfigFactory,
+  ],
 })
 export class QuizzesComponent {
-  private readonly _dataSourceService = inject(QuizzesDataSourceService);
+  private readonly _tableConfigFactory = inject(QuizzesTableConfigFactory);
 
-  public config = QuizzesTableConfigFactory.Create(this._dataSourceService);
+  public config = this._tableConfigFactory.Create();
 }

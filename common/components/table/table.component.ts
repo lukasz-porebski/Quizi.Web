@@ -39,7 +39,6 @@ import { MatIconButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { TablePaginatorIntl } from './providers/paginator-intl';
 import { TableRow } from './models/row.model';
-import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 import { TableRowComponent } from './components/row/row.component';
 import { BaseTableDataSource } from './data-source/base-data-source';
@@ -49,6 +48,7 @@ import { PaginationRequest } from '../../models/requests/pagination.request';
 import { SortRequest } from '../../models/requests/sort.request';
 import { Optional } from '../../types/optional.type';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
+import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
 
 @Component({
   selector: 'app-table',
@@ -76,10 +76,10 @@ import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
     TranslatePipe,
     MatFooterCellDef,
     MatProgressSpinner,
-    TableActionsDefinitionComponent,
     TextConfigTranslatePipe,
     TableRowComponent,
     MatSortModule,
+    TableActionsDefinitionComponent,
   ],
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],

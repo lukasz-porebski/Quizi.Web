@@ -1,11 +1,4 @@
 import { Component, input } from '@angular/core';
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-} from '@angular/material/table';
 import { TableColumnActionsConfig } from '../../models/columns/column-actions.config';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -15,12 +8,7 @@ import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translati
 @Component({
   selector: 'app-table-actions-definition',
   imports: [
-    MatColumnDef,
-    MatHeaderCell,
-    MatCell,
     MatIconButton,
-    MatHeaderCellDef,
-    MatCellDef,
     MatIcon,
     MatMenu,
     MatMenuItem,
@@ -35,6 +23,7 @@ import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translati
 })
 export class TableActionsDefinitionComponent<TData> {
   public actionsDefinition = input.required<TableColumnActionsConfig<TData>>();
+  public data = input.required<TData>();
   public shouldShowSpinner = input.required<boolean>();
 
   public applyBooleanOrCallableColumnValue<T>(

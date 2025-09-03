@@ -55,10 +55,20 @@
     }
 
     @if (config().actionsDefinition) {
-      <app-table-actions-definition
-        [actionsDefinition]="config().actionsDefinition!"
-        [shouldShowSpinner]="shouldShowSpinner"
-      ></app-table-actions-definition>
+      <ng-container
+        [matColumnDef]="config().actionsDefinition!.name"
+        [stickyEnd]="config().actionsDefinition!.stickyEnd"
+      >
+        <mat-header-cell *matHeaderCellDef class="action-column-width" />
+        <mat-cell *matCellDef="let row" class="action-column-width">
+          <app-table-actions-definition
+            [actionsDefinition]="config().actionsDefinition!"
+            [data]="row.data!"
+            [shouldShowSpinner]="shouldShowSpinner"
+          >
+          </app-table-actions-definition>
+        </mat-cell>
+      </ng-container>
     }
 
     <ng-container matColumnDef="tableIsEmptyColumn">
