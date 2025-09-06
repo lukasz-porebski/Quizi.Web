@@ -1,1 +1,12 @@
-<p>quiz-persist works!</p>
+<app-async-page [showSpinner]="isLoading">
+  @if (!isLoading) {
+    <form class="mb-2">
+      <app-text-input [attribute]="context.title" />
+
+      <div>
+        <app-button [text]="{ text: 'CANCEL' }" />
+        <app-button [text]="{ text: 'SAVE' }" />
+      </div>
+    </form>
+  }
+</app-async-page>

@@ -1,8 +1,8 @@
-import { isDefined } from '../utils/utils';
+import { isEmpty } from '../utils/utils';
 
 export class ErrorModel {
   public get isAny(): boolean {
-    return isDefined(this.message);
+    return !isEmpty(this.message);
   }
 
   public get message(): string {

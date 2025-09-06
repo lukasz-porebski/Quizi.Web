@@ -6,5 +6,5 @@ import { QuizPersistComponent } from './pages/quiz-persist/quiz-persist.componen
 export const routes: Routes = [
   { path: '', redirectTo: `/${Route.Quizzes}`, pathMatch: 'full' },
   { path: Route.Quizzes, component: QuizzesComponent },
-  { path: `${Route.QuizEdit}::id`, component: QuizPersistComponent },
+  { path: `${Route.QuizEdit}:id`, component: QuizPersistComponent },
 ];

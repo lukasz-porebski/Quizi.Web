@@ -3,9 +3,10 @@ import { ErrorModel } from '../models/error.model';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { isDefined } from '../utils/utils';
 import { Nullable } from '../types/nullable.type';
+import { ITextConfig, TextConfig } from '../models/text.config';
 
 export interface ITextAttributeConfig {
-  translateRoute: string;
+  label: ITextConfig;
   defaultValue?: string;
   isRequired?: boolean;
   minLength?: number;
@@ -50,14 +51,14 @@ export class TextAttribute implements IAttribute {
     return this._error;
   }
 
-  public readonly translateRoute: string;
+  public readonly label: TextConfig;
   public readonly formControl: FormControl<Nullable<string>>;
   public readonly defaultValue: Nullable<string>;
 
   private readonly _error = new ErrorModel();
 
   public constructor(private readonly _config: ITextAttributeConfig) {
-    this.translateRoute = _config.translateRoute;
+    this.label = new TextConfig(_config.label);
     this.defaultValue = _config.defaultValue ?? null;
     const validators: ValidatorFn[] = [];
 

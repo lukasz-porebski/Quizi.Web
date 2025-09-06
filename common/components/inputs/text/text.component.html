@@ -1,16 +1,16 @@
 <mat-form-field>
   <input
     matInput
-    [readonly]="config().readonly"
-    [type]="config().type"
-    [disabled]="config().disabled"
-    [formControl]="config().formControl"
-    [minLength]="config().minLength"
-    [maxLength]="config().maxLength"
-    placeholder="{{ config().label | textConfigTranslate }}"
+    [readonly]="readonly()"
+    [type]="innerType"
+    [disabled]="innerDisabled"
+    [formControl]="formControl"
+    [minlength]="minLength() ?? null"
+    [maxlength]="maxLength() ?? null"
+    placeholder="{{ innerLabel | textConfigTranslate }}"
   />
 
-  @if (config().passwordShowButton) {
+  @if (passwordShowButton()) {
     <button
       mat-icon-button
       matSuffix
@@ -23,7 +23,9 @@
     </button>
   }
 
-  <app-hint [config]="config().hint" [template]="hintTemplate()"></app-hint>
+  @if (hint()) {
+    <app-hint [config]="hint()!" [template]="hintTemplate()"></app-hint>
+  }
 
-  <app-input-error [error]="config().attribute?.error"></app-input-error>
+  <app-input-error [error]="attribute()?.error"></app-input-error>
 </mat-form-field>
