@@ -8,6 +8,9 @@
 </div>
 <div class="row">
   <div class="col">
-    <app-number-input [attribute]="context().questionsCountInRunningQuiz" />
+    <app-number-input
+      [formControl]="context().form.controls.questionsCountInRunningQuiz"
+      [label]="{ text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ' }"
+    />
   </div>
 </div>

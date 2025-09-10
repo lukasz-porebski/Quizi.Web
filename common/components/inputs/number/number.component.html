@@ -4,8 +4,7 @@
     matInput
     [readonly]="readonly()"
     type="number"
-    [disabled]="disabled()"
-    [formControl]="formControl"
+    [formControl]="formControl()"
     [min]="min() ?? null"
     [max]="max() ?? null"
   />
@@ -14,5 +13,11 @@
     <app-hint [config]="hint()!" [template]="hintTemplate()"></app-hint>
   }
 
-  <app-input-error [message]="attribute()?.error"></app-input-error>
+  @if (formControl().hasError(InputValidation.Min)) {
+    <app-input-error [message]="{ text: 'MIN_VALUE', params: { value: min() } }" />
+  } @else if (formControl().hasError(InputValidation.Max)) {
+    <app-input-error [message]="{ text: 'MAX_VALUE', params: { value: max() } }" />
+  } @else if (formControl().hasError(InputValidation.Required)) {
+    <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
+  }
 </mat-form-field>
