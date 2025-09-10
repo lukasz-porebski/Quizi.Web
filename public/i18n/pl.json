@@ -13,5 +13,7 @@
   "OF": "z",
   "LOG_OUT": "Wyloguj",
   "CANCEL": "Anuluj",
-  "SAVE": "Zapisz"
+  "SAVE": "Zapisz",
+  "TITLE": "Tytuł",
+  "QUESTIONS_COUNT_IN_RUNNING_QUIZ": "Liczba pytań w rozwiązywanym quizie"
 }

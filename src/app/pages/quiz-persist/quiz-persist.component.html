@@ -1,11 +1,17 @@
 <app-async-page [showSpinner]="isLoading">
   @if (!isLoading) {
-    <form class="mb-2">
-      <app-text-input [attribute]="context.title" />
+    <form class="container mt-2 mb-2">
+      <app-quiz-persist-header [context]="context" />
 
-      <div>
-        <app-button [text]="{ text: 'CANCEL' }" />
-        <app-button [text]="{ text: 'SAVE' }" />
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <app-button
+            class="me-2"
+            [text]="{ text: 'CANCEL' }"
+            [style]="ButtonStyle.Outlined"
+          />
+          <app-button [text]="{ text: 'SAVE' }" />
+        </div>
       </div>
     </form>
   }

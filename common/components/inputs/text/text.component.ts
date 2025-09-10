@@ -1,5 +1,5 @@
 import { Component, effect, input, TemplateRef } from '@angular/core';
-import { MatFormField } from '@angular/material/form-field';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HintComponent } from '../../hint/hint.component';
@@ -27,6 +27,7 @@ import { Optional } from '../../../types/optional.type';
     TextConfigTranslatePipe,
     MatIconButton,
     MatIcon,
+    MatLabel,
   ],
   styleUrls: ['./text.component.scss'],
 })

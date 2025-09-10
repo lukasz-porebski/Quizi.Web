@@ -8,6 +8,7 @@ import { isDefined } from '../../utils/utils';
 import { Optional } from '../../types/optional.type';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 import { ITextConfig, TextConfig } from '../../models/text.config';
+import { ButtonStyle } from './enums/style.enum';
 
 @Component({
   selector: 'app-button',
@@ -17,18 +18,12 @@ import { ITextConfig, TextConfig } from '../../models/text.config';
 })
 export class ButtonComponent {
   public text = input.required<ITextConfig>();
-  public color = input<ButtonColor>();
+  public color = input<ButtonColor>(ButtonColor.Primary);
+  public style = input<ButtonStyle>(ButtonStyle.Filled);
   public disabled = input<boolean>();
   public matStepperNext = input<boolean>();
   public onClick = output<void>();
   public tooltip = input<ITextConfig>();
-
-  public get innerColor(): string {
-    return this.color() === ButtonColor.Accent ||
-      this.color() === ButtonColor.Primary
-      ? this.color()!
-      : '';
-  }
 
   public innerText!: TextConfig;
   public innerTooltip?: TextConfig;

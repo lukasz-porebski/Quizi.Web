@@ -34,6 +34,7 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "public/styles/common-colors.scss",
               "public/styles/common.scss",
+              "public/styles/bootstrap.scss",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -102,6 +103,7 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "public/styles/common-colors.scss",
               "public/styles/common.scss",
+              "public/styles/bootstrap.scss",
               "src/styles.scss"
             ],
             "scripts": []

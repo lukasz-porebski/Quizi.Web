@@ -5,7 +5,8 @@
       matStepperNext
       [matTooltip]="getText(innerTooltip)"
       [disabled]="disabled()"
-      [color]="innerColor"
+      [color]="color()"
+      [matButton]="style()"
       (click)="onClick.emit()"
     >
       {{ innerText | textConfigTranslate }}
@@ -15,7 +16,8 @@
       mat-raised-button
       [matTooltip]="getText(innerTooltip)"
       [disabled]="disabled()"
-      [color]="innerColor"
+      [color]="color()"
+      [matButton]="style()"
       (click)="onClick.emit()"
     >
       {{ innerText | textConfigTranslate }}

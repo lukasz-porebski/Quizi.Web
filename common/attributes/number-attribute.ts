@@ -2,9 +2,10 @@ import { IAttribute } from '../interfaces/attribute.intreface';
 import { ErrorModel } from '../models/error.model';
 import { FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Nullable } from '../types/nullable.type';
+import { ITextConfig, TextConfig } from '../models/text.config';
 
 export interface INumberAttributeConfig {
-  translateRoute: string;
+  label: ITextConfig;
   defaultValue?: number;
   min?: number;
   max?: number;
@@ -34,7 +35,7 @@ export class NumberAttribute implements IAttribute {
     return this._error;
   }
 
-  public readonly translateRoute: string;
+  public readonly label: TextConfig;
   public readonly defaultValue: Nullable<number>;
   public readonly formControl: FormControl<Nullable<number>>;
   public readonly min?: number;
@@ -44,7 +45,7 @@ export class NumberAttribute implements IAttribute {
   private readonly _validators: ValidatorFn[] = [];
 
   public constructor(config: INumberAttributeConfig) {
-    this.translateRoute = config.translateRoute;
+    this.label = new TextConfig(config.label);
     this.defaultValue = config.defaultValue ?? null;
     this.min = config.min;
     this.max = config.min;
