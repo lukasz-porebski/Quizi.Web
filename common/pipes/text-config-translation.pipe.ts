@@ -13,6 +13,8 @@ export class TextConfigTranslatePipe
 {
   // @ts-ignore
   public override transform(value: Optional<TextConfig>): string {
-    return value!.translate ? super.transform(value!.text) : value!.text;
+    return value!.translate
+      ? super.transform(value!.text, value!.params)
+      : value!.text;
   }
 }

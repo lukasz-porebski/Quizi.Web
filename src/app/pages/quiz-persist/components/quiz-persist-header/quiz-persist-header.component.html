@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col">
-    <app-text-input [attribute]="context().title" />
+    <app-text-input
+      [formControl]="context().form.controls.title"
+      [label]="{ text: 'TITLE' }"
+    />
   </div>
 </div>
 <div class="row">

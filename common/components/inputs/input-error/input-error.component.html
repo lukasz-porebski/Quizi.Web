@@ -1,5 +1,5 @@
-@if (error()?.isAny) {
+@if (!isMessageEmpty) {
   <mat-error>
-    {{ error()!.message | translate }}
+    {{ innerMessage | textConfigTranslate }}
   </mat-error>
 }

@@ -4,8 +4,7 @@
     matInput
     [readonly]="readonly()"
     [type]="innerType"
-    [disabled]="innerDisabled"
-    [formControl]="formControl"
+    [formControl]="formControl()"
     [minlength]="minLength() ?? null"
     [maxlength]="maxLength() ?? null"
   />
@@ -17,9 +16,7 @@
       (click)="changePasswordHideState()"
       [attr.aria-pressed]="isPasswordHidden"
     >
-      <mat-icon>{{
-        isPasswordHidden ? Icon.VisibilityOff : Icon.Visibility
-      }}</mat-icon>
+      <mat-icon>{{ isPasswordHidden ? Icon.VisibilityOff : Icon.Visibility }} </mat-icon>
     </button>
   }
 
@@ -27,5 +24,44 @@
     <app-hint [config]="hint()!" [template]="hintTemplate()"></app-hint>
   }
 
-  <app-input-error [error]="attribute()?.error"></app-input-error>
+  @if (formControl().hasError(InputValidation.Required)) {
+    <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
+  } @else if (minLength() && maxLength()) {
+    @if (
+      formControl().hasError(InputValidation.MinLength) ||
+      formControl().hasError(InputValidation.MaxLength)
+    ) {
+      <app-input-error
+        [message]="{
+          text: 'VALID_TEXT_RANGE',
+          params: {
+            min: this.minLength(),
+            max: this.maxLength(),
+          },
+        }"
+      />
+    } @else {
+      @if (formControl().hasError(InputValidation.MinLength)) {
+        <app-input-error
+          [message]="{
+            text: 'MIN_TEXT_LENGTH',
+            params: {
+              value: this.minLength(),
+            },
+          }"
+        />
+      }
+
+      @if (formControl().hasError(InputValidation.MaxLength)) {
+        <app-input-error
+          [message]="{
+            text: 'MAX_TEXT_LENGTH',
+            params: {
+              value: this.maxLength(),
+            },
+          }"
+        />
+      }
+    }
+  }
 </mat-form-field>
