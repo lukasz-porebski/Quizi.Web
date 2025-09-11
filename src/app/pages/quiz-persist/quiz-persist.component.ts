@@ -10,6 +10,7 @@ import { isDefined } from '../../../../common/utils/utils';
 import { ButtonStyle } from '../../../../common/components/button/enums/style.enum';
 import { QuizPersistHeaderComponent } from './components/quiz-persist-header/quiz-persist-header.component';
 import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open-question.component/quiz-persist-open-question.component';
+import { QuizPersistSingleChoiceQuestionComponent } from './components/quiz-persist-single-choice-question/quiz-persist-single-choice-question.component';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -19,6 +20,7 @@ import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open
     ButtonComponent,
     QuizPersistHeaderComponent,
     QuizPersistOpenQuestionComponent,
+    QuizPersistSingleChoiceQuestionComponent,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',
