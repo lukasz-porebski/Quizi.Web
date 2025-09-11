@@ -1,21 +1,9 @@
 import { TableColumnConfig } from './columns/column.config';
-import {
-  ITableColumnActionsConfig,
-  TableColumnActionsConfig,
-} from './columns/column-actions.config';
-import {
-  ITableColumnWithIconConfig,
-  TableColumnWithIconConfig,
-} from './columns/column-with-icon.config';
-import {
-  ITablePaginatorConfig,
-  TablePaginatorConfig,
-} from './paginator.config';
+import { ITableColumnActionsConfig, TableColumnActionsConfig } from './columns/column-actions.config';
+import { ITableColumnWithIconConfig, TableColumnWithIconConfig } from './columns/column-with-icon.config';
+import { ITablePaginatorConfig, TablePaginatorConfig } from './paginator.config';
 import { ITableSearchConfig, TableSearchConfig } from './search.config';
-import {
-  ITableRowSelectionConfig,
-  TableRowSelectionConfig,
-} from './row-selection.config';
+import { ITableRowSelectionConfig, TableRowSelectionConfig } from './row-selection.config';
 import { TableColumnBuilder } from '../utils/column.builder';
 import { isDefined } from '../../../utils/utils';
 import { Optional } from '../../../types/optional.type';
@@ -24,9 +12,7 @@ import { TableRow } from './row.model';
 
 export interface ITableConfig<TData> {
   dataSource: BaseTableDataSource<TableRow<TData>>;
-  columns: (
-    builder: TableColumnBuilder<TData>,
-  ) => ReadonlyArray<TableColumnConfig<TData, any>>;
+  columns: (builder: TableColumnBuilder<TData>) => ReadonlyArray<TableColumnConfig<TData, any>>;
   columnsWithIcon?: ITableColumnWithIconConfig<TData>[];
   actionsDefinition?: ITableColumnActionsConfig<TData>;
   headerSticky?: boolean;
@@ -57,19 +43,11 @@ export class TableConfig<TData> {
     );
 
     if (isDefined(config.actionsDefinition)) {
-      this.actionsDefinition = new TableColumnActionsConfig(
-        config.actionsDefinition,
-      );
+      this.actionsDefinition = new TableColumnActionsConfig(config.actionsDefinition);
     }
 
-    this.columnNames = this._getColumnNames(
-      this.columns,
-      this.columnsWithIcon,
-      this.actionsDefinition,
-    );
-    this.headerSticky = isDefined(config.headerSticky)
-      ? config.headerSticky
-      : false;
+    this.columnNames = this._getColumnNames(this.columns, this.columnsWithIcon, this.actionsDefinition);
+    this.headerSticky = isDefined(config.headerSticky) ? config.headerSticky : false;
 
     if (isDefined(config.paginator)) {
       this.paginator = new TablePaginatorConfig(config.paginator);

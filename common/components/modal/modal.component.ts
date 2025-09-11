@@ -1,32 +1,15 @@
-import {
-  Component,
-  inject,
-  input,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ModalConfig } from './models/modal.config';
 import { isDefined } from '../../utils/utils';
 import { MatIcon } from '@angular/material/icon';
-import {
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { Optional } from '../../types/optional.type';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  imports: [
-    MatIcon,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
-    TextConfigTranslatePipe,
-  ],
+  imports: [MatIcon, MatDialogClose, MatDialogTitle, MatDialogContent, TextConfigTranslatePipe],
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit, OnDestroy {

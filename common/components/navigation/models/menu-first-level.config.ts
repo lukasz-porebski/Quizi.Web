@@ -3,13 +3,9 @@ import {
   NavigationMenuSecondLevelConfig,
 } from './menu-second-level.config';
 import { isEmpty } from '../../../utils/utils';
-import {
-  INavigationBaseMenuLevelConfig,
-  NavigationBaseMenuLevelConfig,
-} from './base-menu-level.config';
+import { INavigationBaseMenuLevelConfig, NavigationBaseMenuLevelConfig } from './base-menu-level.config';
 
-export interface INavigationMenuFirstLevelConfig
-  extends INavigationBaseMenuLevelConfig {
+export interface INavigationMenuFirstLevelConfig extends INavigationBaseMenuLevelConfig {
   nextLevels?: INavigationMenuSecondLevelConfig[];
 }
 
@@ -22,9 +18,7 @@ export class NavigationMenuFirstLevelConfig extends NavigationBaseMenuLevelConfi
 
   public constructor(config: INavigationMenuFirstLevelConfig) {
     super(config);
-    this.nextLevels = (config.nextLevels ?? []).map(
-      (l) => new NavigationMenuSecondLevelConfig(l),
-    );
+    this.nextLevels = (config.nextLevels ?? []).map((l) => new NavigationMenuSecondLevelConfig(l));
   }
 
   public isSecondLevel(): boolean {

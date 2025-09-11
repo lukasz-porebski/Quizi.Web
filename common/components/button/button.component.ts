@@ -35,17 +35,13 @@ export class ButtonComponent {
       this.innerText = new TextConfig(this.text());
     });
     effect(() => {
-      this.innerTooltip = isDefined(this.tooltip())
-        ? new TextConfig(this.tooltip()!)
-        : undefined;
+      this.innerTooltip = isDefined(this.tooltip()) ? new TextConfig(this.tooltip()!) : undefined;
     });
   }
 
   public getText(model?: TextConfig): Optional<string> {
     if (!isDefined(model)) return null;
 
-    return model.translate
-      ? this._translatePipe.transform(model.text)
-      : model.text;
+    return model.translate ? this._translatePipe.transform(model.text) : model.text;
   }
 }

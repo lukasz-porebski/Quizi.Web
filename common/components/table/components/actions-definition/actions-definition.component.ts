@@ -7,19 +7,9 @@ import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translati
 
 @Component({
   selector: 'app-table-actions-definition',
-  imports: [
-    MatIconButton,
-    MatIcon,
-    MatMenu,
-    MatMenuItem,
-    MatMenuTrigger,
-    TextConfigTranslatePipe,
-  ],
+  imports: [MatIconButton, MatIcon, MatMenu, MatMenuItem, MatMenuTrigger, TextConfigTranslatePipe],
   templateUrl: './actions-definition.component.html',
-  styleUrls: [
-    './actions-definition.component.scss',
-    '../../styles/table.shared.scss',
-  ],
+  styleUrls: ['./actions-definition.component.scss', '../../styles/table.shared.scss'],
 })
 export class TableActionsDefinitionComponent<TData> {
   public actionsDefinition = input.required<TableColumnActionsConfig<TData>>();

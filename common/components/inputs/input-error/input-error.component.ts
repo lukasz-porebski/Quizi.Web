@@ -21,9 +21,7 @@ export class InputErrorComponent {
 
   public constructor() {
     effect(() => {
-      this.innerMessage = isDefined(this.message())
-        ? new TextConfig(this.message()!)
-        : undefined;
+      this.innerMessage = isDefined(this.message()) ? new TextConfig(this.message()!) : undefined;
     });
   }
 }

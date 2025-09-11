@@ -1,7 +1,4 @@
-import {
-  ITableColumnConfig,
-  TableColumnConfig,
-} from '../models/columns/column.config';
+import { ITableColumnConfig, TableColumnConfig } from '../models/columns/column.config';
 import { TableColumnType } from '../enums/column-type.enum';
 import { ITableEnumColumnConfig } from '../models/columns/enum-column.config';
 import { ITableImageColumnConfig } from '../models/columns/image-column.config';
@@ -20,9 +17,7 @@ export class TableColumnBuilder<TData> {
   }
 
   public addDateWithTime(config: ITableColumnConfig<TData>): this {
-    this._columns.push(
-      new TableColumnConfig(config, TableColumnType.DateWithTime),
-    );
+    this._columns.push(new TableColumnConfig(config, TableColumnType.DateWithTime));
     return this;
   }
 

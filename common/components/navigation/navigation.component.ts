@@ -11,11 +11,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { isDefined, isEmpty } from '../../utils/utils';
 import { NavigationMenuThirdLevelConfig } from './models/menu-third-level.config';
 import { Subscription } from 'rxjs';
-import {
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-} from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
@@ -83,10 +79,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onClickLastLevel(
-    tLevel: MatExpansionPanelHeader,
-    menuLevel: NavigationMenuThirdLevelConfig,
-  ): void {
+  public onClickLastLevel(tLevel: MatExpansionPanelHeader, menuLevel: NavigationMenuThirdLevelConfig): void {
     tLevel._toggle();
     this._router.navigateByUrl(menuLevel.navigateUrl!);
   }
@@ -101,19 +94,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
     this.config().menu.forEach((m) => {
-      m.isActive = isDefined(m.navigateUrl)
-        ? url.includes(m.navigateUrl)
-        : false;
+      m.isActive = isDefined(m.navigateUrl) ? url.includes(m.navigateUrl) : false;
 
       m.nextLevels?.forEach((nl) => {
-        nl.isActive = isDefined(nl.navigateUrl)
-          ? url.includes(nl.navigateUrl)
-          : false;
+        nl.isActive = isDefined(nl.navigateUrl) ? url.includes(nl.navigateUrl) : false;
 
         nl.nextLevels?.forEach((ll) => {
-          ll.isActive = isDefined(ll.navigateUrl)
-            ? url.includes(ll.navigateUrl)
-            : false;
+          ll.isActive = isDefined(ll.navigateUrl) ? url.includes(ll.navigateUrl) : false;
         });
       });
     });

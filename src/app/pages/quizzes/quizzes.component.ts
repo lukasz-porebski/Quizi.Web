@@ -9,11 +9,7 @@ import { QuizzesDataSourceService } from './services/quizzes-data-source.service
   imports: [TableComponent],
   templateUrl: './quizzes.component.html',
   styleUrl: './quizzes.component.scss',
-  providers: [
-    QuizzesListApiService,
-    QuizzesDataSourceService,
-    QuizzesTableConfigFactory,
-  ],
+  providers: [QuizzesListApiService, QuizzesDataSourceService, QuizzesTableConfigFactory],
 })
 export class QuizzesComponent {
   private readonly _tableConfigFactory = inject(QuizzesTableConfigFactory);

@@ -9,13 +9,7 @@ import { MultipleSelectAttribute } from '../../attributes/select/multiple-select
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  imports: [
-    MatFormField,
-    MatSelect,
-    MatOption,
-    ReactiveFormsModule,
-    TranslatePipe,
-  ],
+  imports: [MatFormField, MatSelect, MatOption, ReactiveFormsModule, TranslatePipe],
   styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent {

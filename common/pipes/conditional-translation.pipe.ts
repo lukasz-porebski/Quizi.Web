@@ -5,10 +5,7 @@ import { isEmpty } from '../utils/utils';
 @Pipe({
   name: 'conditionalTranslate',
 })
-export class ConditionalTranslatePipe
-  extends TranslatePipe
-  implements PipeTransform
-{
+export class ConditionalTranslatePipe extends TranslatePipe implements PipeTransform {
   public override transform(value: string, ...args: unknown[]): string {
     if (isEmpty(value)) {
       return value;

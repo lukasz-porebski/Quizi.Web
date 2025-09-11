@@ -56,16 +56,12 @@ export class TextInputComponent {
 
   public constructor() {
     effect(() => {
-      this.innerLabel = isDefined(this.label())
-        ? new TextConfig(this.label()!)
-        : undefined;
+      this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
     });
   }
 
   public changePasswordHideState(): void {
     this.isPasswordHidden = !this.isPasswordHidden;
-    this._passwordType = this.isPasswordHidden
-      ? TextInputType.Password
-      : TextInputType.Text;
+    this._passwordType = this.isPasswordHidden ? TextInputType.Password : TextInputType.Text;
   }
 }

@@ -16,9 +16,7 @@ export interface ICheckboxConfig {
 
 export class CheckboxConfig {
   public get formControl(): FormControl {
-    return isDefined(this.attribute)
-      ? this.attribute.formControl
-      : this._formControl;
+    return isDefined(this.attribute) ? this.attribute.formControl : this._formControl;
   }
 
   public label?: TextConfig;
@@ -31,9 +29,7 @@ export class CheckboxConfig {
   private readonly _formControl = new FormControl();
 
   public constructor(config: ICheckboxConfig) {
-    this.label = isDefined(config.label)
-      ? new TextConfig(config.label)
-      : undefined;
+    this.label = isDefined(config.label) ? new TextConfig(config.label) : undefined;
     this.readonly = config.readonly ?? false;
     this.disabled = config.disabled ?? false;
     this.labelPosition = config.labelPosition ?? CheckboxLabelPosition.After;

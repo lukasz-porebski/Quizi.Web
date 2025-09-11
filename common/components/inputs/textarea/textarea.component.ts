@@ -47,9 +47,7 @@ export class TextareaInputComponent {
 
   public constructor() {
     effect(() => {
-      this.innerLabel = isDefined(this.label())
-        ? new TextConfig(this.label()!)
-        : undefined;
+      this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
     });
   }
 }

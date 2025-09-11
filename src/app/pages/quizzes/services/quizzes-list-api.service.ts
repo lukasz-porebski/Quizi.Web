@@ -6,13 +6,10 @@ import { PaginationRequest } from '../../../../../common/models/requests/paginat
 
 @Injectable()
 export class QuizzesListApiService extends BaseApiService {
-  public getList(
-    request: PaginationRequest,
-  ): Promise<PaginatedListResponse<QuizzesListItemResponse>> {
+  public getList(request: PaginationRequest): Promise<PaginatedListResponse<QuizzesListItemResponse>> {
     return this.get<PaginatedListResponse<QuizzesListItemResponse>>(
       'quizzes/list',
-      (response) =>
-        new PaginatedListResponse<QuizzesListItemResponse>(response),
+      (response) => new PaginatedListResponse<QuizzesListItemResponse>(response),
       request,
     );
   }

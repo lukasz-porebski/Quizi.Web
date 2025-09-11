@@ -22,10 +22,7 @@
       (click)="config().readonly ? $event.preventDefault() : null"
     >
       <span>
-        {{
-          getOptionText(option)
-            | conditionalTranslate: config().translateOptionLabel
-        }}
+        {{ getOptionText(option) | conditionalTranslate: config().translateOptionLabel }}
       </span>
     </mat-radio-button>
   }

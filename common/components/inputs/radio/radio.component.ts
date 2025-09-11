@@ -29,8 +29,6 @@ export class RadioComponent<T> {
   }
 
   public getOptionText(option: T): string | T {
-    return isDefined(this.config().optionText)
-      ? this.config().optionText!(option)
-      : option;
+    return isDefined(this.config().optionText) ? this.config().optionText!(option) : option;
   }
 }

@@ -7,10 +7,7 @@ export interface IMultipleSelectAttributeConfig<TData, TValue = TData>
   defaultValue?: TValue[];
 }
 
-export class MultipleSelectAttribute<
-  TData,
-  TValue = TData,
-> extends SelectAttribute<TData, TValue> {
+export class MultipleSelectAttribute<TData, TValue = TData> extends SelectAttribute<TData, TValue> {
   public get value(): TValue[] {
     return this.formControl.value as TValue[];
   }
@@ -19,15 +16,8 @@ export class MultipleSelectAttribute<
     this.formControl.setValue(v);
   }
 
-  public constructor(
-    configuration: IMultipleSelectAttributeConfig<TData, TValue>,
-  ) {
-    const defaultValue = isDefined(configuration.defaultValue)
-      ? [...configuration.defaultValue]
-      : [];
-    super(
-      configuration,
-      (validators) => new FormControl<TValue[]>(defaultValue, validators),
-    );
+  public constructor(configuration: IMultipleSelectAttributeConfig<TData, TValue>) {
+    const defaultValue = isDefined(configuration.defaultValue) ? [...configuration.defaultValue] : [];
+    super(configuration, (validators) => new FormControl<TValue[]>(defaultValue, validators));
   }
 }

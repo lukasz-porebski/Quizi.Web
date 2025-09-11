@@ -28,8 +28,7 @@
     <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
   } @else if (minLength() && maxLength()) {
     @if (
-      formControl().hasError(InputValidation.MinLength) ||
-      formControl().hasError(InputValidation.MaxLength)
+      formControl().hasError(InputValidation.MinLength) || formControl().hasError(InputValidation.MaxLength)
     ) {
       <app-input-error
         [message]="{

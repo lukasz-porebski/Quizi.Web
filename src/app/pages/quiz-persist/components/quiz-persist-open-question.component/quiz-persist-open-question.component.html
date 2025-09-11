@@ -2,14 +2,8 @@
   <div class="col">
     <mat-card appearance="outlined">
       <mat-card-content>
-        <app-text-input
-          [formControl]="formGroup().controls.text"
-          [label]="{ text: 'QUESTION' }"
-        />
-        <app-textarea-input
-          [formControl]="formGroup().controls.answer"
-          [label]="{ text: 'ANSWER' }"
-        />
+        <app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
+        <app-textarea-input [formControl]="formGroup().controls.answer" [label]="{ text: 'ANSWER' }" />
       </mat-card-content>
     </mat-card>
   </div>

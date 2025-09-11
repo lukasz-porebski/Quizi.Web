@@ -16,9 +16,7 @@ export interface INumberInputConfig {
 
 export class NumberInputConfig {
   public get formControl(): FormControl {
-    return isDefined(this.attribute)
-      ? this.attribute.formControl
-      : this._formControl;
+    return isDefined(this.attribute) ? this.attribute.formControl : this._formControl;
   }
 
   public label: TextConfig;
@@ -36,9 +34,7 @@ export class NumberInputConfig {
     this.readonly = config.readonly ?? false;
     this.disabled = config.disabled ?? false;
     this.attribute = config.attribute;
-    this.hint = isDefined(config.hint)
-      ? new HintConfig(config.hint)
-      : undefined;
+    this.hint = isDefined(config.hint) ? new HintConfig(config.hint) : undefined;
     this.min = config.min;
     this.max = config.max;
   }

@@ -5,9 +5,7 @@
   @if (config().text) {
     <title mat-dialog-title>{{ config().text | textConfigTranslate }}</title>
   }
-  <mat-dialog-content
-    [class.app-modal-content-max-width]="config().modalContentMaxWidth"
-  >
+  <mat-dialog-content [class.app-modal-content-max-width]="config().modalContentMaxWidth">
     <ng-content></ng-content>
   </mat-dialog-content>
 </div>

@@ -13,9 +13,7 @@ export class ModalConfig {
   public modalContentMaxWidth: boolean = false;
 
   public constructor(config: IModalConfig) {
-    this.text = isDefined(config.text)
-      ? new TextConfig(config.text)
-      : undefined;
+    this.text = isDefined(config.text) ? new TextConfig(config.text) : undefined;
     this.modalMaxWidth = config.modalMaxWidth ?? false;
     this.modalContentMaxWidth = config.modalContentMaxWidth ?? false;
   }

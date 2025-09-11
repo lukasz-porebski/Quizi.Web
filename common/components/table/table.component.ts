@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  input,
-  OnInit,
-  viewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, input, OnInit, viewChild } from '@angular/core';
 import { TableConfig } from './models/table.config';
 import {
   MatCell,
@@ -24,11 +17,7 @@ import {
   MatTable,
 } from '@angular/material/table';
 import { MatSortModule, Sort } from '@angular/material/sort';
-import {
-  MatPaginator,
-  MatPaginatorIntl,
-  PageEvent,
-} from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -94,9 +83,7 @@ export class TableComponent<TData> implements OnInit, AfterViewInit {
   }
 
   public get isTableEmpty(): boolean {
-    return (
-      isDefined(this.dataSource) && isEmpty(this.dataSource.response.items)
-    );
+    return isDefined(this.dataSource) && isEmpty(this.dataSource.response.items);
   }
 
   public get isSelectionEnable(): boolean {
@@ -104,8 +91,7 @@ export class TableComponent<TData> implements OnInit, AfterViewInit {
   }
 
   public selection = new SelectionModel<TableRow<TData>>();
-  public dataSource: BaseTableDataSource<TableRow<TData>> =
-    new TableEmptyDataSource();
+  public dataSource: BaseTableDataSource<TableRow<TData>> = new TableEmptyDataSource();
 
   private _spinner = false;
 
@@ -130,10 +116,7 @@ export class TableComponent<TData> implements OnInit, AfterViewInit {
   public async initDataSource(): Promise<void> {
     this.dataSource = this.config().dataSource;
     this.dataSource.fetchData(
-      new PaginationRequest(
-        1,
-        this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten,
-      ),
+      new PaginationRequest(1, this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten),
     );
     this.dataSource.loading$.subscribe((value) => {
       this._spinner = value;
@@ -163,9 +146,7 @@ export class TableComponent<TData> implements OnInit, AfterViewInit {
   public onRowClick(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {
       this.selection.toggle(row);
-      const selectedRow = isEmpty(this.selection.selected)
-        ? null
-        : this.selection.selected[0];
+      const selectedRow = isEmpty(this.selection.selected) ? null : this.selection.selected[0];
       this.config().selection?.onRowSelect(selectedRow?.data);
     }
   }

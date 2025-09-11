@@ -7,14 +7,8 @@
 
       <mat-accordion displayMode="flat" multi>
         @for (firstLevel of config().menu; track firstLevel) {
-          <div
-            class="first-level"
-            [class.active-first-level]="firstLevel.isActive"
-          >
-            <mat-expansion-panel
-              [hideToggle]="!firstLevel.isSecondLevel()"
-              [expanded]="firstLevel.isActive"
-            >
+          <div class="first-level" [class.active-first-level]="firstLevel.isActive">
+            <mat-expansion-panel [hideToggle]="!firstLevel.isSecondLevel()" [expanded]="firstLevel.isActive">
               <mat-expansion-panel-header
                 #fLevel
                 (click)="onClickNotLastLevel(fLevel, firstLevel)"
@@ -27,9 +21,7 @@
                   @if (firstLevel.icon) {
                     <mat-icon>{{ firstLevel.icon }}</mat-icon>
                   }
-                  <span class="menu-title menu-title-first">{{
-                    firstLevel.text | translate
-                  }}</span>
+                  <span class="menu-title menu-title-first">{{ firstLevel.text | translate }}</span>
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
@@ -49,31 +41,21 @@
                     >
                       <mat-panel-title
                         [class.active-menu-element]="secondLevel.isActive"
-                        [class.active-final-menu-element]="
-                          secondLevel.isFianlActive
-                        "
+                        [class.active-final-menu-element]="secondLevel.isFianlActive"
                       >
                         @if (secondLevel.icon) {
                           <mat-icon>{{ secondLevel.icon }}</mat-icon>
                         }
-                        <span class="menu-title">{{
-                          secondLevel.text | translate
-                        }}</span>
+                        <span class="menu-title">{{ secondLevel.text | translate }}</span>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    @for (
-                      thirdLevel of secondLevel.nextLevels;
-                      track thirdLevel
-                    ) {
+                    @for (thirdLevel of secondLevel.nextLevels; track thirdLevel) {
                       <div
                         [class.active-menu-element]="thirdLevel.isActive"
                         [class.active-third-level]="thirdLevel.isActive"
                       >
-                        <mat-expansion-panel
-                          [hideToggle]="true"
-                          class="third-level"
-                        >
+                        <mat-expansion-panel [hideToggle]="true" class="third-level">
                           <mat-expansion-panel-header
                             #tLevel
                             (click)="onClickLastLevel(tLevel, thirdLevel)"
@@ -81,16 +63,12 @@
                           >
                             <mat-panel-title
                               [class.active-menu-element]="thirdLevel.isActive"
-                              [class.active-final-menu-element]="
-                                thirdLevel.isFianlActive
-                              "
+                              [class.active-final-menu-element]="thirdLevel.isFianlActive"
                             >
                               @if (thirdLevel.icon) {
                                 <mat-icon>{{ thirdLevel.icon }}</mat-icon>
                               }
-                              <span class="menu-title">{{
-                                thirdLevel.text | translate
-                              }}</span>
+                              <span class="menu-title">{{ thirdLevel.text | translate }}</span>
                             </mat-panel-title>
                           </mat-expansion-panel-header>
                         </mat-expansion-panel>
@@ -112,11 +90,7 @@
         </button>
         <div class="nav-conatainer">
           @if (authenticationService.isUserLogIn) {
-            <a
-              mat-button
-              [routerLink]="'../'"
-              (click)="authenticationService.logout()"
-            >
+            <a mat-button [routerLink]="'../'" (click)="authenticationService.logout()">
               <mat-icon class="navigation-icon-padding">exit_to_app</mat-icon>
               <span class="nav-caption">{{ "LOG_OUT" | translate }}</span>
             </a>

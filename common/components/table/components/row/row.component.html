@@ -37,11 +37,7 @@
   }
   @case (AppTableColumnType.Image) {
     @if (column().imgPatch && column().imgPatch!(row().data)) {
-      <img
-        class="cell-img"
-        alt="picture"
-        [src]="column().imgPatch!(row().data)"
-      />
+      <img class="cell-img" alt="picture" [src]="column().imgPatch!(row().data)" />
     }
   }
 }

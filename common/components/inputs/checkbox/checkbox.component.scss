@@ -7,10 +7,7 @@
 }
 
 .app-checkbox-input-readonly {
-  ::ng-deep
-    .mat-checkbox-checked.mat-accent
-    .mat-checkbox-ripple
-    .mat-ripple-element {
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
     opacity: 0.03 !important;
   }
 
@@ -22,10 +19,7 @@
 }
 
 @mixin app-checkbox-color($color) {
-  ::ng-deep
-    .mat-checkbox-checked.mat-accent
-    .mat-checkbox-ripple
-    .mat-ripple-element {
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
     background-color: $color !important;
   }
 

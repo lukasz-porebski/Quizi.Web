@@ -1,10 +1,6 @@
-import {
-  INavigationBaseMenuLevelConfig,
-  NavigationBaseMenuLevelConfig,
-} from './base-menu-level.config';
+import { INavigationBaseMenuLevelConfig, NavigationBaseMenuLevelConfig } from './base-menu-level.config';
 
-export interface INavigationMenuThirdLevelConfig
-  extends INavigationBaseMenuLevelConfig {}
+export interface INavigationMenuThirdLevelConfig extends INavigationBaseMenuLevelConfig {}
 
 export class NavigationMenuThirdLevelConfig extends NavigationBaseMenuLevelConfig {
   public override get isFianlActive(): boolean {

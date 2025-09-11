@@ -11,9 +11,7 @@ export interface ISelectAttributeConfig<TData, TValue = TData> {
   optionTextSelector?: (data: TData) => string | number | TValue;
 }
 
-export abstract class SelectAttribute<TData, TValue = TData>
-  implements IAttribute
-{
+export abstract class SelectAttribute<TData, TValue = TData> implements IAttribute {
   public abstract get value(): TValue[] | TValue;
   public abstract set value(v: TValue[] | TValue);
 
@@ -38,9 +36,7 @@ export abstract class SelectAttribute<TData, TValue = TData>
 
   protected constructor(
     config: ISelectAttributeConfig<TData, TValue>,
-    createFormControl: (
-      validators: ValidatorFn[],
-    ) => FormControl<TValue[] | TValue | null>,
+    createFormControl: (validators: ValidatorFn[]) => FormControl<TValue[] | TValue | null>,
   ) {
     this.translateRoute = config.translateRoute;
     this.dataSource = [...config.dataSource];

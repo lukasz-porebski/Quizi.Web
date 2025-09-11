@@ -10,9 +10,7 @@ export class PaginationResponse {
   public constructor(data?: PaginationResponse) {
     this.pageNumber = data?.pageNumber ?? 0;
     this.pageSize = data?.pageSize ?? 0;
-    this.sort = isDefined(data?.sort)
-      ? new SortResponse(data!.sort)
-      : undefined;
+    this.sort = isDefined(data?.sort) ? new SortResponse(data!.sort) : undefined;
     this.search = data?.search;
   }
 }

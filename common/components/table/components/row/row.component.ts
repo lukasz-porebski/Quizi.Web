@@ -28,10 +28,7 @@ export class TableRowComponent<TData> {
     return toPrice(value);
   }
 
-  public getEnumText(
-    column: TableColumnConfig<TData, any>,
-    enumValue: any,
-  ): string {
+  public getEnumText(column: TableColumnConfig<TData, any>, enumValue: any): string {
     return column.enumDefinition.find((e) => e.value === enumValue)?.text ?? '';
   }
 }

@@ -14,11 +14,7 @@ export class TablePaginatorIntl extends MatPaginatorIntl {
 
     this._translateService.get('OF').subscribe(
       (translate) =>
-        (this.getRangeLabel = (
-          page: number,
-          pageSize: number,
-          length: number,
-        ) => {
+        (this.getRangeLabel = (page: number, pageSize: number, length: number) => {
           const of = translate;
           if (length === 0 || pageSize === 0) {
             return `0 ${of} ${length}`;
@@ -26,9 +22,7 @@ export class TablePaginatorIntl extends MatPaginatorIntl {
           const newLength = Math.max(length, 0);
           const startIndex = page * pageSize;
           const endIndex =
-            startIndex < newLength
-              ? Math.min(startIndex + pageSize, newLength)
-              : startIndex + pageSize;
+            startIndex < newLength ? Math.min(startIndex + pageSize, newLength) : startIndex + pageSize;
           return `${startIndex + 1} - ${endIndex} ${of} ${newLength}`;
         }),
     );

@@ -1,9 +1,6 @@
 <mat-form-field appearance="fill" [class.max-width]="config().maxWidth">
   <mat-label>{{ config().label.text + "FIELD_NAME" | translate }}</mat-label>
-  <mat-select
-    [formControl]="config().attribute.formControl"
-    [multiple]="isMultiple"
-  >
+  <mat-select [formControl]="config().attribute.formControl" [multiple]="isMultiple">
     @for (element of config().attribute.dataSource; track element) {
       <mat-option [value]="config().attribute.valueSelector(element)">
         {{ config().attribute.optionTextSelector(element) }}

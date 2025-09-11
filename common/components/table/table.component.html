@@ -1,24 +1,14 @@
 @if (config().search) {
   <mat-form-field class="search">
-    <mat-label>
-      {{ "SEARCH" | translate }} ({{ config().search!.searchText }})
-    </mat-label>
+    <mat-label> {{ "SEARCH" | translate }} ({{ config().search!.searchText }}) </mat-label>
     <input #searchInput matInput />
   </mat-form-field>
 }
 
 <div class="table-margin mat-elevation-z8">
-  <mat-table
-    [class.disable-table]="shouldShowSpinner"
-    [dataSource]="dataSource"
-    matSort
-  >
+  <mat-table [class.disable-table]="shouldShowSpinner" [dataSource]="dataSource" matSort>
     @for (column of config().columns; track column.columnDef) {
-      <ng-container
-        [matColumnDef]="column.columnDef"
-        [sticky]="column.sticky"
-        [stickyEnd]="column.stickyEnd"
-      >
+      <ng-container [matColumnDef]="column.columnDef" [sticky]="column.sticky" [stickyEnd]="column.stickyEnd">
         <mat-header-cell
           *matHeaderCellDef
           [style]="'min-width:' + column.minWidth"
@@ -29,10 +19,7 @@
           {{ column.header | textConfigTranslate }}
         </mat-header-cell>
 
-        <mat-cell
-          *matCellDef="let row"
-          [style]="'min-width:' + column.minWidth"
-        >
+        <mat-cell *matCellDef="let row" [style]="'min-width:' + column.minWidth">
           <app-table-row [column]="column" [row]="row"></app-table-row>
         </mat-cell>
       </ng-container>
@@ -77,9 +64,7 @@
       </mat-footer-cell>
     </ng-container>
 
-    <mat-header-row
-      *matHeaderRowDef="config().columnNames; sticky: config().headerSticky"
-    />
+    <mat-header-row *matHeaderRowDef="config().columnNames; sticky: config().headerSticky" />
     <mat-row
       *matRowDef="let row; columns: config().columnNames"
       [class.mark-row]="config().markRowCondition(row.data)"

@@ -5,18 +5,14 @@ import { PaginatedListResponse } from '../../../models/responses/paginated-list.
 import { BaseTableDataSource } from './base-data-source';
 import { TableRow } from '../models/row.model';
 
-export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<
-  TableRow<T>
-> {
+export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<TableRow<T>> {
   public get response(): PaginatedListResponse<TableRow<T>> {
     return this._dataSubject.value;
   }
 
   public readonly loading$: Observable<boolean>;
 
-  private _dataSubject = new BehaviorSubject<
-    PaginatedListResponse<TableRow<T>>
-  >(new PaginatedListResponse());
+  private _dataSubject = new BehaviorSubject<PaginatedListResponse<TableRow<T>>>(new PaginatedListResponse());
   private _loadingSubject = new BehaviorSubject<boolean>(false);
 
   public constructor() {
@@ -24,9 +20,7 @@ export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<
     this.loading$ = this._loadingSubject.asObservable();
   }
 
-  public connect(
-    collectionViewer: CollectionViewer,
-  ): Observable<TableRow<T>[]> {
+  public connect(collectionViewer: CollectionViewer): Observable<TableRow<T>[]> {
     return this._dataSubject.asObservable().pipe(map((r) => r.items));
   }
 
@@ -51,7 +45,5 @@ export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<
       .finally(() => this._loadingSubject.next(false));
   }
 
-  protected abstract getData(
-    request: PaginationRequest,
-  ): Promise<PaginatedListResponse<T>>;
+  protected abstract getData(request: PaginationRequest): Promise<PaginatedListResponse<T>>;
 }
