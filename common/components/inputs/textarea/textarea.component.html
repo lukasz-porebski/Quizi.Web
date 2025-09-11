@@ -1,0 +1,61 @@
+<mat-form-field [class.no-overflow-textarea]="noOverflow()">
+  <mat-label>{{ innerLabel | textConfigTranslate }}</mat-label>
+
+  <textarea
+    matInput
+    cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    [readonly]="readonly()"
+    [formControl]="formControl()"
+    [minlength]="minLength() ?? null"
+    [maxlength]="maxLength() ?? null"
+    [cdkAutosizeMinRows]="minRows() ?? null"
+    [cdkAutosizeMaxRows]="maxRows() ?? null"
+  >
+  </textarea>
+
+  @if (hint()) {
+    <app-hint [config]="hint()!" [template]="hintTemplate()"></app-hint>
+  }
+
+  @if (formControl().hasError(InputValidation.Required)) {
+    <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
+  } @else if (minLength() && maxLength()) {
+    @if (
+      formControl().hasError(InputValidation.MinLength) ||
+      formControl().hasError(InputValidation.MaxLength)
+    ) {
+      <app-input-error
+        [message]="{
+          text: 'VALID_TEXT_RANGE',
+          params: {
+            min: this.minLength(),
+            max: this.maxLength(),
+          },
+        }"
+      />
+    } @else {
+      @if (formControl().hasError(InputValidation.MinLength)) {
+        <app-input-error
+          [message]="{
+            text: 'MIN_TEXT_LENGTH',
+            params: {
+              value: this.minLength(),
+            },
+          }"
+        />
+      }
+
+      @if (formControl().hasError(InputValidation.MaxLength)) {
+        <app-input-error
+          [message]="{
+            text: 'MAX_TEXT_LENGTH',
+            params: {
+              value: this.maxLength(),
+            },
+          }"
+        />
+      }
+    }
+  }
+</mat-form-field>

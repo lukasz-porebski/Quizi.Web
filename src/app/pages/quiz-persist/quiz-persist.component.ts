@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { isDefined } from '../../../../common/utils/utils';
 import { ButtonStyle } from '../../../../common/components/button/enums/style.enum';
 import { QuizPersistHeaderComponent } from './components/quiz-persist-header/quiz-persist-header.component';
+import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open-question.component/quiz-persist-open-question.component';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -17,6 +18,7 @@ import { QuizPersistHeaderComponent } from './components/quiz-persist-header/qui
     ReactiveFormsModule,
     ButtonComponent,
     QuizPersistHeaderComponent,
+    QuizPersistOpenQuestionComponent,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',

@@ -15,5 +15,7 @@
   "CANCEL": "Anuluj",
   "SAVE": "Zapisz",
   "TITLE": "Tytuł",
-  "QUESTIONS_COUNT_IN_RUNNING_QUIZ": "Liczba pytań w rozwiązywanym quizie"
+  "QUESTIONS_COUNT_IN_RUNNING_QUIZ": "Liczba pytań w rozwiązywanym quizie",
+  "QUESTION": "Pytanie",
+  "ANSWER": "Odpowiedź"
 }

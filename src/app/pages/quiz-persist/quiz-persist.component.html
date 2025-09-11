@@ -3,7 +3,11 @@
     <form class="container mt-2 mb-2">
       <app-quiz-persist-header [context]="context" />
 
-      <div class="row">
+      @for (formGroup of context.form.controls.openQuestions.controls; track formGroup) {
+        <app-quiz-persist-open-question [formGroup]="formGroup" />
+      }
+
+      <div class="row mt-2">
         <div class="col d-flex justify-content-end">
           <app-button
             class="me-2"

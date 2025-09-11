@@ -13,6 +13,7 @@ import { ITextConfig, TextConfig } from '../../../models/text.config';
 import { HintConfig } from '../../hint/models/hint.config';
 import { isDefined } from '../../../utils/utils';
 import { InputValidation } from '../shared/enums/input-validation.enum';
+import { Optional } from '../../../types/optional.type';
 
 @Component({
   selector: 'app-text-input',
@@ -31,7 +32,7 @@ import { InputValidation } from '../shared/enums/input-validation.enum';
   styleUrls: ['./text.component.scss'],
 })
 export class TextInputComponent {
-  public formControl = input.required<FormControl>();
+  public formControl = input.required<FormControl<Optional<string>>>();
   public label = input.required<ITextConfig>();
   public readonly = input<boolean>(false);
   public type = input<TextInputType>(TextInputType.Text);

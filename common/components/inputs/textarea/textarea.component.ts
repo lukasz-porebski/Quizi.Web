@@ -5,15 +5,17 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HintComponent } from '../../hint/hint.component';
 import { InputErrorComponent } from '../input-error/input-error.component';
 import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
+import { Icon } from '../../../enums/icon.enum';
 import { ITextConfig, TextConfig } from '../../../models/text.config';
 import { HintConfig } from '../../hint/models/hint.config';
 import { isDefined } from '../../../utils/utils';
 import { InputValidation } from '../shared/enums/input-validation.enum';
 import { Optional } from '../../../types/optional.type';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
-  selector: 'app-number-input',
-  templateUrl: './number.component.html',
+  selector: 'app-textarea-input',
+  templateUrl: './textarea.component.html',
   imports: [
     MatFormField,
     MatInput,
@@ -22,17 +24,24 @@ import { Optional } from '../../../types/optional.type';
     InputErrorComponent,
     TextConfigTranslatePipe,
     MatLabel,
+    CdkTextareaAutosize,
   ],
-  styleUrls: ['./number.component.scss'],
+  styleUrls: ['./textarea.component.scss'],
 })
-export class NumberInputComponent {
-  public formControl = input.required<FormControl<Optional<number>>>();
+export class TextareaInputComponent {
+  public formControl = input.required<FormControl<Optional<string>>>();
   public label = input.required<ITextConfig>();
   public readonly = input<boolean>(false);
   public hint = input<HintConfig>();
-  public min = input<number>();
-  public max = input<number>();
   public hintTemplate = input<TemplateRef<unknown>>();
+  public minLength = input<number>();
+  public maxLength = input<number>();
+  public minRows = input<number>();
+  public maxRows = input<number>();
+  public noOverflow = input<boolean>(false);
+
+  public readonly Icon = Icon;
+  public readonly InputValidation = InputValidation;
 
   public innerLabel?: TextConfig;
 
@@ -43,6 +52,4 @@ export class NumberInputComponent {
         : undefined;
     });
   }
-
-  public readonly InputValidation = InputValidation;
 }
