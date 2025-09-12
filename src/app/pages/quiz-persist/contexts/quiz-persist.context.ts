@@ -44,7 +44,7 @@ export class QuizPersistContext {
                 q.answers.map(
                   (a) =>
                     new FormGroup<IQuizPersistFormChoiceQuestionAnswer>({
-                      no: new FormControl(a.no, {
+                      no: new FormControl(a.ordinalNumber, {
                         validators: [Validators.required],
                       }),
                       text: new FormControl(a.text, {

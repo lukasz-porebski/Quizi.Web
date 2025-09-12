@@ -17,25 +17,26 @@
       [class.disabled-radio-checkbox-input]="formControl().disabled"
       class="radio-button radio-button-rows"
       [disableRipple]="readonly"
-      [value]="option"
+      [value]="getOptionValue(option)"
       (click)="readonly() ? $event.preventDefault() : null"
     >
-      <ng-container
-        *ngIf="optionTpl; else defaultOptionTemplate"
-        [ngTemplateOutlet]="optionTpl"
-        [ngTemplateOutletContext]="{
-          $implicit: option,
-          option: option,
-          selected: formControl().value,
-        }"
-      >
-      </ng-container>
-
-      <ng-template #defaultOptionTemplate>
-        <span>
-          {{ getOptionText(option) | conditionalTranslate: translateOptionLabel }}
-        </span>
-      </ng-template>
+      <div (click)="disableLabelClick() ? $event.preventDefault() : null">
+        @if (optionTemplate()) {
+          <ng-container
+            [ngTemplateOutlet]="optionTemplate()"
+            [ngTemplateOutletContext]="{
+              $implicit: option,
+              option: option,
+              selectedValue: formControl().value,
+            }"
+          >
+          </ng-container>
+        } @else {
+          <span>
+            {{ getOptionText(option) | conditionalTranslate: translateOptionLabel }}
+          </span>
+        }
+      </div>
     </mat-radio-button>
   }
 </mat-radio-group>

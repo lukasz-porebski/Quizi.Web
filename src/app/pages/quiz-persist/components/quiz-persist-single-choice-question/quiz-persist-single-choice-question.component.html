@@ -4,10 +4,20 @@
       <mat-card-content>
         <app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
 
-        @for (formGroup of formGroup().controls.answers.controls; track formGroup) {
-          <app-text-input [formControl]="formGroup.controls.text" [label]="{ text: 'ANSWER' }" />
-        }
+        <app-radio
+          [formControl]="formGroup().controls.correctAnswerOrdinalNumber"
+          [options]="options"
+          [optionTemplate]="optionAnswerTemplate"
+          [optionValue]="optionValue"
+          [disableLabelClick]="true"
+          [color]="InputColor.Green"
+        >
+        </app-radio>
       </mat-card-content>
     </mat-card>
   </div>
 </div>
+
+<ng-template #optionAnswerTemplate let-option>
+  <app-text-input [formControl]="option.control" [label]="{ text: 'ANSWER' }" />
+</ng-template>

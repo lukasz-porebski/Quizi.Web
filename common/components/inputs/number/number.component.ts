@@ -34,6 +34,8 @@ export class NumberInputComponent {
   public max = input<number>();
   public hintTemplate = input<TemplateRef<unknown>>();
 
+  public readonly InputValidation = InputValidation;
+
   public innerLabel?: TextConfig;
 
   public constructor() {
@@ -41,6 +43,4 @@ export class NumberInputComponent {
       this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
     });
   }
-
-  public readonly InputValidation = InputValidation;
 }
