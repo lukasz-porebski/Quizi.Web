@@ -20,9 +20,22 @@
       [value]="option"
       (click)="readonly() ? $event.preventDefault() : null"
     >
-      <span>
-        {{ getOptionText(option) | conditionalTranslate: translateOptionLabel }}
-      </span>
+      <ng-container
+        *ngIf="optionTpl; else defaultOptionTemplate"
+        [ngTemplateOutlet]="optionTpl"
+        [ngTemplateOutletContext]="{
+          $implicit: option,
+          option: option,
+          selected: formControl().value,
+        }"
+      >
+      </ng-container>
+
+      <ng-template #defaultOptionTemplate>
+        <span>
+          {{ getOptionText(option) | conditionalTranslate: translateOptionLabel }}
+        </span>
+      </ng-template>
     </mat-radio-button>
   }
 </mat-radio-group>
