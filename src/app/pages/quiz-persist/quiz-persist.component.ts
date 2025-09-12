@@ -12,6 +12,9 @@ import { QuizPersistHeaderComponent } from './components/quiz-persist-header/qui
 import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open-question.component/quiz-persist-open-question.component';
 import { QuizPersistSingleChoiceQuestionComponent } from './components/quiz-persist-single-choice-question/quiz-persist-single-choice-question.component';
 import { QuizPersistMultipleChoiceQuestionComponent } from './components/quiz-persist-multiple-choice-question/quiz-persist-multiple-choice-question.component';
+import { MenuComponent } from '../../../../common/components/menu/menu.component';
+import { MenuButtonComponent } from '../../../../common/components/menu/components/button/menu-button.component';
+import { TextConfigTranslatePipe } from '../../../../common/pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -23,6 +26,10 @@ import { QuizPersistMultipleChoiceQuestionComponent } from './components/quiz-pe
     QuizPersistOpenQuestionComponent,
     QuizPersistSingleChoiceQuestionComponent,
     QuizPersistMultipleChoiceQuestionComponent,
+    MenuComponent,
+    MenuButtonComponent,
+    TextConfigTranslatePipe,
+    TranslatePipe,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',

@@ -17,5 +17,9 @@
   "TITLE": "Tytuł",
   "QUESTIONS_COUNT_IN_RUNNING_QUIZ": "Liczba pytań w rozwiązywanym quizie",
   "QUESTION": "Pytanie",
-  "ANSWER": "Odpowiedź"
+  "ANSWER": "Odpowiedź",
+  "ADD_QUESTION": "Dodaj pytanie",
+  "OPEN": "Otwarte",
+  "SINGLE_CHOICE": "Jednokrotnego wyboru",
+  "MULTIPLE_CHOICE": "Wielokrotnego wyboru"
 }

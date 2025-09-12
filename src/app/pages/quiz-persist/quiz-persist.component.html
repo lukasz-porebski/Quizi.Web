@@ -1,26 +1,34 @@
 <app-async-page [showSpinner]="isLoading">
-  @if (!isLoading) {
-    <form class="container mt-2 mb-2">
-      <app-quiz-persist-header [context]="context" />
+  <div class="container mt-2 mb-2">
+    @if (!isLoading) {
+      <form>
+        <app-quiz-persist-header [context]="context" />
 
-      @for (formGroup of context.form.controls.openQuestions.controls; track formGroup) {
-        <app-quiz-persist-open-question [formGroup]="formGroup" />
-      }
+        @for (formGroup of context.form.controls.openQuestions.controls; track formGroup) {
+          <app-quiz-persist-open-question [formGroup]="formGroup" />
+        }
 
-      @for (formGroup of context.form.controls.singleChoiceQuestions.controls; track formGroup) {
-        <app-quiz-persist-single-choice-question [formGroup]="formGroup" />
-      }
+        @for (formGroup of context.form.controls.singleChoiceQuestions.controls; track formGroup) {
+          <app-quiz-persist-single-choice-question [formGroup]="formGroup" />
+        }
 
-      @for (formGroup of context.form.controls.multipleChoiceQuestions.controls; track formGroup) {
-        <app-quiz-persist-multiple-choice-question [formGroup]="formGroup" />
-      }
-
+        @for (formGroup of context.form.controls.multipleChoiceQuestions.controls; track formGroup) {
+          <app-quiz-persist-multiple-choice-question [formGroup]="formGroup" />
+        }
+      </form>
       <div class="row mt-2">
+        <div class="col d-flex justify-content-start">
+          <app-menu [text]="{ text: 'ADD_QUESTION' }">
+            <app-menu-button>{{ "OPEN" | translate }}</app-menu-button>
+            <app-menu-button>{{ "SINGLE_CHOICE" | translate }}</app-menu-button>
+            <app-menu-button>{{ "MULTIPLE_CHOICE" | translate }}</app-menu-button>
+          </app-menu>
+        </div>
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [text]="{ text: 'CANCEL' }" [style]="ButtonStyle.Outlined" />
           <app-button [text]="{ text: 'SAVE' }" />
         </div>
       </div>
-    </form>
-  }
+    }
+  </div>
 </app-async-page>
