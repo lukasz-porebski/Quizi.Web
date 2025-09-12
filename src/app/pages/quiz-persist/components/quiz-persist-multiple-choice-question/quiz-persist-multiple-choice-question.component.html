@@ -1,0 +1,15 @@
+<div class="row mt-2">
+  <div class="col">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
+
+        @for (formGroup of formGroup().controls.answers.controls; track formGroup) {
+          <app-checkbox [formControl]="formGroup.controls.isCorrect" [disableLabelClick]="true">
+            <app-text-input [formControl]="formGroup.controls.text" [label]="{ text: 'ANSWER' }" />
+          </app-checkbox>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

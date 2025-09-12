@@ -1,9 +1,11 @@
 import { QuizDetailsResponse } from '../models/quiz-details.response';
-import { IQuizPersistForm } from '../interfaces/quiz -persist-form.interface';
+import { IQuizPersistForm } from '../interfaces/quiz-persist-form.interface';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz -persist-form-open-question.interface';
+import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
 import { IQuizPersistFormSingleChoiceQuestion } from '../interfaces/quiz-persist-form-single-choice-question.interface';
-import { IQuizPersistFormChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-choice-question-answer.interface';
+import { IQuizPersistFormSingleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-single-choice-question-answer.interface';
+import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
+import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
 
 export class QuizPersistContext {
   public form: FormGroup<IQuizPersistForm>;
@@ -40,10 +42,10 @@ export class QuizPersistContext {
                 nonNullable: true,
                 validators: [Validators.required],
               }),
-              answers: new FormArray<FormGroup<IQuizPersistFormChoiceQuestionAnswer>>(
+              answers: new FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>>(
                 q.answers.map(
                   (a) =>
-                    new FormGroup<IQuizPersistFormChoiceQuestionAnswer>({
+                    new FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>({
                       no: new FormControl(a.ordinalNumber, {
                         validators: [Validators.required],
                       }),
@@ -57,6 +59,35 @@ export class QuizPersistContext {
               correctAnswerOrdinalNumber: new FormControl(q.answers.find((a) => a.isCorrect)!.ordinalNumber, {
                 validators: [Validators.required],
               }),
+            }),
+        ),
+      ),
+      multipleChoiceQuestions: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestion>>(
+        (response?.singleChoiceQuestions ?? []).map(
+          (q) =>
+            new FormGroup<IQuizPersistFormMultipleChoiceQuestion>({
+              text: new FormControl(q.text, {
+                nonNullable: true,
+                validators: [Validators.required],
+              }),
+              answers: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>>(
+                q.answers.map(
+                  (a) =>
+                    new FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>({
+                      no: new FormControl(a.ordinalNumber, {
+                        validators: [Validators.required],
+                      }),
+                      text: new FormControl(a.text, {
+                        nonNullable: true,
+                        validators: [Validators.required],
+                      }),
+                      isCorrect: new FormControl(a.isCorrect, {
+                        nonNullable: true,
+                        validators: [Validators.required],
+                      }),
+                    }),
+                ),
+              ),
             }),
         ),
       ),

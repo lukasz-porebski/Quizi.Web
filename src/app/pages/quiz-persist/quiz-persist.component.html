@@ -11,6 +11,10 @@
         <app-quiz-persist-single-choice-question [formGroup]="formGroup" />
       }
 
+      @for (formGroup of context.form.controls.multipleChoiceQuestions.controls; track formGroup) {
+        <app-quiz-persist-multiple-choice-question [formGroup]="formGroup" />
+      }
+
       <div class="row mt-2">
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [text]="{ text: 'CANCEL' }" [style]="ButtonStyle.Outlined" />

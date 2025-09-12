@@ -11,6 +11,7 @@ import { ButtonStyle } from '../../../../common/components/button/enums/style.en
 import { QuizPersistHeaderComponent } from './components/quiz-persist-header/quiz-persist-header.component';
 import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open-question.component/quiz-persist-open-question.component';
 import { QuizPersistSingleChoiceQuestionComponent } from './components/quiz-persist-single-choice-question/quiz-persist-single-choice-question.component';
+import { QuizPersistMultipleChoiceQuestionComponent } from './components/quiz-persist-multiple-choice-question/quiz-persist-multiple-choice-question.component';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -21,6 +22,7 @@ import { QuizPersistSingleChoiceQuestionComponent } from './components/quiz-pers
     QuizPersistHeaderComponent,
     QuizPersistOpenQuestionComponent,
     QuizPersistSingleChoiceQuestionComponent,
+    QuizPersistMultipleChoiceQuestionComponent,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',

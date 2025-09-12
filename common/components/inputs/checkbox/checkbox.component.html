@@ -1,12 +1,19 @@
-<div class="app-checkbox-input" [className]="getCheckBoxColorClass(config().color)">
+<div [class]="['app-checkbox-input', getCheckBoxColorClass(color())]">
   <mat-checkbox
-    [class.app-checkbox-input-readonly]="config().readonly"
-    [labelPosition]="config().labelPosition"
+    [class.app-checkbox-input-readonly]="readonly()"
+    [labelPosition]="labelPosition()"
     [disableRipple]="true"
-    [disabled]="config().disabled"
-    [formControl]="config().formControl"
-    (click)="config().readonly ? $event.preventDefault() : null"
+    [formControl]="formControl()"
+    (click)="readonly() ? $event.preventDefault() : null"
   >
-    {{ config().label | textConfigTranslate }}
+    <div (click)="disableLabelClick() ? $event.preventDefault() : null">
+      <ng-content #customLabel></ng-content>
+
+      @if (!childComponent()) {
+        @if (innerLabel) {
+          {{ innerLabel | textConfigTranslate }}
+        }
+      }
+    </div>
   </mat-checkbox>
 </div>

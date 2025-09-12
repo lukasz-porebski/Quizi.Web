@@ -4,6 +4,18 @@
   ::ng-deep .mat-ripple {
     display: none !important;
   }
+
+  ::ng-deep mat-checkbox {
+    width: 100%;
+
+    .mdc-form-field {
+      width: 100%;
+
+      .mdc-label {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .app-checkbox-input-readonly {
