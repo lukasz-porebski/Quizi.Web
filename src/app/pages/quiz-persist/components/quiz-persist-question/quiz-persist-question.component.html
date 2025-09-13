@@ -1,0 +1,13 @@
+<div class="mb-3">
+  @switch (question().type) {
+    @case (QuestionType.Open) {
+      <app-quiz-persist-open-question [formGroup]="castToOpenQuestion()" />
+    }
+    @case (QuestionType.SingleChoice) {
+      <app-quiz-persist-single-choice-question [formGroup]="castToSingleChoiceQuestion()" />
+    }
+    @case (QuestionType.MultipleChoice) {
+      <app-quiz-persist-multiple-choice-question [formGroup]="castToMultipleChoiceQuestion()" />
+    }
+  }
+</div>

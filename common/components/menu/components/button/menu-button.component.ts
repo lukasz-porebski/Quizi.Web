@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatMenuItem } from '@angular/material/menu';
 
 @Component({
@@ -7,4 +7,6 @@ import { MatMenuItem } from '@angular/material/menu';
   templateUrl: './menu-button.component.html',
   styleUrl: './menu-button.component.scss',
 })
-export class MenuButtonComponent {}
+export class MenuButtonComponent {
+  public onClick = output<void>();
+}

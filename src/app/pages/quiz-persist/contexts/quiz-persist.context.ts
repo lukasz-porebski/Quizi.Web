@@ -6,6 +6,8 @@ import { IQuizPersistFormSingleChoiceQuestion } from '../interfaces/quiz-persist
 import { IQuizPersistFormSingleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-single-choice-question-answer.interface';
 import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
 import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
+import { QuizPersistQuestionFormGroup } from './quiz-persist-question.form-group';
+import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
 
 export class QuizPersistContext {
   public form: FormGroup<IQuizPersistForm>;
@@ -19,76 +21,104 @@ export class QuizPersistContext {
       questionsCountInRunningQuiz: new FormControl(response?.questionsCountInRunningQuiz, {
         validators: [Validators.required],
       }),
-      openQuestions: new FormArray<FormGroup<IQuizPersistFormOpenQuestion>>(
+      openQuestions: new FormArray<QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>>(
         (response?.openQuestions ?? []).map(
           (q) =>
-            new FormGroup<IQuizPersistFormOpenQuestion>({
-              text: new FormControl(q.text, {
-                nonNullable: true,
-                validators: [Validators.required],
-              }),
-              answer: new FormControl(q.answer, {
-                nonNullable: true,
-                validators: [Validators.required],
-              }),
-            }),
+            new QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>(
+              {
+                ordinalNumber: new FormControl(q.ordinalNumber, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                text: new FormControl(q.text, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                answer: new FormControl(q.answer, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+              },
+              QuizPersistFormQuestionType.Open,
+            ),
         ),
       ),
-      singleChoiceQuestions: new FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestion>>(
+      singleChoiceQuestions: new FormArray<
+        QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion>
+      >(
         (response?.singleChoiceQuestions ?? []).map(
           (q) =>
-            new FormGroup<IQuizPersistFormSingleChoiceQuestion>({
-              text: new FormControl(q.text, {
-                nonNullable: true,
-                validators: [Validators.required],
-              }),
-              answers: new FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>>(
-                q.answers.map(
-                  (a) =>
-                    new FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>({
-                      no: new FormControl(a.ordinalNumber, {
-                        validators: [Validators.required],
+            new QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion>(
+              {
+                ordinalNumber: new FormControl(q.ordinalNumber, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                text: new FormControl(q.text, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                answers: new FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>>(
+                  q.answers.map(
+                    (a) =>
+                      new FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>({
+                        no: new FormControl(a.ordinalNumber, {
+                          validators: [Validators.required],
+                        }),
+                        text: new FormControl(a.text, {
+                          nonNullable: true,
+                          validators: [Validators.required],
+                        }),
                       }),
-                      text: new FormControl(a.text, {
-                        nonNullable: true,
-                        validators: [Validators.required],
-                      }),
-                    }),
+                  ),
                 ),
-              ),
-              correctAnswerOrdinalNumber: new FormControl(q.answers.find((a) => a.isCorrect)!.ordinalNumber, {
-                validators: [Validators.required],
-              }),
-            }),
+                correctAnswerOrdinalNumber: new FormControl(
+                  q.answers.find((a) => a.isCorrect)!.ordinalNumber,
+                  {
+                    validators: [Validators.required],
+                  },
+                ),
+              },
+              QuizPersistFormQuestionType.SingleChoice,
+            ),
         ),
       ),
-      multipleChoiceQuestions: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestion>>(
-        (response?.singleChoiceQuestions ?? []).map(
+      multipleChoiceQuestions: new FormArray<
+        QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion>
+      >(
+        (response?.multipleChoiceQuestions ?? []).map(
           (q) =>
-            new FormGroup<IQuizPersistFormMultipleChoiceQuestion>({
-              text: new FormControl(q.text, {
-                nonNullable: true,
-                validators: [Validators.required],
-              }),
-              answers: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>>(
-                q.answers.map(
-                  (a) =>
-                    new FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>({
-                      no: new FormControl(a.ordinalNumber, {
-                        validators: [Validators.required],
+            new QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion>(
+              {
+                ordinalNumber: new FormControl(q.ordinalNumber, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                text: new FormControl(q.text, {
+                  nonNullable: true,
+                  validators: [Validators.required],
+                }),
+                answers: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>>(
+                  q.answers.map(
+                    (a) =>
+                      new FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>({
+                        no: new FormControl(a.ordinalNumber, {
+                          validators: [Validators.required],
+                        }),
+                        text: new FormControl(a.text, {
+                          nonNullable: true,
+                          validators: [Validators.required],
+                        }),
+                        isCorrect: new FormControl(a.isCorrect, {
+                          nonNullable: true,
+                          validators: [Validators.required],
+                        }),
                       }),
-                      text: new FormControl(a.text, {
-                        nonNullable: true,
-                        validators: [Validators.required],
-                      }),
-                      isCorrect: new FormControl(a.isCorrect, {
-                        nonNullable: true,
-                        validators: [Validators.required],
-                      }),
-                    }),
+                  ),
                 ),
-              ),
-            }),
+              },
+              QuizPersistFormQuestionType.MultipleChoice,
+            ),
         ),
       ),
     });

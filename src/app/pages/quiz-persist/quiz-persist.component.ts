@@ -9,12 +9,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { isDefined } from '../../../../common/utils/utils';
 import { ButtonStyle } from '../../../../common/components/button/enums/style.enum';
 import { QuizPersistHeaderComponent } from './components/quiz-persist-header/quiz-persist-header.component';
-import { QuizPersistOpenQuestionComponent } from './components/quiz-persist-open-question.component/quiz-persist-open-question.component';
-import { QuizPersistSingleChoiceQuestionComponent } from './components/quiz-persist-single-choice-question/quiz-persist-single-choice-question.component';
-import { QuizPersistMultipleChoiceQuestionComponent } from './components/quiz-persist-multiple-choice-question/quiz-persist-multiple-choice-question.component';
 import { MenuComponent } from '../../../../common/components/menu/menu.component';
 import { MenuButtonComponent } from '../../../../common/components/menu/components/button/menu-button.component';
-import { TextConfigTranslatePipe } from '../../../../common/pipes/text-config-translation.pipe';
+import { QuizPersistQuestionsHelper } from './helpers/quiz-persist-questions.helper';
+import { QuizPersistFormQuestion } from './types/quiz-persist-form-question.type';
+import { QuizPersistQuestionComponent } from './components/quiz-persist-question/quiz-persist-question.component';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -23,13 +22,10 @@ import { TextConfigTranslatePipe } from '../../../../common/pipes/text-config-tr
     ReactiveFormsModule,
     ButtonComponent,
     QuizPersistHeaderComponent,
-    QuizPersistOpenQuestionComponent,
-    QuizPersistSingleChoiceQuestionComponent,
-    QuizPersistMultipleChoiceQuestionComponent,
     MenuComponent,
     MenuButtonComponent,
-    TextConfigTranslatePipe,
     TranslatePipe,
+    QuizPersistQuestionComponent,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',
@@ -38,6 +34,10 @@ import { TextConfigTranslatePipe } from '../../../../common/pipes/text-config-tr
 export class QuizPersistComponent implements OnInit {
   public get isLoading(): boolean {
     return !isDefined(this.context);
+  }
+
+  public get questions(): QuizPersistFormQuestion[] {
+    return QuizPersistQuestionsHelper.Merge(this.context);
   }
 
   public readonly ButtonStyle = ButtonStyle;

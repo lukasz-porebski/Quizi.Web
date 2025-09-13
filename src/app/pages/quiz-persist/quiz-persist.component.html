@@ -4,16 +4,8 @@
       <form>
         <app-quiz-persist-header [context]="context" />
 
-        @for (formGroup of context.form.controls.openQuestions.controls; track formGroup) {
-          <app-quiz-persist-open-question [formGroup]="formGroup" />
-        }
-
-        @for (formGroup of context.form.controls.singleChoiceQuestions.controls; track formGroup) {
-          <app-quiz-persist-single-choice-question [formGroup]="formGroup" />
-        }
-
-        @for (formGroup of context.form.controls.multipleChoiceQuestions.controls; track formGroup) {
-          <app-quiz-persist-multiple-choice-question [formGroup]="formGroup" />
+        @for (question of questions; track question) {
+          <app-quiz-persist-question [question]="question" />
         }
       </form>
       <div class="row mt-2">
