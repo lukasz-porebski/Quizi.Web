@@ -5,4 +5,6 @@ export enum Icon {
   List = 'list',
   Add = 'add',
   Delete = 'delete',
+  ArrowUpward = 'arrow_upward',
+  ArrowDownward = 'arrow_downward',
 }

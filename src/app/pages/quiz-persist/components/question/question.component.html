@@ -1,13 +1,26 @@
-<div class="mb-3">
-  @switch (question().type) {
-    @case (QuestionType.Open) {
-      <app-quiz-persist-open-question [formGroup]="castToOpenQuestion()" />
-    }
-    @case (QuestionType.SingleChoice) {
-      <app-quiz-persist-single-choice-question [formGroup]="castToSingleChoiceQuestion()" />
-    }
-    @case (QuestionType.MultipleChoice) {
-      <app-quiz-persist-multiple-choice-question [formGroup]="castToMultipleChoiceQuestion()" />
-    }
-  }
+<div class="row mb-3">
+  <div class="col">
+    <div class="d-flex align-items-center">
+      <div>
+        <app-button [icon]="Icon.ArrowUpward"></app-button>
+        <app-button [icon]="Icon.ArrowDownward"></app-button>
+      </div>
+      <mat-card appearance="outlined" class="w-100">
+        <mat-card-content>
+          @switch (question().type) {
+            @case (QuestionType.Open) {
+              <app-quiz-persist-open-question [formGroup]="castToOpenQuestion()" />
+            }
+            @case (QuestionType.SingleChoice) {
+              <app-quiz-persist-single-choice-question [formGroup]="castToSingleChoiceQuestion()" />
+            }
+            @case (QuestionType.MultipleChoice) {
+              <app-quiz-persist-multiple-choice-question [formGroup]="castToMultipleChoiceQuestion()" />
+            }
+          }
+        </mat-card-content>
+      </mat-card>
+      <app-button [icon]="Icon.Delete" (onClick)="form().removeQuestion(question())"></app-button>
+    </div>
+  </div>
 </div>

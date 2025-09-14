@@ -3,11 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { IQuizPersistFormOpenQuestion } from '../../interfaces/quiz-persist-form-open-question.interface';
 import { TextInputComponent } from '../../../../../../common/components/inputs/text/text.component';
 import { TextareaInputComponent } from '../../../../../../common/components/inputs/textarea/textarea.component';
-import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
   selector: 'app-quiz-persist-open-question',
-  imports: [TextInputComponent, TextareaInputComponent, MatCard, MatCardContent],
+  imports: [TextInputComponent, TextareaInputComponent],
   templateUrl: './open-question.component.html',
   styleUrl: './open-question.component.scss',
 })

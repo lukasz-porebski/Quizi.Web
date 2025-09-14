@@ -1,19 +1,19 @@
-import { QuizPersistContext } from '../contexts/quiz-persist.context';
 import { QuizPersistFormQuestion } from '../types/quiz-persist-form-question.type';
 import { sortBy } from 'remeda';
+import { QuizPersistFormGroup } from '../contexts/quiz-persist.form-group';
 
 export namespace QuizPersistQuestionsHelper {
-  export function Merge(context: QuizPersistContext): QuizPersistFormQuestion[] {
+  export function Merge(form: QuizPersistFormGroup): QuizPersistFormQuestion[] {
     const result: QuizPersistFormQuestion[] = [];
-    context.form.controls.openQuestions.controls.forEach((c) => {
+    form.controls.openQuestions.controls.forEach((c) => {
       result.push(c);
     });
 
-    context.form.controls.singleChoiceQuestions.controls.forEach((c) => {
+    form.controls.singleChoiceQuestions.controls.forEach((c) => {
       result.push(c);
     });
 
-    context.form.controls.multipleChoiceQuestions.controls.forEach((c) => {
+    form.controls.multipleChoiceQuestions.controls.forEach((c) => {
       result.push(c);
     });
 

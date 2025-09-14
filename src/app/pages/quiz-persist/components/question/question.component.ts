@@ -6,8 +6,12 @@ import { QuizPersistFormQuestion } from '../../types/quiz-persist-form-question.
 import { QuizPersistFormQuestionType } from '../../enums/quiz-persist-question-type.enum';
 import { QuizPersistQuestionFormGroup } from '../../contexts/quiz-persist-question.form-group';
 import { IQuizPersistFormOpenQuestion } from '../../interfaces/quiz-persist-form-open-question.interface';
-import { IQuizPersistFormSingleChoiceQuestion } from '../../interfaces/quiz-persist-form-single-choice-question.interface';
-import { IQuizPersistFormMultipleChoiceQuestion } from '../../interfaces/quiz-persist-form-multiple-choice-question.interface';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '../../contexts/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '../../contexts/quiz-persist-single-choice-question.form-group';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { ButtonComponent } from '../../../../../../common/components/button/button.component';
+import { Icon } from '../../../../../../common/enums/icon.enum';
+import { QuizPersistFormGroup } from '../../contexts/quiz-persist.form-group';
 
 @Component({
   selector: 'app-quiz-persist-question',
@@ -15,24 +19,29 @@ import { IQuizPersistFormMultipleChoiceQuestion } from '../../interfaces/quiz-pe
     QuizPersistOpenQuestionComponent,
     QuizPersistSingleChoiceQuestionComponent,
     QuizPersistMultipleChoiceQuestionComponent,
+    MatCard,
+    MatCardContent,
+    ButtonComponent,
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss',
 })
 export class QuizPersistQuestionComponent {
+  public form = input.required<QuizPersistFormGroup>();
   public question = input.required<QuizPersistFormQuestion>();
 
-  public QuestionType = QuizPersistFormQuestionType;
+  public readonly QuestionType = QuizPersistFormQuestionType;
+  public readonly Icon = Icon;
 
   public castToOpenQuestion(): QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion> {
     return this.question() as QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>;
   }
 
-  public castToSingleChoiceQuestion(): QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion> {
-    return this.question() as QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion>;
+  public castToSingleChoiceQuestion(): QuizPersistSingleChoiceQuestionFormGroup {
+    return this.question() as QuizPersistSingleChoiceQuestionFormGroup;
   }
 
-  public castToMultipleChoiceQuestion(): QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion> {
-    return this.question() as QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion>;
+  public castToMultipleChoiceQuestion(): QuizPersistMultipleChoiceQuestionFormGroup {
+    return this.question() as QuizPersistMultipleChoiceQuestionFormGroup;
   }
 }

@@ -1,32 +1,20 @@
-<div class="row">
-  <div class="col">
-    <mat-card appearance="outlined">
-      <mat-card-content>
-        <div class="d-flex">
-          <app-text-input
-            class="w-100"
-            [formControl]="formGroup().controls.text"
-            [label]="{ text: 'QUESTION' }"
-          />
-          <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
-        </div>
-
-        <app-radio
-          [formControl]="formGroup().controls.correctAnswerOrdinalNumber"
-          [options]="options"
-          [optionTemplate]="optionAnswerTemplate"
-          [optionValue]="optionValue"
-          [disableLabelClick]="true"
-          [color]="InputColor.Green"
-        >
-        </app-radio>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div class="d-flex align-items-center">
+  <app-text-input class="w-100" [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
+  <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
 </div>
 
+<app-radio
+  [formControl]="formGroup().controls.correctAnswerOrdinalNumber"
+  [options]="options"
+  [optionTemplate]="optionAnswerTemplate"
+  [optionValue]="optionValue"
+  [disableLabelClick]="true"
+  [color]="InputColor.Green"
+>
+</app-radio>
+
 <ng-template #optionAnswerTemplate let-option>
-  <div class="d-flex">
+  <div class="d-flex align-items-center">
     <app-text-input class="w-100" [formControl]="option.control" [label]="{ text: 'ANSWER' }" />
     <app-button [icon]="Icon.Delete" (onClick)="formGroup().removeAnswer(option.ordinalNumber)"></app-button>
   </div>

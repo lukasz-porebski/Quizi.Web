@@ -1,6 +1,5 @@
 import { Component, input, OnDestroy, OnInit } from '@angular/core';
 import { TextInputComponent } from '../../../../../../common/components/inputs/text/text.component';
-import { MatCard, MatCardContent } from '@angular/material/card';
 import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
 import { QuizPersistSingleChoiceQuestionRadioOption } from './models/single-choice-question-radio-option.model';
 import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
@@ -11,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-persist-single-choice-question',
-  imports: [TextInputComponent, MatCard, MatCardContent, RadioComponent, ButtonComponent],
+  imports: [TextInputComponent, RadioComponent, ButtonComponent],
   templateUrl: './single-choice-question.component.html',
   styleUrl: './single-choice-question.component.scss',
 })

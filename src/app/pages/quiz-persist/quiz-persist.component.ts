@@ -11,8 +11,6 @@ import { ButtonStyle } from '../../../../common/components/button/enums/style.en
 import { QuizPersistHeaderComponent } from './components/header/header.component';
 import { MenuComponent } from '../../../../common/components/menu/menu.component';
 import { MenuButtonComponent } from '../../../../common/components/menu/components/button/menu-button.component';
-import { QuizPersistQuestionsHelper } from './helpers/quiz-persist-questions.helper';
-import { QuizPersistFormQuestion } from './types/quiz-persist-form-question.type';
 import { QuizPersistQuestionComponent } from './components/question/question.component';
 
 @Component({
@@ -34,10 +32,6 @@ import { QuizPersistQuestionComponent } from './components/question/question.com
 export class QuizPersistComponent implements OnInit {
   public get isLoading(): boolean {
     return !isDefined(this.context);
-  }
-
-  public get questions(): QuizPersistFormQuestion[] {
-    return QuizPersistQuestionsHelper.Merge(this.context);
   }
 
   public readonly ButtonStyle = ButtonStyle;

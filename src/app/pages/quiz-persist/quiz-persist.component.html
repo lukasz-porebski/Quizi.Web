@@ -4,18 +4,20 @@
       <form>
         <app-quiz-persist-header [context]="context" />
 
-        @for (question of questions; track question.controls.ordinalNumber.value) {
-          <app-quiz-persist-question [question]="question" />
+        @for (question of context.form.questions; track question.controls.ordinalNumber.value) {
+          <app-quiz-persist-question [form]="context.form" [question]="question" />
         }
       </form>
       <div class="row mt-2">
         <div class="col d-flex justify-content-start">
           <app-menu [text]="{ text: 'ADD_QUESTION' }">
-            <app-menu-button (onClick)="context.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
-            <app-menu-button (onClick)="context.addSingleChoiceQuestion()">{{
+            <app-menu-button (onClick)="context.form.addOpenQuestion()">{{
+              "OPEN" | translate
+            }}</app-menu-button>
+            <app-menu-button (onClick)="context.form.addSingleChoiceQuestion()">{{
               "SINGLE_CHOICE" | translate
             }}</app-menu-button>
-            <app-menu-button (onClick)="context.addMultipleChoiceQuestion()">{{
+            <app-menu-button (onClick)="context.form.addMultipleChoiceQuestion()">{{
               "MULTIPLE_CHOICE" | translate
             }}</app-menu-button>
           </app-menu>
