@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
-import { QuizPersistOpenQuestionComponent } from '../quiz-persist-open-question.component/quiz-persist-open-question.component';
-import { QuizPersistSingleChoiceQuestionComponent } from '../quiz-persist-single-choice-question/quiz-persist-single-choice-question.component';
-import { QuizPersistMultipleChoiceQuestionComponent } from '../quiz-persist-multiple-choice-question/quiz-persist-multiple-choice-question.component';
+import { QuizPersistOpenQuestionComponent } from '../open-question/open-question.component';
+import { QuizPersistSingleChoiceQuestionComponent } from '../single-choice-question/single-choice-question.component';
+import { QuizPersistMultipleChoiceQuestionComponent } from '../multiple-choice-question/multiple-choice-question.component';
 import { QuizPersistFormQuestion } from '../../types/quiz-persist-form-question.type';
 import { QuizPersistFormQuestionType } from '../../enums/quiz-persist-question-type.enum';
 import { QuizPersistQuestionFormGroup } from '../../contexts/quiz-persist-question.form-group';
@@ -16,8 +16,8 @@ import { IQuizPersistFormMultipleChoiceQuestion } from '../../interfaces/quiz-pe
     QuizPersistSingleChoiceQuestionComponent,
     QuizPersistMultipleChoiceQuestionComponent,
   ],
-  templateUrl: './quiz-persist-question.component.html',
-  styleUrl: './quiz-persist-question.component.scss',
+  templateUrl: './question.component.html',
+  styleUrl: './question.component.scss',
 })
 export class QuizPersistQuestionComponent {
   public question = input.required<QuizPersistFormQuestion>();

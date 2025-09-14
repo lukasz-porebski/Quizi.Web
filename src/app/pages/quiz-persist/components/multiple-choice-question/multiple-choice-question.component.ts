@@ -8,8 +8,8 @@ import { CheckboxComponent } from '../../../../../../common/components/inputs/ch
 @Component({
   selector: 'app-quiz-persist-multiple-choice-question',
   imports: [TextInputComponent, MatCard, MatCardContent, CheckboxComponent],
-  templateUrl: './quiz-persist-multiple-choice-question.component.html',
-  styleUrl: './quiz-persist-multiple-choice-question.component.scss',
+  templateUrl: './multiple-choice-question.component.html',
+  styleUrl: './multiple-choice-question.component.scss',
 })
 export class QuizPersistMultipleChoiceQuestionComponent {
   public formGroup = input.required<FormGroup<IQuizPersistFormMultipleChoiceQuestion>>();

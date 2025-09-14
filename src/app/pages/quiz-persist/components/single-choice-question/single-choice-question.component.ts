@@ -4,14 +4,14 @@ import { TextInputComponent } from '../../../../../../common/components/inputs/t
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { IQuizPersistFormSingleChoiceQuestion } from '../../interfaces/quiz-persist-form-single-choice-question.interface';
 import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
-import { QuizPersistSingleChoiceQuestionRadioOption } from './models/quiz-persist-single-choice-question-radio-option.model';
+import { QuizPersistSingleChoiceQuestionRadioOption } from './models/single-choice-question-radio-option.model';
 import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
 
 @Component({
   selector: 'app-quiz-persist-single-choice-question',
   imports: [TextInputComponent, MatCard, MatCardContent, RadioComponent],
-  templateUrl: './quiz-persist-single-choice-question.component.html',
-  styleUrl: './quiz-persist-single-choice-question.component.scss',
+  templateUrl: './single-choice-question.component.html',
+  styleUrl: './single-choice-question.component.scss',
 })
 export class QuizPersistSingleChoiceQuestionComponent {
   public formGroup = input.required<FormGroup<IQuizPersistFormSingleChoiceQuestion>>();

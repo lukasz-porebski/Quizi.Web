@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { isDefined } from '../../../../common/utils/utils';
 import { ButtonStyle } from '../../../../common/components/button/enums/style.enum';
-import { QuizPersistHeaderComponent } from './components/quiz-persist-header/quiz-persist-header.component';
+import { QuizPersistHeaderComponent } from './components/header/header.component';
 import { MenuComponent } from '../../../../common/components/menu/menu.component';
 import { MenuButtonComponent } from '../../../../common/components/menu/components/button/menu-button.component';
 import { QuizPersistQuestionsHelper } from './helpers/quiz-persist-questions.helper';
 import { QuizPersistFormQuestion } from './types/quiz-persist-form-question.type';
-import { QuizPersistQuestionComponent } from './components/quiz-persist-question/quiz-persist-question.component';
+import { QuizPersistQuestionComponent } from './components/question/question.component';
 
 @Component({
   selector: 'app-quiz-persist',

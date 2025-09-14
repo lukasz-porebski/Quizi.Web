@@ -8,8 +8,8 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 @Component({
   selector: 'app-quiz-persist-open-question',
   imports: [TextInputComponent, TextareaInputComponent, MatCard, MatCardContent],
-  templateUrl: './quiz-persist-open-question.component.html',
-  styleUrl: './quiz-persist-open-question.component.scss',
+  templateUrl: './open-question.component.html',
+  styleUrl: './open-question.component.scss',
 })
 export class QuizPersistOpenQuestionComponent {
   public formGroup = input.required<FormGroup<IQuizPersistFormOpenQuestion>>();

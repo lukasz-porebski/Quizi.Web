@@ -6,8 +6,8 @@ import { QuizPersistContext } from '../../contexts/quiz-persist.context';
 @Component({
   selector: 'app-quiz-persist-header',
   imports: [NumberInputComponent, TextInputComponent],
-  templateUrl: './quiz-persist-header.component.html',
-  styleUrl: './quiz-persist-header.component.scss',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class QuizPersistHeaderComponent {
   public context = input.required<QuizPersistContext>();
