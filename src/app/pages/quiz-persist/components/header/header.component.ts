@@ -6,10 +6,11 @@ import { CheckboxComponent } from '../../../../../../common/components/inputs/ch
 import { SelectComponent } from '../../../../../../common/components/select/select.component';
 import { SelectOptionModel } from '../../../../../../common/components/select/models/select-option.model';
 import { QuizCopyMode } from '../../../quizzes/enums/quiz-copy-mode.enum';
+import { TimeSpanComponent } from '../../../../../../common/components/time-span/time-span.component';
 
 @Component({
   selector: 'app-quiz-persist-header',
-  imports: [NumberInputComponent, TextInputComponent, CheckboxComponent, SelectComponent],
+  imports: [NumberInputComponent, TextInputComponent, CheckboxComponent, SelectComponent, TimeSpanComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

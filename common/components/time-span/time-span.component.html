@@ -1,0 +1,34 @@
+<mat-card appearance="outlined">
+  <mat-card-header class="mb-2"> {{ "DURATION" | translate }} </mat-card-header>
+  <mat-card-content>
+    <div class="d-flex">
+      <app-number-input
+        class="me-2"
+        [formControl]="formGroup().controls.hours"
+        [label]="{ text: 'HOURS' }"
+        [min]="minHours()"
+        [max]="maxHours()"
+      />
+      <app-number-input
+        class="me-2"
+        [formControl]="formGroup().controls.minutes"
+        [label]="{ text: 'MINUTES' }"
+        [min]="minMinutes()"
+        [max]="maxMinutes()"
+      />
+      <app-number-input
+        class="me-2"
+        [formControl]="formGroup().controls.seconds"
+        [label]="{ text: 'SECONDS' }"
+        [min]="minSeconds()"
+        [max]="maxSeconds()"
+      />
+    </div>
+
+    @if (formGroup().hasError("timeSpanMaxValue")) {
+      <mat-error>{{
+        "MAX_VALUE" | translate: { value: formGroup().getError("timeSpanMaxValue") }
+      }}</mat-error>
+    }
+  </mat-card-content>
+</mat-card>

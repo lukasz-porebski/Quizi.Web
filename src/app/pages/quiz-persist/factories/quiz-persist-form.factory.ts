@@ -1,5 +1,5 @@
 import { QuizDetailsResponse } from '../models/quiz-details.response';
-import { FormArray, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuizPersistQuestionFormGroup } from '../form/quiz-persist-question.form-group';
 import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
 import { QuizPersistFormOpenQuestionFactory } from './quiz-persist-form-open-question.factory';
@@ -9,6 +9,8 @@ import { QuizPersistFormGroup } from '../form/quiz-persist.form-group';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
 import { QuizCopyMode } from '../../quizzes/enums/quiz-copy-mode.enum';
+import { ITimeSpanFormControl } from '../../../../../common/interfaces/time-span-form-control.interface';
+import { TimeSpanValidators } from '../../../../../common/components/time-span/validators/time-span.validators';
 
 export namespace QuizPersistFormFactory {
   export function Create(response?: QuizDetailsResponse): QuizPersistFormGroup {
@@ -17,6 +19,20 @@ export namespace QuizPersistFormFactory {
         nonNullable: true,
         validators: [Validators.required],
       }),
+      duration: new FormGroup<ITimeSpanFormControl>(
+        {
+          hours: new FormControl(response?.duration.hours, {
+            validators: [Validators.required],
+          }),
+          minutes: new FormControl(response?.duration.minutes, {
+            validators: [Validators.required],
+          }),
+          seconds: new FormControl(response?.duration.seconds, {
+            validators: [Validators.required],
+          }),
+        },
+        [TimeSpanValidators.MaxValue({ hours: 3 })],
+      ),
       questionsCountInRunningQuiz: new FormControl(response?.questionsCountInRunningQuiz, {
         validators: [Validators.required],
       }),

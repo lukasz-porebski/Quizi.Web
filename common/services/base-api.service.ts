@@ -10,9 +10,13 @@ export abstract class BaseApiService {
   private readonly _httpClient = inject(HttpClient);
   private readonly _apiUrl = environment.apiUrl;
 
-  protected get<T>(url: string, map: (response: T) => T, request?: object): Promise<T> {
+  protected get<TResponse, TRawResponse = TResponse>(
+    url: string,
+    map: (response: TRawResponse) => TResponse,
+    request?: object,
+  ): Promise<TResponse> {
     return firstValueFrom(
-      this._httpClient.get<T>(`${this._apiUrl}${url}`, {
+      this._httpClient.get<TRawResponse>(`${this._apiUrl}${url}`, {
         params: this._toHttpParams(isDefined(request) ? { ...request } : {}),
       }),
     ).then((r) => map(r));

@@ -2,7 +2,7 @@
   "ERROR": "Błąd",
   "FIELD_IS_REQUIRED": "Pole jest wymagane",
   "MIN_VALUE": "Minimalna wartość to {{value}}",
-  "MAX_VALUE": "Minimalna wartość to {{value}}",
+  "MAX_VALUE": "Maksymalna wartość to {{value}}",
   "VALID_TEXT_RANGE": "Liczba znaków musi być w przedziale {{min}} - {{max}}",
   "MIN_TEXT_LENGTH": "Minimalna liczba znaków to {{value}}",
   "MAX_TEXT_LENGTH": "Maksymalna liczba znaków to {{value}}",
@@ -28,5 +28,9 @@
   "COPY_MODE": "Tryb kopiowania",
   "DISABLED": "Wyłączony",
   "ONLY_FOR_ADDED_USER": "Tylko dla dodanych użytkowników",
-  "FOR_ALL": "Dla wszystkich"
+  "FOR_ALL": "Dla wszystkich",
+  "HOURS": "Godziny",
+  "MINUTES": "Minuty",
+  "SECONDS": "Sekundy",
+  "DURATION": "Czas trwania"
 }

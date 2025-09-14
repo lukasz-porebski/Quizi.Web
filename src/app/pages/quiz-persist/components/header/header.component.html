@@ -5,6 +5,9 @@
 </div>
 <div class="row">
   <div class="col">
+    <app-time-span class="d-block mb-2" [formGroup]="form().controls.duration" [maxHours]="3" />
+  </div>
+  <div class="col">
     <app-number-input
       [formControl]="form().controls.questionsCountInRunningQuiz"
       [label]="{ text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ' }"
