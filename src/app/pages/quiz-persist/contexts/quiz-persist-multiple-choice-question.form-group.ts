@@ -1,12 +1,12 @@
-import { IQuizPersistFormSingleChoiceQuestion } from '../interfaces/quiz-persist-form-single-choice-question.interface';
 import { QuizPersistQuestionFormGroup } from './quiz-persist-question.form-group';
-import { QuizPersistFormSingleChoiceQuestionFactory } from '../factories/quiz-persist-form-single-choice-question.factory';
+import { QuizPersistFormMultipleChoiceQuestionFactory } from '../factories/quiz-persist-form-multiple-choice-question.factory';
+import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
 import { QuizPersistChoiceQuestionsHelper } from '../helpers/quiz-persist-choice-questions.helper';
 
-export class QuizPersistSingleChoiceQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion> {
+export class QuizPersistMultipleChoiceQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion> {
   public addAnswer(): void {
     this.controls.answers.push(
-      QuizPersistFormSingleChoiceQuestionFactory.CreateAnswer(
+      QuizPersistFormMultipleChoiceQuestionFactory.CreateAnswer(
         QuizPersistChoiceQuestionsHelper.GetNextOrdinalNumber(this.controls),
       ),
     );

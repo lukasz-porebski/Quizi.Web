@@ -1,17 +1,16 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
-import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
 import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
 import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
 import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
-import { QuizPersistQuestionFormGroup } from '../contexts/quiz-persist-question.form-group';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '../contexts/quiz-persist-multiple-choice-question.form-group';
 
 export namespace QuizPersistFormMultipleChoiceQuestionFactory {
   export function CreateQuestion(
     ordinalNumber: number,
     response?: QuizDetailsChoiceQuestionResponse,
-  ): QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion> {
-    return new QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion>(
+  ): QuizPersistMultipleChoiceQuestionFormGroup {
+    return new QuizPersistMultipleChoiceQuestionFormGroup(
       {
         ordinalNumber: new FormControl(ordinalNumber, {
           nonNullable: true,

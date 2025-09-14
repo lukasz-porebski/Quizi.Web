@@ -2,12 +2,12 @@ import { QuizDetailsResponse } from '../models/quiz-details.response';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { QuizPersistQuestionFormGroup } from '../contexts/quiz-persist-question.form-group';
 import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
-import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
 import { QuizPersistFormOpenQuestionFactory } from './quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from './quiz-persist-form-single-choice-question.factory';
 import { QuizPersistFormMultipleChoiceQuestionFactory } from './quiz-persist-form-multiple-choice-question.factory';
 import { QuizPersistFormGroup } from '../contexts/quiz-persist.form-group';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../contexts/quiz-persist-single-choice-question.form-group';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '../contexts/quiz-persist-multiple-choice-question.form-group';
 
 export namespace QuizPersistFormFactory {
   export function Create(response?: QuizDetailsResponse): QuizPersistFormGroup {
@@ -29,9 +29,7 @@ export namespace QuizPersistFormFactory {
           QuizPersistFormSingleChoiceQuestionFactory.CreateQuestion(q.ordinalNumber, q),
         ),
       ),
-      multipleChoiceQuestions: new FormArray<
-        QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion>
-      >(
+      multipleChoiceQuestions: new FormArray<QuizPersistMultipleChoiceQuestionFormGroup>(
         (response?.multipleChoiceQuestions ?? []).map((q) =>
           QuizPersistFormMultipleChoiceQuestionFactory.CreateQuestion(q.ordinalNumber, q),
         ),

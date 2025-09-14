@@ -2,11 +2,28 @@
   <div class="col">
     <mat-card appearance="outlined">
       <mat-card-content>
-        <app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
+        <div class="d-flex">
+          <app-text-input
+            class="w-100"
+            [formControl]="formGroup().controls.text"
+            [label]="{ text: 'QUESTION' }"
+          />
+          <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
+        </div>
 
-        @for (formGroup of formGroup().controls.answers.controls; track formGroup) {
-          <app-checkbox [formControl]="formGroup.controls.isCorrect" [disableLabelClick]="true">
-            <app-text-input [formControl]="formGroup.controls.text" [label]="{ text: 'ANSWER' }" />
+        @for (answer of formGroup().controls.answers.controls; track answer) {
+          <app-checkbox [formControl]="answer.controls.isCorrect" [disableLabelClick]="true">
+            <div class="d-flex">
+              <app-text-input
+                class="w-100"
+                [formControl]="answer.controls.text"
+                [label]="{ text: 'ANSWER' }"
+              />
+              <app-button
+                [icon]="Icon.Delete"
+                (onClick)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
+              ></app-button>
+            </div>
           </app-checkbox>
         }
       </mat-card-content>
