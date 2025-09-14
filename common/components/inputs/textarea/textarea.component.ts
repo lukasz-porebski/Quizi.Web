@@ -1,9 +1,8 @@
 import { Component, effect, input, TemplateRef } from '@angular/core';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HintComponent } from '../../hint/hint.component';
-import { InputErrorComponent } from '../input-error/input-error.component';
 import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
 import { Icon } from '../../../enums/icon.enum';
 import { ITextConfig, TextConfig } from '../../../models/text.config';
@@ -12,6 +11,7 @@ import { isDefined } from '../../../utils/utils';
 import { InputValidation } from '../shared/enums/input-validation.enum';
 import { Optional } from '../../../types/optional.type';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-textarea-input',
@@ -21,10 +21,11 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
     MatInput,
     ReactiveFormsModule,
     HintComponent,
-    InputErrorComponent,
     TextConfigTranslatePipe,
     MatLabel,
     CdkTextareaAutosize,
+    MatError,
+    TranslatePipe,
   ],
   styleUrls: ['./textarea.component.scss'],
 })

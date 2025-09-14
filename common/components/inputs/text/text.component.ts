@@ -1,9 +1,8 @@
 import { Component, effect, input, TemplateRef } from '@angular/core';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HintComponent } from '../../hint/hint.component';
-import { InputErrorComponent } from '../input-error/input-error.component';
 import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -14,6 +13,7 @@ import { HintConfig } from '../../hint/models/hint.config';
 import { isDefined } from '../../../utils/utils';
 import { InputValidation } from '../shared/enums/input-validation.enum';
 import { Optional } from '../../../types/optional.type';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-text-input',
@@ -23,11 +23,12 @@ import { Optional } from '../../../types/optional.type';
     MatInput,
     ReactiveFormsModule,
     HintComponent,
-    InputErrorComponent,
     TextConfigTranslatePipe,
     MatIconButton,
     MatIcon,
     MatLabel,
+    MatError,
+    TranslatePipe,
   ],
   styleUrls: ['./text.component.scss'],
 })

@@ -14,10 +14,10 @@
   }
 
   @if (formControl().hasError(InputValidation.Min)) {
-    <app-input-error [message]="{ text: 'MIN_VALUE', params: { value: min() } }" />
+    <mat-error>{{ "MIN_VALUE" | translate: { value: min() } }} </mat-error>
   } @else if (formControl().hasError(InputValidation.Max)) {
-    <app-input-error [message]="{ text: 'MAX_VALUE', params: { value: max() } }" />
+    <mat-error>{{ "MAX_VALUE" | translate: { value: max() } }} </mat-error>
   } @else if (formControl().hasError(InputValidation.Required)) {
-    <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
+    <mat-error>{{ "FIELD_IS_REQUIRED" | translate }} </mat-error>
   }
 </mat-form-field>

@@ -11,9 +11,13 @@
       <div class="row mt-2">
         <div class="col d-flex justify-content-start">
           <app-menu [text]="{ text: 'ADD_QUESTION' }">
-            <app-menu-button>{{ "OPEN" | translate }}</app-menu-button>
-            <app-menu-button>{{ "SINGLE_CHOICE" | translate }}</app-menu-button>
-            <app-menu-button>{{ "MULTIPLE_CHOICE" | translate }}</app-menu-button>
+            <app-menu-button (onClick)="context.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
+            <app-menu-button (onClick)="context.addSingleChoiceQuestion()">{{
+              "SINGLE_CHOICE" | translate
+            }}</app-menu-button>
+            <app-menu-button (onClick)="context.addMultipleChoiceQuestion()">{{
+              "MULTIPLE_CHOICE" | translate
+            }}</app-menu-button>
           </app-menu>
         </div>
         <div class="col d-flex justify-content-end">

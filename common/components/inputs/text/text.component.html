@@ -25,41 +25,25 @@
   }
 
   @if (formControl().hasError(InputValidation.Required)) {
-    <app-input-error [message]="{ text: 'FIELD_IS_REQUIRED' }" />
+    <mat-error>{{ "FIELD_IS_REQUIRED" | translate }} </mat-error>
   } @else if (minLength() && maxLength()) {
     @if (
       formControl().hasError(InputValidation.MinLength) || formControl().hasError(InputValidation.MaxLength)
     ) {
-      <app-input-error
-        [message]="{
-          text: 'VALID_TEXT_RANGE',
-          params: {
-            min: this.minLength(),
-            max: this.maxLength(),
-          },
-        }"
-      />
+      <mat-error>
+        {{ "VALID_TEXT_RANGE" | translate: { min: this.minLength(), max: this.maxLength() } }}
+      </mat-error>
     } @else {
       @if (formControl().hasError(InputValidation.MinLength)) {
-        <app-input-error
-          [message]="{
-            text: 'MIN_TEXT_LENGTH',
-            params: {
-              value: this.minLength(),
-            },
-          }"
-        />
+        <mat-error>
+          {{ "MIN_TEXT_LENGTH" | translate: { value: this.minLength() } }}
+        </mat-error>
       }
 
       @if (formControl().hasError(InputValidation.MaxLength)) {
-        <app-input-error
-          [message]="{
-            text: 'MAX_TEXT_LENGTH',
-            params: {
-              value: this.maxLength(),
-            },
-          }"
-        />
+        <mat-error>
+          {{ "MAX_TEXT_LENGTH" | translate: { value: this.maxLength() } }}
+        </mat-error>
       }
     }
   }
