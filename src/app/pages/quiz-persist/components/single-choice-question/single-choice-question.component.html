@@ -2,7 +2,14 @@
   <div class="col">
     <mat-card appearance="outlined">
       <mat-card-content>
-        <app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
+        <div class="d-flex">
+          <app-text-input
+            class="w-100"
+            [formControl]="formGroup().controls.text"
+            [label]="{ text: 'QUESTION' }"
+          />
+          <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
+        </div>
 
         <app-radio
           [formControl]="formGroup().controls.correctAnswerOrdinalNumber"
@@ -19,5 +26,8 @@
 </div>
 
 <ng-template #optionAnswerTemplate let-option>
-  <app-text-input [formControl]="option.control" [label]="{ text: 'ANSWER' }" />
+  <div class="d-flex">
+    <app-text-input class="w-100" [formControl]="option.control" [label]="{ text: 'ANSWER' }" />
+    <app-button [icon]="Icon.Delete" (onClick)="formGroup().removeAnswer(option.ordinalNumber)"></app-button>
+  </div>
 </ng-template>

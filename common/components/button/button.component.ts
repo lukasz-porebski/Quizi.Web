@@ -1,7 +1,7 @@
 import { Component, effect, inject, input, output } from '@angular/core';
 import { ButtonColor } from './enums/color.enum';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatStepperNext } from '@angular/material/stepper';
 import { isDefined } from '../../utils/utils';
@@ -9,30 +9,33 @@ import { Optional } from '../../types/optional.type';
 import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
 import { ITextConfig, TextConfig } from '../../models/text.config';
 import { ButtonStyle } from './enums/style.enum';
+import { Icon } from '../../enums/icon.enum';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  imports: [MatTooltip, MatButton, MatStepperNext, TextConfigTranslatePipe],
+  imports: [MatTooltip, MatButton, MatStepperNext, TextConfigTranslatePipe, MatIconButton, MatIcon],
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  public text = input.required<ITextConfig>();
+  public text = input<ITextConfig>();
   public color = input<ButtonColor>(ButtonColor.Primary);
   public style = input<ButtonStyle>(ButtonStyle.Filled);
   public disabled = input<boolean>();
   public matStepperNext = input<boolean>();
   public onClick = output<void>();
   public tooltip = input<ITextConfig>();
+  public icon = input<Icon>();
 
-  public innerText!: TextConfig;
+  public innerText?: TextConfig;
   public innerTooltip?: TextConfig;
 
   private readonly _translatePipe = inject(TranslatePipe);
 
   public constructor() {
     effect(() => {
-      this.innerText = new TextConfig(this.text());
+      this.innerText = isDefined(this.text()) ? new TextConfig(this.text()!) : undefined;
     });
     effect(() => {
       this.innerTooltip = isDefined(this.tooltip()) ? new TextConfig(this.tooltip()!) : undefined;

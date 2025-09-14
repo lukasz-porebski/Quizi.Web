@@ -1,31 +1,43 @@
-import { Component, effect, input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, input, OnDestroy, OnInit } from '@angular/core';
 import { TextInputComponent } from '../../../../../../common/components/inputs/text/text.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { IQuizPersistFormSingleChoiceQuestion } from '../../interfaces/quiz-persist-form-single-choice-question.interface';
 import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
 import { QuizPersistSingleChoiceQuestionRadioOption } from './models/single-choice-question-radio-option.model';
 import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
+import { ButtonComponent } from '../../../../../../common/components/button/button.component';
+import { Icon } from '../../../../../../common/enums/icon.enum';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '../../contexts/quiz-persist-single-choice-question.form-group';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-persist-single-choice-question',
-  imports: [TextInputComponent, MatCard, MatCardContent, RadioComponent],
+  imports: [TextInputComponent, MatCard, MatCardContent, RadioComponent, ButtonComponent],
   templateUrl: './single-choice-question.component.html',
   styleUrl: './single-choice-question.component.scss',
 })
-export class QuizPersistSingleChoiceQuestionComponent {
-  public formGroup = input.required<FormGroup<IQuizPersistFormSingleChoiceQuestion>>();
+export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestroy {
+  public formGroup = input.required<QuizPersistSingleChoiceQuestionFormGroup>();
 
-  public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption) => s.value;
+  public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption) => s.ordinalNumber;
+  public readonly Icon = Icon;
   public readonly InputColor = InputColor;
 
   public options: QuizPersistSingleChoiceQuestionRadioOption[] = [];
 
-  public constructor() {
-    effect(() => {
-      this.options = this.formGroup().controls.answers.controls.map(
-        (c) => new QuizPersistSingleChoiceQuestionRadioOption(c.controls),
-      );
-    });
+  private _answersSub!: Subscription;
+
+  public ngOnInit(): void {
+    this._setOptions();
+    this._answersSub = this.formGroup().controls.answers.valueChanges.subscribe(() => this._setOptions());
+  }
+
+  public ngOnDestroy(): void {
+    this._answersSub.unsubscribe();
+  }
+
+  private _setOptions(): void {
+    this.options = this.formGroup().controls.answers.controls.map(
+      (c) => new QuizPersistSingleChoiceQuestionRadioOption(c.controls),
+    );
   }
 }

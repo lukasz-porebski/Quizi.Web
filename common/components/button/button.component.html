@@ -8,8 +8,20 @@
       [color]="color()"
       [matButton]="style()"
       (click)="onClick.emit()"
+      type="button"
     >
       {{ innerText | textConfigTranslate }}
+    </button>
+  } @else if (this.icon()) {
+    <button
+      mat-icon-button
+      [matTooltip]="getText(innerTooltip)"
+      [disabled]="disabled()"
+      [color]="color()"
+      (click)="onClick.emit()"
+      type="button"
+    >
+      <mat-icon>{{ icon() }}</mat-icon>
     </button>
   } @else {
     <button
@@ -19,6 +31,7 @@
       [color]="color()"
       [matButton]="style()"
       (click)="onClick.emit()"
+      type="button"
     >
       {{ innerText | textConfigTranslate }}
     </button>

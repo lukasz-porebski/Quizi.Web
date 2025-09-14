@@ -4,7 +4,7 @@
       <form>
         <app-quiz-persist-header [context]="context" />
 
-        @for (question of questions; track question) {
+        @for (question of questions; track question.controls.ordinalNumber.value) {
           <app-quiz-persist-question [question]="question" />
         }
       </form>

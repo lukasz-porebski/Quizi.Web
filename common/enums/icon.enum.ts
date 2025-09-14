@@ -3,4 +3,6 @@ export enum Icon {
   VisibilityOff = 'visibility_off',
   Visibility = 'visibility',
   List = 'list',
+  Add = 'add',
+  Delete = 'delete',
 }
