@@ -1,6 +1,6 @@
 import { QuizPersistFormQuestion } from '../types/quiz-persist-form-question.type';
 import { sortBy } from 'remeda';
-import { QuizPersistFormGroup } from '../contexts/quiz-persist.form-group';
+import { QuizPersistFormGroup } from '../form/quiz-persist.form-group';
 
 export namespace QuizPersistQuestionsHelper {
   export function Merge(form: QuizPersistFormGroup): QuizPersistFormQuestion[] {

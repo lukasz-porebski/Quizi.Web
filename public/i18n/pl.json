@@ -21,5 +21,12 @@
   "ADD_QUESTION": "Dodaj pytanie",
   "OPEN": "Otwarte",
   "SINGLE_CHOICE": "Jednokrotnego wyboru",
-  "MULTIPLE_CHOICE": "Wielokrotnego wyboru"
+  "MULTIPLE_CHOICE": "Wielokrotnego wyboru",
+  "RANDOM_QUESTIONS": "Losowe pytania",
+  "RANDOM_ANSWERS": "Losowe odpowiedzi",
+  "NEGATIVE_POINTS": "Ujemne punkty",
+  "COPY_MODE": "Tryb kopiowania",
+  "DISABLED": "Wyłączony",
+  "ONLY_FOR_ADDED_USER": "Tylko dla dodanych użytkowników",
+  "FOR_ALL": "Dla wszystkich"
 }

@@ -1,13 +1,31 @@
 <div class="row">
   <div class="col">
-    <app-text-input [formControl]="context().form.controls.title" [label]="{ text: 'TITLE' }" />
+    <app-text-input [formControl]="form().controls.title" [label]="{ text: 'TITLE' }" />
   </div>
 </div>
 <div class="row">
   <div class="col">
     <app-number-input
-      [formControl]="context().form.controls.questionsCountInRunningQuiz"
+      [formControl]="form().controls.questionsCountInRunningQuiz"
       [label]="{ text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ' }"
     />
+  </div>
+  <div class="col">
+    <app-select
+      [formControl]="form().controls.copyMode"
+      [label]="{ text: 'COPY_MODE' }"
+      [dataSource]="copyModes"
+    />
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col">
+    <app-checkbox [formControl]="form().controls.randomQuestions" [label]="{ text: 'RANDOM_QUESTIONS' }" />
+  </div>
+  <div class="col">
+    <app-checkbox [formControl]="form().controls.randomAnswers" [label]="{ text: 'RANDOM_ANSWERS' }" />
+  </div>
+  <div class="col">
+    <app-checkbox [formControl]="form().controls.negativePoints" [label]="{ text: 'NEGATIVE_POINTS' }" />
   </div>
 </div>

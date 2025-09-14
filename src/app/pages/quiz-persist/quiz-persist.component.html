@@ -2,22 +2,20 @@
   <div class="container mt-2 mb-2">
     @if (!isLoading) {
       <form>
-        <app-quiz-persist-header [context]="context" />
+        <app-quiz-persist-header [form]="form" />
 
-        @for (question of context.form.getQuestions(); track question.controls.ordinalNumber.value) {
-          <app-quiz-persist-question [form]="context.form" [question]="question" />
+        @for (question of form.getQuestions(); track question.controls.ordinalNumber.value) {
+          <app-quiz-persist-question [form]="form" [question]="question" />
         }
       </form>
       <div class="row mt-2">
         <div class="col d-flex justify-content-start">
           <app-menu [text]="{ text: 'ADD_QUESTION' }">
-            <app-menu-button (onClick)="context.form.addOpenQuestion()">{{
-              "OPEN" | translate
-            }}</app-menu-button>
-            <app-menu-button (onClick)="context.form.addSingleChoiceQuestion()">{{
+            <app-menu-button (onClick)="form.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
+            <app-menu-button (onClick)="form.addSingleChoiceQuestion()">{{
               "SINGLE_CHOICE" | translate
             }}</app-menu-button>
-            <app-menu-button (onClick)="context.form.addMultipleChoiceQuestion()">{{
+            <app-menu-button (onClick)="form.addMultipleChoiceQuestion()">{{
               "MULTIPLE_CHOICE" | translate
             }}</app-menu-button>
           </app-menu>

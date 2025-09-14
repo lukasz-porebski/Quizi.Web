@@ -2,7 +2,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
 import { IQuizPersistFormSingleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-single-choice-question-answer.interface';
 import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '../contexts/quiz-persist-single-choice-question.form-group';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
 import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
 
 export namespace QuizPersistFormSingleChoiceQuestionFactory {

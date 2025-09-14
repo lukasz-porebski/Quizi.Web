@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { QuizPersistApiService } from './services/quiz-persist-api.service';
 import { AsyncPageComponent } from '../../../../common/components/async-page/async-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { QuizPersistContext } from './contexts/quiz-persist.context';
 import { ButtonComponent } from '../../../../common/components/button/button.component';
 import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -12,6 +11,8 @@ import { QuizPersistHeaderComponent } from './components/header/header.component
 import { MenuComponent } from '../../../../common/components/menu/menu.component';
 import { MenuButtonComponent } from '../../../../common/components/menu/components/button/menu-button.component';
 import { QuizPersistQuestionComponent } from './components/question/question.component';
+import { QuizPersistFormGroup } from './form/quiz-persist.form-group';
+import { QuizPersistFormFactory } from './factories/quiz-persist-form.factory';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -31,12 +32,12 @@ import { QuizPersistQuestionComponent } from './components/question/question.com
 })
 export class QuizPersistComponent implements OnInit {
   public get isLoading(): boolean {
-    return !isDefined(this.context);
+    return !isDefined(this.form);
   }
 
   public readonly ButtonStyle = ButtonStyle;
 
-  public context!: QuizPersistContext;
+  public form!: QuizPersistFormGroup;
 
   private readonly _persistApiService = inject(QuizPersistApiService);
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -44,6 +45,6 @@ export class QuizPersistComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id')!;
     const response = await this._persistApiService.getDetails(id);
-    this.context = new QuizPersistContext(response);
+    this.form = QuizPersistFormFactory.Create(response);
   }
 }

@@ -1,16 +1,14 @@
-<mat-form-field appearance="fill" [class.max-width]="config().maxWidth">
-  <mat-label>{{ config().label.text + "FIELD_NAME" | translate }}</mat-label>
-  <mat-select [formControl]="config().attribute.formControl" [multiple]="isMultiple">
-    @for (element of config().attribute.dataSource; track element) {
-      <mat-option [value]="config().attribute.valueSelector(element)">
-        {{ config().attribute.optionTextSelector(element) }}
+<mat-form-field appearance="fill" [class.max-width]="maxWidth()">
+  <mat-label>{{ innerLabel | textConfigTranslate }}</mat-label>
+  <mat-select [formControl]="formControl()">
+    @for (element of dataSource(); track element) {
+      <mat-option [value]="valueSelector()(element)">
+        {{ optionTextSelector()(element) | textConfigTranslate }}
       </mat-option>
     }
   </mat-select>
 
-  @if (config().attribute?.error?.isAny) {
-    <mat-error>
-      {{ config().attribute?.error?.message ?? "" | translate }}
-    </mat-error>
+  @if (formControl().hasError(InputValidation.Required)) {
+    <mat-error>{{ "FIELD_IS_REQUIRED" | translate }} </mat-error>
   }
 </mat-form-field>

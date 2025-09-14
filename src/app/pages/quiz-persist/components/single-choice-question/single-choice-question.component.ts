@@ -5,7 +5,7 @@ import { QuizPersistSingleChoiceQuestionRadioOption } from './models/single-choi
 import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { Icon } from '../../../../../../common/enums/icon.enum';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '../../contexts/quiz-persist-single-choice-question.form-group';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '../../form/quiz-persist-single-choice-question.form-group';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -1,5 +1,5 @@
 import { FormControl, Validators } from '@angular/forms';
-import { QuizPersistQuestionFormGroup } from '../contexts/quiz-persist-question.form-group';
+import { QuizPersistQuestionFormGroup } from '../form/quiz-persist-question.form-group';
 import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
 import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
 import { QuizDetailsOpenQuestionResponse } from '../models/quiz-details-open-question.response';

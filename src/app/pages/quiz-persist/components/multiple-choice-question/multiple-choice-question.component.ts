@@ -3,7 +3,7 @@ import { TextInputComponent } from '../../../../../../common/components/inputs/t
 import { CheckboxComponent } from '../../../../../../common/components/inputs/checkbox/checkbox.component';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { Icon } from '../../../../../../common/enums/icon.enum';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '../../contexts/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '../../form/quiz-persist-multiple-choice-question.form-group';
 
 @Component({
   selector: 'app-quiz-persist-multiple-choice-question',

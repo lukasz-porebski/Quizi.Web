@@ -11,7 +11,7 @@
   [className]="getRadioButtonColorClass(color())"
   [formControl]="formControl()"
 >
-  @for (option of options(); track option) {
+  @for (option of options(); track getOptionValue(option)) {
     <mat-radio-button
       [class.readonly-radio-checkbox-input]="readonly()"
       [class.disabled-radio-checkbox-input]="formControl().disabled"
