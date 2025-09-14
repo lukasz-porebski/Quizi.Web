@@ -2,15 +2,16 @@ import { FormGroup } from '@angular/forms';
 import { QuizPersistFormOpenQuestionFactory } from '../factories/quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from '../factories/quiz-persist-form-single-choice-question.factory';
 import { QuizPersistFormMultipleChoiceQuestionFactory } from '../factories/quiz-persist-form-multiple-choice-question.factory';
-import { isEmpty } from '../../../../../common/utils/utils';
+import { isDefined, isEmpty } from '../../../../../common/utils/utils';
 import { IQuizPersistForm } from '../interfaces/quiz-persist-form.interface';
 import { QuizPersistConstants } from '../constants/quiz-persist.constants';
 import { QuizPersistFormQuestion } from '../types/quiz-persist-form-question.type';
 import { QuizPersistQuestionsHelper } from '../helpers/quiz-persist-questions.helper';
 import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
+import { Optional } from '../../../../../common/types/optional.type';
 
 export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
-  public get questions(): QuizPersistFormQuestion[] {
+  public getQuestions(): QuizPersistFormQuestion[] {
     return QuizPersistQuestionsHelper.Merge(this);
   }
 
@@ -54,17 +55,62 @@ export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
         break;
     }
 
-    this.questions.forEach((q, index) =>
+    this.getQuestions().forEach((q, index) =>
       q.controls.ordinalNumber.setValue(index + QuizPersistConstants.MinOrdinalNumber),
     );
   }
 
-  private _getNextOrdinalNumber(): number {
-    const ordinalNumbers = this.controls.openQuestions.controls
-      .map((c) => c.controls.ordinalNumber.value)
-      .concat(this.controls.singleChoiceQuestions.controls.map((c) => c.controls.ordinalNumber.value))
-      .concat(this.controls.multipleChoiceQuestions.controls.map((c) => c.controls.ordinalNumber.value));
+  public moveForwardQuestion(question: QuizPersistFormQuestion): void {
+    if (this.isFirstQuestion(question)) {
+      return;
+    }
 
-    return isEmpty(ordinalNumbers) ? QuizPersistConstants.MinOrdinalNumber : Math.max(...ordinalNumbers) + 1;
+    const questions = this.getQuestions();
+
+    const tempOrdinalNumber = QuizPersistConstants.MinOrdinalNumber - 1;
+    const targetOrdinalNumber = question.value.ordinalNumber! - 1;
+    question.controls.ordinalNumber.setValue(tempOrdinalNumber);
+
+    const questionIndex = questions.findIndex((q) => q.value.ordinalNumber === question.value.ordinalNumber);
+    const previousQuestion = questions.at(questionIndex - 1)!;
+    previousQuestion.controls.ordinalNumber.setValue(previousQuestion.value.ordinalNumber! + 1);
+
+    question.controls.ordinalNumber.setValue(targetOrdinalNumber);
+  }
+
+  public moveBackQuestion(question: QuizPersistFormQuestion): void {
+    if (this.isLastQuestion(question)) {
+      return;
+    }
+
+    const questions = this.getQuestions();
+
+    const tempOrdinalNumber = QuizPersistConstants.MinOrdinalNumber - 1;
+    const targetOrdinalNumber = question.value.ordinalNumber! + 1;
+    question.controls.ordinalNumber.setValue(tempOrdinalNumber);
+
+    const questionIndex = questions.findIndex((q) => q.value.ordinalNumber === question.value.ordinalNumber);
+    const nextQuestion = questions.at(questionIndex + 1)!;
+    nextQuestion.controls.ordinalNumber.setValue(nextQuestion.value.ordinalNumber! - 1);
+
+    question.controls.ordinalNumber.setValue(targetOrdinalNumber);
+  }
+
+  public isFirstQuestion(question: QuizPersistFormQuestion): boolean {
+    return question.value.ordinalNumber === QuizPersistConstants.MinOrdinalNumber;
+  }
+
+  public isLastQuestion(question: QuizPersistFormQuestion): boolean {
+    return question.value.ordinalNumber === this._tryGetLastQuestionOrdinalNumber();
+  }
+
+  private _getNextOrdinalNumber(): number {
+    const ordinalNumber = this._tryGetLastQuestionOrdinalNumber();
+    return isDefined(ordinalNumber) ? ordinalNumber + 1 : QuizPersistConstants.MinOrdinalNumber;
+  }
+
+  private _tryGetLastQuestionOrdinalNumber(): Optional<number> {
+    const ordinalNumbers = this.getQuestions().map((q) => q.value.ordinalNumber!);
+    return isEmpty(ordinalNumbers) ? null : Math.max(...ordinalNumbers);
   }
 }

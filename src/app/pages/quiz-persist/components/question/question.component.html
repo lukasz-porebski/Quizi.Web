@@ -2,8 +2,18 @@
   <div class="col">
     <div class="d-flex align-items-center">
       <div>
-        <app-button [icon]="Icon.ArrowUpward"></app-button>
-        <app-button [icon]="Icon.ArrowDownward"></app-button>
+        @if (!form().isFirstQuestion(question())) {
+          <app-button
+            [icon]="Icon.ArrowUpward"
+            (onClick)="form().moveForwardQuestion(question())"
+          ></app-button>
+        }
+        @if (!form().isLastQuestion(question())) {
+          <app-button
+            [icon]="Icon.ArrowDownward"
+            (onClick)="form().moveBackQuestion(question())"
+          ></app-button>
+        }
       </div>
       <mat-card appearance="outlined" class="w-100">
         <mat-card-content>
