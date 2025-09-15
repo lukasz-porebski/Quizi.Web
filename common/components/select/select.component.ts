@@ -29,7 +29,6 @@ export class SelectComponent<TData, TValue = TData> {
   public dataSource = input.required<SelectOptionModel<TData>[]>();
   public valueSelector = input<(o: SelectOptionModel<TData>) => TValue>((o) => o.data as unknown as TValue);
   public optionTextSelector = input<(o: SelectOptionModel<TData>) => TextConfig>((o) => o.text);
-  public maxWidth = input<boolean>(false);
 
   public innerLabel!: TextConfig;
 

@@ -1,9 +1,9 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
 import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
 import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
 import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistChoiceQuestionValidators } from '../validators/quiz-persist-choice-question.validators';
 
 export namespace QuizPersistFormMultipleChoiceQuestionFactory {
   export function CreateQuestion(
@@ -24,7 +24,7 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
           (response?.answers ?? []).map((a) => CreateAnswer(a.ordinalNumber, a)),
         ),
       },
-      QuizPersistFormQuestionType.MultipleChoice,
+      [QuizPersistChoiceQuestionValidators.MinAnswersCount()],
     );
   }
 
@@ -33,9 +33,7 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
     response?: QuizDetailsChoiceQuestionAnswerResponse,
   ): FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer> {
     return new FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>({
-      no: new FormControl(response?.no, {
-        validators: [Validators.required],
-      }),
+      no: new FormControl(response?.no),
       ordinalNumber: new FormControl(ordinalNumber, {
         nonNullable: true,
         validators: [Validators.required],

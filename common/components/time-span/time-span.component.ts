@@ -4,19 +4,11 @@ import { FormGroup } from '@angular/forms';
 import { ITimeSpanFormControl } from '../../interfaces/time-span-form-control.interface';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MatError, MatFormField } from '@angular/material/form-field';
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-time-span',
-  imports: [
-    NumberInputComponent,
-    MatCard,
-    MatCardContent,
-    MatCardHeader,
-    TranslatePipe,
-    MatError,
-    MatFormField,
-  ],
+  imports: [NumberInputComponent, MatCard, MatCardContent, MatCardHeader, TranslatePipe, MatError],
   templateUrl: './time-span.component.html',
   styleUrl: './time-span.component.scss',
 })

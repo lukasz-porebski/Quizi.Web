@@ -10,8 +10,11 @@
   [optionValue]="optionValue"
   [disableLabelClick]="true"
   [color]="InputColor.Green"
->
-</app-radio>
+/>
+
+@if (formGroup().hasError("minAnswersCount")) {
+  <mat-error>{{ "CLOSED_QUESTION_MUST_HAVE_AT_LEAST_TWO_ANSWERS" | translate }}</mat-error>
+}
 
 <ng-template #optionAnswerTemplate let-option>
   <div class="d-flex align-items-center">

@@ -32,5 +32,6 @@
   "HOURS": "Godziny",
   "MINUTES": "Minuty",
   "SECONDS": "Sekundy",
-  "DURATION": "Czas trwania"
+  "DURATION": "Czas trwania",
+  "CLOSED_QUESTION_MUST_HAVE_AT_LEAST_TWO_ANSWERS": "Zamknięte pytanie musi mieć co najmniej dwie odpowiedzi"
 }

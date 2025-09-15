@@ -7,10 +7,12 @@ import { ButtonComponent } from '../../../../../../common/components/button/butt
 import { Icon } from '../../../../../../common/enums/icon.enum';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../../form/quiz-persist-single-choice-question.form-group';
 import { Subscription } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-quiz-persist-single-choice-question',
-  imports: [TextInputComponent, RadioComponent, ButtonComponent],
+  imports: [TextInputComponent, RadioComponent, ButtonComponent, MatError, TranslatePipe],
   templateUrl: './single-choice-question.component.html',
   styleUrl: './single-choice-question.component.scss',
 })

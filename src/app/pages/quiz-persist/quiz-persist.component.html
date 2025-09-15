@@ -22,7 +22,7 @@
         </div>
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [text]="{ text: 'CANCEL' }" [style]="ButtonStyle.Outlined" />
-          <app-button [text]="{ text: 'SAVE' }" />
+          <app-button [text]="{ text: 'SAVE' }" (onClick)="persist()" />
         </div>
       </div>
     }

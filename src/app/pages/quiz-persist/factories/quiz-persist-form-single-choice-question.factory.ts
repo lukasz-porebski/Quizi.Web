@@ -1,9 +1,9 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
 import { IQuizPersistFormSingleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-single-choice-question-answer.interface';
 import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
 import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
+import { QuizPersistChoiceQuestionValidators } from '../validators/quiz-persist-choice-question.validators';
 
 export namespace QuizPersistFormSingleChoiceQuestionFactory {
   export function CreateQuestion(
@@ -30,7 +30,7 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
           },
         ),
       },
-      QuizPersistFormQuestionType.SingleChoice,
+      [QuizPersistChoiceQuestionValidators.MinAnswersCount()],
     );
   }
 
@@ -39,9 +39,7 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
     response?: QuizDetailsChoiceQuestionAnswerResponse,
   ): FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer> {
     return new FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>({
-      no: new FormControl(undefined, {
-        validators: [Validators.required],
-      }),
+      no: new FormControl(response?.no),
       ordinalNumber: new FormControl(ordinalNumber, {
         nonNullable: true,
         validators: [Validators.required],
