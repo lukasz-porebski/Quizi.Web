@@ -9,6 +9,7 @@ import { ITimeSpanFormControl } from '../../../../../common/interfaces/time-span
 
 export interface IQuizPersistForm {
   title: FormControl<string>;
+  description: FormControl<Optional<string>>;
   duration: FormGroup<ITimeSpanFormControl>;
   questionsCountInRunningQuiz: FormControl<Optional<number>>;
   randomQuestions: FormControl<boolean>;

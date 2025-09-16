@@ -14,6 +14,8 @@
 
 @if (formGroup().hasError("minAnswersCount")) {
   <mat-error>{{ "CLOSED_QUESTION_MUST_HAVE_AT_LEAST_TWO_ANSWERS" | translate }}</mat-error>
+} @else if (formGroup().hasError("answersAreUnique")) {
+  <mat-error>{{ "ANSWERS_MUST_BE_UNIQUE" | translate }}</mat-error>
 }
 
 <ng-template #optionAnswerTemplate let-option>

@@ -4,6 +4,12 @@
       <form>
         <app-quiz-persist-header [form]="form" />
 
+        @if (form.hasError("minQuestionsCount")) {
+          <mat-error>{{ "AT_LEAST_ONE_QUESTION_IS_REQUIRED" | translate }}</mat-error>
+        } @else if (form.hasError("questionsAreUnique")) {
+          <mat-error>{{ "QUESTIONS_MUST_BE_UNIQUE" | translate }}</mat-error>
+        }
+
         @for (question of form.getQuestions(); track question.controls.ordinalNumber.value) {
           <app-quiz-persist-question [form]="form" [question]="question" />
         }

@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 import { QuizPersistFormOpenQuestionFactory } from '../factories/quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from '../factories/quiz-persist-form-single-choice-question.factory';
 import { QuizPersistFormMultipleChoiceQuestionFactory } from '../factories/quiz-persist-form-multiple-choice-question.factory';
@@ -11,6 +11,10 @@ import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type
 import { Optional } from '../../../../../common/types/optional.type';
 
 export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
+  public constructor(controls: IQuizPersistForm, validatorOrOpts: ValidatorFn[]) {
+    super(controls, validatorOrOpts);
+  }
+
   public getQuestions(): QuizPersistFormQuestion[] {
     return QuizPersistQuestionsHelper.Merge(this);
   }

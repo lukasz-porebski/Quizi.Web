@@ -24,7 +24,10 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
           (response?.answers ?? []).map((a) => CreateAnswer(a.ordinalNumber, a)),
         ),
       },
-      [QuizPersistChoiceQuestionValidators.MinAnswersCount()],
+      [
+        QuizPersistChoiceQuestionValidators.MinAnswersCount(),
+        QuizPersistChoiceQuestionValidators.AnswersAreUnique(),
+      ],
     );
   }
 

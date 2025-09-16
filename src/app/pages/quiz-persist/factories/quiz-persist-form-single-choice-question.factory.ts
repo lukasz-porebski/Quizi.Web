@@ -30,7 +30,10 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
           },
         ),
       },
-      [QuizPersistChoiceQuestionValidators.MinAnswersCount()],
+      [
+        QuizPersistChoiceQuestionValidators.MinAnswersCount(),
+        QuizPersistChoiceQuestionValidators.AnswersAreUnique(),
+      ],
     );
   }
 

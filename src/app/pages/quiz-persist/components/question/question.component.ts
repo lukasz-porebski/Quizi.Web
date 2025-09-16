@@ -12,6 +12,8 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { Icon } from '../../../../../../common/enums/icon.enum';
 import { QuizPersistFormGroup } from '../../form/quiz-persist.form-group';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-quiz-persist-question',
@@ -22,6 +24,8 @@ import { QuizPersistFormGroup } from '../../form/quiz-persist.form-group';
     MatCard,
     MatCardContent,
     ButtonComponent,
+    MatError,
+    TranslatePipe,
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss',

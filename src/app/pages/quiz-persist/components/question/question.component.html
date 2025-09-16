@@ -28,6 +28,10 @@
               <app-quiz-persist-multiple-choice-question [formGroup]="castToMultipleChoiceQuestion()" />
             }
           }
+
+          @if (question().hasError("questionsAreUnique")) {
+            <mat-error>{{ "QUESTIONS_MUST_BE_UNIQUE" | translate }}</mat-error>
+          }
         </mat-card-content>
       </mat-card>
       <app-button [icon]="Icon.Delete" (onClick)="form().removeQuestion(question())"></app-button>

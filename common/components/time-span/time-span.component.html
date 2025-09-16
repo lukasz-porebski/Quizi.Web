@@ -25,7 +25,11 @@
       />
     </div>
 
-    @if (formGroup().hasError("timeSpanMaxValue")) {
+    @if (formGroup().hasError("timeSpanMinValue")) {
+      <mat-error>{{
+        "MIN_VALUE" | translate: { value: formGroup().getError("timeSpanMinValue") }
+      }}</mat-error>
+    } @else if (formGroup().hasError("timeSpanMaxValue")) {
       <mat-error>{{
         "MAX_VALUE" | translate: { value: formGroup().getError("timeSpanMaxValue") }
       }}</mat-error>

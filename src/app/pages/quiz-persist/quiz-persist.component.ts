@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { QuizPersistApiService } from './services/quiz-persist-api.service';
 import { AsyncPageComponent } from '../../../../common/components/async-page/async-page.component';
-import { AbstractControl, FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../common/components/button/button.component';
 import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -14,22 +14,7 @@ import { QuizPersistQuestionComponent } from './components/question/question.com
 import { QuizPersistFormGroup } from './form/quiz-persist.form-group';
 import { QuizPersistFormFactory } from './factories/quiz-persist-form.factory';
 import { FormUtils } from '../../../../common/utils/form.utils';
-
-function collectErrors(control: AbstractControl, path: string[] = []): Record<string, any> {
-  const out: Record<string, any> = {};
-  if (control.errors) out[path.join('.') || '(group)'] = control.errors;
-
-  if (control instanceof FormGroup) {
-    for (const [name, child] of Object.entries(control.controls)) {
-      Object.assign(out, collectErrors(child, [...path, name]));
-    }
-  } else if (control instanceof FormArray) {
-    control.controls.forEach((child, i) => {
-      Object.assign(out, collectErrors(child, [...path, String(i)]));
-    });
-  }
-  return out;
-}
+import { MatError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -42,6 +27,7 @@ function collectErrors(control: AbstractControl, path: string[] = []): Record<st
     MenuButtonComponent,
     TranslatePipe,
     QuizPersistQuestionComponent,
+    MatError,
   ],
   templateUrl: './quiz-persist.component.html',
   styleUrl: './quiz-persist.component.scss',

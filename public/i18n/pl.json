@@ -33,5 +33,9 @@
   "MINUTES": "Minuty",
   "SECONDS": "Sekundy",
   "DURATION": "Czas trwania",
-  "CLOSED_QUESTION_MUST_HAVE_AT_LEAST_TWO_ANSWERS": "Zamknięte pytanie musi mieć co najmniej dwie odpowiedzi"
+  "CLOSED_QUESTION_MUST_HAVE_AT_LEAST_TWO_ANSWERS": "Zamknięte pytanie musi mieć co najmniej dwie odpowiedzi",
+  "DESCRIPTION": "Opis",
+  "AT_LEAST_ONE_QUESTION_IS_REQUIRED": "Wymagane jest co najmniej jedno pytanie",
+  "ANSWERS_MUST_BE_UNIQUE": "Odpowiedzi muszą być unikalne",
+  "QUESTIONS_MUST_BE_UNIQUE": "Pytania muszą być unikalne"
 }

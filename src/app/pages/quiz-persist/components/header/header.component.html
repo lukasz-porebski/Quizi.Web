@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col">
-    <app-text-input [formControl]="form().controls.title" [label]="{ text: 'TITLE' }" />
+    <app-text-input
+      [formControl]="form().controls.title"
+      [label]="{ text: 'TITLE' }"
+      [minLength]="Constants.MinTitleLength"
+      [maxLength]="Constants.MaxTitleLength"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-textarea-input
+      [formControl]="form().controls.description"
+      [label]="{ text: 'DESCRIPTION' }"
+      [maxLength]="Constants.MaxDescriptionLength"
+    />
   </div>
 </div>
 <div class="row">
@@ -12,6 +26,8 @@
   <div class="col">
     <app-number-input
       [formControl]="form().controls.questionsCountInRunningQuiz"
+      [min]="Constants.MinQuestionsCountInRunningQuiz"
+      [max]="maxQuestionsCountInRunningQuiz"
       [label]="{ text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ' }"
     />
   </div>

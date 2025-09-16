@@ -7,17 +7,31 @@ import { SelectComponent } from '../../../../../../common/components/select/sele
 import { SelectOptionModel } from '../../../../../../common/components/select/models/select-option.model';
 import { QuizCopyMode } from '../../../quizzes/enums/quiz-copy-mode.enum';
 import { TimeSpanComponent } from '../../../../../../common/components/time-span/time-span.component';
+import { QuizPersistConstants } from '../../constants/quiz-persist.constants';
+import { TextareaInputComponent } from '../../../../../../common/components/inputs/textarea/textarea.component';
 
 @Component({
   selector: 'app-quiz-persist-header',
-  imports: [NumberInputComponent, TextInputComponent, CheckboxComponent, SelectComponent, TimeSpanComponent],
+  imports: [
+    NumberInputComponent,
+    TextInputComponent,
+    CheckboxComponent,
+    SelectComponent,
+    TimeSpanComponent,
+    TextareaInputComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class QuizPersistHeaderComponent {
   public form = input.required<QuizPersistFormGroup>();
 
-  public copyModes: SelectOptionModel<QuizCopyMode>[] = [
+  public get maxQuestionsCountInRunningQuiz(): number {
+    return this.form().getQuestions().length;
+  }
+
+  public readonly Constants = QuizPersistConstants;
+  public readonly copyModes: SelectOptionModel<QuizCopyMode>[] = [
     new SelectOptionModel({ text: 'DISABLED' }, QuizCopyMode.Disabled),
     new SelectOptionModel({ text: 'ONLY_FOR_ADDED_USER' }, QuizCopyMode.OnlyForAddedUsers),
     new SelectOptionModel({ text: 'FOR_ALL' }, QuizCopyMode.ForAll),
