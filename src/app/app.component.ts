@@ -5,11 +5,6 @@ import { NavigationConfig } from '../../common/components/navigation/models/navi
 import { Icon } from '../../common/enums/icon.enum';
 import { RouterOutlet } from '@angular/router';
 
-export interface IMyRow {
-  text: string;
-  liczba: number;
-}
-
 @Component({
   selector: 'app-root',
   imports: [NavigationComponent, RouterOutlet],
@@ -21,18 +16,8 @@ export class AppComponent {
     logoPath: '',
     menu: [
       {
-        text: 'ERROR',
+        text: 'QUIZZES',
         icon: Icon.List,
-        nextLevels: [
-          {
-            text: 'FIELD_IS_REQUIRED',
-            nextLevels: [
-              {
-                text: 'FILTER',
-              },
-            ],
-          },
-        ],
       },
     ],
   });

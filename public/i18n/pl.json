@@ -37,5 +37,7 @@
   "DESCRIPTION": "Opis",
   "AT_LEAST_ONE_QUESTION_IS_REQUIRED": "Wymagane jest co najmniej jedno pytanie",
   "ANSWERS_MUST_BE_UNIQUE": "Odpowiedzi muszą być unikalne",
-  "QUESTIONS_MUST_BE_UNIQUE": "Pytania muszą być unikalne"
+  "QUESTIONS_MUST_BE_UNIQUE": "Pytania muszą być unikalne",
+  "QUIZZES": "Quizy",
+  "CREATE_QUIZ": "Utwórz quiz"
 }
