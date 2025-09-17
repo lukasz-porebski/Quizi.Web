@@ -1,14 +1,14 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
-import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
-import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
+import { FormArray, FormControl, Validators } from '@angular/forms';
+import { QuizDetailsClosedQuestionResponse } from '../models/quiz-details-closed-question.response';
+import { QuizDetailsClosedQuestionAnswerResponse } from '../models/quiz-details-closed-question-answer.response';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
-import { QuizPersistChoiceQuestionValidators } from '../validators/quiz-persist-choice-question.validators';
+import { QuizPersistClosedQuestionValidators } from '../validators/quiz-persist-closed-question.validators';
+import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-multiple-choice-question-answer.form-group';
 
 export namespace QuizPersistFormMultipleChoiceQuestionFactory {
   export function CreateQuestion(
     ordinalNumber: number,
-    response?: QuizDetailsChoiceQuestionResponse,
+    response?: QuizDetailsClosedQuestionResponse,
   ): QuizPersistMultipleChoiceQuestionFormGroup {
     return new QuizPersistMultipleChoiceQuestionFormGroup(
       {
@@ -20,35 +20,37 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
           nonNullable: true,
           validators: [Validators.required],
         }),
-        answers: new FormArray<FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>>(
+        answers: new FormArray<QuizPersistMultipleChoiceQuestionAnswerFormGroup>(
           (response?.answers ?? []).map((a) => CreateAnswer(a.ordinalNumber, a)),
         ),
       },
       [
-        QuizPersistChoiceQuestionValidators.MinAnswersCount(),
-        QuizPersistChoiceQuestionValidators.AnswersAreUnique(),
+        QuizPersistClosedQuestionValidators.MinAnswersCount(),
+        QuizPersistClosedQuestionValidators.AnswersAreUnique(),
       ],
     );
   }
 
   export function CreateAnswer(
     ordinalNumber: number,
-    response?: QuizDetailsChoiceQuestionAnswerResponse,
-  ): FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer> {
-    return new FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer>({
-      no: new FormControl(response?.no),
-      ordinalNumber: new FormControl(ordinalNumber, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      text: new FormControl(response?.text ?? '', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      isCorrect: new FormControl(response?.isCorrect ?? false, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-    });
+    response?: QuizDetailsClosedQuestionAnswerResponse,
+  ): QuizPersistMultipleChoiceQuestionAnswerFormGroup {
+    return new QuizPersistMultipleChoiceQuestionAnswerFormGroup(
+      {
+        ordinalNumber: new FormControl(ordinalNumber, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        text: new FormControl(response?.text ?? '', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        isCorrect: new FormControl(response?.isCorrect ?? false, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      },
+      response?.no,
+    );
   }
 }

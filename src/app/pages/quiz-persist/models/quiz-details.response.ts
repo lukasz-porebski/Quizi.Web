@@ -1,6 +1,6 @@
 import { AggregateId } from '../../../../../common/types/aggregate-id.type';
 import { QuizCopyMode } from '../../quizzes/enums/quiz-copy-mode.enum';
-import { QuizDetailsChoiceQuestionResponse } from './quiz-details-choice-question.response';
+import { QuizDetailsClosedQuestionResponse } from './quiz-details-closed-question.response';
 import { QuizDetailsOpenQuestionResponse } from './quiz-details-open-question.response';
 import { TimeSpanModel } from '../../../../../common/models/time-span.model';
 import { TimeSpan } from '../../../../../common/types/time-span.type';
@@ -20,6 +20,6 @@ export interface QuizDetailsResponse {
   readonly negativePoints: boolean;
   copyMode: QuizCopyMode;
   readonly openQuestions: QuizDetailsOpenQuestionResponse[];
-  readonly singleChoiceQuestions: QuizDetailsChoiceQuestionResponse[];
-  readonly multipleChoiceQuestions: QuizDetailsChoiceQuestionResponse[];
+  readonly singleChoiceQuestions: QuizDetailsClosedQuestionResponse[];
+  readonly multipleChoiceQuestions: QuizDetailsClosedQuestionResponse[];
 }

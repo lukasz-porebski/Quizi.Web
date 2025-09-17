@@ -1,14 +1,14 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IQuizPersistFormSingleChoiceQuestionAnswer } from '../interfaces/quiz-persist-form-single-choice-question-answer.interface';
-import { QuizDetailsChoiceQuestionResponse } from '../models/quiz-details-choice-question.response';
+import { FormArray, FormControl, Validators } from '@angular/forms';
+import { QuizDetailsClosedQuestionResponse } from '../models/quiz-details-closed-question.response';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
-import { QuizDetailsChoiceQuestionAnswerResponse } from '../models/quiz-details-choice-question-answer.response';
-import { QuizPersistChoiceQuestionValidators } from '../validators/quiz-persist-choice-question.validators';
+import { QuizDetailsClosedQuestionAnswerResponse } from '../models/quiz-details-closed-question-answer.response';
+import { QuizPersistClosedQuestionValidators } from '../validators/quiz-persist-closed-question.validators';
+import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-single-choice-question-answer.form-group';
 
 export namespace QuizPersistFormSingleChoiceQuestionFactory {
   export function CreateQuestion(
     ordinalNumber: number,
-    response?: QuizDetailsChoiceQuestionResponse,
+    response?: QuizDetailsClosedQuestionResponse,
   ): QuizPersistSingleChoiceQuestionFormGroup {
     return new QuizPersistSingleChoiceQuestionFormGroup(
       {
@@ -20,7 +20,7 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
           nonNullable: true,
           validators: [Validators.required],
         }),
-        answers: new FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>>(
+        answers: new FormArray<QuizPersistSingleChoiceQuestionAnswerFormGroup>(
           (response?.answers ?? []).map((a) => CreateAnswer(a.ordinalNumber, a)),
         ),
         correctAnswerOrdinalNumber: new FormControl(
@@ -31,26 +31,28 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
         ),
       },
       [
-        QuizPersistChoiceQuestionValidators.MinAnswersCount(),
-        QuizPersistChoiceQuestionValidators.AnswersAreUnique(),
+        QuizPersistClosedQuestionValidators.MinAnswersCount(),
+        QuizPersistClosedQuestionValidators.AnswersAreUnique(),
       ],
     );
   }
 
   export function CreateAnswer(
     ordinalNumber: number,
-    response?: QuizDetailsChoiceQuestionAnswerResponse,
-  ): FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer> {
-    return new FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>({
-      no: new FormControl(response?.no),
-      ordinalNumber: new FormControl(ordinalNumber, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      text: new FormControl(response?.text ?? '', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-    });
+    response?: QuizDetailsClosedQuestionAnswerResponse,
+  ): QuizPersistSingleChoiceQuestionAnswerFormGroup {
+    return new QuizPersistSingleChoiceQuestionAnswerFormGroup(
+      {
+        ordinalNumber: new FormControl(ordinalNumber, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        text: new FormControl(response?.text ?? '', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      },
+      response?.no,
+    );
   }
 }

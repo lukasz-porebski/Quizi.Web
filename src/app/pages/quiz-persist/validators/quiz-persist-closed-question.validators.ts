@@ -5,7 +5,7 @@ import { unique } from 'remeda';
 
 type FormType = QuizPersistSingleChoiceQuestionFormGroup | QuizPersistMultipleChoiceQuestionFormGroup;
 
-export namespace QuizPersistChoiceQuestionValidators {
+export namespace QuizPersistClosedQuestionValidators {
   export function MinAnswersCount(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const form = control as FormType;

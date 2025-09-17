@@ -1,10 +1,10 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 import { Optional } from '../../../../../common/types/optional.type';
-import { IQuizPersistFormSingleChoiceQuestionAnswer } from './quiz-persist-form-single-choice-question-answer.interface';
+import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-single-choice-question-answer.form-group';
 
 export interface IQuizPersistFormSingleChoiceQuestion {
   ordinalNumber: FormControl<number>;
   text: FormControl<string>;
-  answers: FormArray<FormGroup<IQuizPersistFormSingleChoiceQuestionAnswer>>;
+  answers: FormArray<QuizPersistSingleChoiceQuestionAnswerFormGroup>;
   correctAnswerOrdinalNumber: FormControl<Optional<number>>;
 }

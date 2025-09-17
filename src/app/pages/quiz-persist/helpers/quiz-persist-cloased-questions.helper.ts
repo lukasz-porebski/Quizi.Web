@@ -3,7 +3,7 @@ import { isEmpty } from '../../../../../common/utils/utils';
 import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
 import { IQuizPersistFormSingleChoiceQuestion } from '../interfaces/quiz-persist-form-single-choice-question.interface';
 
-export namespace QuizPersistChoiceQuestionsHelper {
+export namespace QuizPersistCloasedQuestionsHelper {
   export function RemoveAnswer(
     question: IQuizPersistFormSingleChoiceQuestion | IQuizPersistFormMultipleChoiceQuestion,
     ordinalNumber: number,
