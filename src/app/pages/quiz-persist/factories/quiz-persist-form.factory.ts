@@ -1,7 +1,5 @@
-import { QuizDetailsResponse } from '../models/quiz-details.response';
+import { QuizDetailsResponse } from '../models/responses/quiz-details.response';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { QuizPersistQuestionFormGroup } from '../form/quiz-persist-question.form-group';
-import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
 import { QuizPersistFormOpenQuestionFactory } from './quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from './quiz-persist-form-single-choice-question.factory';
 import { QuizPersistFormMultipleChoiceQuestionFactory } from './quiz-persist-form-multiple-choice-question.factory';
@@ -14,6 +12,7 @@ import { TimeSpanValidators } from '../../../../../common/components/time-span/v
 import { QuizPersistConstants } from '../constants/quiz-persist.constants';
 import { QuizPersistHeaderValidators } from '../validators/quiz-persist-header.validators';
 import { QuizPersistValidators } from '../validators/quiz-persist.validators';
+import { QuizPersistOpenQuestionFormGroup } from '../form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistFormFactory {
   export function Create(response?: QuizDetailsResponse): QuizPersistFormGroup {
@@ -67,7 +66,7 @@ export namespace QuizPersistFormFactory {
           nonNullable: true,
           validators: [Validators.required],
         }),
-        openQuestions: new FormArray<QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>>(
+        openQuestions: new FormArray<QuizPersistOpenQuestionFormGroup>(
           (response?.openQuestions ?? []).map((q) =>
             QuizPersistFormOpenQuestionFactory.Create(q.ordinalNumber, q),
           ),

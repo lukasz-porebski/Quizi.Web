@@ -4,12 +4,11 @@ import { isDefined, isEmpty } from '../../../../../common/utils/utils';
 import { IQuizPersistForm } from '../interfaces/quiz-persist-form.interface';
 import { QuizPersistFormQuestion } from '../types/quiz-persist-form-question.type';
 import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
-import { QuizPersistQuestionFormGroup } from '../form/quiz-persist-question.form-group';
-import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
 import { Optional } from '../../../../../common/types/optional.type';
 import { unique } from 'remeda';
+import { QuizPersistOpenQuestionFormGroup } from '../form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistValidators {
   export function ThereIsAtLeastOneQuestion(): ValidatorFn {
@@ -83,7 +82,7 @@ export namespace QuizPersistValidators {
   function getQuestionAnswers(question: QuizPersistFormQuestion): Optional<string>[] {
     switch (question.type) {
       case QuizPersistFormQuestionType.Open:
-        return [(question as QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>).value.answer];
+        return [(question as QuizPersistOpenQuestionFormGroup).value.answer];
       case QuizPersistFormQuestionType.SingleChoice:
         return (
           (question as QuizPersistSingleChoiceQuestionFormGroup).value.answers?.map((a) => a.text!) ?? []

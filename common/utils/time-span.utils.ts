@@ -1,0 +1,29 @@
+import { TimeSpan } from '../types/time-span.type';
+import { TimeSpanModel } from '../models/time-span.model';
+import { ITimeSpanFormControl } from '../interfaces/time-span-form-control.interface';
+
+export namespace TimeSpanUtils {
+  export function ToTimeSpanByModel(value: TimeSpanModel): TimeSpan {
+    return toTimeSpan({
+      hours: value.hours,
+      minutes: value.minutes,
+      seconds: value.seconds,
+    });
+  }
+
+  export function ToTimeSpanByForm(value: ITimeSpanFormControl): TimeSpan {
+    return toTimeSpan({
+      hours: value.hours.value!,
+      minutes: value.minutes.value!,
+      seconds: value.seconds.value!,
+    });
+  }
+
+  function toTimeSpan(value: { hours: number; minutes: number; seconds: number }): TimeSpan {
+    const hours = value.hours <= 9 ? `0${value.hours}` : value.hours;
+    const minutes = value.minutes <= 9 ? `0${value.minutes}` : value.minutes;
+    const seconds = value.seconds <= 9 ? `0${value.seconds}` : value.seconds;
+
+    return `${hours}:${minutes}:${seconds}`;
+  }
+}

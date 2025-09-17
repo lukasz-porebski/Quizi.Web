@@ -1,7 +1,7 @@
 import { FormArray, FormControl, Validators } from '@angular/forms';
-import { QuizDetailsClosedQuestionResponse } from '../models/quiz-details-closed-question.response';
+import { QuizDetailsClosedQuestionResponse } from '../models/responses/quiz-details-closed-question.response';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
-import { QuizDetailsClosedQuestionAnswerResponse } from '../models/quiz-details-closed-question-answer.response';
+import { QuizDetailsClosedQuestionAnswerResponse } from '../models/responses/quiz-details-closed-question-answer.response';
 import { QuizPersistClosedQuestionValidators } from '../validators/quiz-persist-closed-question.validators';
 import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-single-choice-question-answer.form-group';
 
@@ -30,6 +30,7 @@ export namespace QuizPersistFormSingleChoiceQuestionFactory {
           },
         ),
       },
+      response?.no,
       [
         QuizPersistClosedQuestionValidators.MinAnswersCount(),
         QuizPersistClosedQuestionValidators.AnswersAreUnique(),

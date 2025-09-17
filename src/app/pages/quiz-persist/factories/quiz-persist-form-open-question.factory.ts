@@ -1,15 +1,13 @@
 import { FormControl, Validators } from '@angular/forms';
-import { QuizPersistQuestionFormGroup } from '../form/quiz-persist-question.form-group';
-import { IQuizPersistFormOpenQuestion } from '../interfaces/quiz-persist-form-open-question.interface';
-import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
-import { QuizDetailsOpenQuestionResponse } from '../models/quiz-details-open-question.response';
+import { QuizDetailsOpenQuestionResponse } from '../models/responses/quiz-details-open-question.response';
+import { QuizPersistOpenQuestionFormGroup } from '../form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistFormOpenQuestionFactory {
   export function Create(
     ordinalNumber: number,
     response?: QuizDetailsOpenQuestionResponse,
-  ): QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion> {
-    return new QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>(
+  ): QuizPersistOpenQuestionFormGroup {
+    return new QuizPersistOpenQuestionFormGroup(
       {
         ordinalNumber: new FormControl(ordinalNumber, {
           nonNullable: true,
@@ -24,7 +22,7 @@ export namespace QuizPersistFormOpenQuestionFactory {
           validators: [Validators.required],
         }),
       },
-      QuizPersistFormQuestionType.Open,
+      response?.no,
     );
   }
 }

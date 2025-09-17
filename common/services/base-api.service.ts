@@ -22,6 +22,26 @@ export abstract class BaseApiService {
     ).then((r) => map(r));
   }
 
+  protected post<TRequest, TResponse = void, TRawResponse = TResponse>(
+    url: string,
+    request?: TRequest,
+    map?: (response: TRawResponse) => TResponse,
+  ): Promise<TResponse> {
+    return firstValueFrom(this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request)).then((r) =>
+      isDefined(map) ? map(r) : (r as unknown as TResponse),
+    );
+  }
+
+  protected patch<TRequest, TResponse = void, TRawResponse = TResponse>(
+    url: string,
+    request?: TRequest,
+    map?: (response: TRawResponse) => TResponse,
+  ): Promise<TResponse> {
+    return firstValueFrom(this._httpClient.patch<TRawResponse>(`${this._apiUrl}${url}`, request)).then((r) =>
+      isDefined(map) ? map(r) : (r as unknown as TResponse),
+    );
+  }
+
   private _toHttpParams(request: any, parentKey?: string, params = new HttpParams()): HttpParams {
     if (request == null) return params;
 

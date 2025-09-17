@@ -4,8 +4,6 @@ import { QuizPersistSingleChoiceQuestionComponent } from '../single-choice-quest
 import { QuizPersistMultipleChoiceQuestionComponent } from '../multiple-choice-question/multiple-choice-question.component';
 import { QuizPersistFormQuestion } from '../../types/quiz-persist-form-question.type';
 import { QuizPersistFormQuestionType } from '../../enums/quiz-persist-question-type.enum';
-import { QuizPersistQuestionFormGroup } from '../../form/quiz-persist-question.form-group';
-import { IQuizPersistFormOpenQuestion } from '../../interfaces/quiz-persist-form-open-question.interface';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '../../form/quiz-persist-multiple-choice-question.form-group';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../../form/quiz-persist-single-choice-question.form-group';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -14,6 +12,7 @@ import { Icon } from '../../../../../../common/enums/icon.enum';
 import { QuizPersistFormGroup } from '../../form/quiz-persist.form-group';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
+import { QuizPersistOpenQuestionFormGroup } from '../../form/quiz-persist-open-question.form-group';
 
 @Component({
   selector: 'app-quiz-persist-question',
@@ -37,8 +36,8 @@ export class QuizPersistQuestionComponent {
   public readonly QuestionType = QuizPersistFormQuestionType;
   public readonly Icon = Icon;
 
-  public castToOpenQuestion(): QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion> {
-    return this.question() as QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion>;
+  public castToOpenQuestion(): QuizPersistOpenQuestionFormGroup {
+    return this.question() as QuizPersistOpenQuestionFormGroup;
   }
 
   public castToSingleChoiceQuestion(): QuizPersistSingleChoiceQuestionFormGroup {

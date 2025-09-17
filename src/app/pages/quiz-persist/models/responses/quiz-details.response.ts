@@ -1,9 +1,9 @@
-import { AggregateId } from '../../../../../common/types/aggregate-id.type';
-import { QuizCopyMode } from '../../quizzes/enums/quiz-copy-mode.enum';
+import { AggregateId } from '../../../../../../common/types/aggregate-id.type';
+import { QuizCopyMode } from '../../../quizzes/enums/quiz-copy-mode.enum';
 import { QuizDetailsClosedQuestionResponse } from './quiz-details-closed-question.response';
 import { QuizDetailsOpenQuestionResponse } from './quiz-details-open-question.response';
-import { TimeSpanModel } from '../../../../../common/models/time-span.model';
-import { TimeSpan } from '../../../../../common/types/time-span.type';
+import { TimeSpanModel } from '../../../../../../common/models/time-span.model';
+import { TimeSpan } from '../../../../../../common/types/time-span.type';
 
 export type QuizDetailsRawResponse = Omit<QuizDetailsResponse, 'duration' | 'copyMode'> & {
   duration: TimeSpan;
