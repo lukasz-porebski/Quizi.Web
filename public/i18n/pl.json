@@ -39,5 +39,7 @@
   "ANSWERS_MUST_BE_UNIQUE": "Odpowiedzi muszą być unikalne",
   "QUESTIONS_MUST_BE_UNIQUE": "Pytania muszą być unikalne",
   "QUIZZES": "Quizy",
-  "CREATE_QUIZ": "Utwórz quiz"
+  "CREATE_QUIZ": "Utwórz quiz",
+  "EDIT": "Edytuj",
+  "START": "Rozpocznij"
 }

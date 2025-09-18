@@ -1,0 +1,5 @@
+<p>{{ question().response.text }}</p>
+
+@for (answer of question().controls; track answer.response.no) {
+  <app-checkbox [formControl]="answer" [label]="{ text: answer.response.text }" />
+}

@@ -37,11 +37,20 @@ export class QuizzesTableConfigFactory {
         actions: [
           {
             name: {
-              text: 'edit',
+              text: 'EDIT',
             },
-            icon: Icon.Error,
+            icon: Icon.Edit,
             onClick: (rowValue) => {
               this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
+            },
+          },
+          {
+            name: {
+              text: 'START',
+            },
+            icon: Icon.PowerSettingsNew,
+            onClick: (rowValue) => {
+              this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
             },
           },
         ],

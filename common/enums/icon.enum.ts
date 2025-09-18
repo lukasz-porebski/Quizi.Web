@@ -7,4 +7,6 @@ export enum Icon {
   Delete = 'delete',
   ArrowUpward = 'arrow_upward',
   ArrowDownward = 'arrow_downward',
+  Edit = 'edit',
+  PowerSettingsNew = 'power_settings_new',
 }

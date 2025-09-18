@@ -1,0 +1,9 @@
+<p>{{ question().response.text }}</p>
+
+<app-radio
+  [formControl]="question()"
+  [options]="options"
+  [optionValue]="optionValue"
+  [optionText]="optionText"
+  [color]="InputColor.Green"
+/>

@@ -1,0 +1,21 @@
+<div class="row mb-3">
+  <div class="col">
+    <div class="d-flex align-items-center">
+      <mat-card appearance="outlined" class="w-100">
+        <mat-card-content>
+          @switch (question().type) {
+            @case (QuestionType.Open) {
+              <app-quiz-run-open-question [question]="castToOpenQuestion()" />
+            }
+            @case (QuestionType.SingleChoice) {
+              <app-quiz-run-single-choice-question [question]="castToSingleChoiceQuestion()" />
+            }
+            @case (QuestionType.MultipleChoice) {
+              <app-quiz-run-multiple-choice-question [question]="castToMultipleChoiceQuestion()" />
+            }
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
