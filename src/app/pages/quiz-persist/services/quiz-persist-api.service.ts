@@ -20,7 +20,7 @@ export class QuizPersistApiService extends BaseApiService {
     return this.get<QuizDetailsResponse, QuizDetailsRawResponse>(`quizzes/details/${id}`, (response) => {
       const result: QuizDetailsResponse = {
         ...response,
-        duration: new TimeSpanModel(response.duration),
+        duration: TimeSpanModel.CreateByTimeSpan(response.duration),
         copyMode: QuizCopyMode[response.copyMode as keyof typeof QuizCopyMode],
       };
       return result;

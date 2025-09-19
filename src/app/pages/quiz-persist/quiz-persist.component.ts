@@ -40,7 +40,11 @@ import { Route } from '../../core/enums/route.enum';
 })
 export class QuizPersistComponent implements OnInit {
   public get isLoading(): boolean {
-    return !isDefined(this.form) || this._isSaving;
+    return !this.isInitialized || this._isSaving;
+  }
+
+  public get isInitialized(): boolean {
+    return isDefined(this.form);
   }
 
   public readonly ButtonStyle = ButtonStyle;

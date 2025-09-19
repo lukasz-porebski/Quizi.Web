@@ -19,11 +19,11 @@ export namespace TimeSpanUtils {
     });
   }
 
-  function toTimeSpan(value: { hours: number; minutes: number; seconds: number }): TimeSpan {
-    const hours = value.hours <= 9 ? `0${value.hours}` : value.hours;
-    const minutes = value.minutes <= 9 ? `0${value.minutes}` : value.minutes;
-    const seconds = value.seconds <= 9 ? `0${value.seconds}` : value.seconds;
+  export function FormatPartOfTimeSpan(value: number): string {
+    return value <= 9 ? `0${value}` : String(value);
+  }
 
-    return `${hours}:${minutes}:${seconds}`;
+  function toTimeSpan(value: { hours: number; minutes: number; seconds: number }): TimeSpan {
+    return `${FormatPartOfTimeSpan(value.hours)}:${FormatPartOfTimeSpan(value.minutes)}:${FormatPartOfTimeSpan(value.seconds)}`;
   }
 }

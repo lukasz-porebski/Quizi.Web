@@ -12,6 +12,10 @@ export class QuizRunSingleChoiceQuestionFormControl
     return this.response.ordinalNumber;
   }
 
+  public get text(): string {
+    return this.response.text;
+  }
+
   public readonly response: QuizToRunClosedQuestionResponse;
   public readonly type = QuizQuestionType.SingleChoice;
 

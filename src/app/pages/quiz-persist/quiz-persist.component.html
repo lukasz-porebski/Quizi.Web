@@ -1,6 +1,6 @@
 <app-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
-    @if (!isLoading) {
+    @if (isInitialized) {
       <form>
         <app-quiz-persist-header [form]="form" />
 

@@ -1,6 +1,7 @@
 <app-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
-    @if (!isLoading) {
+    @if (isInitialized) {
+      <app-count-down [seconds]="durationInSeconds" (onFinish)="persist($event)" />
       <form>
         @for (question of questions; track question.ordinalNumber) {
           <app-quiz-run-question [question]="question" />
@@ -9,7 +10,7 @@
       <div class="row mt-2">
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [text]="{ text: 'CANCEL' }" [style]="ButtonStyle.Outlined" />
-          <app-button [text]="{ text: 'SAVE' }" (onClick)="persist()" />
+          <app-button [text]="{ text: 'FINISH' }" (onClick)="finish()" />
         </div>
       </div>
     }
