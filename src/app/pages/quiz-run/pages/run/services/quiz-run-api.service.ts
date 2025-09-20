@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '../../../../../common/services/base-api.service';
+import { BaseApiService } from '../../../../../../../common/services/base-api.service';
 import { QuizToRunRawResponse, QuizToRunResponse } from '../models/responses/quiz-to-run.response';
-import { TimeSpanModel } from '../../../../../common/models/time-span.model';
+import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
 import { QuizVerifyRequest } from '../models/requests/quiz-verify.request';
 
 @Injectable()

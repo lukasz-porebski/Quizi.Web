@@ -7,5 +7,7 @@
 }
 
 <div class="container">
-  <ng-content></ng-content>
+  @if (isInitialized()) {
+    <ng-content></ng-content>
+  }
 </div>

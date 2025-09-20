@@ -1,7 +1,7 @@
 import { Component, input, OnInit } from '@angular/core';
-import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
+import { RadioComponent } from '../../../../../../../../common/components/inputs/radio/radio.component';
 import { IQuizRunSingleChoiceQuestionRadioOption } from './interfaces/single-choice-question-radio-option.interface';
-import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
+import { InputColor } from '../../../../../../../../common/components/inputs/shared/enums/input-color.enum';
 import { QuizRunSingleChoiceQuestionFormControl } from '../../form/quiz-run-single-choice-question-form.control';
 
 @Component({

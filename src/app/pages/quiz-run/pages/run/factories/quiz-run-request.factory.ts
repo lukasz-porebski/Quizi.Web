@@ -4,13 +4,13 @@ import { IQuizRunForm } from '../interfaces/quiz-run-form.interface';
 import { QuizVerifyRequest } from '../models/requests/quiz-verify.request';
 import { QuizVerifyOpenQuestionRequest } from '../models/requests/quiz-verify-open-question.request';
 import { QuizVerifySingleChoiceQuestionRequest } from '../models/requests/quiz-verify-single-choice-question.request';
-import { isDefined } from '../../../../../common/utils/utils';
+import { isDefined } from '../../../../../../../common/utils/utils';
 import { QuizVerifyClosedQuestionAnswerRequest } from '../models/requests/quiz-verify-closed-question-answer.request';
 import { QuizRunSingleChoiceQuestionFormControl } from '../form/quiz-run-single-choice-question-form.control';
 import { QuizRunMultipleChoiceQuestionFormArray } from '../form/quiz-run-multiple-choice-question-form.array';
 import { QuizVerifyMultipleChoiceQuestionRequest } from '../models/requests/quiz-verify-multiple-choice-question.request';
-import { PeriodModel } from '../../../../../common/models/period.model';
-import { PeriodUtils } from '../../../../../common/utils/period.utils';
+import { PeriodModel } from '../../../../../../../common/models/period.model';
+import { PeriodUtils } from '../../../../../../../common/utils/period.utils';
 
 export namespace QuizRunRequestFactory {
   export function Create(

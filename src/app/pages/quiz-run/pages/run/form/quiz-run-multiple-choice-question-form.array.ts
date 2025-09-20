@@ -1,7 +1,7 @@
 import { QuizToRunClosedQuestionResponse } from '../models/responses/quiz-to-run-closed-question.response';
 import { FormArray } from '@angular/forms';
 import { QuizRunMultipleChoiceQuestionAnswerFormControl } from './quiz-run-multiple-choice-question-answer-form.control';
-import { QuizQuestionType } from '../../../core/enums/quiz-question-type.enum';
+import { QuizQuestionType } from '../../../../../core/enums/quiz-question-type.enum';
 import { IQuizRunFormOpenQuestion } from '../interfaces/quiz-run-form-question.interface';
 
 export class QuizRunMultipleChoiceQuestionFormArray

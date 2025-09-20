@@ -1,7 +1,7 @@
 import { QuizToRunClosedQuestionResponse } from '../models/responses/quiz-to-run-closed-question.response';
 import { FormControl } from '@angular/forms';
-import { Optional } from '../../../../../common/types/optional.type';
-import { QuizQuestionType } from '../../../core/enums/quiz-question-type.enum';
+import { Optional } from '../../../../../../../common/types/optional.type';
+import { QuizQuestionType } from '../../../../../core/enums/quiz-question-type.enum';
 import { IQuizRunFormOpenQuestion } from '../interfaces/quiz-run-form-question.interface';
 
 export class QuizRunSingleChoiceQuestionFormControl
