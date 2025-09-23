@@ -38,11 +38,18 @@
 
 .radio-button-rows {
   display: flex;
-  flex-direction: column;
 
   ::ng-deep .mdc-label {
     width: 100%;
   }
+}
+
+.radio-button-vertical {
+  display: flex;
+}
+
+.radio-button-vertical-rows {
+  flex-direction: column;
 }
 
 .disabled-radio-checkbox-input {

@@ -1,1 +1,15 @@
-<p>open-questions-verification works!</p>
+@if (isInitialized) {
+  <form>
+    <h1>{{ "VERIFICATION_OF_ANSWERS_TO_OPEN_QUESTIONS" | translate }}</h1>
+
+    @for (question of form.controls; track question.response.ordinalNumber) {
+      <app-quiz-run-open-question-verification [question]="question" />
+    }
+  </form>
+
+  <div class="row mt-2">
+    <div class="col d-flex justify-content-end">
+      <app-button [text]="{ text: 'FINISH' }" (onClick)="onFinish.emit(this.form)" />
+    </div>
+  </div>
+}

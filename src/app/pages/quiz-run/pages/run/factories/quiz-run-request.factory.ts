@@ -1,6 +1,4 @@
 import { QuizToRunResponse } from '../models/responses/quiz-to-run.response';
-import { FormGroup } from '@angular/forms';
-import { IQuizRunForm } from '../interfaces/quiz-run-form.interface';
 import { QuizVerifyRequest } from '../models/requests/quiz-verify.request';
 import { QuizVerifyOpenQuestionRequest } from '../models/requests/quiz-verify-open-question.request';
 import { QuizVerifySingleChoiceQuestionRequest } from '../models/requests/quiz-verify-single-choice-question.request';
@@ -9,50 +7,74 @@ import { QuizVerifyClosedQuestionAnswerRequest } from '../models/requests/quiz-v
 import { QuizRunSingleChoiceQuestionFormControl } from '../form/quiz-run-single-choice-question-form.control';
 import { QuizRunMultipleChoiceQuestionFormArray } from '../form/quiz-run-multiple-choice-question-form.array';
 import { QuizVerifyMultipleChoiceQuestionRequest } from '../models/requests/quiz-verify-multiple-choice-question.request';
-import { PeriodModel } from '../../../../../../../common/models/period.model';
 import { PeriodUtils } from '../../../../../../../common/utils/period.utils';
+import { QuizRunFinishedEvent } from '../models/events/quiz-run-finished.event';
+import { Optional } from '../../../../../../../common/types/optional.type';
+import { FormArray } from '@angular/forms';
+import { QuizRunOpenQuestionVerificationFormControl } from '../../open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import { QuizRunOpenQuestionFormControl } from '../form/quiz-run-open-question-form.control';
+import { QuizRunOpenQuestionVerificationResult } from '../../open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
 
 export namespace QuizRunRequestFactory {
   export function Create(
     response: QuizToRunResponse,
-    form: FormGroup<IQuizRunForm>,
-    quizRunningPeriod: PeriodModel<Date>,
+    event: QuizRunFinishedEvent,
+    openQuestionsVerificationForm: Optional<FormArray<QuizRunOpenQuestionVerificationFormControl>>,
   ): QuizVerifyRequest {
     return {
       quizId: response.id,
-      quizRunningPeriod: PeriodUtils.ToRequest(quizRunningPeriod),
-      openQuestions: form.controls.openQuestions.controls.map((q) => {
-        const request: QuizVerifyOpenQuestionRequest = {
-          no: q.response.no,
-          ordinalNumber: q.ordinalNumber,
-          answer: q.value ?? '',
-          isCorrect: false,
-        };
-        return request;
-      }),
-      singleChoiceQuestions: form.controls.singleChoiceQuestions.controls.map((q) =>
+      quizRunningPeriod: PeriodUtils.ToRequest(event.quizRunningPeriod),
+      openQuestions: event.form.controls.openQuestions.controls.map((q) =>
+        createOpenQuestion(
+          q,
+          openQuestionsVerificationForm?.controls.find((c) => c.response.no === q.response.no),
+        ),
+      ),
+      singleChoiceQuestions: event.form.controls.singleChoiceQuestions.controls.map((q) =>
         createSingleChoiceQuestion(q),
       ),
-      multipleChoiceQuestions: form.controls.multipleChoiceQuestions.controls.map((q) =>
+      multipleChoiceQuestions: event.form.controls.multipleChoiceQuestions.controls.map((q) =>
         createMultipleChoiceQuestion(q),
       ),
     };
   }
 
+  function createOpenQuestion(
+    question: QuizRunOpenQuestionFormControl,
+    verification: Optional<QuizRunOpenQuestionVerificationFormControl>,
+  ): QuizVerifyOpenQuestionRequest {
+    let isCorrect: Optional<boolean> = undefined;
+    switch (verification?.value ?? QuizRunOpenQuestionVerificationResult.NoDecision) {
+      case QuizRunOpenQuestionVerificationResult.Correct:
+        isCorrect = true;
+        break;
+      case QuizRunOpenQuestionVerificationResult.Incorrect:
+        isCorrect = false;
+        break;
+    }
+
+    return {
+      no: question.response.no,
+      ordinalNumber: question.ordinalNumber,
+      answer: question.value ?? '',
+      isCorrect: isCorrect ?? undefined,
+    };
+  }
+
   function createSingleChoiceQuestion(
-    q: QuizRunSingleChoiceQuestionFormControl,
+    question: QuizRunSingleChoiceQuestionFormControl,
   ): QuizVerifySingleChoiceQuestionRequest {
     return {
-      no: q.response.no,
-      ordinalNumber: q.ordinalNumber,
-      selectedAnswer: isDefined(q.value)
+      no: question.response.no,
+      ordinalNumber: question.ordinalNumber,
+      selectedAnswer: isDefined(question.value)
         ? {
-            no: q.value,
-            ordinalNumber: q.response.answers.find((a) => a.no === q.value)!.ordinalNumber,
+            no: question.value,
+            ordinalNumber: question.response.answers.find((a) => a.no === question.value)!.ordinalNumber,
           }
         : undefined,
-      unselectedAnswers: q.response.answers
-        .filter((a) => a.no !== q.value)
+      unselectedAnswers: question.response.answers
+        .filter((a) => a.no !== question.value)
         .map((a) => {
           const request: QuizVerifyClosedQuestionAnswerRequest = {
             no: a.no,
@@ -64,12 +86,12 @@ export namespace QuizRunRequestFactory {
   }
 
   function createMultipleChoiceQuestion(
-    q: QuizRunMultipleChoiceQuestionFormArray,
+    question: QuizRunMultipleChoiceQuestionFormArray,
   ): QuizVerifyMultipleChoiceQuestionRequest {
     return {
-      no: q.response.no,
-      ordinalNumber: q.ordinalNumber,
-      selectedAnswers: q.controls
+      no: question.response.no,
+      ordinalNumber: question.ordinalNumber,
+      selectedAnswers: question.controls
         .filter((a) => a.value)
         .map((a) => {
           const request: QuizVerifyClosedQuestionAnswerRequest = {
@@ -78,8 +100,8 @@ export namespace QuizRunRequestFactory {
           };
           return request;
         }),
-      unselectedAnswers: q.controls
-        .filter((a) => !isDefined(q.value) || !a.value)
+      unselectedAnswers: question.controls
+        .filter((a) => !isDefined(question.value) || !a.value)
         .map((a) => {
           const request: QuizVerifyClosedQuestionAnswerRequest = {
             no: a.response.no,

@@ -7,16 +7,17 @@
 }
 
 <mat-radio-group
-  class="radio-group"
-  [className]="getRadioButtonColorClass(color())"
+  [class]="['radio-group', getRadioButtonColorClass(color())]"
+  [class.d-flex]="!vertical()"
   [formControl]="formControl()"
 >
   @for (option of options(); track getOptionValue(option)) {
     <mat-radio-button
       [class.readonly-radio-checkbox-input]="readonly()"
       [class.disabled-radio-checkbox-input]="formControl().disabled"
+      [class.radio-button-vertical-rows]="vertical()"
       class="radio-button radio-button-rows"
-      [disableRipple]="readonly"
+      [disableRipple]="readonly()"
       [value]="getOptionValue(option)"
       (click)="readonly() ? $event.preventDefault() : null"
     >
@@ -33,7 +34,7 @@
           </ng-container>
         } @else {
           <span>
-            {{ getOptionText(option) | conditionalTranslate: translateOptionLabel }}
+            {{ getOptionText(option) | textConfigTranslate }}
           </span>
         }
       </div>

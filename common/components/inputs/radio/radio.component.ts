@@ -4,7 +4,6 @@ import { MatLabel } from '@angular/material/form-field';
 import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputColor } from '../shared/enums/input-color.enum';
-import { ConditionalTranslatePipe } from '../../../pipes/conditional-translation.pipe';
 import { isDefined } from '../../../utils/utils';
 import { ITextConfig, TextConfig } from '../../../models/text.config';
 import { RadioLabelPosition } from './enums/label-position.enum';
@@ -18,7 +17,6 @@ import { NgTemplateOutlet } from '@angular/common';
     TextConfigTranslatePipe,
     ReactiveFormsModule,
     MatRadioButton,
-    ConditionalTranslatePipe,
     NgTemplateOutlet,
   ],
   templateUrl: './radio.component.html',
@@ -33,16 +31,24 @@ export class RadioComponent<TData, TValue = TData> {
   public optionLabelPosition = input<RadioLabelPosition>(RadioLabelPosition.After);
   public translateOptionLabel = input<boolean>(false);
   public color = input<InputColor>(InputColor.Default);
-  public optionText = input<(option: TData) => string>();
+  public optionText = input<(option: TData) => string | TextConfig>();
   public optionValue = input<(option: TData) => TValue>();
   public disableLabelClick = input<boolean>(false);
+  public vertical = input<boolean>(true);
 
   public getRadioButtonColorClass(color: InputColor): string {
     return 'app-radio-button-' + color;
   }
 
-  public getOptionText(option: TData): string {
-    return isDefined(this.optionText()) ? this.optionText()!(option) : (option?.toString() ?? '');
+  public getOptionText(option: TData): TextConfig {
+    if (!isDefined(this.optionText())) {
+      return new TextConfig({ text: option?.toString() ?? '', translate: false });
+    }
+
+    const text = this.optionText()!(option);
+    return text instanceof TextConfig
+      ? text
+      : new TextConfig({ text: text, translate: this.translateOptionLabel() });
   }
 
   public getOptionValue(option: TData): TValue {

@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <strong>{{ question().response.text }}</strong>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider class="mt-2" />
+    <div class="row mt-2 mb-2">
+      <i class="col-2">{{ "CORRECT_V1" | translate }}</i>
+      <div class="col">{{ question().correctAnswer }}</div>
+    </div>
+    <mat-divider />
+    <div class="row mt-2 mb-2">
+      <i class="col-2">{{ "YOUR" | translate }}</i>
+      <div class="col">{{ question().userAnswer }}</div>
+    </div>
+    <mat-divider />
+    <app-radio
+      [formControl]="question()"
+      [options]="options"
+      [optionText]="optionText"
+      [optionValue]="optionValue"
+      [vertical]="false"
+    />
+  </mat-card-content>
+</mat-card>

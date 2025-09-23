@@ -42,5 +42,11 @@
   "CREATE_QUIZ": "Utwórz quiz",
   "EDIT": "Edytuj",
   "START": "Rozpocznij",
-  "FINISH": "Zakończ"
+  "FINISH": "Zakończ",
+  "CORRECT_V1": "Prawidłowa",
+  "YOUR": "Twoja",
+  "CORRECT_V2": "Poprawna",
+  "INCORRECT": "Błędna",
+  "HARD_TO_VERIFY": "Trudno ocenić",
+  "VERIFICATION_OF_ANSWERS_TO_OPEN_QUESTIONS": "Weryfikacja odpowiedzi na otwarte pytania"
 }

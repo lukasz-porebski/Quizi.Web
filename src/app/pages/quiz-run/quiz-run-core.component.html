@@ -1,5 +1,15 @@
-<app-async-page [showSpinner]="isLoading" [isInitialized]="isInitialized">
+<app-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
-    <app-quiz-run [response]="response" (onFinish)="verify($event)" />
+    @if (isInitialized && !isOpenQuestionsVerification) {
+      <app-quiz-run [response]="response" (onFinish)="tryPersist($event)" />
+    }
+
+    @if (isOpenQuestionsVerification) {
+      <app-quiz-run-open-questions-verification
+        [quizId]="response.id"
+        [questions]="quizRunFinishedEvent!.form.controls.openQuestions"
+        (onFinish)="persist($event)"
+      />
+    }
   </div>
 </app-async-page>
