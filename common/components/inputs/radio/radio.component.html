@@ -9,12 +9,12 @@
 <mat-radio-group
   [class]="['radio-group', getRadioButtonColorClass(color())]"
   [class.d-flex]="!vertical()"
-  [formControl]="formControl()"
+  [formControl]="innerFormControl"
 >
   @for (option of options(); track getOptionValue(option)) {
     <mat-radio-button
       [class.readonly-radio-checkbox-input]="readonly()"
-      [class.disabled-radio-checkbox-input]="formControl().disabled"
+      [class.disabled-radio-checkbox-input]="innerFormControl.disabled"
       [class.radio-button-vertical-rows]="vertical()"
       class="radio-button radio-button-rows"
       [disableRipple]="readonly()"
@@ -28,7 +28,7 @@
             [ngTemplateOutletContext]="{
               $implicit: option,
               option: option,
-              selectedValue: formControl().value,
+              selectedValue: innerFormControl.value,
             }"
           >
           </ng-container>

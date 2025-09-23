@@ -16,7 +16,8 @@ import { isDefined } from '../../../utils/utils';
 export class CheckboxComponent {
   public childComponent = contentChild('customLabel');
 
-  public formControl = input.required<FormControl<boolean>>();
+  public formControl = input<FormControl<boolean>>();
+  public value = input<boolean>();
   public label = input<ITextConfig>();
   public readonly = input<boolean>(false);
   public labelPosition = input<CheckboxLabelPosition>(CheckboxLabelPosition.After);
@@ -27,11 +28,25 @@ export class CheckboxComponent {
     return 'app-checkbox-input-' + color;
   }
 
+  public innerFormControl!: FormControl<boolean>;
   public innerLabel?: TextConfig;
 
   public constructor() {
     effect(() => {
       this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
+    });
+
+    effect(() => {
+      if (isDefined(this.formControl())) {
+        this.innerFormControl = this.formControl()!;
+      } else {
+        this.innerFormControl = isDefined(this.value())
+          ? new FormControl({
+              value: this.value()!,
+              disabled: false,
+            })
+          : new FormControl();
+      }
     });
   }
 }

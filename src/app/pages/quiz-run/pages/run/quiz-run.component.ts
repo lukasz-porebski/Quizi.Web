@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output, viewChild } from '@angular/core';
+import { Component, inject, input, OnInit, output, viewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -12,6 +12,8 @@ import { QuizToRunResponse } from './models/responses/quiz-to-run.response';
 import { CountDownComponent } from '../../../../../../common/components/count-down/count-down.component';
 import { QuizRunFinishedEvent } from './models/events/quiz-run-finished.event';
 import { PeriodModel } from '../../../../../../common/models/period.model';
+import { Route } from '../../../../core/enums/route.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-run',
@@ -33,11 +35,17 @@ export class QuizRunComponent implements OnInit {
   public questions!: IQuizRunFormOpenQuestion[];
   public durationInSeconds!: number;
 
+  private readonly _router = inject(Router);
+
   public async ngOnInit(): Promise<void> {
     this.form = QuizRunFormFactory.Create(this.response());
     this.questions = QuizRunQuestionsHelper.Merge(this.form);
     this.durationInSeconds = this.response().duration.getTotalSeconds();
     this.isInitialized = true;
+  }
+
+  public async backToList(): Promise<void> {
+    await this._router.navigateByUrl(Route.Quizzes);
   }
 
   public finish(quizRunningPeriod: PeriodModel<Date>): void {

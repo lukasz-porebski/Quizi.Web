@@ -3,7 +3,7 @@
     [class.app-checkbox-input-readonly]="readonly()"
     [labelPosition]="labelPosition()"
     [disableRipple]="true"
-    [formControl]="formControl()"
+    [formControl]="innerFormControl"
     (click)="readonly() ? $event.preventDefault() : null"
   >
     <div (click)="disableLabelClick() ? $event.preventDefault() : null">

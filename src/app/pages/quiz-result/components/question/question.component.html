@@ -1,0 +1,39 @@
+<div class="row mb-3">
+  <div class="col">
+    <div class="d-flex align-items-center">
+      <mat-card appearance="outlined" class="w-100">
+        <mat-card-header>{{ question().response.text }}</mat-card-header>
+        <mat-card-content>
+          @switch (question().type) {
+            @case (QuestionType.Open) {
+              <div class="row mt-2 mb-2">
+                <i class="col-2">{{ "CORRECT_V1" | translate }}</i>
+                <div class="col">{{ castToOpenQuestion().correctAnswer }}</div>
+              </div>
+              <mat-divider />
+              <div class="row mt-2 mb-2">
+                <i class="col-2">{{ "YOUR" | translate }}</i>
+                <div class="col">{{ castToOpenQuestion().givenAnswer }}</div>
+              </div>
+            }
+            @case (QuestionType.SingleChoice) {
+              <app-radio
+                [value]="castToSingleChoiceQuestion().selectedAnswerOrdinalNumber"
+                [options]="options"
+                [optionValue]="optionValue"
+                [optionText]="optionText"
+                [color]="InputColor.Green"
+                [readonly]="true"
+              />
+            }
+            @case (QuestionType.MultipleChoice) {
+              @for (answer of castToMultipleChoiceQuestion().answers; track answer.ordinalNumber) {
+                <app-checkbox [value]="answer.isSelected" [readonly]="true" [label]="{ text: answer.text }" />
+              }
+            }
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

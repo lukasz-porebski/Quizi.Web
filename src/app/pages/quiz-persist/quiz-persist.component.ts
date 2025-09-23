@@ -70,6 +70,10 @@ export class QuizPersistComponent implements OnInit {
     this.form = QuizPersistFormFactory.Create(response);
   }
 
+  public async backToList(): Promise<void> {
+    await this._router.navigateByUrl(Route.Quizzes);
+  }
+
   public async persist(): Promise<void> {
     FormUtils.Validate(this.form);
     if (this.form.invalid) {

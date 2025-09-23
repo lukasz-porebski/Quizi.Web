@@ -1,0 +1,19 @@
+<app-async-page [showSpinner]="isLoading">
+  <div class="container mt-2 mb-2">
+    @if (isInitialized) {
+      @for (question of questions; track question.response.ordinalNumber) {
+        <app-quiz-result-question [question]="question" />
+      }
+      <div class="row mt-2">
+        <div class="col d-flex justify-content-end">
+          <app-button
+            class="me-2"
+            [text]="{ text: 'CANCEL' }"
+            [style]="ButtonStyle.Outlined"
+            (onClick)="backToList()"
+          />
+        </div>
+      </div>
+    }
+  </div>
+</app-async-page>

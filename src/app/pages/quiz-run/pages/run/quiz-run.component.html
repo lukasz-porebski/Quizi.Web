@@ -7,7 +7,12 @@
   </form>
   <div class="row mt-2">
     <div class="col d-flex justify-content-end">
-      <app-button class="me-2" [text]="{ text: 'CANCEL' }" [style]="ButtonStyle.Outlined" />
+      <app-button
+        class="me-2"
+        [text]="{ text: 'CANCEL' }"
+        [style]="ButtonStyle.Outlined"
+        (onClick)="backToList()"
+      />
       <app-button [text]="{ text: 'FINISH' }" (onClick)="finishCounting()" />
     </div>
   </div>

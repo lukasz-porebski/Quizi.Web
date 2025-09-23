@@ -23,7 +23,8 @@ import { NgTemplateOutlet } from '@angular/common';
   styleUrl: './radio.component.scss',
 })
 export class RadioComponent<TData, TValue = TData> {
-  public formControl = input.required<FormControl<TValue>>();
+  public formControl = input<FormControl<TValue>>();
+  public value = input<TValue>();
   public options = input.required<TData[]>();
   public label = input<ITextConfig>();
   public optionTemplate = input<TemplateRef<any>>();
@@ -55,11 +56,25 @@ export class RadioComponent<TData, TValue = TData> {
     return isDefined(this.optionValue()) ? this.optionValue()!(option) : (option as unknown as TValue);
   }
 
+  public innerFormControl!: FormControl<TValue>;
   public innerLabel?: TextConfig;
 
   public constructor() {
     effect(() => {
       this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
+    });
+
+    effect(() => {
+      if (isDefined(this.formControl())) {
+        this.innerFormControl = this.formControl()!;
+      } else {
+        this.innerFormControl = isDefined(this.value())
+          ? new FormControl({
+              value: this.value()!,
+              disabled: false,
+            })
+          : new FormControl();
+      }
     });
   }
 }
