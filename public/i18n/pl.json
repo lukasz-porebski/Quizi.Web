@@ -48,5 +48,6 @@
   "CORRECT_V2": "Poprawna",
   "INCORRECT": "Błędna",
   "HARD_TO_VERIFY": "Trudno ocenić",
-  "VERIFICATION_OF_ANSWERS_TO_OPEN_QUESTIONS": "Weryfikacja odpowiedzi na otwarte pytania"
+  "VERIFICATION_OF_ANSWERS_TO_OPEN_QUESTIONS": "Weryfikacja odpowiedzi na otwarte pytania",
+  "QUESTIONS_COUNT": "Liczba pytań"
 }

@@ -10,4 +10,5 @@ export enum TableColumnType {
   Price,
   Enum,
   Image,
+  TimeSpan,
 }

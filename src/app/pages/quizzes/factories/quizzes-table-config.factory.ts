@@ -21,15 +21,27 @@ export class QuizzesTableConfigFactory {
       columns: (builder) =>
         builder
           .addText({
-            field: 'id',
-            header: {
-              text: 'Idk',
-            },
-          })
-          .addText({
             field: 'title',
             header: {
-              text: 'Tytuł',
+              text: 'TITLE',
+            },
+          })
+          .addTimeSpan({
+            field: 'duration',
+            header: {
+              text: 'DURATION',
+            },
+          })
+          .addNumber({
+            field: 'questionsCount',
+            header: {
+              text: 'QUESTIONS_COUNT',
+            },
+          })
+          .addNumber({
+            field: 'questionsCountInRunningQuiz',
+            header: {
+              text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ',
             },
           })
           .build(),

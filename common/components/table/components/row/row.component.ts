@@ -6,6 +6,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { toPercent, toPrice } from '../../../../utils/utils';
 import { TableColumnConfig } from '../../models/columns/column.config';
 import { TableRow } from '../../models/row.model';
+import { TimeSpanModel } from '../../../../models/time-span.model';
+import { TimeSpanUtils } from '../../../../utils/time-span.utils';
 
 @Component({
   selector: 'app-table-row',
@@ -19,6 +21,10 @@ export class TableRowComponent<TData> {
 
   public readonly AppTableColumnType = TableColumnType;
   public readonly DateFormat = DateFormat;
+
+  public getTimeSpan(value: TimeSpanModel): string {
+    return TimeSpanUtils.ToTimeSpanByModel(value);
+  }
 
   public getPercent(value: number): string {
     return toPercent(value);

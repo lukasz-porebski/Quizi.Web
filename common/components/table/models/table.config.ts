@@ -53,9 +53,7 @@ export class TableConfig<TData> {
       this.paginator = new TablePaginatorConfig(config.paginator);
     }
     if (isDefined(config.search)) {
-      const fieldHeaders = config.search.fields.map(
-        (f) => this.columns.find((c) => c.field === f)!.header.text,
-      );
+      const fieldHeaders = config.search.fields.map((f) => this.columns.find((c) => c.field === f)!.header);
       this.search = new TableSearchConfig(fieldHeaders);
     }
     this.markRowCondition = config.markRowCondition ?? (() => false);

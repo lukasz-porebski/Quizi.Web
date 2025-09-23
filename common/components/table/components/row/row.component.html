@@ -17,6 +17,9 @@
   @case (AppTableColumnType.Minutes) {
     {{ column().getValue(row().data) | date: DateFormat.Minutes : "UTC" }}
   }
+  @case (AppTableColumnType.TimeSpan) {
+    {{ getTimeSpan(column().getValue(row().data)) }}
+  }
   @case (AppTableColumnType.Boolean) {
     <div class="app-table-checkbox-input">
       <mat-checkbox

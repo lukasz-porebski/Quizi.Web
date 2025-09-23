@@ -31,6 +31,11 @@ export class TableColumnBuilder<TData> {
     return this;
   }
 
+  public addTimeSpan(config: ITableColumnConfig<TData>): this {
+    this._columns.push(new TableColumnConfig(config, TableColumnType.TimeSpan));
+    return this;
+  }
+
   public addNumber(config: ITableColumnConfig<TData>): this {
     this._columns.push(new TableColumnConfig(config, TableColumnType.Number));
     return this;

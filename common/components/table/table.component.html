@@ -1,6 +1,8 @@
 @if (config().search) {
   <mat-form-field class="search">
-    <mat-label> {{ "SEARCH" | translate }} ({{ config().search!.searchText }}) </mat-label>
+    <mat-label>
+      {{ "SEARCH" | translate }} ({{ config().search!.fieldHeaders | textConfigTranslate }})
+    </mat-label>
     <input #searchInput matInput />
   </mat-form-field>
 }
