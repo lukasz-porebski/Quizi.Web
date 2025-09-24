@@ -66,6 +66,17 @@ export class QuizResultQuestionComponent implements OnInit {
     return this.question().response as QuizResultDetailsMultipleChoiceQuestionResponse;
   }
 
+  public getOpenQuestionAnswerClassColor(data: QuizResultDetailsOpenQuestionResponse): string {
+    let color = InputColor.Default;
+    if (data.isCorrect) {
+      color = InputColor.Green;
+    } else if (!data.isCorrect) {
+      color = InputColor.Red;
+    }
+
+    return 'open-question-color-' + color;
+  }
+
   public getClosedQuestionAnswerColor(
     data: QuizResultDetailsMultipleChoiceQuestionAnswerResponse | IQuizResultSingleChoiceQuestionRadioOption,
   ): InputColor {

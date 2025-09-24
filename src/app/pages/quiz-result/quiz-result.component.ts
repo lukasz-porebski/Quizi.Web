@@ -11,10 +11,22 @@ import { IQuizResultQuestion } from './components/question/interfaces/quiz-resul
 import { QuizResultQuestionsHelper } from './helpers/quiz-result-questions.helper';
 import { QuizResultQuestionComponent } from './components/question/question.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CheckboxComponent } from '../../../../common/components/inputs/checkbox/checkbox.component';
+import { TimeSpanUtils } from '../../../../common/utils/time-span.utils';
+import { DatePipe } from '@angular/common';
+import { DateFormat } from '../../../../common/enums/date-format.enum';
+import { sum } from 'remeda';
 
 @Component({
   selector: 'app-quiz-result',
-  imports: [AsyncPageComponent, ButtonComponent, QuizResultQuestionComponent],
+  imports: [
+    AsyncPageComponent,
+    ButtonComponent,
+    QuizResultQuestionComponent,
+    CheckboxComponent,
+    TranslatePipe,
+    DatePipe,
+  ],
   templateUrl: './quiz-result.component.html',
   styleUrl: './quiz-result.component.scss',
   providers: [QuizResultApiService, TranslatePipe],
@@ -27,6 +39,9 @@ export class QuizResultComponent implements OnInit {
   public get isInitialized(): boolean {
     return isDefined(this.response);
   }
+
+  public readonly ButtonStyle = ButtonStyle;
+  public readonly DateFormat = DateFormat;
 
   public response!: QuizResultDetailsResponse;
   public questions!: IQuizResultQuestion[];
@@ -43,9 +58,31 @@ export class QuizResultComponent implements OnInit {
     this.questions = QuizResultQuestionsHelper.Merge(this.response);
   }
 
+  public getScoredPoints(): number {
+    return (
+      sum(this.response.openQuestions.map((q) => q.scoredPoints)) +
+      sum(this.response.singleChoiceQuestions.map((q) => q.scoredPoints)) +
+      sum(this.response.multipleChoiceQuestions.map((q) => q.scoredPoints))
+    );
+  }
+
+  public getPointsPossibleToGet(): number {
+    return (
+      sum(this.response.openQuestions.map((q) => q.pointsPossibleToGet)) +
+      sum(this.response.singleChoiceQuestions.map((q) => q.pointsPossibleToGet)) +
+      sum(this.response.multipleChoiceQuestions.map((q) => q.pointsPossibleToGet))
+    );
+  }
+
+  public getDuration(): string {
+    return (
+      TimeSpanUtils.ToTimeSpanByModel(this.response.duration) +
+      '/' +
+      TimeSpanUtils.ToTimeSpanByModel(this.response.maxDuration)
+    );
+  }
+
   public async backToList(): Promise<void> {
     await this._router.navigateByUrl(Route.Quizzes);
   }
-
-  protected readonly ButtonStyle = ButtonStyle;
 }

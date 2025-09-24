@@ -19,6 +19,7 @@ export class QuizResultApiService extends BaseApiService {
             new Date(response.quizRunningPeriod.start),
             new Date(response.quizRunningPeriod.end),
           ),
+          duration: TimeSpanModel.CreateByTimeSpan(response.duration),
           maxDuration: TimeSpanModel.CreateByTimeSpan(response.maxDuration),
         };
         return result;

@@ -1,6 +1,44 @@
 <app-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
     @if (isInitialized) {
+      <h1>{{ response.title }}</h1>
+      <h3>{{ "SCORED_POINTS" | translate }}: {{ getScoredPoints() }}/{{ getPointsPossibleToGet() }}</h3>
+
+      <div class="row">
+        <div class="col">
+          {{ "START_DATE" | translate }}:
+          {{ response.quizRunningPeriod.start | date: DateFormat.DateWithTime }}
+        </div>
+        <div class="col">
+          {{ "END_DATE" | translate }}: {{ response.quizRunningPeriod.start | date: DateFormat.DateWithTime }}
+        </div>
+        <div class="col">{{ "DURATION" | translate }}: {{ getDuration() }}</div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <app-checkbox
+            [value]="response.randomQuestions"
+            [label]="{ text: 'RANDOM_QUESTIONS' }"
+            [readonly]="true"
+          />
+        </div>
+        <div class="col">
+          <app-checkbox
+            [value]="response.randomAnswers"
+            [label]="{ text: 'RANDOM_ANSWERS' }"
+            [readonly]="true"
+          />
+        </div>
+        <div class="col">
+          <app-checkbox
+            [value]="response.negativePoints"
+            [label]="{ text: 'NEGATIVE_POINTS' }"
+            [readonly]="true"
+          />
+        </div>
+      </div>
+
       @for (question of questions; track question.response.ordinalNumber) {
         <app-quiz-result-question [question]="question" />
       }

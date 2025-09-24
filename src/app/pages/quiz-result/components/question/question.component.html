@@ -2,7 +2,9 @@
   <div class="col">
     <div class="d-flex align-items-center">
       <mat-card appearance="outlined" class="w-100">
-        <mat-card-header>{{ question().response.text }}</mat-card-header>
+        <mat-card-header>
+          <strong>{{ question().response.text }}</strong>
+        </mat-card-header>
         <mat-card-content>
           @switch (question().type) {
             @case (QuestionType.Open) {
@@ -13,7 +15,9 @@
               <mat-divider />
               <div class="row mt-2 mb-2">
                 <i class="col-2">{{ "YOUR" | translate }}</i>
-                <div class="col">{{ castToOpenQuestion().givenAnswer }}</div>
+                <div [class]="['col', getOpenQuestionAnswerClassColor(castToOpenQuestion())]">
+                  {{ castToOpenQuestion().givenAnswer }}
+                </div>
               </div>
             }
             @case (QuestionType.SingleChoice) {

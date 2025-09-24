@@ -1,0 +1,11 @@
+@mixin open-question-color($color) {
+  color: var($color);
+}
+
+.open-question-color-red {
+  @include open-question-color(--bs-red);
+}
+
+.open-question-color-green {
+  @include open-question-color(--bs-green);
+}

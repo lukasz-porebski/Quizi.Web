@@ -11,6 +11,7 @@ export type QuizResultDetailsRawResponse = Omit<
   'quizRunningPeriod' | 'maxDuration'
 > & {
   quizRunningPeriod: PeriodRawViewModel;
+  duration: TimeSpan;
   maxDuration: TimeSpan;
 };
 
@@ -18,6 +19,7 @@ export interface QuizResultDetailsResponse {
   readonly id: AggregateId;
   readonly title: string;
   readonly quizRunningPeriod: PeriodViewModel<Date>;
+  readonly duration: TimeSpanModel;
   readonly maxDuration: TimeSpanModel;
   readonly negativePoints: boolean;
   readonly randomQuestions: boolean;

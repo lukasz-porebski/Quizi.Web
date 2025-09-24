@@ -49,5 +49,8 @@
   "INCORRECT": "Błędna",
   "HARD_TO_VERIFY": "Trudno ocenić",
   "VERIFICATION_OF_ANSWERS_TO_OPEN_QUESTIONS": "Weryfikacja odpowiedzi na otwarte pytania",
-  "QUESTIONS_COUNT": "Liczba pytań"
+  "QUESTIONS_COUNT": "Liczba pytań",
+  "START_DATE": "Data rozpoczęcia",
+  "END_DATE": "Data zakończenia",
+  "SCORED_POINTS": "Zdobyte punkty"
 }
