@@ -31,14 +31,14 @@ export class RadioComponent<TData, TValue = TData> {
   public readonly = input<boolean>(false);
   public optionLabelPosition = input<RadioLabelPosition>(RadioLabelPosition.After);
   public translateOptionLabel = input<boolean>(false);
-  public color = input<InputColor>(InputColor.Default);
   public optionText = input<(option: TData) => string | TextConfig>();
   public optionValue = input<(option: TData) => TValue>();
+  public optionColor = input<(option: TData) => InputColor>(() => InputColor.Default);
   public disableLabelClick = input<boolean>(false);
   public vertical = input<boolean>(true);
 
-  public getRadioButtonColorClass(color: InputColor): string {
-    return 'app-radio-button-' + color;
+  public getRadioButtonColorClass(option: TData): string {
+    return 'radio-button-' + this.optionColor()(option);
   }
 
   public getOptionText(option: TData): TextConfig {

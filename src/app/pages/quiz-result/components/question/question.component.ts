@@ -32,7 +32,8 @@ export class QuizResultQuestionComponent implements OnInit {
 
   public readonly optionValue = (s: IQuizResultSingleChoiceQuestionRadioOption) => s.ordinalNumber;
   public readonly optionText = (s: IQuizResultSingleChoiceQuestionRadioOption) => s.text;
-  public readonly InputColor = InputColor;
+  public readonly optionColor = (s: IQuizResultSingleChoiceQuestionRadioOption) =>
+    this.getClosedQuestionAnswerColor(s);
   public readonly QuestionType = QuizQuestionType;
 
   public type!: QuizQuestionType;
@@ -40,10 +41,13 @@ export class QuizResultQuestionComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.question().type === QuizQuestionType.SingleChoice) {
-      this.options = this.castToSingleChoiceQuestion().answers.map((c) => {
+      const singleChoiceQuestion = this.castToSingleChoiceQuestion();
+      this.options = singleChoiceQuestion.answers.map((c) => {
         const result: IQuizResultSingleChoiceQuestionRadioOption = {
           ordinalNumber: c.ordinalNumber,
           text: c.text,
+          isCorrect: c.isCorrect,
+          isSelected: singleChoiceQuestion.selectedAnswerOrdinalNumber === c.ordinalNumber,
         };
         return result;
       });
@@ -62,11 +66,13 @@ export class QuizResultQuestionComponent implements OnInit {
     return this.question().response as QuizResultDetailsMultipleChoiceQuestionResponse;
   }
 
-  public getCheckboxColor(response: QuizResultDetailsMultipleChoiceQuestionAnswerResponse): InputColor {
-    if (response.isCorrect) {
+  public getClosedQuestionAnswerColor(
+    data: QuizResultDetailsMultipleChoiceQuestionAnswerResponse | IQuizResultSingleChoiceQuestionRadioOption,
+  ): InputColor {
+    if (data.isCorrect) {
       return InputColor.Green;
     }
 
-    return !response.isCorrect && response.isSelected ? InputColor.Red : InputColor.Default;
+    return !data.isCorrect && data.isSelected ? InputColor.Red : InputColor.Default;
   }
 }

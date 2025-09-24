@@ -6,20 +6,14 @@
   </div>
 }
 
-<mat-radio-group
-  [class]="['radio-group', getRadioButtonColorClass(color())]"
-  [class.d-flex]="!vertical()"
-  [formControl]="innerFormControl"
->
+<mat-radio-group [class.d-flex]="!vertical()" [formControl]="innerFormControl">
   @for (option of options(); track getOptionValue(option)) {
     <mat-radio-button
-      [class.readonly-radio-checkbox-input]="readonly()"
-      [class.disabled-radio-checkbox-input]="innerFormControl.disabled"
+      [class.radio-readonly]="readonly()"
+      [class.disabled-radio-input]="innerFormControl.disabled"
       [class.radio-button-vertical-rows]="vertical()"
-      class="radio-button radio-button-rows"
-      [disableRipple]="readonly()"
+      [class]="['radio-button', 'radio-button-rows', getRadioButtonColorClass(option)]"
       [value]="getOptionValue(option)"
-      (click)="readonly() ? $event.preventDefault() : null"
     >
       <div (click)="disableLabelClick() ? $event.preventDefault() : null">
         @if (optionTemplate()) {

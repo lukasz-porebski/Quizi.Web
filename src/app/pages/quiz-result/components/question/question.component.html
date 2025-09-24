@@ -22,7 +22,7 @@
                 [options]="options"
                 [optionValue]="optionValue"
                 [optionText]="optionText"
-                [color]="InputColor.Green"
+                [optionColor]="optionColor"
                 [readonly]="true"
               />
             }
@@ -32,7 +32,7 @@
                   [value]="answer.isSelected"
                   [readonly]="true"
                   [label]="{ text: answer.text }"
-                  [color]="getCheckboxColor(answer)"
+                  [color]="getClosedQuestionAnswerColor(answer)"
                 />
               }
             }

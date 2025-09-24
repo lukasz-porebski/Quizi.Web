@@ -2,7 +2,6 @@ import { Component, input, OnDestroy, OnInit } from '@angular/core';
 import { TextInputComponent } from '../../../../../../common/components/inputs/text/text.component';
 import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
 import { QuizPersistSingleChoiceQuestionRadioOption } from './models/single-choice-question-radio-option.model';
-import { InputColor } from '../../../../../../common/components/inputs/shared/enums/input-color.enum';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { Icon } from '../../../../../../common/enums/icon.enum';
 import { QuizPersistSingleChoiceQuestionFormGroup } from '../../form/quiz-persist-single-choice-question.form-group';
@@ -21,7 +20,6 @@ export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestr
 
   public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption) => s.ordinalNumber;
   public readonly Icon = Icon;
-  public readonly InputColor = InputColor;
 
   public options: QuizPersistSingleChoiceQuestionRadioOption[] = [];
 

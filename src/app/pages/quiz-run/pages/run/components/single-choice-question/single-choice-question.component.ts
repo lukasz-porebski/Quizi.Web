@@ -1,7 +1,6 @@
 import { Component, input, OnInit } from '@angular/core';
 import { RadioComponent } from '../../../../../../../../common/components/inputs/radio/radio.component';
 import { IQuizRunSingleChoiceQuestionRadioOption } from './interfaces/single-choice-question-radio-option.interface';
-import { InputColor } from '../../../../../../../../common/components/inputs/shared/enums/input-color.enum';
 import { QuizRunSingleChoiceQuestionFormControl } from '../../form/quiz-run-single-choice-question-form.control';
 
 @Component({
@@ -15,7 +14,6 @@ export class QuizPersistSingleChoiceQuestionComponent implements OnInit {
 
   public readonly optionValue = (s: IQuizRunSingleChoiceQuestionRadioOption) => s.no;
   public readonly optionText = (s: IQuizRunSingleChoiceQuestionRadioOption) => s.text;
-  public readonly InputColor = InputColor;
 
   public options: IQuizRunSingleChoiceQuestionRadioOption[] = [];
 
