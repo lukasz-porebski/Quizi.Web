@@ -11,6 +11,7 @@ import { IQuizResultSingleChoiceQuestionRadioOption } from './interfaces/single-
 import { RadioComponent } from '../../../../../../common/components/inputs/radio/radio.component';
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
+import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '../../models/responses/quiz-result-details-multiple-choice-question-answer.response';
 
 @Component({
   selector: 'app-quiz-result-question',
@@ -59,5 +60,13 @@ export class QuizResultQuestionComponent implements OnInit {
 
   public castToMultipleChoiceQuestion(): QuizResultDetailsMultipleChoiceQuestionResponse {
     return this.question().response as QuizResultDetailsMultipleChoiceQuestionResponse;
+  }
+
+  public getCheckboxColor(response: QuizResultDetailsMultipleChoiceQuestionAnswerResponse): InputColor {
+    if (response.isCorrect) {
+      return InputColor.Green;
+    }
+
+    return !response.isCorrect && response.isSelected ? InputColor.Red : InputColor.Default;
   }
 }

@@ -25,7 +25,7 @@ export class CheckboxComponent {
   public disableLabelClick = input<boolean>(false);
 
   public getCheckBoxColorClass(color: InputColor): string {
-    return 'app-checkbox-input-' + color;
+    return 'checkbox-' + color;
   }
 
   public innerFormControl!: FormControl<boolean>;

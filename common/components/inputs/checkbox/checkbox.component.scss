@@ -1,10 +1,4 @@
-@use "common-colors.scss" as colors;
-
-.app-checkbox-input {
-  ::ng-deep .mat-ripple {
-    display: none !important;
-  }
-
+.checkbox-input {
   ::ng-deep mat-checkbox {
     width: 100%;
 
@@ -18,41 +12,29 @@
   }
 }
 
-.app-checkbox-input-readonly {
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
-    opacity: 0.03 !important;
-  }
-
-  cursor: default !important;
-
-  ::ng-deep .mat-checkbox-inner-container {
-    overflow: hidden;
-  }
+.checkbox-readonly {
+  pointer-events: none;
 }
 
-@mixin app-checkbox-color($color) {
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
-    background-color: $color !important;
+@mixin checkbox-color($color) {
+  .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+    border-color: var($color);
+    background-color: var($color);
   }
 
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-    background-color: $color;
+  .mdc-checkbox__background {
+    border-color: var($color);
+  }
+
+  div {
+    color: var($color);
   }
 }
 
-.app-checkbox-input-default {
-  @include app-checkbox-color(colors.$app-secondary-light);
+:host ::ng-deep .checkbox-red {
+  @include checkbox-color(--bs-red);
 }
 
-.app-checkbox-input-green {
-  @include app-checkbox-color(colors.$app-success);
-}
-
-.app-checkbox-input-blue {
-  @include app-checkbox-color(colors.$app-primary);
-}
-
-.app-checkbox-input-red {
-  @include app-checkbox-color(colors.$app-error);
+:host ::ng-deep .checkbox-green {
+  @include checkbox-color(--bs-green);
 }

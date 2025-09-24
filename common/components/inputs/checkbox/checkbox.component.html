@@ -1,10 +1,8 @@
-<div [class]="['app-checkbox-input', getCheckBoxColorClass(color())]">
+<div [class]="['checkbox-input', getCheckBoxColorClass(color())]">
   <mat-checkbox
-    [class.app-checkbox-input-readonly]="readonly()"
+    [class.checkbox-readonly]="readonly()"
     [labelPosition]="labelPosition()"
-    [disableRipple]="true"
     [formControl]="innerFormControl"
-    (click)="readonly() ? $event.preventDefault() : null"
   >
     <div (click)="disableLabelClick() ? $event.preventDefault() : null">
       <ng-content #customLabel></ng-content>

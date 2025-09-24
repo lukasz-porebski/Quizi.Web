@@ -28,7 +28,12 @@
             }
             @case (QuestionType.MultipleChoice) {
               @for (answer of castToMultipleChoiceQuestion().answers; track answer.ordinalNumber) {
-                <app-checkbox [value]="answer.isSelected" [readonly]="true" [label]="{ text: answer.text }" />
+                <app-checkbox
+                  [value]="answer.isSelected"
+                  [readonly]="true"
+                  [label]="{ text: answer.text }"
+                  [color]="getCheckboxColor(answer)"
+                />
               }
             }
           }
