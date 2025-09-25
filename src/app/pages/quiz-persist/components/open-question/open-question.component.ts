@@ -12,4 +12,5 @@ import { TextareaInputComponent } from '../../../../../../common/components/inpu
 })
 export class QuizPersistOpenQuestionComponent {
   public formGroup = input.required<FormGroup<IQuizPersistFormOpenQuestion>>();
+  public isPreview = input.required<boolean>();
 }

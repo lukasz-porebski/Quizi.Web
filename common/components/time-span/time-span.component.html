@@ -8,6 +8,7 @@
         [label]="{ text: 'HOURS' }"
         [min]="minHours()"
         [max]="maxHours()"
+        [readonly]="readOnly()"
       />
       <app-number-input
         class="me-2"
@@ -15,6 +16,7 @@
         [label]="{ text: 'MINUTES' }"
         [min]="minMinutes()"
         [max]="maxMinutes()"
+        [readonly]="readOnly()"
       />
       <app-number-input
         class="me-2"
@@ -22,6 +24,7 @@
         [label]="{ text: 'SECONDS' }"
         [min]="minSeconds()"
         [max]="maxSeconds()"
+        [readonly]="readOnly()"
       />
     </div>
 

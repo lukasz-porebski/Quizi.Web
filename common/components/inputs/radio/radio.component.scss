@@ -25,10 +25,6 @@
   }
 }
 
-.radio-readonly {
-  pointer-events: none;
-}
-
 @mixin radio-button-color($color) {
   .mdc-radio__native-control:enabled:checked + .mdc-radio__background > .mdc-radio__outer-circle {
     border-color: var($color);

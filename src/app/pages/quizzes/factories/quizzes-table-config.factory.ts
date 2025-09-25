@@ -60,6 +60,15 @@ export class QuizzesTableConfigFactory {
           },
           {
             name: {
+              text: 'PREVIEW',
+            },
+            icon: Icon.Search,
+            onClick: (rowValue) => {
+              this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
+            },
+          },
+          {
+            name: {
               text: 'START',
             },
             icon: Icon.PowerSettingsNew,

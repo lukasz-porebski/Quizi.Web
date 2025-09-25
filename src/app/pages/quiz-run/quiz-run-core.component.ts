@@ -66,10 +66,7 @@ export class QuizRunCoreComponent implements OnInit {
           openQuestionsVerificationForm,
         ),
       )
-      .then((quizResultId) => {
-        console.log('quizResultId', quizResultId);
-        return this._router.navigateByUrl(`${Route.QuizResult}${quizResultId}`);
-      })
+      .then((quizResultId) => this._router.navigateByUrl(`${Route.QuizResult}${quizResultId}`))
       .finally(() => (this._isSaving = false));
   }
 }

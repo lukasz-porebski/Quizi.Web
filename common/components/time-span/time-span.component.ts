@@ -20,4 +20,5 @@ export class TimeSpanComponent {
   public maxMinutes = input<number>(60);
   public minSeconds = input<number>(0);
   public maxSeconds = input<number>(60);
+  public readOnly = input<boolean>(false);
 }

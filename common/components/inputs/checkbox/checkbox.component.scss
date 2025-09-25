@@ -12,10 +12,6 @@
   }
 }
 
-.checkbox-readonly {
-  pointer-events: none;
-}
-
 @mixin checkbox-color($color) {
   .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
     border-color: var($color);

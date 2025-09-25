@@ -50,6 +50,7 @@ export class QuizPersistComponent implements OnInit {
   public readonly ButtonStyle = ButtonStyle;
 
   public form!: QuizPersistFormGroup;
+  public isPreview = false;
 
   private readonly _persistApiService = inject(QuizPersistApiService);
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -65,6 +66,7 @@ export class QuizPersistComponent implements OnInit {
     if (isDefined(id)) {
       this._id = id;
       response = await this._persistApiService.getDetails(id);
+      this.isPreview = this._activatedRoute.snapshot.routeConfig?.path?.includes(Route.QuizPreview) ?? false;
     }
 
     this.form = QuizPersistFormFactory.Create(response);

@@ -1,7 +1,8 @@
 export enum Route {
   Quizzes = 'quizzes',
-  QuizEdit = 'quizzes/edit/',
   QuizCreate = 'quizzes/create',
+  QuizEdit = 'quizzes/edit/',
+  QuizPreview = 'quizzes/preview/',
   QuizRun = 'quizzes/run/',
   QuizResults = 'quiz-results',
   QuizResult = 'quiz-results/',

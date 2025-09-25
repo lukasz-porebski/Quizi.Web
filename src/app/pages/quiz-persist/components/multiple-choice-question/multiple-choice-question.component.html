@@ -1,16 +1,30 @@
 <div class="d-flex align-items-center">
-  <app-text-input class="w-100" [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
-  <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
+  <app-text-input
+    class="w-100"
+    [formControl]="formGroup().controls.text"
+    [label]="{ text: 'QUESTION' }"
+    [readonly]="isPreview()"
+  />
+  @if (!isPreview()) {
+    <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
+  }
 </div>
 
 @for (answer of formGroup().controls.answers.controls; track answer) {
-  <app-checkbox [formControl]="answer.controls.isCorrect" [disableLabelClick]="true">
+  <app-checkbox [formControl]="answer.controls.isCorrect" [disableLabelClick]="true" [readonly]="isPreview()">
     <div class="d-flex align-items-center">
-      <app-text-input class="w-100" [formControl]="answer.controls.text" [label]="{ text: 'ANSWER' }" />
-      <app-button
-        [icon]="Icon.Delete"
-        (onClick)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
-      ></app-button>
+      <app-text-input
+        class="w-100"
+        [formControl]="answer.controls.text"
+        [label]="{ text: 'ANSWER' }"
+        [readonly]="isPreview()"
+      />
+      @if (!isPreview()) {
+        <app-button
+          [icon]="Icon.Delete"
+          (onClick)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
+        ></app-button>
+      }
     </div>
   </app-checkbox>
 }

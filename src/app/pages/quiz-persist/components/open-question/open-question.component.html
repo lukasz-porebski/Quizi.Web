@@ -1,2 +1,10 @@
-<app-text-input [formControl]="formGroup().controls.text" [label]="{ text: 'QUESTION' }" />
-<app-textarea-input [formControl]="formGroup().controls.answer" [label]="{ text: 'ANSWER' }" />
+<app-text-input
+  [formControl]="formGroup().controls.text"
+  [label]="{ text: 'QUESTION' }"
+  [readonly]="isPreview()"
+/>
+<app-textarea-input
+  [formControl]="formGroup().controls.answer"
+  [label]="{ text: 'ANSWER' }"
+  [readonly]="isPreview()"
+/>

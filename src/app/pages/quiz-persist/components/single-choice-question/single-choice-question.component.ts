@@ -17,6 +17,7 @@ import { MatError } from '@angular/material/form-field';
 })
 export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestroy {
   public formGroup = input.required<QuizPersistSingleChoiceQuestionFormGroup>();
+  public isPreview = input.required<boolean>();
 
   public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption) => s.ordinalNumber;
   public readonly Icon = Icon;

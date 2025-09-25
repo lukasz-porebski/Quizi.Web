@@ -1,4 +1,4 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, input, viewChild } from '@angular/core';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -24,11 +24,16 @@ import { SelectOptionModel } from './models/select-option.model';
   styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent<TData, TValue = TData> {
+  public selectComponent = viewChild.required<MatSelect>('selectComponentMarker');
+
   public formControl = input.required<FormControl<TValue>>();
   public label = input.required<ITextConfig>();
   public dataSource = input.required<SelectOptionModel<TData>[]>();
   public valueSelector = input<(o: SelectOptionModel<TData>) => TValue>((o) => o.data as unknown as TValue);
   public optionTextSelector = input<(o: SelectOptionModel<TData>) => TextConfig>((o) => o.text);
+  public readonly = input<boolean>(false);
+
+  public readonly InputValidation = InputValidation;
 
   public innerLabel!: TextConfig;
 
@@ -37,6 +42,4 @@ export class SelectComponent<TData, TValue = TData> {
       this.innerLabel = new TextConfig(this.label());
     });
   }
-
-  protected readonly InputValidation = InputValidation;
 }

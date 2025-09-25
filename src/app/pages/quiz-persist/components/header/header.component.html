@@ -5,6 +5,7 @@
       [label]="{ text: 'TITLE' }"
       [minLength]="Constants.MinTitleLength"
       [maxLength]="Constants.MaxTitleLength"
+      [readonly]="isPreview()"
     />
   </div>
 </div>
@@ -14,12 +15,18 @@
       [formControl]="form().controls.description"
       [label]="{ text: 'DESCRIPTION' }"
       [maxLength]="Constants.MaxDescriptionLength"
+      [readonly]="isPreview()"
     />
   </div>
 </div>
 <div class="row">
   <div class="col">
-    <app-time-span class="d-block mb-2" [formGroup]="form().controls.duration" [maxHours]="3" />
+    <app-time-span
+      class="d-block mb-2"
+      [formGroup]="form().controls.duration"
+      [maxHours]="3"
+      [readOnly]="isPreview()"
+    />
   </div>
 </div>
 <div class="row">
@@ -29,11 +36,13 @@
       [min]="Constants.MinQuestionsCountInRunningQuiz"
       [max]="maxQuestionsCountInRunningQuiz"
       [label]="{ text: 'QUESTIONS_COUNT_IN_RUNNING_QUIZ' }"
+      [readonly]="isPreview()"
     />
   </div>
   <div class="col">
     <app-select
       [formControl]="form().controls.copyMode"
+      [readonly]="isPreview()"
       [label]="{ text: 'COPY_MODE' }"
       [dataSource]="copyModes"
     />
@@ -41,12 +50,24 @@
 </div>
 <div class="row mb-2">
   <div class="col">
-    <app-checkbox [formControl]="form().controls.randomQuestions" [label]="{ text: 'RANDOM_QUESTIONS' }" />
+    <app-checkbox
+      [formControl]="form().controls.randomQuestions"
+      [label]="{ text: 'RANDOM_QUESTIONS' }"
+      [readonly]="isPreview()"
+    />
   </div>
   <div class="col">
-    <app-checkbox [formControl]="form().controls.randomAnswers" [label]="{ text: 'RANDOM_ANSWERS' }" />
+    <app-checkbox
+      [formControl]="form().controls.randomAnswers"
+      [label]="{ text: 'RANDOM_ANSWERS' }"
+      [readonly]="isPreview()"
+    />
   </div>
   <div class="col">
-    <app-checkbox [formControl]="form().controls.negativePoints" [label]="{ text: 'NEGATIVE_POINTS' }" />
+    <app-checkbox
+      [formControl]="form().controls.negativePoints"
+      [label]="{ text: 'NEGATIVE_POINTS' }"
+      [readonly]="isPreview()"
+    />
   </div>
 </div>

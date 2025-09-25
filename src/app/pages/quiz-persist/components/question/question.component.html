@@ -1,31 +1,39 @@
 <div class="row mb-3">
   <div class="col">
     <div class="d-flex align-items-center">
-      <div>
-        @if (!form().isFirstQuestion(question())) {
-          <app-button
-            [icon]="Icon.ArrowUpward"
-            (onClick)="form().moveForwardQuestion(question())"
-          ></app-button>
-        }
-        @if (!form().isLastQuestion(question())) {
-          <app-button
-            [icon]="Icon.ArrowDownward"
-            (onClick)="form().moveBackQuestion(question())"
-          ></app-button>
-        }
-      </div>
+      @if (!isPreview()) {
+        <div>
+          @if (!form().isFirstQuestion(question())) {
+            <app-button
+              [icon]="Icon.ArrowUpward"
+              (onClick)="form().moveForwardQuestion(question())"
+            ></app-button>
+          }
+          @if (!form().isLastQuestion(question())) {
+            <app-button
+              [icon]="Icon.ArrowDownward"
+              (onClick)="form().moveBackQuestion(question())"
+            ></app-button>
+          }
+        </div>
+      }
       <mat-card appearance="outlined" class="w-100">
         <mat-card-content>
           @switch (question().type) {
             @case (QuestionType.Open) {
-              <app-quiz-persist-open-question [formGroup]="castToOpenQuestion()" />
+              <app-quiz-persist-open-question [formGroup]="castToOpenQuestion()" [isPreview]="isPreview()" />
             }
             @case (QuestionType.SingleChoice) {
-              <app-quiz-persist-single-choice-question [formGroup]="castToSingleChoiceQuestion()" />
+              <app-quiz-persist-single-choice-question
+                [formGroup]="castToSingleChoiceQuestion()"
+                [isPreview]="isPreview()"
+              />
             }
             @case (QuestionType.MultipleChoice) {
-              <app-quiz-persist-multiple-choice-question [formGroup]="castToMultipleChoiceQuestion()" />
+              <app-quiz-persist-multiple-choice-question
+                [formGroup]="castToMultipleChoiceQuestion()"
+                [isPreview]="isPreview()"
+              />
             }
           }
 
@@ -34,7 +42,9 @@
           }
         </mat-card-content>
       </mat-card>
-      <app-button [icon]="Icon.Delete" (onClick)="form().removeQuestion(question())"></app-button>
+      @if (!isPreview()) {
+        <app-button [icon]="Icon.Delete" (onClick)="form().removeQuestion(question())" />
+      }
     </div>
   </div>
 </div>

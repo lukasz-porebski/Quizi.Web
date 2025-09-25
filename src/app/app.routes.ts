@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: Route.Quizzes, component: QuizzesComponent },
   { path: Route.QuizCreate, component: QuizPersistComponent },
   { path: `${Route.QuizEdit}:id`, component: QuizPersistComponent },
+  { path: `${Route.QuizPreview}:id`, component: QuizPersistComponent },
   { path: `${Route.QuizRun}:id`, component: QuizRunCoreComponent },
   { path: Route.QuizResults, component: QuizResultsComponent },
   { path: `${Route.QuizResult}:id`, component: QuizResultComponent },

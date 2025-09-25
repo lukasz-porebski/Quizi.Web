@@ -25,6 +25,7 @@ import { TextareaInputComponent } from '../../../../../../common/components/inpu
 })
 export class QuizPersistHeaderComponent {
   public form = input.required<QuizPersistFormGroup>();
+  public isPreview = input.required<boolean>();
 
   public get maxQuestionsCountInRunningQuiz(): number {
     return this.form().getQuestions().length;

@@ -32,6 +32,7 @@ import { QuizPersistOpenQuestionFormGroup } from '../../form/quiz-persist-open-q
 export class QuizPersistQuestionComponent {
   public form = input.required<QuizPersistFormGroup>();
   public question = input.required<QuizPersistFormQuestion>();
+  public isPreview = input.required<boolean>();
 
   public readonly QuestionType = QuizPersistFormQuestionType;
   public readonly Icon = Icon;
