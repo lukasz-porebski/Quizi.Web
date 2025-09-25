@@ -1,13 +1,14 @@
 import { isDefined } from '../../../../utils/utils';
 import { Icon } from '../../../../enums/icon.enum';
 import { ITextConfig, TextConfig } from '../../../../models/text.config';
+import { ITableComponent } from '../../interfaces/table-component.interface';
 
 export interface ITableColumnActionConfig<TData> {
   icon?: Icon;
   name?: ITextConfig;
   disabled?: boolean | ((rowValue: Readonly<TData>) => boolean);
   hide?: boolean | ((rowValue: Readonly<TData>) => boolean);
-  onClick?: (rowValue: Readonly<TData>) => void;
+  onClick?: (rowValue: Readonly<TData>, table: ITableComponent) => void;
 }
 
 export class TableColumnActionConfig<TData> {
@@ -15,7 +16,7 @@ export class TableColumnActionConfig<TData> {
   public name?: TextConfig;
   public disabled!: (data: Readonly<TData>) => boolean;
   public hide!: boolean | ((data: Readonly<TData>) => boolean);
-  public onClick!: (data: Readonly<TData>) => void;
+  public onClick!: (data: Readonly<TData>, table: ITableComponent) => void;
 
   public constructor(config: ITableColumnActionConfig<TData>) {
     this.icon = config.icon;

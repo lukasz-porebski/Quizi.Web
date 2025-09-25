@@ -6,7 +6,7 @@
     <button
       mat-menu-item
       [hidden]="applyBooleanOrCallableColumnValue(action.hide, data())"
-      (click)="action.onClick(data())"
+      (click)="action.onClick(data(), tableComponent())"
       [disabled]="action.disabled(data())"
     >
       @if (action.icon) {

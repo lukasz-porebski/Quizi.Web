@@ -38,6 +38,7 @@ import { SortRequest } from '../../models/requests/sort.request';
 import { Optional } from '../../types/optional.type';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
+import { ITableComponent } from './interfaces/table-component.interface';
 
 @Component({
   selector: 'app-table',
@@ -73,7 +74,7 @@ import { TableActionsDefinitionComponent } from './components/actions-definition
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
 })
-export class TableComponent<TData> implements OnInit, AfterViewInit {
+export class TableComponent<TData> implements OnInit, AfterViewInit, ITableComponent {
   public searchInput = viewChild<ElementRef>('searchInput');
 
   public config = input.required<TableConfig<TData>>();
@@ -123,25 +124,21 @@ export class TableComponent<TData> implements OnInit, AfterViewInit {
     });
   }
 
-  // public async refreshDataSource(): Promise<void> {
-  //   this._spinner = true;
-  //
-  //   this.dataSource = this.config().dataSource;
-  //   const initialSelectionValue = isDefined(
-  //     this.config().selection?.initialSelection,
-  //   )
-  //     ? [
-  //         this.config().selection!.initialSelection!(
-  //           dataSource.map((d) => d.data),
-  //         ),
-  //       ]
-  //     : [];
-  //   this.selection = new SelectionModel<TableRow<TData>>(
-  //     false,
-  //     initialSelectionValue.map((d) => new TableRow(d)),
-  //   );
-  //   this._spinner = false;
-  // }
+  public async refreshDataSource(): Promise<void> {
+    this.dataSource.fetchData(
+      new PaginationRequest(
+        this.dataSource.response.pagination.pageNumber,
+        this.dataSource.response.pagination.pageSize,
+        isDefined(this.dataSource.response.pagination.sort)
+          ? new SortRequest(
+              this.dataSource.response.pagination.sort.columnName,
+              this.dataSource.response.pagination.sort.isAscending,
+            )
+          : undefined,
+        this.dataSource.response.pagination.search,
+      ),
+    );
+  }
 
   public onRowClick(row: TableRow<TData>): void {
     if (this.isSelectionEnable) {

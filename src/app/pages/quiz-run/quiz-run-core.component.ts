@@ -46,7 +46,7 @@ export class QuizRunCoreComponent implements OnInit {
 
   public async tryPersist(event: QuizRunFinishedEvent): Promise<void> {
     this.quizRunFinishedEvent = event;
-    if (isEmpty(this.quizRunFinishedEvent.form.value.openQuestions)) {
+    if (isEmpty(this.quizRunFinishedEvent.form.value.openQuestions?.filter((o) => !isEmpty(o)))) {
       await this.persist(null);
     } else {
       this.isOpenQuestionsVerification = true;
@@ -66,7 +66,10 @@ export class QuizRunCoreComponent implements OnInit {
           openQuestionsVerificationForm,
         ),
       )
-      .then(() => this._router.navigateByUrl(Route.Quizzes))
+      .then((quizResultId) => {
+        console.log('quizResultId', quizResultId);
+        return this._router.navigateByUrl(`${Route.QuizResult}${quizResultId}`);
+      })
       .finally(() => (this._isSaving = false));
   }
 }

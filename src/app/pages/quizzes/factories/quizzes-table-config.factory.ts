@@ -5,9 +5,11 @@ import { Icon } from '../../../../../common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '../../../core/enums/route.enum';
+import { QuizzesListApiService } from '../services/quizzes-list-api.service';
 
 @Injectable()
 export class QuizzesTableConfigFactory {
+  private readonly _apiService = inject(QuizzesListApiService);
   private readonly _dataSourceService = inject(QuizzesDataSourceService);
   private readonly _router = inject(Router);
 
@@ -63,6 +65,15 @@ export class QuizzesTableConfigFactory {
             icon: Icon.PowerSettingsNew,
             onClick: (rowValue) => {
               this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
+            },
+          },
+          {
+            name: {
+              text: 'REMOVE',
+            },
+            icon: Icon.Delete,
+            onClick: (rowValue, table) => {
+              this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
             },
           },
         ],

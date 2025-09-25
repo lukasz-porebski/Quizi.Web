@@ -26,10 +26,13 @@ export abstract class BaseApiService {
     url: string,
     request?: TRequest,
     map?: (response: TRawResponse) => TResponse,
+    resultType: 'json' | 'text' = 'json',
   ): Promise<TResponse> {
-    return firstValueFrom(this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request)).then((r) =>
-      isDefined(map) ? map(r) : (r as unknown as TResponse),
-    );
+    return firstValueFrom(
+      this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request, {
+        responseType: resultType as any,
+      }),
+    ).then((r) => (isDefined(map) ? map(r) : (r as unknown as TResponse)));
   }
 
   protected patch<TRequest, TResponse = void, TRawResponse = TResponse>(
@@ -38,6 +41,15 @@ export abstract class BaseApiService {
     map?: (response: TRawResponse) => TResponse,
   ): Promise<TResponse> {
     return firstValueFrom(this._httpClient.patch<TRawResponse>(`${this._apiUrl}${url}`, request)).then((r) =>
+      isDefined(map) ? map(r) : (r as unknown as TResponse),
+    );
+  }
+
+  protected delete<TResponse = void, TRawResponse = TResponse>(
+    url: string,
+    map?: (response: TRawResponse) => TResponse,
+  ): Promise<TResponse> {
+    return firstValueFrom(this._httpClient.delete<TRawResponse>(`${this._apiUrl}${url}`)).then((r) =>
       isDefined(map) ? map(r) : (r as unknown as TResponse),
     );
   }

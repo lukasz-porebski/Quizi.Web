@@ -3,11 +3,17 @@ import { BaseApiService } from '../../../../../../../common/services/base-api.se
 import { QuizToRunRawResponse, QuizToRunResponse } from '../models/responses/quiz-to-run.response';
 import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
 import { QuizVerifyRequest } from '../models/requests/quiz-verify.request';
+import { AggregateId } from '../../../../../../../common/types/aggregate-id.type';
 
 @Injectable()
 export class QuizRunApiService extends BaseApiService {
-  public verify(request: QuizVerifyRequest): Promise<void> {
-    return this.post('quizzes-verification/verify', request);
+  public verify(request: QuizVerifyRequest): Promise<AggregateId> {
+    return this.post<QuizVerifyRequest, AggregateId>(
+      'quizzes-verification/verify',
+      request,
+      undefined,
+      'text',
+    );
   }
 
   public getQuizToRun(id: string): Promise<QuizToRunResponse> {

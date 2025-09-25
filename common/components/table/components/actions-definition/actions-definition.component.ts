@@ -4,6 +4,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translation.pipe';
+import { ITableComponent } from '../../interfaces/table-component.interface';
 
 @Component({
   selector: 'app-table-actions-definition',
@@ -12,6 +13,7 @@ import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translati
   styleUrls: ['./actions-definition.component.scss', '../../styles/table.shared.scss'],
 })
 export class TableActionsDefinitionComponent<TData> {
+  public tableComponent = input.required<ITableComponent>();
   public actionsDefinition = input.required<TableColumnActionsConfig<TData>>();
   public data = input.required<TData>();
   public shouldShowSpinner = input.required<boolean>();

@@ -51,6 +51,7 @@
         <mat-header-cell *matHeaderCellDef class="action-column-width" />
         <mat-cell *matCellDef="let row" class="action-column-width">
           <app-table-actions-definition
+            [tableComponent]="this"
             [actionsDefinition]="config().actionsDefinition!"
             [data]="row.data!"
             [shouldShowSpinner]="shouldShowSpinner"
