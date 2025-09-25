@@ -9,4 +9,6 @@ export enum Icon {
   ArrowDownward = 'arrow_downward',
   Edit = 'edit',
   PowerSettingsNew = 'power_settings_new',
+  Search = 'search',
+  ChecklistRtl = 'checklist_rtl',
 }

@@ -83,6 +83,6 @@ export class QuizResultComponent implements OnInit {
   }
 
   public async backToList(): Promise<void> {
-    await this._router.navigateByUrl(Route.Quizzes);
+    await this._router.navigateByUrl(Route.QuizResults);
   }
 }

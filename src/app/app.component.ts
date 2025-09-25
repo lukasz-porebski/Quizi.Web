@@ -4,6 +4,7 @@ import { NavigationComponent } from '../../common/components/navigation/navigati
 import { NavigationConfig } from '../../common/components/navigation/models/navigation.config';
 import { Icon } from '../../common/enums/icon.enum';
 import { RouterOutlet } from '@angular/router';
+import { Route } from './core/enums/route.enum';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,12 @@ export class AppComponent {
       {
         text: 'QUIZZES',
         icon: Icon.List,
+        navigateUrl: Route.Quizzes,
+      },
+      {
+        text: 'QUIZ_RESULTS',
+        icon: Icon.ChecklistRtl,
+        navigateUrl: Route.QuizResults,
       },
     ],
   });
