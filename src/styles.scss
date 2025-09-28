@@ -1,3 +1,20 @@
+@use "@angular/material" as mat;
+@use "../public/styles/theme" as theme;
+
+@include mat.core();
+
+$base: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+    ),
+  )
+);
+
+:root {
+  @include mat.theme($base);
+}
+
 html,
 body {
   margin: 0;

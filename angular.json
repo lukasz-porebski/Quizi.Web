@@ -31,7 +31,6 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
               "public/styles/common-colors.scss",
               "public/styles/common.scss",
               "public/styles/bootstrap.scss",
@@ -100,7 +99,6 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
               "public/styles/common-colors.scss",
               "public/styles/common.scss",
               "public/styles/bootstrap.scss",

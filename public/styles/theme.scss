@@ -1,0 +1,83 @@
+@use "@angular/material" as mat;
+
+:root,
+:host {
+  @include mat.theme-overrides(
+    (
+      primary: #4955b3,
+      on-primary: #ffffff,
+      primary-container: #dfe0ff,
+      on-primary-container: #000c62,
+      inverse-primary: #bcc2ff,
+      primary-fixed: #dfe0ff,
+      primary-fixed-dim: #bcc2ff,
+      on-primary-fixed: #000c62,
+      on-primary-fixed-variant: #303c9a,
+      secondary: #4955b3,
+      on-secondary: #ffffff,
+      secondary-container: #dfe0ff,
+      on-secondary-container: #000c62,
+      secondary-fixed: #dfe0ff,
+      secondary-fixed-dim: #bcc2ff,
+      on-secondary-fixed: #000c62,
+      on-secondary-fixed-variant: #303c9a,
+      tertiary: #4955b3,
+      on-tertiary: #ffffff,
+      tertiary-container: #dfe0ff,
+      on-tertiary-container: #000c62,
+      tertiary-fixed: #dfe0ff,
+      tertiary-fixed-dim: #bcc2ff,
+      on-tertiary-fixed: #000c62,
+      on-tertiary-fixed-variant: #303c9a,
+      background: #fcf8f9,
+      on-background: #1c1b1c,
+      surface: #fcf8f9,
+      surface-dim: #ddd9d9,
+      surface-bright: #fcf8f9,
+      surface-container-lowest: #ffffff,
+      surface-container-low: #f7f3f3,
+      surface-container: #f1eded,
+      surface-container-high: #ebe7e7,
+      surface-container-highest: #e5e2e2,
+      on-surface: #1c1b1c,
+      shadow: #000000,
+      scrim: #000000,
+      surface-tint: #5e5e65,
+      inverse-surface: #313031,
+      inverse-on-surface: #f4f0f0,
+      outline: #78767c,
+      outline-variant: #c8c5cc,
+      neutral: #787676,
+      neutral10: #1c1b1c,
+      error: #ba1a1a,
+      error-container: #ffdad6,
+      on-error: #ffffff,
+      on-error-container: #410002,
+      surface-variant: #e4e1e8,
+      on-surface-variant: #47464c,
+      neutral-variant: #77767c,
+      neutral-variant20: #303035,
+      inverse-secondary: #bcc2ff,
+      inverse-tertiary: #bcc2ff,
+    )
+  );
+}
+
+:root,
+:host {
+  --mat-sys-brand-font-family: Roboto;
+  --mat-sys-plain-font-family: Roboto;
+  --mat-sys-bold-font-weight: 700;
+  --mat-sys-medium-font-weight: 500;
+  --mat-sys-regular-font-weight: 400;
+
+  @include mat.theme-overrides(
+    (
+      brand-family: Roboto,
+      plain-family: Roboto,
+      bold-weight: 700,
+      medium-weight: 500,
+      regular-weight: 400,
+    )
+  );
+}
