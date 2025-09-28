@@ -14,7 +14,7 @@ import { Route } from './core/enums/route.enum';
 })
 export class AppComponent {
   public readonly navigationConfig = new NavigationConfig({
-    logoPath: '',
+    logoPath: 'images/Backgroud.png',
     menu: [
       {
         text: 'QUIZZES',

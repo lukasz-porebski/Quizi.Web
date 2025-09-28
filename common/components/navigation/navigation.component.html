@@ -2,7 +2,7 @@
   <mat-sidenav-container>
     <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="true">
       <div class="logo" (click)="navigateToHome()">
-        <img [ngSrc]="config().logoPath" />
+        <img [ngSrc]="config().logoPath" [width]="100" [height]="99" priority />
       </div>
 
       <mat-accordion displayMode="flat" multi>
