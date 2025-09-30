@@ -19,12 +19,13 @@
 
   mat-sidenav {
     border-radius: 0;
-    background: var(--mat-sys-primary-container);
+    background: colors.$app-backgroud;
     border-right: 1px solid var(--mat-sys-outline-variant);
   }
 
   ::ng-deep .mat-toolbar {
-    background: var(--mat-sys-primary-container);
+    background: colors.$app-backgroud;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
   }
 }
 
@@ -87,4 +88,15 @@ mat-expansion-panel {
 
 .third-level {
   margin-left: 1rem;
+}
+
+mat-sidenav-content {
+  overflow: hidden;
+  background: colors.$app-backgroud;
+}
+
+.content {
+  padding: 0.5rem;
+  overflow: auto;
+  height: calc(100vh - var(--mat-toolbar-standard-height, 64px));
 }

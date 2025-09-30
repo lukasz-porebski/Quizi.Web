@@ -1,15 +1,9 @@
-@use "common-colors.scss" as colors;
-
 .app-button {
   ::ng-deep .mat-button-wrapper {
     padding: 0 3vw;
   }
 }
 
-.white-and-black-color {
-  button {
-    background-color: colors.$app-white;
-    color: colors.$app-black;
-    border: 1px solid colors.$app-black;
-  }
+button {
+  border-radius: 4px;
 }
