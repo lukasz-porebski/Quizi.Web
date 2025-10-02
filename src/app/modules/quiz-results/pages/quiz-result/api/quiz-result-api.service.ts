@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   QuizResultDetailsRawResponse,
   QuizResultDetailsResponse,
-} from '../models/responses/quiz-result-details.response';
+} from './responses/quiz-result-details.response';
 import { BaseApiService } from '../../../../../../../common/services/base-api.service';
 import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
 import { PeriodViewModel } from '../../../../../../../common/models/views/period.view-model';

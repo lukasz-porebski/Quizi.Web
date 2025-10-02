@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '../../../../../../../../../common/services/base-api.service';
-import { QuizOpenQuestionAnswerForVerificationResponse } from '../models/quiz-open-question-answer-for-verification.response';
+import { QuizOpenQuestionAnswerForVerificationResponse } from './responses/quiz-open-question-answer-for-verification.response';
 
 @Injectable()
 export class QuizRunOpenQuestionsVerificationApiService extends BaseApiService {

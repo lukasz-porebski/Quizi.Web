@@ -1,5 +1,5 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
-import { QuizRunOpenQuestionsVerificationApiService } from './services/quiz-run-open-questions-verification-api.service';
+import { QuizRunOpenQuestionsVerificationApiService } from './api/quiz-run-open-questions-verification-api.service';
 import { QuizRunOpenQuestionFormControl } from '../run/form/quiz-run-open-question-form.control';
 import { FormArray, FormsModule } from '@angular/forms';
 import { AggregateId } from '../../../../../../../../common/types/aggregate-id.type';

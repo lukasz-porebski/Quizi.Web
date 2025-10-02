@@ -1,4 +1,4 @@
-import { QuizToRunResponse } from '../models/responses/quiz-to-run.response';
+import { QuizToRunResponse } from '../api/responses/quiz-to-run.response';
 import { FormArray, FormGroup } from '@angular/forms';
 import { QuizRunSingleChoiceQuestionFormControl } from '../form/quiz-run-single-choice-question-form.control';
 import { QuizRunMultipleChoiceQuestionFormArray } from '../form/quiz-run-multiple-choice-question-form.array';

@@ -1,5 +1,5 @@
 import { TableConfig } from '../../../../../../../common/components/table/models/table.config';
-import { QuizResultsListItemResponse } from '../models/quiz-results-list-item.response';
+import { QuizResultsListItemResponse } from '../api/responses/quiz-results-list-item.response';
 import { QuizResultsDataSourceService } from '../services/quiz-results-data-source.service';
 import { Icon } from '../../../../../../../common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';

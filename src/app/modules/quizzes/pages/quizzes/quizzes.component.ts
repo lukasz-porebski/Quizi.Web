@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TableComponent } from '../../../../../../common/components/table/table.component';
 import { QuizzesTableConfigFactory } from './factories/quizzes-table-config.factory';
-import { QuizzesListApiService } from './services/quizzes-list-api.service';
+import { QuizzesListApiService } from './api/quizzes-list-api.service';
 import { QuizzesDataSourceService } from './services/quizzes-data-source.service';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';

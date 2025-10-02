@@ -3,9 +3,10 @@ import { BaseApiService } from '../../../../../../../common/services/base-api.se
 import {
   QuizResultsListItemRawResponse,
   QuizResultsListItemResponse,
-} from '../models/quiz-results-list-item.response';
+} from './responses/quiz-results-list-item.response';
 import { PaginatedListResponse } from '../../../../../../../common/models/responses/paginated-list.response';
 import { PaginationRequest } from '../../../../../../../common/models/requests/pagination.request';
+import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
 
 @Injectable()
 export class QuizResultsListApiService extends BaseApiService {
@@ -17,7 +18,13 @@ export class QuizResultsListApiService extends BaseApiService {
       'quiz-results/list',
       (response) =>
         new PaginatedListResponse<QuizResultsListItemResponse>({
-          items: response.items.map((i) => new QuizResultsListItemResponse(i)),
+          items: response.items.map((i) => ({
+            ...i,
+            quizRunningPeriodStart: new Date(i.quizRunningPeriodStart),
+            quizRunningPeriodEnd: new Date(i.quizRunningPeriodEnd),
+            duration: TimeSpanModel.CreateByTimeSpan(i.duration),
+            maxDuration: TimeSpanModel.CreateByTimeSpan(i.maxDuration),
+          })),
           pagination: response.pagination,
           totalCount: response.totalCount,
         }),

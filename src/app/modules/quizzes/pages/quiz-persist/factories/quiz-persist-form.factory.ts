@@ -1,4 +1,4 @@
-import { QuizDetailsResponse } from '../models/responses/quiz-details.response';
+import { QuizDetailsResponse } from '../api/responses/quiz-details.response';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuizPersistFormOpenQuestionFactory } from './quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from './quiz-persist-form-single-choice-question.factory';

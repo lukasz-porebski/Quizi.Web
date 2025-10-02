@@ -1,4 +1,4 @@
-import { QuizToRunClosedQuestionResponse } from '../models/responses/quiz-to-run-closed-question.response';
+import { QuizToRunClosedQuestionResponse } from '../api/responses/quiz-to-run-closed-question.response';
 import { FormArray } from '@angular/forms';
 import { QuizRunMultipleChoiceQuestionAnswerFormControl } from './quiz-run-multiple-choice-question-answer-form.control';
 import { QuizQuestionType } from '../../../../../../../core/enums/quiz-question-type.enum';

@@ -1,6 +1,6 @@
 import { sortBy } from 'remeda';
 import { IQuizResultQuestion } from '../components/question/interfaces/quiz-result-question.interface';
-import { QuizResultDetailsResponse } from '../models/responses/quiz-result-details.response';
+import { QuizResultDetailsResponse } from '../api/responses/quiz-result-details.response';
 import { QuizQuestionType } from '../../../../../core/enums/quiz-question-type.enum';
 
 export namespace QuizResultQuestionsHelper {

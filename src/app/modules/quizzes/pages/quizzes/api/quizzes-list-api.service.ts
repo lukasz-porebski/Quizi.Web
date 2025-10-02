@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '../../../../../../../common/services/base-api.service';
-import { QuizzesListItemRawResponse, QuizzesListItemResponse } from '../models/quizzes-list-Item.response';
+import { QuizzesListItemRawResponse, QuizzesListItemResponse } from './responses/quizzes-list-Item.response';
 import { PaginatedListResponse } from '../../../../../../../common/models/responses/paginated-list.response';
 import { PaginationRequest } from '../../../../../../../common/models/requests/pagination.request';
 import { AggregateId } from '../../../../../../../common/types/aggregate-id.type';
+import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
+import { QuizCopyMode } from '../enums/quiz-copy-mode.enum';
 
 @Injectable()
 export class QuizzesListApiService extends BaseApiService {
@@ -15,7 +17,11 @@ export class QuizzesListApiService extends BaseApiService {
       'quizzes/list',
       (response) =>
         new PaginatedListResponse<QuizzesListItemResponse>({
-          items: response.items.map((i) => new QuizzesListItemResponse(i)),
+          items: response.items.map((i) => ({
+            ...i,
+            duration: TimeSpanModel.CreateByTimeSpan(i.duration),
+            copyMode: QuizCopyMode[i.copyMode as keyof typeof QuizCopyMode],
+          })),
           pagination: response.pagination,
           totalCount: response.totalCount,
         }),

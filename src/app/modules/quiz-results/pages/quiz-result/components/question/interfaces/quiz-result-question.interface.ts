@@ -1,7 +1,7 @@
 import { QuizQuestionType } from '../../../../../../../core/enums/quiz-question-type.enum';
-import { QuizResultDetailsOpenQuestionResponse } from '../../../models/responses/quiz-result-details-open-question.response';
-import { QuizResultDetailsSingleChoiceQuestionResponse } from '../../../models/responses/quiz-result-details-single-choice-question.response';
-import { QuizResultDetailsMultipleChoiceQuestionResponse } from '../../../models/responses/quiz-result-details-multiple-choice-question.response';
+import { QuizResultDetailsOpenQuestionResponse } from '../../../api/responses/quiz-result-details-open-question.response';
+import { QuizResultDetailsSingleChoiceQuestionResponse } from '../../../api/responses/quiz-result-details-single-choice-question.response';
+import { QuizResultDetailsMultipleChoiceQuestionResponse } from '../../../api/responses/quiz-result-details-multiple-choice-question.response';
 
 export interface IQuizResultQuestion {
   readonly response:

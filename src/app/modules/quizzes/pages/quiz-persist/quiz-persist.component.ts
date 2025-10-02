@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { QuizPersistApiService } from './services/quiz-persist-api.service';
+import { QuizPersistApiService } from './api/quiz-persist-api.service';
 import { AsyncPageComponent } from '../../../../../../common/components/async-page/async-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../../../common/components/button/button.component';
@@ -16,7 +16,7 @@ import { QuizPersistFormFactory } from './factories/quiz-persist-form.factory';
 import { FormUtils } from '../../../../../../common/utils/form.utils';
 import { MatError } from '@angular/material/form-field';
 import { AggregateId } from '../../../../../../common/types/aggregate-id.type';
-import { QuizDetailsResponse } from './models/responses/quiz-details.response';
+import { QuizDetailsResponse } from './api/responses/quiz-details.response';
 import { Optional } from '../../../../../../common/types/optional.type';
 import { QuizPersistRequestFactory } from './factories/quiz-persist-request.factory';
 import { Route } from '../../../../core/enums/route.enum';

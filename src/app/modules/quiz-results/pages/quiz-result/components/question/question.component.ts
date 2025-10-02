@@ -3,15 +3,15 @@ import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { CheckboxComponent } from '../../../../../../../../common/components/inputs/checkbox/checkbox.component';
 import { QuizQuestionType } from '../../../../../../core/enums/quiz-question-type.enum';
 import { InputColor } from '../../../../../../../../common/components/inputs/shared/enums/input-color.enum';
-import { QuizResultDetailsOpenQuestionResponse } from '../../models/responses/quiz-result-details-open-question.response';
-import { QuizResultDetailsSingleChoiceQuestionResponse } from '../../models/responses/quiz-result-details-single-choice-question.response';
-import { QuizResultDetailsMultipleChoiceQuestionResponse } from '../../models/responses/quiz-result-details-multiple-choice-question.response';
+import { QuizResultDetailsOpenQuestionResponse } from '../../api/responses/quiz-result-details-open-question.response';
+import { QuizResultDetailsSingleChoiceQuestionResponse } from '../../api/responses/quiz-result-details-single-choice-question.response';
+import { QuizResultDetailsMultipleChoiceQuestionResponse } from '../../api/responses/quiz-result-details-multiple-choice-question.response';
 import { IQuizResultQuestion } from './interfaces/quiz-result-question.interface';
 import { IQuizResultSingleChoiceQuestionRadioOption } from './interfaces/single-choice-question-radio-option.interface';
 import { RadioComponent } from '../../../../../../../../common/components/inputs/radio/radio.component';
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
-import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '../../models/responses/quiz-result-details-multiple-choice-question-answer.response';
+import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '../../api/responses/quiz-result-details-multiple-choice-question-answer.response';
 
 @Component({
   selector: 'app-quiz-result-question',
