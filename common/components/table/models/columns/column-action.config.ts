@@ -1,7 +1,7 @@
-import { isDefined } from '../../../../utils/utils';
-import { Icon } from '../../../../enums/icon.enum';
-import { ITextConfig, TextConfig } from '../../../../models/text.config';
-import { ITableComponent } from '../../interfaces/table-component.interface';
+import { isDefined } from '@common/utils/utils';
+import { Icon } from '@common/enums/icon.enum';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
 
 export interface ITableColumnActionConfig<TData> {
   icon?: Icon;

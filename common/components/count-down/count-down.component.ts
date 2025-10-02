@@ -1,8 +1,8 @@
 import { Component, effect, input, OnDestroy, output } from '@angular/core';
 import { map, Subscription, takeWhile, timer } from 'rxjs';
-import { PeriodModel } from '../../models/period.model';
-import { TimeSpanModel } from '../../models/time-span.model';
-import { TimeSpanUtils } from '../../utils/time-span.utils';
+import { PeriodModel } from '@common/models/period.model';
+import { TimeSpanModel } from '@common/models/time-span.model';
+import { TimeSpanUtils } from '@common/utils/time-span.utils';
 
 @Component({
   selector: 'app-count-down',

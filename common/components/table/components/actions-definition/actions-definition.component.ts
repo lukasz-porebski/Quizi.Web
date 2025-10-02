@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
-import { TableColumnActionsConfig } from '../../models/columns/column-actions.config';
+import { TableColumnActionsConfig } from '@common/components/table/models/columns/column-actions.config';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
-import { TextConfigTranslatePipe } from '../../../../pipes/text-config-translation.pipe';
-import { ITableComponent } from '../../interfaces/table-component.interface';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
 
 @Component({
   selector: 'app-table-actions-definition',

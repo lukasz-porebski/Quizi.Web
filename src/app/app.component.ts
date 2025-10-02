@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NavigationComponent } from '../../common/components/navigation/navigation.component';
-import { NavigationConfig } from '../../common/components/navigation/models/navigation.config';
-import { Icon } from '../../common/enums/icon.enum';
+import { NavigationComponent } from '@common/components/navigation/navigation.component';
+import { NavigationConfig } from '@common/components/navigation/models/navigation.config';
+import { Icon } from '@common/enums/icon.enum';
 import { RouterOutlet } from '@angular/router';
-import { Route } from './core/enums/route.enum';
+import { Route } from '@app/core/enums/route.enum';
 
 @Component({
   selector: 'app-root',

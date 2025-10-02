@@ -1,4 +1,4 @@
-import { TablePaginatorPageSize } from '../enums/paginator-page-size.enum';
+import { TablePaginatorPageSize } from '@common/components/table/enums/paginator-page-size.enum';
 
 export interface ITablePaginatorConfig {
   defaultPageSize?: TablePaginatorPageSize;

@@ -1,19 +1,19 @@
-import { QuizPersistFormGroup } from '../form/quiz-persist.form-group';
-import { QuizCreateRequest } from '../api/requests/quiz-create.request';
-import { QuizSettingsPersistRequest } from '../api/requests/quiz-settings-persist.request';
-import { TimeSpanUtils } from '../../../../../../../common/utils/time-span.utils';
-import { QuizOpenQuestionPersistRequest } from '../api/requests/quiz-open-question-persist.request';
-import { QuizClosedQuestionCreateRequest } from '../api/requests/quiz-closed-question-create.request';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
-import { QuizClosedQuestionAnswerPersistRequest } from '../api/requests/quiz-closed-question-answer-persist.request';
-import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-single-choice-question-answer.form-group';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
-import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-multiple-choice-question-answer.form-group';
-import { AggregateId } from '../../../../../../../common/types/aggregate-id.type';
-import { QuizUpdateRequest } from '../api/requests/quiz-update.request';
-import { QuizClosedQuestionUpdateRequest } from '../api/requests/quiz-closed-question-update.request';
-import { EntityPersistRequest } from '../../../../../../../common/models/responses/entity-persist.request';
-import { QuizPersistOpenQuestionFormGroup } from '../form/quiz-persist-open-question.form-group';
+import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import { QuizCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-create.request';
+import { QuizSettingsPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-settings-persist.request';
+import { TimeSpanUtils } from '@common/utils/time-span.utils';
+import { QuizOpenQuestionPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-open-question-persist.request';
+import { QuizClosedQuestionCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-create.request';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
+import { QuizClosedQuestionAnswerPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-answer-persist.request';
+import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question-answer.form-group';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question-answer.form-group';
+import { AggregateId } from '@common/types/aggregate-id.type';
+import { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
+import { QuizClosedQuestionUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-update.request';
+import { EntityPersistRequest } from '@common/models/responses/entity-persist.request';
+import { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistRequestFactory {
   export function CreateForCreate(form: QuizPersistFormGroup): QuizCreateRequest {

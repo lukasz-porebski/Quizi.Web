@@ -1,8 +1,8 @@
 import { Component, effect, input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
-import { ITextConfig, TextConfig } from '../../models/text.config';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-menu',

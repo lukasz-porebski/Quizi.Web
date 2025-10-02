@@ -1,7 +1,7 @@
-import { ITableColumnConfig, TableColumnConfig } from '../models/columns/column.config';
-import { TableColumnType } from '../enums/column-type.enum';
-import { ITableEnumColumnConfig } from '../models/columns/enum-column.config';
-import { ITableImageColumnConfig } from '../models/columns/image-column.config';
+import { ITableColumnConfig, TableColumnConfig } from '@common/components/table/models/columns/column.config';
+import { TableColumnType } from '@common/components/table/enums/column-type.enum';
+import { ITableEnumColumnConfig } from '@common/components/table/models/columns/enum-column.config';
+import { ITableImageColumnConfig } from '@common/components/table/models/columns/image-column.config';
 
 export class TableColumnBuilder<TData> {
   private readonly _columns: TableColumnConfig<TData, any>[] = [];

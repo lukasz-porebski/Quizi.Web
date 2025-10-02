@@ -1,5 +1,5 @@
-import { Icon } from '../../../enums/icon.enum';
-import { TranslationKey } from '../../../types/translation.type';
+import { Icon } from '@common/enums/icon.enum';
+import { TranslationKey } from '@common/types/translation.type';
 
 export interface INavigationBaseMenuLevelConfig {
   text: TranslationKey;

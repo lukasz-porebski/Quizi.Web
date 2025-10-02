@@ -1,5 +1,5 @@
-import { HintAligne } from '../enums/align.enum';
-import { ITextConfig, TextConfig } from '../../../models/text.config';
+import { HintAligne } from '@common/components/hint/enums/align.enum';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
 
 export interface IHintConfig {
   hint: ITextConfig;

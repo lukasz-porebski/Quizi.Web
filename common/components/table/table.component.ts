@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, input, OnInit, viewChild } from '@angular/core';
-import { TableConfig } from './models/table.config';
+import { TableConfig } from '@common/components/table/models/table.config';
 import {
   MatCell,
   MatCellDef,
@@ -22,23 +22,23 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { isDefined, isEmpty } from '../../utils/utils';
+import { isDefined, isEmpty } from '@common/utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { TablePaginatorIntl } from './providers/paginator-intl';
-import { TableRow } from './models/row.model';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
-import { TableRowComponent } from './components/row/row.component';
-import { BaseTableDataSource } from './data-source/base-data-source';
-import { TableEmptyDataSource } from './data-source/empty-data-source';
-import { TablePaginatorPageSize } from './enums/paginator-page-size.enum';
-import { PaginationRequest } from '../../models/requests/pagination.request';
-import { SortRequest } from '../../models/requests/sort.request';
-import { Optional } from '../../types/optional.type';
+import { TablePaginatorIntl } from '@common/components/table/providers/paginator-intl';
+import { TableRow } from '@common/components/table/models/row.model';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { TableRowComponent } from '@common/components/table/components/row/row.component';
+import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
+import { TableEmptyDataSource } from '@common/components/table/data-source/empty-data-source';
+import { TablePaginatorPageSize } from '@common/components/table/enums/paginator-page-size.enum';
+import { PaginationRequest } from '@common/models/requests/pagination.request';
+import { SortRequest } from '@common/models/requests/sort.request';
+import { Optional } from '@common/types/optional.type';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
-import { TableActionsDefinitionComponent } from './components/actions-definition/actions-definition.component';
-import { ITableComponent } from './interfaces/table-component.interface';
+import { TableActionsDefinitionComponent } from '@common/components/table/components/actions-definition/actions-definition.component';
+import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
 
 @Component({
   selector: 'app-table',

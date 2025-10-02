@@ -1,9 +1,9 @@
 import { CollectionViewer } from '@angular/cdk/collections';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { PaginationRequest } from '../../../models/requests/pagination.request';
-import { PaginatedListResponse } from '../../../models/responses/paginated-list.response';
-import { BaseTableDataSource } from './base-data-source';
-import { TableRow } from '../models/row.model';
+import { PaginationRequest } from '@common/models/requests/pagination.request';
+import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
+import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
+import { TableRow } from '@common/components/table/models/row.model';
 
 export abstract class BaseTableApiDataSource<T> extends BaseTableDataSource<TableRow<T>> {
   public get response(): PaginatedListResponse<TableRow<T>> {

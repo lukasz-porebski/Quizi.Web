@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuizRunApiService } from './pages/run/api/quiz-run-api.service';
-import { QuizToRunResponse } from './pages/run/api/responses/quiz-to-run.response';
-import { isDefined, isEmpty } from '../../../../../../common/utils/utils';
-import { QuizRunRequestFactory } from './pages/run/factories/quiz-run-request.factory';
-import { Route } from '../../../../core/enums/route.enum';
-import { AsyncPageComponent } from '../../../../../../common/components/async-page/async-page.component';
-import { QuizRunComponent } from './pages/run/quiz-run.component';
-import { QuizRunFinishedEvent } from './pages/run/models/quiz-run-finished.event';
-import { QuizRunOpenQuestionsVerificationComponent } from './pages/open-questions-verification/quiz-run-open-questions-verification.component';
+import { QuizRunApiService } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/quiz-run-api.service';
+import { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
+import { isDefined, isEmpty } from '@common/utils/utils';
+import { QuizRunRequestFactory } from '@app/modules/quizzes/pages/quiz-run/pages/run/factories/quiz-run-request.factory';
+import { Route } from '@app/core/enums/route.enum';
+import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
+import { QuizRunComponent } from '@app/modules/quizzes/pages/quiz-run/pages/run/quiz-run.component';
+import { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
+import { QuizRunOpenQuestionsVerificationComponent } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/quiz-run-open-questions-verification.component';
 import { FormArray } from '@angular/forms';
-import { QuizRunOpenQuestionVerificationFormControl } from './pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
-import { Optional } from '../../../../../../common/types/optional.type';
+import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import { Optional } from '@common/types/optional.type';
 
 @Component({
   selector: 'app-quiz-run-core',

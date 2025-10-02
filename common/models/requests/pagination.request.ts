@@ -1,4 +1,4 @@
-import { SortRequest } from './sort.request';
+import { SortRequest } from '@common/models/requests/sort.request';
 
 export class PaginationRequest {
   public constructor(

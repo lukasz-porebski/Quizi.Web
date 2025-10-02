@@ -1,6 +1,6 @@
 import { Component, input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationMenuFirstLevelConfig } from './models/menu-first-level.config';
-import { NavigationMenuSecondLevelConfig } from './models/menu-second-level.config';
+import { NavigationMenuFirstLevelConfig } from '@common/components/navigation/models/menu-first-level.config';
+import { NavigationMenuSecondLevelConfig } from '@common/components/navigation/models/menu-second-level.config';
 import {
   MatAccordion,
   MatExpansionPanel,
@@ -8,16 +8,16 @@ import {
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { isDefined, isEmpty } from '../../utils/utils';
-import { NavigationMenuThirdLevelConfig } from './models/menu-third-level.config';
+import { isDefined, isEmpty } from '@common/utils/utils';
+import { NavigationMenuThirdLevelConfig } from '@common/components/navigation/models/menu-third-level.config';
 import { Subscription } from 'rxjs';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
-import { NavigationConfig } from './models/navigation.config';
+import { NavigationConfig } from '@common/components/navigation/models/navigation.config';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AuthenticationService } from '../../identity/services/authentication.service';
+import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

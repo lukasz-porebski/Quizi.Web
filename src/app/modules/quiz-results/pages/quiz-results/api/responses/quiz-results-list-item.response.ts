@@ -1,6 +1,6 @@
-import { TimeSpan } from '../../../../../../../../common/types/time-span.type';
-import { AggregateId } from '../../../../../../../../common/types/aggregate-id.type';
-import { TimeSpanModel } from '../../../../../../../../common/models/time-span.model';
+import { TimeSpan } from '@common/types/time-span.type';
+import { AggregateId } from '@common/types/aggregate-id.type';
+import { TimeSpanModel } from '@common/models/time-span.model';
 
 export type QuizResultsListItemRawResponse = Omit<
   QuizResultsListItemResponse,

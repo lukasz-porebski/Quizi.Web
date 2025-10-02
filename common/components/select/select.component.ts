@@ -3,10 +3,10 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ITextConfig, TextConfig } from '../../models/text.config';
-import { InputValidation } from '../inputs/shared/enums/input-validation.enum';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
-import { SelectOptionModel } from './models/select-option.model';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { InputValidation } from '@common/components/inputs/shared/enums/input-validation.enum';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { SelectOptionModel } from '@common/components/select/models/select-option.model';
 
 @Component({
   selector: 'app-select',

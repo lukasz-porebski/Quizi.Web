@@ -1,18 +1,18 @@
 import { Component, inject, input, OnInit, output, viewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent } from '../../../../../../../../common/components/button/button.component';
+import { ButtonComponent } from '@common/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonStyle } from '../../../../../../../../common/components/button/enums/style.enum';
-import { QuizRunQuestionComponent } from './components/question/question.component';
-import { QuizRunFormFactory } from './factories/quiz-run-form.factory';
-import { IQuizRunForm } from './interfaces/quiz-run-form.interface';
-import { IQuizRunFormOpenQuestion } from './interfaces/quiz-run-form-question.interface';
-import { QuizRunQuestionsHelper } from './helpers/quiz-run-questions.helper';
-import { QuizToRunResponse } from './api/responses/quiz-to-run.response';
-import { CountDownComponent } from '../../../../../../../../common/components/count-down/count-down.component';
-import { QuizRunFinishedEvent } from './models/quiz-run-finished.event';
-import { PeriodModel } from '../../../../../../../../common/models/period.model';
-import { Route } from '../../../../../../core/enums/route.enum';
+import { ButtonStyle } from '@common/components/button/enums/style.enum';
+import { QuizRunQuestionComponent } from '@app/modules/quizzes/pages/quiz-run/pages/run/components/question/question.component';
+import { QuizRunFormFactory } from '@app/modules/quizzes/pages/quiz-run/pages/run/factories/quiz-run-form.factory';
+import { IQuizRunForm } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form.interface';
+import { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
+import { QuizRunQuestionsHelper } from '@app/modules/quizzes/pages/quiz-run/pages/run/helpers/quiz-run-questions.helper';
+import { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
+import { CountDownComponent } from '@common/components/count-down/count-down.component';
+import { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
+import { PeriodModel } from '@common/models/period.model';
+import { Route } from '@app/core/enums/route.enum';
 import { Router } from '@angular/router';
 
 @Component({

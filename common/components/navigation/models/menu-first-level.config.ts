@@ -1,9 +1,12 @@
 import {
   INavigationMenuSecondLevelConfig,
   NavigationMenuSecondLevelConfig,
-} from './menu-second-level.config';
-import { isEmpty } from '../../../utils/utils';
-import { INavigationBaseMenuLevelConfig, NavigationBaseMenuLevelConfig } from './base-menu-level.config';
+} from '@common/components/navigation/models/menu-second-level.config';
+import { isEmpty } from '@common/utils/utils';
+import {
+  INavigationBaseMenuLevelConfig,
+  NavigationBaseMenuLevelConfig,
+} from '@common/components/navigation/models/base-menu-level.config';
 
 export interface INavigationMenuFirstLevelConfig extends INavigationBaseMenuLevelConfig {
   nextLevels?: INavigationMenuSecondLevelConfig[];

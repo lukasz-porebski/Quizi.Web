@@ -1,4 +1,4 @@
-import { ITextConfig, TextConfig } from '../../../models/text.config';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
 
 export class SelectOptionModel<TData> {
   public readonly text: TextConfig;

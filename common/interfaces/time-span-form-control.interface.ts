@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Optional } from '../types/optional.type';
+import { Optional } from '@common/types/optional.type';
 
 export interface ITimeSpanFormControl {
   hours: FormControl<Optional<number>>;

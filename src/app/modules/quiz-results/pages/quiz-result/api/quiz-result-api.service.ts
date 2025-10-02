@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import {
   QuizResultDetailsRawResponse,
   QuizResultDetailsResponse,
-} from './responses/quiz-result-details.response';
-import { BaseApiService } from '../../../../../../../common/services/base-api.service';
-import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
-import { PeriodViewModel } from '../../../../../../../common/models/views/period.view-model';
+} from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
+import { BaseApiService } from '@common/services/base-api.service';
+import { TimeSpanModel } from '@common/models/time-span.model';
+import { PeriodViewModel } from '@common/models/views/period.view-model';
 
 @Injectable()
 export class QuizResultApiService extends BaseApiService {

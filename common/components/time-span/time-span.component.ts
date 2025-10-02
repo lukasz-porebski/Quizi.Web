@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
-import { NumberInputComponent } from '../inputs/number/number.component';
+import { NumberInputComponent } from '@common/components/inputs/number/number.component';
 import { FormGroup } from '@angular/forms';
-import { ITimeSpanFormControl } from '../../interfaces/time-span-form-control.interface';
+import { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';

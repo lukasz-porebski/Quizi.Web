@@ -1,5 +1,5 @@
 import { FormArray, FormControl } from '@angular/forms';
-import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-multiple-choice-question-answer.form-group';
+import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question-answer.form-group';
 
 export interface IQuizPersistFormMultipleChoiceQuestion {
   ordinalNumber: FormControl<number>;

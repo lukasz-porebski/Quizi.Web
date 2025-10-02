@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TextConfig } from '../models/text.config';
-import { Optional } from '../types/optional.type';
+import { TextConfig } from '@common/models/text.config';
+import { Optional } from '@common/types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Pipe({

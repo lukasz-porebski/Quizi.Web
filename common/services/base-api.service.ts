@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '../../src/environments/environment.development';
-import { isDefined } from '../utils/utils';
+import { environment } from '@env/environment.development';
+import { isDefined } from '@common/utils/utils';
 
 type Primitive = string | number | boolean | null | undefined;
 

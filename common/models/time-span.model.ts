@@ -1,4 +1,4 @@
-import { TimeSpan } from '../types/time-span.type';
+import { TimeSpan } from '@common/types/time-span.type';
 
 export class TimeSpanModel {
   public constructor(

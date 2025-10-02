@@ -1,7 +1,7 @@
 import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { ITimeSpanFormControl } from '../../../interfaces/time-span-form-control.interface';
-import { TimeSpan } from '../../../types/time-span.type';
-import { isDefined } from '../../../utils/utils';
+import { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
+import { TimeSpan } from '@common/types/time-span.type';
+import { isDefined } from '@common/utils/utils';
 
 export type TimeSpanValidatorValue = { hours?: number; minutes?: number; seconds?: number };
 

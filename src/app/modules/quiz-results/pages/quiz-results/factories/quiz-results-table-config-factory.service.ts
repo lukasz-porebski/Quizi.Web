@@ -1,10 +1,10 @@
-import { TableConfig } from '../../../../../../../common/components/table/models/table.config';
-import { QuizResultsListItemResponse } from '../api/responses/quiz-results-list-item.response';
-import { QuizResultsDataSourceService } from '../services/quiz-results-data-source.service';
-import { Icon } from '../../../../../../../common/enums/icon.enum';
+import { TableConfig } from '@common/components/table/models/table.config';
+import { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
+import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/quiz-results/services/quiz-results-data-source.service';
+import { Icon } from '@common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Route } from '../../../../../core/enums/route.enum';
+import { Route } from '@app/core/enums/route.enum';
 
 @Injectable()
 export class QuizResultsTableConfigFactory {

@@ -1,7 +1,7 @@
-import { TableColumnType } from '../../enums/column-type.enum';
-import { getProperty } from '../../../../utils/utils';
-import { ValueTextPairModel } from '../../../../models/value-text-pair-model';
-import { ITextConfig, TextConfig } from '../../../../models/text.config';
+import { TableColumnType } from '@common/components/table/enums/column-type.enum';
+import { getProperty } from '@common/utils/utils';
+import { ValueTextPairModel } from '@common/models/value-text-pair-model';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
 
 export interface ITableColumnConfig<TData> {
   field: keyof TData;

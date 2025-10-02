@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '../../../../../../../common/services/base-api.service';
-import { QuizDetailsRawResponse, QuizDetailsResponse } from './responses/quiz-details.response';
-import { QuizCopyMode } from '../../quizzes/enums/quiz-copy-mode.enum';
-import { TimeSpanModel } from '../../../../../../../common/models/time-span.model';
-import { QuizCreateRequest } from './requests/quiz-create.request';
-import { QuizUpdateRequest } from './requests/quiz-update.request';
+import { BaseApiService } from '@common/services/base-api.service';
+import {
+  QuizDetailsRawResponse,
+  QuizDetailsResponse,
+} from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
+import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
+import { TimeSpanModel } from '@common/models/time-span.model';
+import { QuizCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-create.request';
+import { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
 
 @Injectable()
 export class QuizPersistApiService extends BaseApiService {

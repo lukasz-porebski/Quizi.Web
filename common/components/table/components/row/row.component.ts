@@ -1,13 +1,13 @@
 import { Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { TableColumnType } from '../../enums/column-type.enum';
-import { DateFormat } from '../../../../enums/date-format.enum';
+import { TableColumnType } from '@common/components/table/enums/column-type.enum';
+import { DateFormat } from '@common/enums/date-format.enum';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { toPercent, toPrice } from '../../../../utils/utils';
-import { TableColumnConfig } from '../../models/columns/column.config';
-import { TableRow } from '../../models/row.model';
-import { TimeSpanModel } from '../../../../models/time-span.model';
-import { TimeSpanUtils } from '../../../../utils/time-span.utils';
+import { toPercent, toPrice } from '@common/utils/utils';
+import { TableColumnConfig } from '@common/components/table/models/columns/column.config';
+import { TableRow } from '@common/components/table/models/row.model';
+import { TimeSpanModel } from '@common/models/time-span.model';
+import { TimeSpanUtils } from '@common/utils/time-span.utils';
 
 @Component({
   selector: 'app-table-row',

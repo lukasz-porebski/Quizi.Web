@@ -1,7 +1,7 @@
-import { QuizPersistConstants } from '../constants/quiz-persist.constants';
-import { isEmpty } from '../../../../../../../common/utils/utils';
-import { IQuizPersistFormMultipleChoiceQuestion } from '../interfaces/quiz-persist-form-multiple-choice-question.interface';
-import { IQuizPersistFormSingleChoiceQuestion } from '../interfaces/quiz-persist-form-single-choice-question.interface';
+import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
+import { isEmpty } from '@common/utils/utils';
+import { IQuizPersistFormMultipleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-multiple-choice-question.interface';
+import { IQuizPersistFormSingleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question.interface';
 
 export namespace QuizPersistCloasedQuestionsHelper {
   export function RemoveAnswer(

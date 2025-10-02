@@ -1,12 +1,12 @@
 import { Component, effect, input, TemplateRef } from '@angular/core';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatLabel } from '@angular/material/form-field';
-import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { InputColor } from '../shared/enums/input-color.enum';
-import { isDefined } from '../../../utils/utils';
-import { ITextConfig, TextConfig } from '../../../models/text.config';
-import { RadioLabelPosition } from './enums/label-position.enum';
+import { InputColor } from '@common/components/inputs/shared/enums/input-color.enum';
+import { isDefined } from '@common/utils/utils';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { RadioLabelPosition } from '@common/components/inputs/radio/enums/label-position.enum';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({

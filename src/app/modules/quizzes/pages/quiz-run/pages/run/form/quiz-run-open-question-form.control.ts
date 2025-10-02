@@ -1,8 +1,8 @@
-import { QuizToRunOpenQuestionResponse } from '../api/responses/quiz-to-run-open-question.response';
+import { QuizToRunOpenQuestionResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-open-question.response';
 import { FormControl } from '@angular/forms';
-import { Optional } from '../../../../../../../../../common/types/optional.type';
-import { IQuizRunFormOpenQuestion } from '../interfaces/quiz-run-form-question.interface';
-import { QuizQuestionType } from '../../../../../../../core/enums/quiz-question-type.enum';
+import { Optional } from '@common/types/optional.type';
+import { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
+import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 
 export class QuizRunOpenQuestionFormControl
   extends FormControl<Optional<string>>

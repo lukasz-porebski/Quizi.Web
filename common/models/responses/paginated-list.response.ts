@@ -1,5 +1,5 @@
-import { PaginationResponse } from './pagination.response';
-import { isDefined } from '../../utils/utils';
+import { PaginationResponse } from '@common/models/responses/pagination.response';
+import { isDefined } from '@common/utils/utils';
 
 export class PaginatedListResponse<T> {
   public readonly items: T[];

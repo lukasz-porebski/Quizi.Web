@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '../form/quiz-persist-single-choice-question.form-group';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import { unique } from 'remeda';
 
 type FormType = QuizPersistSingleChoiceQuestionFormGroup | QuizPersistMultipleChoiceQuestionFormGroup;

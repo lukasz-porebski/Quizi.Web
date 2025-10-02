@@ -1,14 +1,14 @@
 import { Component, input } from '@angular/core';
-import { QuizPersistSingleChoiceQuestionComponent } from '../single-choice-question/single-choice-question.component';
-import { QuizQuestionType } from '../../../../../../../../core/enums/quiz-question-type.enum';
-import { QuizRunMultipleChoiceQuestionFormArray } from '../../form/quiz-run-multiple-choice-question-form.array';
-import { QuizRunSingleChoiceQuestionFormControl } from '../../form/quiz-run-single-choice-question-form.control';
+import { QuizPersistSingleChoiceQuestionComponent } from '@app/modules/quizzes/pages/quiz-run/pages/run/components/single-choice-question/single-choice-question.component';
+import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
+import { QuizRunMultipleChoiceQuestionFormArray } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-multiple-choice-question-form.array';
+import { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import { Icon } from '../../../../../../../../../../common/enums/icon.enum';
-import { QuizRunOpenQuestionFormControl } from '../../form/quiz-run-open-question-form.control';
-import { IQuizRunFormOpenQuestion } from '../../interfaces/quiz-run-form-question.interface';
-import { TextareaInputComponent } from '../../../../../../../../../../common/components/inputs/textarea/textarea.component';
-import { CheckboxComponent } from '../../../../../../../../../../common/components/inputs/checkbox/checkbox.component';
+import { Icon } from '@common/enums/icon.enum';
+import { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
+import { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
+import { TextareaInputComponent } from '@common/components/inputs/textarea/textarea.component';
+import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
 
 @Component({
   selector: 'app-quiz-run-question',

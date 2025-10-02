@@ -1,4 +1,7 @@
-import { INavigationMenuFirstLevelConfig, NavigationMenuFirstLevelConfig } from './menu-first-level.config';
+import {
+  INavigationMenuFirstLevelConfig,
+  NavigationMenuFirstLevelConfig,
+} from '@common/components/navigation/models/menu-first-level.config';
 
 export interface INavigationConfig {
   logoPath: string;

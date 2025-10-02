@@ -1,4 +1,4 @@
-import { QuizResultDetailsSingleChoiceQuestionAnswerResponse } from './quiz-result-details-single-choice-question-answer.response';
+import { QuizResultDetailsSingleChoiceQuestionAnswerResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-single-choice-question-answer.response';
 
 export interface QuizResultDetailsSingleChoiceQuestionResponse {
   readonly ordinalNumber: number;

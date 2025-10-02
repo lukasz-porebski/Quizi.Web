@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { QuizzesComponent } from './modules/quizzes/pages/quizzes/quizzes.component';
-import { Route } from './core/enums/route.enum';
-import { QuizPersistComponent } from './modules/quizzes/pages/quiz-persist/quiz-persist.component';
-import { QuizRunCoreComponent } from './modules/quizzes/pages/quiz-run/quiz-run-core.component';
-import { QuizResultComponent } from './modules/quiz-results/pages/quiz-result/quiz-result.component';
-import { QuizResultsComponent } from './modules/quiz-results/pages/quiz-results/quiz-results.component';
+import { QuizzesComponent } from '@app/modules/quizzes/pages/quizzes/quizzes.component';
+import { Route } from '@app/core/enums/route.enum';
+import { QuizPersistComponent } from '@app/modules/quizzes/pages/quiz-persist/quiz-persist.component';
+import { QuizRunCoreComponent } from '@app/modules/quizzes/pages/quiz-run/quiz-run-core.component';
+import { QuizResultComponent } from '@app/modules/quiz-results/pages/quiz-result/quiz-result.component';
+import { QuizResultsComponent } from '@app/modules/quiz-results/pages/quiz-results/quiz-results.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: `/${Route.Quizzes}`, pathMatch: 'full' },

@@ -1,7 +1,7 @@
-import { TimeSpan } from '../../../../../../../../common/types/time-span.type';
-import { QuizCopyMode } from '../../enums/quiz-copy-mode.enum';
-import { AggregateId } from '../../../../../../../../common/types/aggregate-id.type';
-import { TimeSpanModel } from '../../../../../../../../common/models/time-span.model';
+import { TimeSpan } from '@common/types/time-span.type';
+import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
+import { AggregateId } from '@common/types/aggregate-id.type';
+import { TimeSpanModel } from '@common/models/time-span.model';
 
 export type QuizzesListItemRawResponse = Omit<QuizzesListItemResponse, 'duration' | 'copyMode'> & {
   duration: TimeSpan;

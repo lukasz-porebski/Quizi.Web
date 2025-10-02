@@ -1,9 +1,9 @@
 import { FormArray, FormControl, Validators } from '@angular/forms';
-import { QuizDetailsClosedQuestionResponse } from '../api/responses/quiz-details-closed-question.response';
-import { QuizDetailsClosedQuestionAnswerResponse } from '../api/responses/quiz-details-closed-question-answer.response';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '../form/quiz-persist-multiple-choice-question.form-group';
-import { QuizPersistClosedQuestionValidators } from '../validators/quiz-persist-closed-question.validators';
-import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '../form/quiz-persist-multiple-choice-question-answer.form-group';
+import { QuizDetailsClosedQuestionResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question.response';
+import { QuizDetailsClosedQuestionAnswerResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question-answer.response';
+import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import { QuizPersistClosedQuestionValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist-closed-question.validators';
+import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question-answer.form-group';
 
 export namespace QuizPersistFormMultipleChoiceQuestionFactory {
   export function CreateQuestion(

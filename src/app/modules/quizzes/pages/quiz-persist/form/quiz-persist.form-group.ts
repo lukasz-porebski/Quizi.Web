@@ -1,14 +1,14 @@
 import { FormGroup, ValidatorFn } from '@angular/forms';
-import { QuizPersistFormOpenQuestionFactory } from '../factories/quiz-persist-form-open-question.factory';
-import { QuizPersistFormSingleChoiceQuestionFactory } from '../factories/quiz-persist-form-single-choice-question.factory';
-import { QuizPersistFormMultipleChoiceQuestionFactory } from '../factories/quiz-persist-form-multiple-choice-question.factory';
-import { isDefined, isEmpty } from '../../../../../../../common/utils/utils';
-import { IQuizPersistForm } from '../interfaces/quiz-persist-form.interface';
-import { QuizPersistConstants } from '../constants/quiz-persist.constants';
-import { QuizPersistFormQuestion } from '../types/quiz-persist-form-question.type';
-import { QuizPersistQuestionsHelper } from '../helpers/quiz-persist-questions.helper';
-import { QuizPersistFormQuestionType } from '../enums/quiz-persist-question-type.enum';
-import { Optional } from '../../../../../../../common/types/optional.type';
+import { QuizPersistFormOpenQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-open-question.factory';
+import { QuizPersistFormSingleChoiceQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-single-choice-question.factory';
+import { QuizPersistFormMultipleChoiceQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-multiple-choice-question.factory';
+import { isDefined, isEmpty } from '@common/utils/utils';
+import { IQuizPersistForm } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form.interface';
+import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
+import { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
+import { QuizPersistQuestionsHelper } from '@app/modules/quizzes/pages/quiz-persist/helpers/quiz-persist-questions.helper';
+import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
+import { Optional } from '@common/types/optional.type';
 
 export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
   public constructor(controls: IQuizPersistForm, validatorOrOpts: ValidatorFn[]) {

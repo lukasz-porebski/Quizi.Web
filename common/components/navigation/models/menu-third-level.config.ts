@@ -1,4 +1,7 @@
-import { INavigationBaseMenuLevelConfig, NavigationBaseMenuLevelConfig } from './base-menu-level.config';
+import {
+  INavigationBaseMenuLevelConfig,
+  NavigationBaseMenuLevelConfig,
+} from '@common/components/navigation/models/base-menu-level.config';
 
 export interface INavigationMenuThirdLevelConfig extends INavigationBaseMenuLevelConfig {}
 

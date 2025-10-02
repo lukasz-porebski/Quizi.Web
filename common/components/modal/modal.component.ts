@@ -1,10 +1,10 @@
 import { Component, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ModalConfig } from './models/modal.config';
-import { isDefined } from '../../utils/utils';
+import { ModalConfig } from '@common/components/modal/models/modal.config';
+import { isDefined } from '@common/utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { Optional } from '../../types/optional.type';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
+import { Optional } from '@common/types/optional.type';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-modal',

@@ -1,11 +1,11 @@
-import { TableConfig } from '../../../../../../../common/components/table/models/table.config';
-import { QuizzesListItemResponse } from '../api/responses/quizzes-list-Item.response';
-import { QuizzesDataSourceService } from '../services/quizzes-data-source.service';
-import { Icon } from '../../../../../../../common/enums/icon.enum';
+import { TableConfig } from '@common/components/table/models/table.config';
+import { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
+import { QuizzesDataSourceService } from '@app/modules/quizzes/pages/quizzes/services/quizzes-data-source.service';
+import { Icon } from '@common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Route } from '../../../../../core/enums/route.enum';
-import { QuizzesListApiService } from '../api/quizzes-list-api.service';
+import { Route } from '@app/core/enums/route.enum';
+import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
 
 @Injectable()
 export class QuizzesTableConfigFactory {

@@ -1,13 +1,13 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
-import { QuizRunOpenQuestionsVerificationApiService } from './api/quiz-run-open-questions-verification-api.service';
-import { QuizRunOpenQuestionFormControl } from '../run/form/quiz-run-open-question-form.control';
+import { QuizRunOpenQuestionsVerificationApiService } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/api/quiz-run-open-questions-verification-api.service';
+import { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import { FormArray, FormsModule } from '@angular/forms';
-import { AggregateId } from '../../../../../../../../common/types/aggregate-id.type';
-import { QuizRunOpenQuestionVerificationFormControl } from './form/quiz-run-open-question-verification.form-control';
-import { QuizRunOpenQuestionVerificationComponent } from './components/question-verification/quiz-run-open-question-verification.component';
+import { AggregateId } from '@common/types/aggregate-id.type';
+import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import { QuizRunOpenQuestionVerificationComponent } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/components/question-verification/quiz-run-open-question-verification.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonComponent } from '../../../../../../../../common/components/button/button.component';
-import { isDefined } from '../../../../../../../../common/utils/utils';
+import { ButtonComponent } from '@common/components/button/button.component';
+import { isDefined } from '@common/utils/utils';
 
 @Component({
   selector: 'app-quiz-run-open-questions-verification',

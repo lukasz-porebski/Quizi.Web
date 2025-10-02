@@ -1,15 +1,15 @@
 import { Component, effect, inject, input, output } from '@angular/core';
-import { ButtonColor } from './enums/color.enum';
+import { ButtonColor } from '@common/components/button/enums/color.enum';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatStepperNext } from '@angular/material/stepper';
-import { isDefined } from '../../utils/utils';
-import { Optional } from '../../types/optional.type';
-import { TextConfigTranslatePipe } from '../../pipes/text-config-translation.pipe';
-import { ITextConfig, TextConfig } from '../../models/text.config';
-import { ButtonStyle } from './enums/style.enum';
-import { Icon } from '../../enums/icon.enum';
+import { isDefined } from '@common/utils/utils';
+import { Optional } from '@common/types/optional.type';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { ButtonStyle } from '@common/components/button/enums/style.enum';
+import { Icon } from '@common/enums/icon.enum';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({

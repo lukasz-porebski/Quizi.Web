@@ -1,6 +1,6 @@
 import { sortBy } from 'remeda';
-import { IQuizRunForm } from '../interfaces/quiz-run-form.interface';
-import { IQuizRunFormOpenQuestion } from '../interfaces/quiz-run-form-question.interface';
+import { IQuizRunForm } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form.interface';
+import { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
 import { FormGroup } from '@angular/forms';
 
 export namespace QuizRunQuestionsHelper {

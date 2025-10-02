@@ -1,11 +1,11 @@
 import { Component, contentChild, effect, input } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { InputColor } from '../shared/enums/input-color.enum';
-import { TextConfigTranslatePipe } from '../../../pipes/text-config-translation.pipe';
-import { ITextConfig, TextConfig } from '../../../models/text.config';
-import { CheckboxLabelPosition } from './enums/label-position.enum';
-import { isDefined } from '../../../utils/utils';
+import { InputColor } from '@common/components/inputs/shared/enums/input-color.enum';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { CheckboxLabelPosition } from '@common/components/inputs/checkbox/enums/label-position.enum';
+import { isDefined } from '@common/utils/utils';
 
 @Component({
   selector: 'app-checkbox',

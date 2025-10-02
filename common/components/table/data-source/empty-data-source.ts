@@ -1,8 +1,8 @@
 import { BaseTableDataSource } from './base-data-source';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable, of } from 'rxjs';
-import { PaginationRequest } from '../../../models/requests/pagination.request';
-import { PaginatedListResponse } from '../../../models/responses/paginated-list.response';
+import { PaginationRequest } from '@common/models/requests/pagination.request';
+import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
 
 export class TableEmptyDataSource<T> extends BaseTableDataSource<T> {
   public override get response(): PaginatedListResponse<T> {

@@ -1,7 +1,7 @@
 import { sortBy } from 'remeda';
-import { IQuizResultQuestion } from '../components/question/interfaces/quiz-result-question.interface';
-import { QuizResultDetailsResponse } from '../api/responses/quiz-result-details.response';
-import { QuizQuestionType } from '../../../../../core/enums/quiz-question-type.enum';
+import { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
+import { QuizResultDetailsResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
+import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 
 export namespace QuizResultQuestionsHelper {
   export function Merge(response: QuizResultDetailsResponse): IQuizResultQuestion[] {

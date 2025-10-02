@@ -1,5 +1,5 @@
-import { SortResponse } from './sort.response';
-import { isDefined } from '../../utils/utils';
+import { SortResponse } from '@common/models/responses/sort.response';
+import { isDefined } from '@common/utils/utils';
 
 export class PaginationResponse {
   public readonly pageNumber: number;
