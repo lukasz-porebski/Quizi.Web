@@ -1,6 +1,7 @@
 {
   "ERROR": "Błąd",
   "FIELD_IS_REQUIRED": "Pole jest wymagane",
+  "INVALID_FORMAT": "Nieprawidłowy format",
   "MIN_VALUE": "Minimalna wartość to {{value}}",
   "MAX_VALUE": "Maksymalna wartość to {{value}}",
   "VALID_TEXT_RANGE": "Liczba znaków musi być w przedziale {{min}} - {{max}}",
@@ -58,5 +59,9 @@
   "MAX_DURATION": "Makszymalny czas trwania",
   "POINTS_POSSIBLE_TO_GET": "Punkty możliwe do zdobycia",
   "BACK": "Wróć",
-  "REMOVE": "Usuń"
+  "REMOVE": "Usuń",
+  "EMAIL": "E-mail",
+  "PASSWORD": "Hasło",
+  "REGISTER": "Zarejestruj się",
+  "LOG_IN": "Zaloguj się"
 }

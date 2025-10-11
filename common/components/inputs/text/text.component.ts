@@ -42,6 +42,7 @@ export class TextInputComponent {
   public minLength = input<number>();
   public maxLength = input<number>();
   public passwordShowButton = input<boolean>();
+  public error = input<ITextConfig>();
 
   public get innerType(): TextInputType {
     return this._passwordType ?? this.type();
@@ -52,12 +53,16 @@ export class TextInputComponent {
 
   public isPasswordHidden = true;
   public innerLabel?: TextConfig;
+  public innerError?: TextConfig;
 
   private _passwordType?: TextInputType;
 
   public constructor() {
     effect(() => {
       this.innerLabel = isDefined(this.label()) ? new TextConfig(this.label()!) : undefined;
+    });
+    effect(() => {
+      this.innerError = isDefined(this.error()) ? new TextConfig(this.error()!) : undefined;
     });
   }
 

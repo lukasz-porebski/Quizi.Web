@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TextConfig } from '@common/models/text.config';
 import { Optional } from '@common/types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
+import { isDefined } from 'remeda';
 
 @Pipe({
   name: 'textConfigTranslate',
@@ -10,6 +11,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class TextConfigTranslatePipe extends TranslatePipe implements PipeTransform {
   // @ts-ignore
   public override transform(value: Optional<TextConfig> | TextConfig[]): string {
+    if (!isDefined(value)) {
+      return '';
+    }
+
     return value instanceof Array ? value.map((v) => this._translate(v)).join(', ') : this._translate(value);
   }
 
