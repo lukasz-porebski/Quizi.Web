@@ -5,14 +5,23 @@ import { QuizPersistComponent } from '@app/modules/quizzes/pages/quiz-persist/qu
 import { QuizRunCoreComponent } from '@app/modules/quizzes/pages/quiz-run/quiz-run-core.component';
 import { QuizResultComponent } from '@app/modules/quiz-results/pages/quiz-result/quiz-result.component';
 import { QuizResultsComponent } from '@app/modules/quiz-results/pages/quiz-results/quiz-results.component';
+import { LoginComponent } from '@app/modules/identity/pages/login/login.component';
+import { authenticationGuard } from '@common/identity/guards/authentication.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: `/${Route.Quizzes}`, pathMatch: 'full' },
-  { path: Route.Quizzes, component: QuizzesComponent },
-  { path: Route.QuizCreate, component: QuizPersistComponent },
-  { path: `${Route.QuizEdit}:id`, component: QuizPersistComponent },
-  { path: `${Route.QuizPreview}:id`, component: QuizPersistComponent },
-  { path: `${Route.QuizRun}:id`, component: QuizRunCoreComponent },
-  { path: Route.QuizResults, component: QuizResultsComponent },
-  { path: `${Route.QuizResult}:id`, component: QuizResultComponent },
+  { path: '', redirectTo: Route.Quizzes, pathMatch: 'full' },
+  {
+    path: '',
+    canActivateChild: [authenticationGuard],
+    children: [
+      { path: Route.Quizzes, component: QuizzesComponent },
+      { path: Route.QuizCreate, component: QuizPersistComponent },
+      { path: `${Route.QuizEdit}:id`, component: QuizPersistComponent },
+      { path: `${Route.QuizPreview}:id`, component: QuizPersistComponent },
+      { path: `${Route.QuizRun}:id`, component: QuizRunCoreComponent },
+      { path: Route.QuizResults, component: QuizResultsComponent },
+      { path: `${Route.QuizResult}:id`, component: QuizResultComponent },
+    ],
+  },
+  { path: Route.Login, component: LoginComponent },
 ];

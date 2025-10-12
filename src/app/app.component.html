@@ -1,3 +1,7 @@
-<app-navigation [config]="navigationConfig">
-  <router-outlet></router-outlet>
-</app-navigation>
+@if (isLoading) {
+  <app-async-page [showSpinner]="true" />
+} @else if (authenticationService.isUserLoggedIn()) {
+  <app-authenticated />
+} @else {
+  <app-login />
+}

@@ -63,5 +63,6 @@
   "EMAIL": "E-mail",
   "PASSWORD": "Hasło",
   "REGISTER": "Zarejestruj się",
-  "LOG_IN": "Zaloguj się"
+  "LOG_IN": "Zaloguj się",
+  "INVALID_EMAIL_OR_PASSWORD": "Niepoprawny e-mail lub hasło"
 }

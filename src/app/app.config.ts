@@ -3,8 +3,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AuthenticationInterceptor } from '@common/identity/services/authentication.interceptor';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
@@ -17,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideTranslateService({
       defaultLanguage: 'pl',
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
@@ -25,5 +31,6 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
   ],
 };

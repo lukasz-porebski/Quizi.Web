@@ -19,9 +19,12 @@
             [error]="Utils.TryGetPasswordFormatError(form.controls.password)"
           />
         </div>
+        @if (tryGetInvalidAuthDataError()) {
+          <mat-error>{{ tryGetInvalidAuthDataError() }}</mat-error>
+        }
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [style]="ButtonStyle.Outlined" [text]="{ text: 'REGISTER' }" />
-          <app-button [text]="{ text: 'LOG_IN' }" [disabled]="form.invalid" />
+          <app-button [text]="{ text: 'LOG_IN' }" [disabled]="form.invalid" (onClick)="logIn()" />
         </div>
       </form>
     </mat-card-content>

@@ -26,11 +26,17 @@ export abstract class BaseApiService {
     url: string,
     request?: TRequest,
     map?: (response: TRawResponse) => TResponse,
-    resultType: 'json' | 'text' = 'json',
+    options?: {
+      responseType?: 'json' | 'text';
+      withCredentials?: boolean;
+      skipApiUrl?: boolean;
+    },
   ): Promise<TResponse> {
+    const urlPrefix = options?.skipApiUrl ? '/' : this._apiUrl;
     return firstValueFrom(
-      this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request, {
-        responseType: resultType as any,
+      this._httpClient.post<TRawResponse>(`${urlPrefix}${url}`, request, {
+        responseType: options?.responseType ?? ('json' as any),
+        withCredentials: options?.withCredentials,
       }),
     ).then((r) => (isDefined(map) ? map(r) : (r as unknown as TResponse)));
   }

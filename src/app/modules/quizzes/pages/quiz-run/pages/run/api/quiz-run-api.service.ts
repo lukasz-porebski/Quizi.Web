@@ -11,12 +11,9 @@ import { AggregateId } from '@common/types/aggregate-id.type';
 @Injectable()
 export class QuizRunApiService extends BaseApiService {
   public verify(request: QuizVerifyRequest): Promise<AggregateId> {
-    return this.post<QuizVerifyRequest, AggregateId>(
-      'quizzes-verification/verify',
-      request,
-      undefined,
-      'text',
-    );
+    return this.post<QuizVerifyRequest, AggregateId>('quizzes-verification/verify', request, undefined, {
+      responseType: 'text',
+    });
   }
 
   public getQuizToRun(id: string): Promise<QuizToRunResponse> {

@@ -6,4 +6,5 @@ export enum Route {
   QuizRun = 'quizzes/run/',
   QuizResults = 'quiz-results',
   QuizResult = 'quiz-results/',
+  Login = 'login',
 }

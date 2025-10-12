@@ -89,12 +89,10 @@
           <mat-icon>menu</mat-icon>
         </button>
         <div class="nav-conatainer">
-          @if (authenticationService.isUserLogIn) {
-            <a mat-button [routerLink]="'../'" (click)="authenticationService.logout()">
-              <mat-icon class="navigation-icon-padding">exit_to_app</mat-icon>
-              <span class="nav-caption">{{ "LOG_OUT" | translate }}</span>
-            </a>
-          }
+          <a mat-button [routerLink]="''" (click)="authenticationService.logOut()">
+            <mat-icon class="navigation-icon-padding">exit_to_app</mat-icon>
+            <span class="nav-caption">{{ "LOG_OUT" | translate }}</span>
+          </a>
         </div>
       </mat-toolbar>
       <div class="content">
