@@ -11,11 +11,10 @@ import { ButtonStyle } from '@common/components/button/enums/style.enum';
 import { IdentityValidators } from '@app/modules/identity/validators/identity.validators';
 import { IdentityUtils } from '@app/modules/identity/utils/identity.utils';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { ITextConfig } from '@common/models/text.config';
+import { TextConfig } from '@common/models/text.config';
 import { Optional } from '@common/types/optional.type';
 import { MatError } from '@angular/material/form-field';
-import { Route } from '@app/core/enums/route.enum';
-import { Router } from '@angular/router';
+import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +26,7 @@ import { Router } from '@angular/router';
     ButtonComponent,
     MatError,
     MatError,
+    TextConfigTranslatePipe,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -48,24 +48,26 @@ export class LoginComponent {
     }),
   });
 
+  public isLoading = false;
   public invalidAuthData = false;
 
   private readonly _authenticationService = inject(AuthenticationService);
-  private readonly _router = inject(Router);
 
-  public tryGetInvalidAuthDataError(): Optional<ITextConfig> {
-    return this.invalidAuthData ? { text: 'INVALID_EMAIL_OR_PASSWORD' } : undefined;
+  public tryGetInvalidAuthDataError(): Optional<TextConfig> {
+    return this.invalidAuthData ? new TextConfig({ text: 'INVALID_EMAIL_OR_PASSWORD' }) : undefined;
   }
 
   public async logIn(): Promise<void> {
+    this.isLoading = true;
     await this._authenticationService
       .logIn(this.form.value.email!, this.form.value.password!)
       .then((isValid) => {
-        if (isValid) {
-          this._router.navigate([`/${Route.Quizzes}`]);
-        } else {
+        if (!isValid) {
           this.invalidAuthData = true;
         }
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
   }
 }

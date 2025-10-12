@@ -8,30 +8,36 @@ import { Optional } from '@common/types/optional.type';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  public readonly api = inject(IdentityApiService);
-  public readonly isUserLoggedIn = computed(() => isDefined(this._response()));
   public readonly response = computed(() => this._response());
+  public readonly isUserLoggedIn = computed(() => isDefined(this._response()));
 
+  private readonly _api = inject(IdentityApiService);
   private readonly _response = signal<Optional<AuthenticateResponse>>(null);
 
   public async logIn(email: string, password: string): Promise<boolean> {
-    return this.api
+    return this._api
       .login({ email: email, password: password })
       .then((response) => {
         this._response.set(response);
         return true;
       })
-      .catch(() => false);
+      .catch(() => {
+        this._response.set(undefined);
+        return false;
+      });
   }
 
   public async refresh(): Promise<void> {
-    return this.api.refreshToken().then((response) => {
-      this._response.set(response);
-    });
+    return this._api
+      .refreshToken()
+      .then((response) => {
+        this._response.set(response);
+      })
+      .catch(() => this._response.set(undefined));
   }
 
   public async logOut(): Promise<void> {
-    return await this.api.logout().then(() => {
+    return await this._api.logout().then(() => {
       this._response.set(undefined);
     });
   }

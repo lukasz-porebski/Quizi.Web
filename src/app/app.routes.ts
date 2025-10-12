@@ -6,13 +6,15 @@ import { QuizRunCoreComponent } from '@app/modules/quizzes/pages/quiz-run/quiz-r
 import { QuizResultComponent } from '@app/modules/quiz-results/pages/quiz-result/quiz-result.component';
 import { QuizResultsComponent } from '@app/modules/quiz-results/pages/quiz-results/quiz-results.component';
 import { LoginComponent } from '@app/modules/identity/pages/login/login.component';
-import { authenticationGuard } from '@common/identity/guards/authentication.guard';
+import { authenticatedGuard } from '@common/identity/guards/authenticated.guard';
+import { unauthenticatedGuard } from '@common/identity/guards/unauthenticated.guard';
+import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: Route.Quizzes, pathMatch: 'full' },
   {
     path: '',
-    canActivateChild: [authenticationGuard],
+    canActivateChild: [authenticatedGuard],
+    component: AuthenticatedComponent,
     children: [
       { path: Route.Quizzes, component: QuizzesComponent },
       { path: Route.QuizCreate, component: QuizPersistComponent },
@@ -23,5 +25,5 @@ export const routes: Routes = [
       { path: `${Route.QuizResult}:id`, component: QuizResultComponent },
     ],
   },
-  { path: Route.Login, component: LoginComponent },
+  { path: Route.Login, component: LoginComponent, canActivateChild: [unauthenticatedGuard] },
 ];

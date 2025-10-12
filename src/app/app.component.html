@@ -1,7 +1,5 @@
 @if (isLoading) {
   <app-async-page [showSpinner]="true" />
-} @else if (authenticationService.isUserLoggedIn()) {
-  <app-authenticated />
 } @else {
-  <app-login />
+  <router-outlet></router-outlet>
 }

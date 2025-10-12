@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
-import { LoginComponent } from '@app/modules/identity/pages/login/login.component';
+import { Router, RouterOutlet } from '@angular/router';
+import { Route } from '@app/core/enums/route.enum';
 
 @Component({
   selector: 'app-root',
-  imports: [AsyncPageComponent, AuthenticatedComponent, LoginComponent],
+  imports: [AsyncPageComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -15,15 +15,22 @@ export class AppComponent implements OnInit {
   public isLoading = true;
 
   public constructor(
-    private readonly _translate: TranslateService,
-    public readonly authenticationService: AuthenticationService,
+    translate: TranslateService,
+    router: Router,
+    private readonly _authenticationService: AuthenticationService,
   ) {
-    this._translate.addLangs(['pl']);
-    this._translate.setDefaultLang('pl');
-    this._translate.use('pl');
+    translate.addLangs(['pl']);
+    translate.setDefaultLang('pl');
+    translate.use('pl');
+
+    effect(() => {
+      router.navigate([this._authenticationService.isUserLoggedIn() ? Route.Quizzes : Route.Login]);
+    });
   }
 
   public async ngOnInit(): Promise<void> {
-    await this.authenticationService.refresh().finally(() => (this.isLoading = false));
+    await this._authenticationService.refresh().finally(() => {
+      this.isLoading = false;
+    });
   }
 }

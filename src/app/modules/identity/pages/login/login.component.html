@@ -1,4 +1,4 @@
-<app-async-page [showSpinner]="false" class="center-container-2">
+<app-async-page [showSpinner]="isLoading" class="center-container-2">
   <mat-card>
     <mat-card-content>
       <form>
@@ -9,7 +9,7 @@
             [type]="TextInputType.Email"
           />
         </div>
-        <div class="mb-4">
+        <div class="mb-3">
           <app-text-input
             [label]="{ text: 'PASSWORD' }"
             [formControl]="form.controls.password"
@@ -20,7 +20,7 @@
           />
         </div>
         @if (tryGetInvalidAuthDataError()) {
-          <mat-error>{{ tryGetInvalidAuthDataError() }}</mat-error>
+          <mat-error class="mt-2 mb-2">{{ tryGetInvalidAuthDataError() | textConfigTranslate }}</mat-error>
         }
         <div class="col d-flex justify-content-end">
           <app-button class="me-2" [style]="ButtonStyle.Outlined" [text]="{ text: 'REGISTER' }" />
