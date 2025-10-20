@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '@env/environment.development';
+import { environment } from '@env/environment';
 import { isDefined } from '@common/utils/utils';
 
 type Primitive = string | number | boolean | null | undefined;
@@ -29,12 +29,10 @@ export abstract class BaseApiService {
     options?: {
       responseType?: 'json' | 'text';
       withCredentials?: boolean;
-      skipApiUrl?: boolean;
     },
   ): Promise<TResponse> {
-    const urlPrefix = options?.skipApiUrl ? '/' : this._apiUrl;
     return firstValueFrom(
-      this._httpClient.post<TRawResponse>(`${urlPrefix}${url}`, request, {
+      this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request, {
         responseType: options?.responseType ?? ('json' as any),
         withCredentials: options?.withCredentials,
       }),
