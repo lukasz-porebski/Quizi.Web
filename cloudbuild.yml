@@ -1,0 +1,30 @@
+steps:
+  # 1️⃣ Build obrazu Dockera z Angulara
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/quizi-web', '.']
+
+  # 2️⃣ Push obrazu do Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/quizi-web']
+
+  # 3️⃣ Deploy do Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'quizi-web',
+        '--image', 'gcr.io/$PROJECT_ID/quizi-web',
+        '--region', '${_REGION}',
+        '--platform', 'managed',
+        '--allow-unauthenticated'
+      ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/quizi-web'
+
+# Logging
+logging: CLOUD_LOGGING_ONLY
+
+# Definicja zmiennej środowiskowej dla regionu
+substitutions:
+  _REGION: ''        # musi być ustawione w triggerze
