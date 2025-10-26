@@ -22,9 +22,6 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/quizi-web'
 
-# Logging
-logging: CLOUD_LOGGING_ONLY
-
 # Definicja zmiennej środowiskowej dla regionu
 substitutions:
   _REGION: ''        # musi być ustawione w triggerze
