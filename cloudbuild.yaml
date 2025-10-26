@@ -27,7 +27,7 @@ steps:
         '--platform', 'managed',
         '--allow-unauthenticated',
         '--service-account', '${_SERVICE_ACCOUNT}',
-        '--set-env-vars', 'PORT=80'
+        '--set-env-vars', 'API_URL=${_API_URL}'
       ]
 
 images:
