@@ -26,8 +26,7 @@ steps:
         '--region', 'europe-central2',
         '--platform', 'managed',
         '--allow-unauthenticated',
-        '--service-account', '${_SERVICE_ACCOUNT}',
-        '--set-env-vars', 'PORT=8080'
+        '--service-account', '${_SERVICE_ACCOUNT}'
       ]
 
 images:
