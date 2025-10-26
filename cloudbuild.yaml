@@ -38,3 +38,4 @@ options:
 
 substitutions:
   _SERVICE_ACCOUNT: ''
+  _API_URL: ''
