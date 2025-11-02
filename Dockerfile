@@ -9,9 +9,12 @@ RUN npm run build -- --configuration production
 
 FROM nginx:stable-alpine
 
-COPY nginx.conf.template /etc/nginx/conf.d/default.conf.template
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist/quizi/browser /usr/share/nginx/html
 
-EXPOSE 80
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+
+CMD ["/start.sh"]
