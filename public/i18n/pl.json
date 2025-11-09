@@ -64,7 +64,6 @@
   "PASSWORD": "Hasło",
   "CONFIRM_PASSWORD": "Potwierdź hasło",
   "REGISTER": "Zarejestruj się",
-  "REGISTER_2": "Zarejestruj",
   "LOG_IN": "Zaloguj się",
   "INVALID_EMAIL_OR_PASSWORD": "Niepoprawny e-mail lub hasło",
   "PASSWORDS_ARE_DIFFERENT": "Hasła się różnią",
