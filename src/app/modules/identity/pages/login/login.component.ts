@@ -15,6 +15,8 @@ import { TextConfig } from '@common/models/text.config';
 import { Optional } from '@common/types/optional.type';
 import { MatError } from '@angular/material/form-field';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { Router } from '@angular/router';
+import { Route } from '@app/core/enums/route.enum';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,7 @@ import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.p
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  providers: [TranslatePipe],
+  providers: [ TranslatePipe ],
 })
 export class LoginComponent {
   public readonly TextInputType = TextInputType;
@@ -51,10 +53,15 @@ export class LoginComponent {
   public isLoading = false;
   public invalidAuthData = false;
 
+  private readonly _router = inject(Router);
   private readonly _authenticationService = inject(AuthenticationService);
 
   public tryGetInvalidAuthDataError(): Optional<TextConfig> {
-    return this.invalidAuthData ? new TextConfig({ text: 'INVALID_EMAIL_OR_PASSWORD' }) : undefined;
+    return this.invalidAuthData ? new TextConfig({text: 'INVALID_EMAIL_OR_PASSWORD'}) : undefined;
+  }
+
+  public async redirectToRegistration(): Promise<void> {
+    await this._router.navigateByUrl(Route.Registration);
   }
 
   public async logIn(): Promise<void> {

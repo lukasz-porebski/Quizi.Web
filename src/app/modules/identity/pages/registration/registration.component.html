@@ -7,6 +7,7 @@
             [label]="{ text: 'EMAIL' }"
             [formControl]="form.controls.email"
             [type]="TextInputType.Email"
+            [error]="tryGetEmailAdditionalError()"
           />
         </div>
         <div class="mb-3">
@@ -19,17 +20,24 @@
             [error]="Utils.TryGetPasswordFormatError(form.controls.password)"
           />
         </div>
-        @if (tryGetInvalidAuthDataError()) {
-          <mat-error class="mt-2 mb-2">{{ tryGetInvalidAuthDataError() | textConfigTranslate }}</mat-error>
-        }
+        <div class="mb-3">
+          <app-text-input
+            [label]="{ text: 'CONFIRM_PASSWORD' }"
+            [formControl]="form.controls.confirmedPassword"
+            [type]="TextInputType.Password"
+            [minLength]="Validators.PasswordMinLength"
+            [maxLength]="Validators.PasswordMaxLength"
+            [error]="tryGetConfirmedPasswordAdditionalError()"
+          />
+        </div>
         <div class="col d-flex justify-content-end">
           <app-button
             class="me-2"
             [style]="ButtonStyle.Outlined"
-            [text]="{ text: 'REGISTER' }"
-            (onClick)="redirectToRegistration()"
+            [text]="{ text: 'BACK' }"
+            (onClick)="redirectToLogin()"
           />
-          <app-button [text]="{ text: 'LOG_IN' }" [disabled]="form.invalid" (onClick)="logIn()"/>
+          <app-button [text]="{ text: 'REGISTER_2' }" [disabled]="form.invalid" (onClick)="register()"/>
         </div>
       </form>
     </mat-card-content>

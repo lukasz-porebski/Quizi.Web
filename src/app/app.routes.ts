@@ -9,6 +9,7 @@ import { LoginComponent } from '@app/modules/identity/pages/login/login.componen
 import { authenticatedGuard } from '@common/identity/guards/authenticated.guard';
 import { unauthenticatedGuard } from '@common/identity/guards/unauthenticated.guard';
 import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
+import { RegistrationComponent } from '@app/modules/identity/pages/registration/registration.component';
 
 export const routes: Routes = [
   {
@@ -26,4 +27,5 @@ export const routes: Routes = [
     ],
   },
   { path: Route.Login, component: LoginComponent, canActivateChild: [unauthenticatedGuard] },
+  { path: Route.Registration, component: RegistrationComponent, canActivateChild: [unauthenticatedGuard] },
 ];
