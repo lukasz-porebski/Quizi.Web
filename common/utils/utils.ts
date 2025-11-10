@@ -1,4 +1,6 @@
 import { Optional } from '@common/types/optional.type';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorResponse } from '@common/models/responses/error.response';
 
 export function isDefined<T>(value: Optional<T>): value is T {
   return value !== null && value !== undefined;
@@ -103,4 +105,8 @@ export function toPrice(value: number, hideZeros: boolean = true): string {
   }
 
   return resultWithoutZeros + ' zł';
+}
+
+export function tryGetErrors(error: HttpErrorResponse): Optional<ErrorResponse[]> {
+  return error.error as ErrorResponse[];
 }

@@ -1,3 +1,5 @@
+@use "common-colors" as colors;
+
 .center-container {
   position: absolute;
   top: 50%;
@@ -26,4 +28,34 @@
 
 .readonly {
   pointer-events: none;
+}
+
+@mixin app-snackbar($color) {
+  > div {
+    background-color: $color !important;
+  }
+
+  simple-snack-bar {
+    color: colors.$app-white !important;
+
+    button {
+      color: colors.$app-white !important;
+    }
+  }
+}
+
+.success-snackbar {
+  @include app-snackbar(colors.$app-success);
+}
+
+.error-snackbar {
+  @include app-snackbar(colors.$app-error);
+}
+
+.warning-snackbar {
+  @include app-snackbar(colors.$app-warn);
+}
+
+.info-snackbar {
+  @include app-snackbar(colors.$app-info);
 }
