@@ -11,7 +11,7 @@ export class AppErrorHandler implements ErrorHandler {
   public handleError(error: HttpErrorResponse): void {
     switch (error.status) {
       case HttpStatusCode.BadRequest: {
-        const errors = tryGetErrors(error.error);
+        const errors = tryGetErrors(error);
         let message = '';
         if (!isEmpty(errors)) {
           message = errors!.map(e => e.Message).join('; ');
