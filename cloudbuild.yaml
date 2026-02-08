@@ -4,7 +4,6 @@ steps:
     args:
       [
         'build',
-        '--build-arg', 'API_URL=${_API_URL}',
         '-t', 'gcr.io/$PROJECT_ID/quizi-web',
         '.'
       ]
@@ -27,7 +26,8 @@ steps:
         '--region', 'europe-central2',
         '--platform', 'managed',
         '--allow-unauthenticated',
-        '--service-account', '${_SERVICE_ACCOUNT}'
+        '--service-account', '${_SERVICE_ACCOUNT}',
+        '--set-env-vars', 'API_URL=${_API_URL}'
       ]
 
 images:
