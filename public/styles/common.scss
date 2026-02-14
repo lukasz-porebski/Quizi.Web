@@ -59,3 +59,7 @@
 .info-snackbar {
   @include app-snackbar(colors.$app-info);
 }
+
+:root {
+  --mat-dialog-container-shape: 0.5rem;
+}

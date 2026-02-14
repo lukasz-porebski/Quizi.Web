@@ -14,12 +14,12 @@ export class AppErrorHandler implements ErrorHandler {
         const errors = tryGetErrors(error);
         let message = '';
         if (!isEmpty(errors)) {
-          message = errors!.map(e => e.Message).join('; ');
+          message = errors!.map((e) => e.Message).join('; ');
         } else {
           message = this._translateService.instant('SOMETHING_WENT_WRONG');
         }
 
-        this._notificationService.error(message)
+        this._notificationService.error(message);
       }
     }
   }

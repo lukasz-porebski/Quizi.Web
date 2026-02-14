@@ -1,0 +1,10 @@
+<app-async-page [showSpinner]="isLoading">
+  <app-modal [text]="{ text: 'COPY_QUIZ' }">
+    <app-text-input [label]="{ text: 'CODE' }" [formControl]="code" [type]="TextInputType.Guid" />
+
+    <div class="col d-flex justify-content-end">
+      <app-button class="me-2" [text]="{ text: 'CANCEL' }" (onClick)="cancel()" />
+      <app-button [disabled]="code.invalid" [text]="{ text: 'COPY' }" (onClick)="copy()" />
+    </div>
+  </app-modal>
+</app-async-page>

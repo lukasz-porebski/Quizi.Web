@@ -7,10 +7,11 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthenticationInterceptor } from '@common/identity/services/authentication.interceptor';
 import { AppErrorHandler } from '@common/handlers/error.handler';
+import { provideNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({eventCoalescing: true}),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
@@ -19,9 +20,16 @@ export const appConfig: ApplicationConfig = {
     }),
     provideTranslateHttpLoader({
       prefix: './i18n/',
-      suffix: '.json'
+      suffix: '.json',
     }),
-    {provide: ErrorHandler, useClass: AppErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+    provideNgxMask({
+      patterns: {
+        G: {
+          pattern: /[0-9a-fA-F]/,
+        },
+      },
+    }),
   ],
 };

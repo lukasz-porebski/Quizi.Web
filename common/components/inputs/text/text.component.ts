@@ -14,6 +14,7 @@ import { isDefined } from '@common/utils/utils';
 import { InputValidation } from '@common/components/inputs/shared/enums/input-validation.enum';
 import { Optional } from '@common/types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-text-input',
@@ -29,6 +30,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatLabel,
     MatError,
     TranslatePipe,
+    NgxMaskDirective,
   ],
   styleUrls: ['./text.component.scss'],
 })
@@ -48,12 +50,26 @@ export class TextInputComponent {
     return this._passwordType ?? this.type();
   }
 
+  public get innerMaxLength(): number | null {
+    return this.isGuid ? 36 : (this.maxLength() ?? null);
+  }
+
+  public get mask(): Optional<string> {
+    return this.isGuid ? this._guidMask : undefined;
+  }
+
+  public get isGuid(): boolean {
+    return this.type() === TextInputType.Guid;
+  }
+
   public readonly Icon = Icon;
   public readonly InputValidation = InputValidation;
 
   public isPasswordHidden = true;
   public innerLabel?: TextConfig;
   public innerError?: TextConfig;
+
+  private readonly _guidMask = 'GGGGGGGG-GGGG-GGGG-GGGG-GGGGGGGGGGGG';
 
   private _passwordType?: TextInputType;
 

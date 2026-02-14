@@ -4,9 +4,12 @@
     matInput
     [readonly]="readonly()"
     [type]="innerType"
+    [mask]="mask"
     [formControl]="formControl()"
     [minlength]="minLength() ?? null"
-    [maxlength]="maxLength() ?? null"
+    [maxlength]="innerMaxLength"
+    [dropSpecialCharacters]="isGuid ? false : null"
+    [specialCharacters]="isGuid ? ['-'] : []"
   />
 
   @if (passwordShowButton()) {
@@ -41,7 +44,9 @@
             {{ "MAX_TEXT_LENGTH" | translate: { value: this.maxLength() } }}
           }
         }
-      } @else if (formControl().hasError(InputValidation.Email)) {
+      } @else if (
+        formControl().hasError(InputValidation.Email) || formControl().hasError(InputValidation.Guid)
+      ) {
         {{ "INVALID_FORMAT" | translate }}
       } @else if (innerError) {
         {{ innerError | textConfigTranslate }}

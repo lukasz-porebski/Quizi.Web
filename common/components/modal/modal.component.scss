@@ -1,7 +1,13 @@
+title {
+  display: flex;
+  font-size: large !important;
+}
+
 .close-button {
   position: relative;
-  left: 98%;
-  bottom: 15px;
+  left: 93%;
+  top: 0.5rem;
+  cursor: pointer;
 }
 
 ::ng-deep .max-modal-width {

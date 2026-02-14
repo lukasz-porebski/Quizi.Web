@@ -1,30 +1,43 @@
-import { Component, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ModalConfig } from '@common/components/modal/models/modal.config';
+import { Component, effect, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { isDefined } from '@common/utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { Optional } from '@common/types/optional.type';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
+import { ITextConfig, TextConfig } from '@common/models/text.config';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   imports: [MatIcon, MatDialogClose, MatDialogTitle, MatDialogContent, TextConfigTranslatePipe],
   styleUrls: ['./modal.component.scss'],
+  providers: [TranslatePipe],
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  public config = input.required<ModalConfig>();
+  public text = input.required<ITextConfig>();
+  public modalMaxWidth = input<number>();
+  public modalContentMaxWidth = input<number>();
+  public disable = input<boolean>();
+
+  public innerText?: TextConfig;
 
   private readonly _renderer2 = inject(Renderer2);
 
+  public constructor() {
+    effect(() => {
+      this.innerText = isDefined(this.text()) ? new TextConfig(this.text()!) : undefined;
+    });
+  }
+
   public ngOnInit(): void {
-    if (this.config().modalMaxWidth) {
+    if (this.modalMaxWidth()) {
       this.turnOnMaxModalWidth();
     }
   }
 
   public ngOnDestroy(): void {
-    if (this.config().modalMaxWidth) {
+    if (this.modalMaxWidth()) {
       this.turnOffMaxModalWidth();
     }
   }

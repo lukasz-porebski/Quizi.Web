@@ -11,4 +11,5 @@ export enum Icon {
   PowerSettingsNew = 'power_settings_new',
   Search = 'search',
   ChecklistRtl = 'checklist_rtl',
+  Copy = 'content_copy',
 }

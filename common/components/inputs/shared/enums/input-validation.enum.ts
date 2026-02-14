@@ -5,4 +5,5 @@ export enum InputValidation {
   Min = 'min',
   Max = 'max',
   Email = 'email',
+  Guid = 'guid',
 }

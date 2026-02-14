@@ -6,12 +6,15 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
+import { ITableColumnActionConfig } from '@common/components/table/models/columns/column-action.config';
+import { NotificationService } from '@common/services/notification.service';
 
 @Injectable()
 export class QuizzesTableConfigFactory {
   private readonly _apiService = inject(QuizzesListApiService);
   private readonly _dataSourceService = inject(QuizzesDataSourceService);
   private readonly _router = inject(Router);
+  private readonly _notificationService = inject(NotificationService);
 
   public Create(): TableConfig<QuizzesListItemResponse> {
     return new TableConfig<QuizzesListItemResponse>({
@@ -48,45 +51,60 @@ export class QuizzesTableConfigFactory {
           })
           .build(),
       actionsDefinition: {
-        actions: [
-          {
-            name: {
-              text: 'EDIT',
-            },
-            icon: Icon.Edit,
-            onClick: (rowValue) => {
-              this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
-            },
-          },
-          {
-            name: {
-              text: 'PREVIEW',
-            },
-            icon: Icon.Search,
-            onClick: (rowValue) => {
-              this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
-            },
-          },
-          {
-            name: {
-              text: 'START',
-            },
-            icon: Icon.PowerSettingsNew,
-            onClick: (rowValue) => {
-              this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
-            },
-          },
-          {
-            name: {
-              text: 'REMOVE',
-            },
-            icon: Icon.Delete,
-            onClick: (rowValue, table) => {
-              this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
-            },
-          },
-        ],
+        actions: this._createActions(),
       },
     });
+  }
+
+  private _createActions(): ITableColumnActionConfig<QuizzesListItemResponse>[] {
+    return [
+      {
+        name: {
+          text: 'EDIT',
+        },
+        icon: Icon.Edit,
+        onClick: (rowValue) => {
+          this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
+        },
+      },
+      {
+        name: {
+          text: 'PREVIEW',
+        },
+        icon: Icon.Search,
+        onClick: (rowValue) => {
+          this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
+        },
+      },
+      {
+        name: {
+          text: 'COPY',
+        },
+        icon: Icon.Copy,
+        onClick: (rowValue) => {
+          navigator.clipboard.writeText(rowValue.code).then(() => {
+            this._notificationService.info('CODE_FOR_COPYING_QUIZ_HAS_BEEN_COPIED');
+          });
+        },
+      },
+      {
+        name: {
+          text: 'START',
+        },
+        icon: Icon.PowerSettingsNew,
+        onClick: (rowValue) => {
+          this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
+        },
+      },
+      {
+        name: {
+          text: 'REMOVE',
+        },
+        icon: Icon.Delete,
+        onClick: (rowValue, table) => {
+          this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
+        },
+      },
+    ];
   }
 }

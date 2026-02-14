@@ -68,5 +68,10 @@
   "INVALID_EMAIL_OR_PASSWORD": "Niepoprawny e-mail lub hasło",
   "PASSWORDS_ARE_DIFFERENT": "Hasła się różnią",
   "EMAIL_IS_TAKEN": "E-mail jest zajęty",
-  "SOMETHING_WENT_WRONG": "Coś poszło nie tak"
+  "SOMETHING_WENT_WRONG": "Coś poszło nie tak",
+  "COPY": "Kopiuj",
+  "CODE_FOR_COPYING_QUIZ_HAS_BEEN_COPIED": "Skopiowano kod do kopiowania quizu",
+  "COPY_QUIZ": "Skopiuj quiz",
+  "COPIED_QUIZ": "Skopiowano quiz",
+  "CODE": "Kod"
 }

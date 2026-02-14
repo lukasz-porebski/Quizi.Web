@@ -1,11 +1,17 @@
 <div class="app-modal">
-  <span mat-dialog-close class="close-button">
+  <span
+    mat-dialog-close
+    class="close-button"
+    [mat-dialog-close]="disable() ? false : undefined"
+    [class.disabled]="disable()"
+    [style.pointer-events]="disable() ? 'none' : 'auto'"
+  >
     <mat-icon>clear</mat-icon>
   </span>
-  @if (config().text) {
-    <title mat-dialog-title>{{ config().text | textConfigTranslate }}</title>
-  }
-  <mat-dialog-content [class.app-modal-content-max-width]="config().modalContentMaxWidth">
+
+  <title mat-dialog-title>{{ innerText | textConfigTranslate }}</title>
+
+  <mat-dialog-content [class.app-modal-content-max-width]="modalContentMaxWidth()">
     <ng-content></ng-content>
   </mat-dialog-content>
 </div>
