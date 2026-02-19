@@ -5,7 +5,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideTranslateService } from '@ngx-translate/core';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AuthenticationInterceptor } from '@common/identity/services/authentication.interceptor';
+import { AuthenticationInterceptor } from '@common/identity/interceptors/authentication.interceptor';
 import { AppErrorHandler } from '@common/handlers/error.handler';
 import { provideNgxMask } from 'ngx-mask';
 

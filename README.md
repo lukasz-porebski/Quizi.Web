@@ -8,7 +8,7 @@ Aplikacja internetowa do przeprowadzania quizów.
 - [Planowane funkcje](#planowane-funkcje)
 
 ## Technologie
-* Framework  - **Angular 20**
+* Framework  - **Angular 21**
 * Komponenty - **Angular Material**
 * Style - **Bootstrap**
 
