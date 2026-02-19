@@ -8,4 +8,5 @@ export enum Route {
   QuizResult = 'quiz-results/',
   Login = 'login',
   Registration = 'registration',
+  Users = 'users',
 }

@@ -10,6 +10,9 @@ import { authenticatedGuard } from '@common/identity/guards/authenticated.guard'
 import { unauthenticatedGuard } from '@common/identity/guards/unauthenticated.guard';
 import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
 import { RegistrationComponent } from '@app/modules/identity/pages/registration/registration.component';
+import { UsersComponent } from '@app/modules/users/pages/users/users.component';
+import { permissionGuard } from '@common/identity/guards/permission.guard';
+import { Permission } from '@app/core/enums/permission.enum';
 
 export const routes: Routes = [
   {
@@ -24,6 +27,11 @@ export const routes: Routes = [
       { path: `${Route.QuizRun}:id`, component: QuizRunCoreComponent },
       { path: Route.QuizResults, component: QuizResultsComponent },
       { path: `${Route.QuizResult}:id`, component: QuizResultComponent },
+      {
+        path: Route.Users,
+        component: UsersComponent,
+        canActivate: [permissionGuard(Permission.UsersList)],
+      },
     ],
   },
   { path: Route.Login, component: LoginComponent, canActivateChild: [unauthenticatedGuard] },

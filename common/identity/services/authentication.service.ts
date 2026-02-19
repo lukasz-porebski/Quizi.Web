@@ -3,9 +3,10 @@ import { IdentityApiService } from '@common/identity/api/identity-api.service';
 import { AuthenticateResponse } from '@common/identity/api/responses/authenticate.response';
 import { isDefined, isEmpty } from '@common/utils/utils';
 import { Optional } from '@common/types/optional.type';
+import { Permission } from '@app/core/enums/permission.enum';
 
 interface JwtPayload {
-  permissions: Optional<string | string[]>;
+  permissions: Optional<Permission | Permission[]>;
 }
 
 @Injectable({
@@ -14,7 +15,7 @@ interface JwtPayload {
 export class AuthenticationService {
   public readonly response = computed(() => this._response());
   public readonly isUserLoggedIn = computed(() => isDefined(this._response()));
-  public readonly permissions = computed<string[]>(() => {
+  public readonly permissions = computed<Permission[]>(() => {
     const token = this._response()?.accessToken;
     if (isEmpty(token)) {
       return [];
@@ -31,7 +32,7 @@ export class AuthenticationService {
   private readonly _api = inject(IdentityApiService);
   private readonly _response = signal<Optional<AuthenticateResponse>>(null);
 
-  public hasPermission(permission: string): boolean {
+  public hasPermission(permission: Permission): boolean {
     return this.permissions().includes(permission);
   }
 

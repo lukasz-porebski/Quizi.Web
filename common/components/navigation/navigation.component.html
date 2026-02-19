@@ -7,7 +7,11 @@
 
       <mat-accordion displayMode="flat" multi>
         @for (firstLevel of config().menu; track firstLevel) {
-          <div class="first-level" [class.active-first-level]="firstLevel.isActive">
+          <div
+            *hasPermission="firstLevel.permissions"
+            class="first-level"
+            [class.active-first-level]="firstLevel.isActive"
+          >
             <mat-expansion-panel [hideToggle]="!firstLevel.isSecondLevel()" [expanded]="firstLevel.isActive">
               <mat-expansion-panel-header
                 #fLevel
@@ -27,6 +31,7 @@
 
               @for (secondLevel of firstLevel.nextLevels; track secondLevel) {
                 <div
+                  *hasPermission="secondLevel.permissions"
                   [class.active-menu-element]="secondLevel.isActive"
                   [class.active-second-level]="secondLevel.isActive"
                 >
@@ -52,6 +57,7 @@
 
                     @for (thirdLevel of secondLevel.nextLevels; track thirdLevel) {
                       <div
+                        *hasPermission="thirdLevel.permissions"
                         [class.active-menu-element]="thirdLevel.isActive"
                         [class.active-third-level]="thirdLevel.isActive"
                       >

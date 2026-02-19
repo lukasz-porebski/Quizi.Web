@@ -1,9 +1,10 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
+import { Permission } from '@app/core/enums/permission.enum';
 
 export const permissionGuard =
-  (...permissions: string[]): CanActivateFn =>
+  (...permissions: Permission[]): CanActivateFn =>
   () => {
     const authenticationService = inject(AuthenticationService);
     const router = inject(Router);

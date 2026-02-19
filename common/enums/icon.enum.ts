@@ -12,4 +12,5 @@ export enum Icon {
   Search = 'search',
   ChecklistRtl = 'checklist_rtl',
   Copy = 'content_copy',
+  Group = 'group',
 }

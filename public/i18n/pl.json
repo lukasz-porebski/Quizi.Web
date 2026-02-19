@@ -73,5 +73,7 @@
   "CODE_FOR_COPYING_QUIZ_HAS_BEEN_COPIED": "Skopiowano kod do kopiowania quizu",
   "COPY_QUIZ": "Skopiuj quiz",
   "COPIED_QUIZ": "Skopiowano quiz",
-  "CODE": "Kod"
+  "CODE": "Kod",
+  "CREATED": "Utworzono",
+  "USERS": "Użytkownicy"
 }

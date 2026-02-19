@@ -4,6 +4,7 @@ import { NavigationConfig } from '@common/components/navigation/models/navigatio
 import { Icon } from '@common/enums/icon.enum';
 import { Route } from '@app/core/enums/route.enum';
 import { RouterOutlet } from '@angular/router';
+import { Permission } from '@app/core/enums/permission.enum';
 
 @Component({
   selector: 'app-authenticated',
@@ -24,6 +25,12 @@ export class AuthenticatedComponent {
         text: 'QUIZ_RESULTS',
         icon: Icon.ChecklistRtl,
         navigateUrl: Route.QuizResults,
+      },
+      {
+        text: 'USERS',
+        icon: Icon.Group,
+        navigateUrl: Route.Users,
+        permissions: [Permission.UsersList],
       },
     ],
   });

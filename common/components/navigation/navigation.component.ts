@@ -19,6 +19,7 @@ import { NavigationConfig } from '@common/components/navigation/models/navigatio
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { NgOptimizedImage } from '@angular/common';
+import { HasPermissionDirective } from '@common/identity/directives/has-permission.directive';
 
 @Component({
   selector: 'app-navigation',
@@ -39,6 +40,7 @@ import { NgOptimizedImage } from '@angular/common';
     MatIconButton,
     TranslatePipe,
     NgOptimizedImage,
+    HasPermissionDirective,
   ],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
