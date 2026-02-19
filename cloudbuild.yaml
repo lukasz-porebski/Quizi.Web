@@ -23,7 +23,7 @@ steps:
       [
         'run', 'deploy', 'quizi-web',
         '--image', 'gcr.io/$PROJECT_ID/quizi-web',
-        '--region', 'europe-central2',
+        '--region', '${_REGION}',
         '--platform', 'managed',
         '--allow-unauthenticated',
         '--service-account', '${_SERVICE_ACCOUNT}',
