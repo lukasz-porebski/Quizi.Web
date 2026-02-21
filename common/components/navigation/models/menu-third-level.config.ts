@@ -6,7 +6,7 @@ import {
 export interface INavigationMenuThirdLevelConfig extends INavigationBaseMenuLevelConfig {}
 
 export class NavigationMenuThirdLevelConfig extends NavigationBaseMenuLevelConfig {
-  public override get isFianlActive(): boolean {
+  public override get isFinalActive(): boolean {
     return this.isActive;
   }
 

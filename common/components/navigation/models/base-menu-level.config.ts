@@ -10,7 +10,7 @@ export interface INavigationBaseMenuLevelConfig {
 }
 
 export abstract class NavigationBaseMenuLevelConfig {
-  public get isFianlActive(): boolean {
+  public get isFinalActive(): boolean {
     return false;
   }
 

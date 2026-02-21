@@ -1,6 +1,4 @@
-import { Component, input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationMenuFirstLevelConfig } from '@common/components/navigation/models/menu-first-level.config';
-import { NavigationMenuSecondLevelConfig } from '@common/components/navigation/models/menu-second-level.config';
+import { Component, inject, input, OnDestroy, OnInit } from '@angular/core';
 import {
   MatAccordion,
   MatExpansionPanel,
@@ -9,8 +7,7 @@ import {
 } from '@angular/material/expansion';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { isDefined, isEmpty } from '@common/utils/utils';
-import { NavigationMenuThirdLevelConfig } from '@common/components/navigation/models/menu-third-level.config';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -18,8 +15,11 @@ import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { NavigationConfig } from '@common/components/navigation/models/navigation.config';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { HasPermissionDirective } from '@common/identity/directives/has-permission.directive';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
+import { Optional } from '@common/types/optional.type';
 
 @Component({
   selector: 'app-navigation',
@@ -41,19 +41,26 @@ import { HasPermissionDirective } from '@common/identity/directives/has-permissi
     TranslatePipe,
     NgOptimizedImage,
     HasPermissionDirective,
+    AsyncPipe,
   ],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   public config = input.required<NavigationConfig>();
 
+  public readonly authenticationService = inject(AuthenticationService);
   public readonly expandedHeight = '48px';
+  public readonly isMobile$: Observable<boolean>;
 
   private readonly _subscription = new Subscription();
 
-  public constructor(
-    public readonly authenticationService: AuthenticationService,
-    private readonly _router: Router,
-  ) {}
+  private readonly _router = inject(Router);
+  private readonly _breakpointObserver = inject(BreakpointObserver);
+
+  public constructor() {
+    this.isMobile$ = this._breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
+      .pipe(map((result) => result.matches));
+  }
 
   public ngOnInit(): void {
     this._setActiveMenuElements(this._router.url);
@@ -71,19 +78,15 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
-  public onClickNotLastLevel(
-    tLevel: MatExpansionPanelHeader,
-    menuLevel: NavigationMenuFirstLevelConfig | NavigationMenuSecondLevelConfig,
-  ): void {
-    if (isEmpty(menuLevel.nextLevels)) {
-      tLevel._toggle();
-      this._router.navigateByUrl(menuLevel.navigateUrl!);
-    }
-  }
+  public onMenuHeaderClick(menuLevel: NavigationBaseMenuLevelConfig, snav: MatSidenav): void {
+    const hasNextLevels = !isEmpty((menuLevel as any).nextLevels);
 
-  public onClickLastLevel(tLevel: MatExpansionPanelHeader, menuLevel: NavigationMenuThirdLevelConfig): void {
-    tLevel._toggle();
-    this._router.navigateByUrl(menuLevel.navigateUrl!);
+    if (!hasNextLevels && isDefined(menuLevel.navigateUrl)) {
+      if (this._breakpointObserver.isMatched([Breakpoints.Handset, Breakpoints.Tablet])) {
+        snav.close();
+      }
+      this._router.navigateByUrl(menuLevel.navigateUrl);
+    }
   }
 
   public navigateToHome(): void {
@@ -94,17 +97,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
     if (isEmpty(url)) {
       return;
     }
+    this._setMenuLevelActive(this.config().menu, url);
+  }
 
-    this.config().menu.forEach((m) => {
-      m.isActive = isDefined(m.navigateUrl) ? url.includes(m.navigateUrl) : false;
-
-      m.nextLevels?.forEach((nl) => {
-        nl.isActive = isDefined(nl.navigateUrl) ? url.includes(nl.navigateUrl) : false;
-
-        nl.nextLevels?.forEach((ll) => {
-          ll.isActive = isDefined(ll.navigateUrl) ? url.includes(ll.navigateUrl) : false;
-        });
-      });
+  private _setMenuLevelActive(levels: Optional<NavigationBaseMenuLevelConfig[]>, url: string): void {
+    levels?.forEach((level) => {
+      level.isActive = isDefined(level.navigateUrl) ? url.includes(level.navigateUrl) : false;
+      this._setMenuLevelActive((level as any).nextLevels, url);
     });
   }
 }

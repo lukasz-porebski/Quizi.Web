@@ -1,10 +1,12 @@
 @use "common-colors" as colors;
 
 .app-sidebar-nav {
-  height: 100%;
+  height: 100vh;
+  width: 100%;
 
   mat-sidenav-container {
     height: 100%;
+    width: 100%;
   }
 
   ::ng-deep .mat-expansion-panel-body {
@@ -17,10 +19,41 @@
     }
   }
 
+  .desktop-sidenav {
+    width: 18rem;
+  }
+
+  .mobile-sidenav {
+    width: 100%;
+  }
+
   mat-sidenav {
     border-radius: 0;
     background: colors.$app-backgroud;
     border-right: 1px solid var(--mat-sys-outline-variant);
+
+    &.mat-sidenav-over {
+      width: 100%;
+    }
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem;
+    position: relative;
+
+    .logo {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 0.625rem;
+    }
   }
 
   ::ng-deep .mat-toolbar {
@@ -63,19 +96,17 @@ mat-expansion-panel {
   }
 }
 
-.nav-conatainer {
-  width: 100%;
-
-  > a {
-    float: right;
-  }
+.nav-spacer {
+  flex: 1 1 auto;
 }
 
-.logo {
+.menu-toggle {
+  margin-right: 1rem;
+}
+
+.nav-container {
   display: flex;
-  justify-content: center;
-  padding: 10px;
-  cursor: pointer;
+  align-items: center;
 }
 
 .menu-title-first {
@@ -94,5 +125,5 @@ mat-sidenav-content {
 .content {
   padding: 0.5rem;
   overflow: auto;
-  height: calc(100vh - var(--mat-toolbar-standard-height, 64px));
+  height: calc(100vh - var(--mat-toolbar-standard-height, 4rem));
 }

@@ -13,7 +13,7 @@ export interface INavigationMenuFirstLevelConfig extends INavigationBaseMenuLeve
 }
 
 export class NavigationMenuFirstLevelConfig extends NavigationBaseMenuLevelConfig {
-  public override get isFianlActive(): boolean {
+  public override get isFinalActive(): boolean {
     return isEmpty(this.nextLevels) && this.isActive;
   }
 

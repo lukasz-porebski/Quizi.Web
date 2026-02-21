@@ -22,9 +22,10 @@ Aplikacja internetowa do przeprowadzania quizów.
 - Edytowanie quizu
 - Usuwanie quizu
 - Uruchamianie quizu
+- Historia wyników quizów
+- Lista użytkowników
 
 ## Planowane funkcje
 - Podgląd quizów
 - Dzielenie się quizami
 - Statystyki quizów
-- Historia wyników quizów
