@@ -1,8 +1,8 @@
-@if (config().search) {
+@let cfg = config();
+
+@if (cfg.search) {
   <mat-form-field class="search">
-    <mat-label>
-      {{ "SEARCH" | translate }} ({{ config().search!.fieldHeaders | textConfigTranslate }})
-    </mat-label>
+    <mat-label> {{ "SEARCH" | translate }} ({{ cfg.search.fieldHeaders | textConfigTranslate }}) </mat-label>
     <input #searchInput matInput />
   </mat-form-field>
 }
@@ -23,30 +23,26 @@
       @for (row of dataSource.response.items; track row) {
         <div
           class="mobile-card mat-elevation-z2"
-          [class.highlighted]="selection.isSelected(row)"
-          [class.mark-row]="config().markRowCondition(row.data)"
-          (click)="onRowClick(row)"
-          (mouseover)="onMouseOver(row)"
-          (mouseout)="onMouseOut(row)"
+          appTableRowInteraction
+          [row]="row"
+          [markRowCondition]="cfg.markRowCondition"
         >
-          @for (column of config().columns; track column.columnDef) {
+          @for (column of cfg.columns; track column.columnDef) {
             <div class="mobile-card__row">
-              <span class="mobile-card__label">
-                {{ column.header | textConfigTranslate }}
-              </span>
+              <span class="mobile-card__label">{{ column.header | textConfigTranslate }}</span>
               <span class="mobile-card__value">
                 <app-table-row [column]="column" [row]="row" />
               </span>
             </div>
           }
 
-          @if (config().columnsWithIcon?.length || config().actionsDefinition) {
+          @if (cfg.columnsWithIcon.length || cfg.actionsDefinition) {
             <div class="mobile-card__actions">
               <app-table-row-actions
                 [tableComponent]="this"
                 [data]="row.data!"
-                [columnsWithIcon]="config().columnsWithIcon ?? []"
-                [actionsDefinition]="config().actionsDefinition"
+                [columnsWithIcon]="cfg.columnsWithIcon"
+                [actionsDefinition]="cfg.actionsDefinition"
                 [disabled]="shouldShowSpinner"
               />
             </div>
@@ -55,30 +51,28 @@
       }
     </div>
   } @else {
-    <mat-table [class.disable-table]="shouldShowSpinner" [dataSource]="dataSource" matSort>
-      @for (column of config().columns; track column.columnDef) {
+    <mat-table
+      [class.disable-table]="shouldShowSpinner"
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="onSortChange($event)"
+    >
+      @for (column of cfg.columns; track column.columnDef) {
         <ng-container
           [matColumnDef]="column.columnDef"
           [sticky]="column.sticky"
           [stickyEnd]="column.stickyEnd"
         >
-          <mat-header-cell
-            *matHeaderCellDef
-            [style]="'min-width:' + column.minWidth"
-            mat-sort-header
-            matSort
-            (matSortChange)="onSortChange($event)"
-          >
+          <mat-header-cell *matHeaderCellDef [style]="'min-width:' + column.minWidth" mat-sort-header>
             {{ column.header | textConfigTranslate }}
           </mat-header-cell>
-
           <mat-cell *matCellDef="let row" [style]="'min-width:' + column.minWidth">
             <app-table-row [column]="column" [row]="row" />
           </mat-cell>
         </ng-container>
       }
 
-      @for (column of config().columnsWithIcon; track column.columnName) {
+      @for (column of cfg.columnsWithIcon; track column.columnName) {
         <ng-container [matColumnDef]="column.columnName">
           <mat-header-cell *matHeaderCellDef class="action-column-width" />
           <mat-cell *matCellDef="let row" class="action-column-width">
@@ -94,16 +88,16 @@
         </ng-container>
       }
 
-      @if (config().actionsDefinition) {
+      @if (cfg.actionsDefinition) {
         <ng-container
-          [matColumnDef]="config().actionsDefinition!.name"
-          [stickyEnd]="config().actionsDefinition!.stickyEnd"
+          [matColumnDef]="cfg.actionsDefinition.name"
+          [stickyEnd]="cfg.actionsDefinition.stickyEnd"
         >
           <mat-header-cell *matHeaderCellDef class="action-column-width" />
           <mat-cell *matCellDef="let row" class="action-column-width">
             <app-table-actions-definition
               [tableComponent]="this"
-              [actionsDefinition]="config().actionsDefinition!"
+              [actionsDefinition]="cfg.actionsDefinition"
               [data]="row.data!"
               [shouldShowSpinner]="shouldShowSpinner"
             />
@@ -117,15 +111,12 @@
         </mat-footer-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="config().columnNames; sticky: config().headerSticky" />
+      <mat-header-row *matHeaderRowDef="cfg.columnNames; sticky: cfg.headerSticky" />
       <mat-row
-        *matRowDef="let row; columns: config().columnNames"
-        [class.mark-row]="config().markRowCondition(row.data)"
-        [class.hovered]="row.hovered"
-        [class.highlighted]="selection.isSelected(row)"
-        (click)="onRowClick(row)"
-        (mouseover)="onMouseOver(row)"
-        (mouseout)="onMouseOut(row)"
+        *matRowDef="let row; columns: cfg.columnNames"
+        appTableRowInteraction
+        [row]="row"
+        [markRowCondition]="cfg.markRowCondition"
       />
       <mat-footer-row
         *matFooterRowDef="['tableIsEmptyColumn']"
@@ -135,13 +126,13 @@
     </mat-table>
   }
 
-  @if (config().paginator) {
+  @if (cfg.paginator) {
     <mat-paginator
       class="pt-2"
-      [pageSizeOptions]="config().paginator!.getPageSizes()"
+      [pageSizeOptions]="cfg.paginator.getPageSizes()"
       [pageSize]="dataSource.response.pagination.pageSize"
       [pageIndex]="dataSource.response.pagination.pageNumber - 1"
-      [showFirstLastButtons]="config().paginator!.showFirstLastButtons"
+      [showFirstLastButtons]="cfg.paginator.showFirstLastButtons"
       [length]="dataSource.response.totalCount"
       (page)="onPageChange($event)"
     />

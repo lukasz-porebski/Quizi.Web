@@ -15,6 +15,6 @@ export class TableRowActionsComponent<TData> {
   public tableComponent = input.required<ITableComponent>();
   public data = input.required<TData>();
   public columnsWithIcon = input<TableColumnWithIconConfig<TData>[]>([]);
-  public actionsDefinition = input<TableColumnActionsConfig<TData> | undefined>();
+  public actionsDefinition = input<TableColumnActionsConfig<TData>>();
   public disabled = input(false);
 }

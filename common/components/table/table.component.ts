@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ElementRef, inject, input, OnInit, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  DestroyRef,
+  ElementRef,
+  inject,
+  input,
+  OnInit,
+  viewChild,
+} from '@angular/core';
 import { TableConfig } from '@common/components/table/models/table.config';
 import {
   MatCell,
@@ -21,7 +31,7 @@ import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/pag
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { isDefined, isEmpty } from '@common/utils/utils';
@@ -32,16 +42,17 @@ import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.p
 import { TableRowComponent } from '@common/components/table/components/row/row.component';
 import { TableRowActionsComponent } from '@common/components/table/components/row-actions/row-actions.component';
 import { TableActionsDefinitionComponent } from '@common/components/table/components/actions-definition/actions-definition.component';
+import { TableRowInteractionDirective } from '@common/components/table/directives/row-interaction/row-interaction.directive';
 import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
 import { TableEmptyDataSource } from '@common/components/table/data-source/empty-data-source';
 import { TablePaginatorPageSize } from '@common/components/table/enums/paginator-page-size.enum';
 import { PaginationRequest } from '@common/models/requests/pagination.request';
 import { SortRequest } from '@common/models/requests/sort.request';
-import { Optional } from '@common/types/optional.type';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
+import { TableRowInteractionHandler } from '@common/components/table/directives/row-interaction/row-interaction-handler';
 
 @Component({
   selector: 'app-table',
@@ -71,150 +82,126 @@ import { MatIconButton } from '@angular/material/button';
     TableRowComponent,
     TableRowActionsComponent,
     TableActionsDefinitionComponent,
+    TableRowInteractionDirective,
     MatSortModule,
     MatIcon,
     MatIconButton,
   ],
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
-  providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: TablePaginatorIntl },
+    { provide: TableRowInteractionHandler, useExisting: TableComponent },
+  ],
 })
-export class TableComponent<TData> implements OnInit, AfterViewInit, ITableComponent {
-  public searchInput = viewChild<ElementRef>('searchInput');
+export class TableComponent<TData>
+  implements OnInit, AfterViewInit, ITableComponent, TableRowInteractionHandler<TData>
+{
+  private _searchInput = viewChild<ElementRef>('searchInput');
+  private _destroyRef = inject(DestroyRef);
   public config = input.required<TableConfig<TData>>();
 
   public isMobile = toSignal(
     inject(BreakpointObserver)
       .observe([Breakpoints.Handset])
-      .pipe(map((result) => result.matches)),
+      .pipe(map(({ matches }) => matches)),
     { initialValue: false },
   );
 
-  public get shouldShowSpinner(): boolean {
-    return this._spinner;
-  }
-
   public get isTableEmpty(): boolean {
-    return isDefined(this.dataSource) && isEmpty(this.dataSource.response.items);
+    return isEmpty(this.dataSource.response.items);
   }
+  public isSelectionEnable = computed(() => isDefined(this.config().selection));
 
-  public get isSelectionEnable(): boolean {
-    return isDefined(this.config().selection);
-  }
-
+  public shouldShowSpinner = false;
   public selection = new SelectionModel<TableRow<TData>>();
   public dataSource: BaseTableDataSource<TableRow<TData>> = new TableEmptyDataSource();
-
-  private _spinner = false;
 
   public ngOnInit(): void {
     this.initDataSource();
   }
 
   public ngAfterViewInit(): void {
-    if (!isDefined(this.searchInput()?.nativeElement)) {
+    const input = this._searchInput()?.nativeElement;
+    if (!input) {
       return;
     }
 
-    fromEvent(this.searchInput()?.nativeElement, 'input')
+    fromEvent<InputEvent>(input, 'input')
       .pipe(
-        map((event: any) => event.data),
+        map((event) => (event.target as HTMLInputElement).value),
         debounceTime(500),
         distinctUntilChanged(),
+        takeUntilDestroyed(this._destroyRef),
       )
-      .subscribe((value) => this._applySearch(value));
+      .subscribe((value) =>
+        this.dataSource.fetchData(this._currentPagination({ search: value.trim().toLowerCase() })),
+      );
   }
 
-  public async initDataSource(): Promise<void> {
+  public initDataSource(): void {
     this.dataSource = this.config().dataSource;
     this.dataSource.fetchData(
       new PaginationRequest(1, this.config().paginator?.defaultPageSize ?? TablePaginatorPageSize.Ten),
     );
-    this.dataSource.loading$.subscribe((value) => {
-      this._spinner = value;
+    this.dataSource.loading$.pipe(takeUntilDestroyed(this._destroyRef)).subscribe((value) => {
+      this.shouldShowSpinner = value;
     });
   }
 
   public async refreshDataSource(): Promise<void> {
-    this.dataSource.fetchData(
-      new PaginationRequest(
-        this.dataSource.response.pagination.pageNumber,
-        this.dataSource.response.pagination.pageSize,
-        isDefined(this.dataSource.response.pagination.sort)
-          ? new SortRequest(
-              this.dataSource.response.pagination.sort.columnName,
-              this.dataSource.response.pagination.sort.isAscending,
-            )
-          : undefined,
-        this.dataSource.response.pagination.search,
-      ),
-    );
+    this.dataSource.fetchData(this._currentPagination());
   }
 
   public onRowClick(row: TableRow<TData>): void {
-    if (this.isSelectionEnable) {
+    if (this.isSelectionEnable()) {
       this.selection.toggle(row);
-      const selectedRow = isEmpty(this.selection.selected) ? null : this.selection.selected[0];
+      const selectedRow = this.selection.selected[0] ?? null;
       this.config().selection?.onRowSelect(selectedRow?.data);
     }
   }
 
   public onMouseOver(row: TableRow<TData>): void {
-    if (this.isSelectionEnable) {
+    if (this.isSelectionEnable()) {
       row.hovered = true;
     }
   }
 
   public onMouseOut(row: TableRow<TData>): void {
-    if (this.isSelectionEnable) {
+    if (this.isSelectionEnable()) {
       row.hovered = false;
     }
   }
 
   public onPageChange(event: PageEvent): void {
     this.dataSource.fetchData(
-      new PaginationRequest(
-        event.pageIndex + 1,
-        event.pageSize,
-        isDefined(this.dataSource.response.pagination.sort)
-          ? new SortRequest(
-              this.dataSource.response.pagination.sort.columnName,
-              this.dataSource.response.pagination.sort.isAscending,
-            )
-          : undefined,
-        this.dataSource.response.pagination.search,
-      ),
+      this._currentPagination({ pageNumber: event.pageIndex + 1, pageSize: event.pageSize }),
     );
   }
 
   public onSortChange(event: Sort): void {
-    let sort: Optional<SortRequest> = undefined;
-    if (event.direction !== '') {
-      sort = new SortRequest(event.active, event.direction === 'asc');
-    }
-
-    this.dataSource.fetchData(
-      new PaginationRequest(
-        this.dataSource.response.pagination.pageNumber,
-        this.dataSource.response.pagination.pageSize,
-        sort,
-        this.dataSource.response.pagination.search,
-      ),
-    );
+    const sort =
+      event.direction !== '' ? new SortRequest(event.active, event.direction === 'asc') : undefined;
+    this.dataSource.fetchData(this._currentPagination({ sort }));
   }
 
-  private _applySearch(value: string): void {
-    this.dataSource.fetchData(
-      new PaginationRequest(
-        this.dataSource.response.pagination.pageNumber,
-        this.dataSource.response.pagination.pageSize,
-        isDefined(this.dataSource.response.pagination.sort)
-          ? new SortRequest(
-              this.dataSource.response.pagination.sort.columnName,
-              this.dataSource.response.pagination.sort.isAscending,
-            )
-          : undefined,
-        (value ?? '').trim().toLowerCase(),
-      ),
+  private _currentPagination(
+    overrides: Partial<{
+      pageNumber: number;
+      pageSize: number;
+      sort: SortRequest | undefined;
+      search: string;
+    }> = {},
+  ): PaginationRequest {
+    const p = this.dataSource.response.pagination;
+    const currentSort = p.sort ? new SortRequest(p.sort.columnName, p.sort.isAscending) : undefined;
+
+    const sort = 'sort' in overrides ? overrides.sort : currentSort;
+
+    return new PaginationRequest(
+      overrides.pageNumber ?? p.pageNumber,
+      overrides.pageSize ?? p.pageSize,
+      sort,
+      overrides.search ?? p.search,
     );
   }
 }
