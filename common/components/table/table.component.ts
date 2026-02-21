@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, input, OnInit, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, input, OnInit, viewChild } from '@angular/core';
 import { TableConfig } from '@common/components/table/models/table.config';
 import {
   MatCell,
@@ -20,16 +20,18 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { isDefined, isEmpty } from '@common/utils/utils';
-import { MatIcon } from '@angular/material/icon';
-import { MatIconButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { TablePaginatorIntl } from '@common/components/table/providers/paginator-intl';
 import { TableRow } from '@common/components/table/models/row.model';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 import { TableRowComponent } from '@common/components/table/components/row/row.component';
+import { TableRowActionsComponent } from '@common/components/table/components/row-actions/row-actions.component';
+import { TableActionsDefinitionComponent } from '@common/components/table/components/actions-definition/actions-definition.component';
 import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
 import { TableEmptyDataSource } from '@common/components/table/data-source/empty-data-source';
 import { TablePaginatorPageSize } from '@common/components/table/enums/paginator-page-size.enum';
@@ -37,8 +39,9 @@ import { PaginationRequest } from '@common/models/requests/pagination.request';
 import { SortRequest } from '@common/models/requests/sort.request';
 import { Optional } from '@common/types/optional.type';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
-import { TableActionsDefinitionComponent } from '@common/components/table/components/actions-definition/actions-definition.component';
 import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-table',
@@ -61,23 +64,30 @@ import { ITableComponent } from '@common/components/table/interfaces/table-compo
     MatFooterRowDef,
     MatPaginator,
     MatCellDef,
-    MatIcon,
-    MatIconButton,
+    MatProgressSpinner,
     TranslatePipe,
     MatFooterCellDef,
-    MatProgressSpinner,
     TextConfigTranslatePipe,
     TableRowComponent,
-    MatSortModule,
+    TableRowActionsComponent,
     TableActionsDefinitionComponent,
+    MatSortModule,
+    MatIcon,
+    MatIconButton,
   ],
   styleUrls: ['./table.component.scss', './styles/table.shared.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: TablePaginatorIntl }],
 })
 export class TableComponent<TData> implements OnInit, AfterViewInit, ITableComponent {
   public searchInput = viewChild<ElementRef>('searchInput');
-
   public config = input.required<TableConfig<TData>>();
+
+  public isMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe([Breakpoints.Handset])
+      .pipe(map((result) => result.matches)),
+    { initialValue: false },
+  );
 
   public get shouldShowSpinner(): boolean {
     return this._spinner;

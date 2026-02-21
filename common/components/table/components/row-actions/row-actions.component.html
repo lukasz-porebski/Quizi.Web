@@ -1,0 +1,19 @@
+@for (column of columnsWithIcon(); track column.columnName) {
+  <button
+    mat-icon-button
+    class="action-button"
+    [disabled]="disabled()"
+    (click)="$event.stopPropagation(); column.onClick(data())"
+  >
+    <mat-icon>{{ column.icon }}</mat-icon>
+  </button>
+}
+
+@if (actionsDefinition()) {
+  <app-table-actions-definition
+    [tableComponent]="tableComponent()"
+    [actionsDefinition]="actionsDefinition()!"
+    [data]="data()"
+    [shouldShowSpinner]="disabled()"
+  />
+}

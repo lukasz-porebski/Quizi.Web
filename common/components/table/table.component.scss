@@ -1,10 +1,28 @@
 @use "common-colors" as colors;
 
+// ─── Spinner ────────────────────────────────────────────────────────────────
+
 .spinner {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.table-margin {
+  position: relative;
+
+  > .spinner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 10;
+  }
+}
+
+// ─── Desktop table ───────────────────────────────────────────────────────────
 
 .disable-table {
   opacity: 0.5;
@@ -52,14 +70,6 @@
   }
 }
 
-.table-margin > .inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 0 -50% 0 0;
-  transform: translate(-50%, -50%);
-}
-
 .search {
   width: 100%;
 }
@@ -78,4 +88,65 @@
 
 .hide-element {
   display: none;
+}
+
+// ─── Mobile card list ─────────────────────────────────────────────────────────
+
+.mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.mobile-card {
+  border-radius: 8px;
+  padding: 12px 16px;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &.hovered {
+    background: colors.$app-hovered;
+  }
+
+  &.highlighted {
+    background: colors.$app-highlighted;
+  }
+
+  &.mark-row {
+    background-color: colors.$app-lavender;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &__label {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.85rem;
+    flex: 0 0 40%;
+  }
+
+  &__value {
+    flex: 1;
+    text-align: right;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
 }
