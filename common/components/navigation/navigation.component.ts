@@ -1,4 +1,14 @@
-import { Component, inject, input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  effect,
+  inject,
+  Injector,
+  input,
+  OnDestroy,
+  OnInit,
+  viewChild,
+} from '@angular/core';
 import {
   MatAccordion,
   MatExpansionPanel,
@@ -7,7 +17,7 @@ import {
 } from '@angular/material/expansion';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { isDefined, isEmpty } from '@common/utils/utils';
-import { map, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -15,11 +25,12 @@ import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { NavigationConfig } from '@common/components/navigation/models/navigation.config';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { HasPermissionDirective } from '@common/identity/directives/has-permission.directive';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
 import { Optional } from '@common/types/optional.type';
+import { ViewportService } from '@common/services/viewport.service';
 
 @Component({
   selector: 'app-navigation',
@@ -41,26 +52,23 @@ import { Optional } from '@common/types/optional.type';
     TranslatePipe,
     NgOptimizedImage,
     HasPermissionDirective,
-    AsyncPipe,
   ],
 })
-export class NavigationComponent implements OnInit, OnDestroy {
-  public config = input.required<NavigationConfig>();
+export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
+  private readonly _snav = viewChild.required<MatSidenav>('snav');
+
+  public readonly config = input.required<NavigationConfig>();
 
   public readonly authenticationService = inject(AuthenticationService);
-  public readonly expandedHeight = '48px';
-  public readonly isMobile$: Observable<boolean>;
-
-  private readonly _subscription = new Subscription();
 
   private readonly _router = inject(Router);
   private readonly _breakpointObserver = inject(BreakpointObserver);
+  private readonly _subscription = new Subscription();
+  private readonly _injector = inject(Injector);
+  private readonly _viewportService = inject(ViewportService);
 
-  public constructor() {
-    this.isMobile$ = this._breakpointObserver
-      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
-      .pipe(map((result) => result.matches));
-  }
+  public readonly isMobile = this._viewportService.isMobile;
+  public readonly expandedHeight = '48px';
 
   public ngOnInit(): void {
     this._setActiveMenuElements(this._router.url);
@@ -72,6 +80,17 @@ export class NavigationComponent implements OnInit, OnDestroy {
     });
 
     this._subscription.add(sub);
+  }
+
+  public ngAfterViewInit(): void {
+    effect(
+      () => {
+        if (!this.isMobile()) {
+          this._snav().open();
+        }
+      },
+      { injector: this._injector },
+    );
   }
 
   public ngOnDestroy(): void {

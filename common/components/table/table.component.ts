@@ -30,8 +30,7 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { isDefined, isEmpty } from '@common/utils/utils';
@@ -53,6 +52,7 @@ import { ITableComponent } from '@common/components/table/interfaces/table-compo
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { TableRowInteractionHandler } from '@common/components/table/directives/row-interaction/row-interaction-handler';
+import { ViewportService } from '@common/services/viewport.service';
 
 @Component({
   selector: 'app-table',
@@ -96,21 +96,19 @@ import { TableRowInteractionHandler } from '@common/components/table/directives/
 export class TableComponent<TData>
   implements OnInit, AfterViewInit, ITableComponent, TableRowInteractionHandler<TData>
 {
-  private _searchInput = viewChild<ElementRef>('searchInput');
-  private _destroyRef = inject(DestroyRef);
-  public config = input.required<TableConfig<TData>>();
+  public readonly config = input.required<TableConfig<TData>>();
 
-  public isMobile = toSignal(
-    inject(BreakpointObserver)
-      .observe([Breakpoints.Handset])
-      .pipe(map(({ matches }) => matches)),
-    { initialValue: false },
-  );
+  private readonly _searchInput = viewChild<ElementRef>('searchInput');
+
+  private readonly _destroyRef = inject(DestroyRef);
+  private readonly _viewportService = inject(ViewportService);
 
   public get isTableEmpty(): boolean {
     return isEmpty(this.dataSource.response.items);
   }
-  public isSelectionEnable = computed(() => isDefined(this.config().selection));
+
+  public readonly isSelectionEnable = computed(() => isDefined(this.config().selection));
+  public readonly isMobile = this._viewportService.isMobile;
 
   public shouldShowSpinner = false;
   public selection = new SelectionModel<TableRow<TData>>();

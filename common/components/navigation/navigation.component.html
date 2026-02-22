@@ -1,18 +1,16 @@
 <div class="app-sidebar-nav">
   <mat-sidenav-container autosize>
-    @let isMobile = isMobile$ | async;
     <mat-sidenav
       #snav
-      [mode]="isMobile ? 'over' : 'side'"
-      [opened]="!isMobile"
-      [class.desktop-sidenav]="!isMobile"
-      [class.mobile-sidenav]="isMobile"
+      [mode]="isMobile() ? 'over' : 'side'"
+      [class.desktop-sidenav]="!isMobile()"
+      [class.mobile-sidenav]="isMobile()"
     >
       <div class="logo-container">
         <div class="logo" (click)="navigateToHome()">
           <img [ngSrc]="config().logoPath" [width]="100" [height]="99" priority />
         </div>
-        @if (isMobile) {
+        @if (isMobile()) {
           <button mat-icon-button (click)="snav.close()" class="close-button">
             <mat-icon>menu_open</mat-icon>
           </button>
