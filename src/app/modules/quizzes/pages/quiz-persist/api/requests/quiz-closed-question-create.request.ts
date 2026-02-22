@@ -1,4 +1,4 @@
-import { QuizClosedQuestionAnswerPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-answer-persist.request';
+import type { QuizClosedQuestionAnswerPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-answer-persist.request';
 
 export interface QuizClosedQuestionCreateRequest {
   readonly ordinalNumber: number;

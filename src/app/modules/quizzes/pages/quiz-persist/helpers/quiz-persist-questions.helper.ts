@@ -1,6 +1,6 @@
-import { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
+import type { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
 import { sortBy } from 'remeda';
-import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
 
 export namespace QuizPersistQuestionsHelper {
   export function Merge(form: QuizPersistFormGroup): QuizPersistFormQuestion[] {

@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from '@common/services/notification.service';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { TextInputValidator } from '@common/components/inputs/text/validators/text-input.validator';
-import { Guid } from '@common/types/guid.type';
+import type { Guid } from '@common/types/guid.type';
 import { ButtonStyle } from '@common/components/button/enums/style.enum';
 
 @Component({

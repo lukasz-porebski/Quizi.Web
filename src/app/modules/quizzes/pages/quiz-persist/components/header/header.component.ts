@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { NumberInputComponent } from '@common/components/inputs/number/number.component';
 import { TextInputComponent } from '@common/components/inputs/text/text.component';
-import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
 import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
 import { SelectComponent } from '@common/components/select/select.component';
 import { SelectOptionModel } from '@common/components/select/models/select-option.model';

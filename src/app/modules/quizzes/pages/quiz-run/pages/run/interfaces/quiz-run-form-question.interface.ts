@@ -1,4 +1,4 @@
-import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
+import type { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 
 export interface IQuizRunFormOpenQuestion {
   readonly ordinalNumber: number;

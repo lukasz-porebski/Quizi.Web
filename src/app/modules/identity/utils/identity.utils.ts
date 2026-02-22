@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { ITextConfig } from '@common/models/text.config';
+import type { FormControl } from '@angular/forms';
+import type { ITextConfig } from '@common/models/text.config';
 import { IdentityValidators } from '@app/modules/identity/validators/identity.validators';
 
 export namespace IdentityUtils {

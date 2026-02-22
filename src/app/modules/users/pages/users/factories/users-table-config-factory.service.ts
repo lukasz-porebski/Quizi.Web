@@ -1,7 +1,7 @@
 import { TableConfig } from '@common/components/table/models/table.config';
 import { inject, Injectable } from '@angular/core';
 import { UsersDataSourceService } from '@app/modules/users/pages/users/services/users-data-source.service';
-import { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
+import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
 
 @Injectable()
 export class UsersTableConfigFactory {

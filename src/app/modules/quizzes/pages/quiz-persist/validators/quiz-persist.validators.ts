@@ -1,14 +1,14 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
 import { isDefined, isEmpty } from '@common/utils/utils';
-import { IQuizPersistForm } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form.interface';
-import { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
+import type { IQuizPersistForm } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form.interface';
+import type { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
 import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
-import { Optional } from '@common/types/optional.type';
+import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
+import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import type { Optional } from '@common/types/optional.type';
 import { unique } from 'remeda';
-import { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
+import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistValidators {
   export function ThereIsAtLeastOneQuestion(): ValidatorFn {

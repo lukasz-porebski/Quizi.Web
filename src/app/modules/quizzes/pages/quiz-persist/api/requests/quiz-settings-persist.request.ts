@@ -1,5 +1,5 @@
-import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import { TimeSpan } from '@common/types/time-span.type';
+import type { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
+import type { TimeSpan } from '@common/types/time-span.type';
 
 export interface QuizSettingsPersistRequest {
   readonly duration: TimeSpan;

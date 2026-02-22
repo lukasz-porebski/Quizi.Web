@@ -1,4 +1,4 @@
-import { AggregateId } from '@common/types/aggregate-id.type';
+import type { AggregateId } from '@common/types/aggregate-id.type';
 
 export type UsersListItemRawResponse = UsersListItemResponse & {
   createdAt: string;

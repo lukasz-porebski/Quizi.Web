@@ -1,13 +1,16 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { QuizRunOpenQuestionsVerificationApiService } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/api/quiz-run-open-questions-verification-api.service';
-import { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
+import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import { FormArray, FormsModule } from '@angular/forms';
-import { AggregateId } from '@common/types/aggregate-id.type';
+import type { AggregateId } from '@common/types/aggregate-id.type';
 import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import { QuizRunOpenQuestionVerificationComponent } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/components/question-verification/quiz-run-open-question-verification.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '@common/components/button/button.component';
 import { isDefined } from '@common/utils/utils';
+import { from } from 'rxjs';
+import type { QuizOpenQuestionAnswerForVerificationResponse } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/api/responses/quiz-open-question-answer-for-verification.response';
 
 @Component({
   selector: 'app-quiz-run-open-questions-verification',
@@ -29,9 +32,10 @@ export class QuizRunOpenQuestionsVerificationComponent implements OnInit {
 
   private readonly _openQuestionsVerificationApiService = inject(QuizRunOpenQuestionsVerificationApiService);
 
-  public async ngOnInit(): Promise<void> {
-    const correctOpenQuestionsAnswer = await this._openQuestionsVerificationApiService.getOpenQuestionsAnswer(
-      this.quizId(),
+  public ngOnInit(): void {
+    let correctOpenQuestionsAnswer: QuizOpenQuestionAnswerForVerificationResponse[];
+    from(this._openQuestionsVerificationApiService.getOpenQuestionsAnswer(this.quizId())).subscribe(
+      (value) => (correctOpenQuestionsAnswer = value),
     );
     this.form = new FormArray(
       this.questions()

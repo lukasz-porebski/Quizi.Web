@@ -1,5 +1,5 @@
 import { TableConfig } from '@common/components/table/models/table.config';
-import { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
+import type { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
 import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/quiz-results/services/quiz-results-data-source.service';
 import { Icon } from '@common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
@@ -70,8 +70,8 @@ export class QuizResultsTableConfigFactory {
               text: 'PREVIEW',
             },
             icon: Icon.Search,
-            onClick: (rowValue): void => {
-              this._router.navigateByUrl(`${Route.QuizResult}${rowValue.id}`);
+            onClick: async (rowValue): Promise<void> => {
+              await this._router.navigateByUrl(`${Route.QuizResult}${rowValue.id}`);
             },
           },
         ],

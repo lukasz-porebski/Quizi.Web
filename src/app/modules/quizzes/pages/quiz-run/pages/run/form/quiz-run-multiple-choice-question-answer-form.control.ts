@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { QuizToRunClosedQuestionAnswerResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-closed-question-answer.response';
+import type { QuizToRunClosedQuestionAnswerResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-closed-question-answer.response';
 
 // @ts-expect-error TS2510
 export class QuizRunMultipleChoiceQuestionAnswerFormControl extends FormControl<boolean> {

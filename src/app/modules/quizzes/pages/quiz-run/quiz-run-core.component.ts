@@ -1,17 +1,19 @@
-import { Component, inject, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizRunApiService } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/quiz-run-api.service';
-import { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
+import type { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
 import { isDefined, isEmpty } from '@common/utils/utils';
 import { QuizRunRequestFactory } from '@app/modules/quizzes/pages/quiz-run/pages/run/factories/quiz-run-request.factory';
 import { Route } from '@app/core/enums/route.enum';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { QuizRunComponent } from '@app/modules/quizzes/pages/quiz-run/pages/run/quiz-run.component';
-import { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
+import type { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
 import { QuizRunOpenQuestionsVerificationComponent } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/quiz-run-open-questions-verification.component';
-import { FormArray } from '@angular/forms';
-import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
-import { Optional } from '@common/types/optional.type';
+import type { FormArray } from '@angular/forms';
+import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import type { Optional } from '@common/types/optional.type';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-run-core',
@@ -39,9 +41,9 @@ export class QuizRunCoreComponent implements OnInit {
 
   private _isSaving = false;
 
-  public async ngOnInit(): Promise<void> {
+  public ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    this.response = await this._quizRunApiService.getQuizToRun(id!);
+    from(this._quizRunApiService.getQuizToRun(id!)).subscribe((response) => (this.response = response));
   }
 
   public async tryPersist(event: QuizRunFinishedEvent): Promise<void> {

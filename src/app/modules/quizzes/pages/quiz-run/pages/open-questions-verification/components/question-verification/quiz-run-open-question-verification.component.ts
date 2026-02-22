@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RadioComponent } from '@common/components/inputs/radio/radio.component';
-import { IRadioOption } from '@common/components/inputs/radio/interfaces/radio-option.interface';
+import type { IRadioOption } from '@common/components/inputs/radio/interfaces/radio-option.interface';
 import { TextConfig } from '@common/models/text.config';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
 

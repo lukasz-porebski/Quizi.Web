@@ -1,17 +1,18 @@
-import { Component, input, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
 import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 import { InputColor } from '@common/components/inputs/shared/enums/input-color.enum';
-import { QuizResultDetailsOpenQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-open-question.response';
-import { QuizResultDetailsSingleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-single-choice-question.response';
-import { QuizResultDetailsMultipleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question.response';
-import { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
-import { IQuizResultSingleChoiceQuestionRadioOption } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/single-choice-question-radio-option.interface';
+import type { QuizResultDetailsOpenQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-open-question.response';
+import type { QuizResultDetailsSingleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-single-choice-question.response';
+import type { QuizResultDetailsMultipleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question.response';
+import type { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
+import type { IQuizResultSingleChoiceQuestionRadioOption } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/single-choice-question-radio-option.interface';
 import { RadioComponent } from '@common/components/inputs/radio/radio.component';
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
-import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question-answer.response';
+import type { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question-answer.response';
 
 @Component({
   selector: 'app-quiz-result-question',
@@ -76,9 +77,9 @@ export class QuizResultQuestionComponent implements OnInit {
 
   public getOpenQuestionAnswerClassColor(data: QuizResultDetailsOpenQuestionResponse): string {
     let color = InputColor.Default;
-    if (data.isCorrect) {
+    if (data.isCorrect === true) {
       color = InputColor.Green;
-    } else if (!data.isCorrect) {
+    } else if (data.isCorrect === false) {
       color = InputColor.Red;
     }
 
@@ -92,6 +93,6 @@ export class QuizResultQuestionComponent implements OnInit {
       return InputColor.Green;
     }
 
-    return !data.isCorrect && data.isSelected ? InputColor.Red : InputColor.Default;
+    return data.isSelected ? InputColor.Red : InputColor.Default;
   }
 }

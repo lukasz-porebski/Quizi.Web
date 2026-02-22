@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 import { QuizzesComponent } from '@app/modules/quizzes/pages/quizzes/quizzes.component';
 import { Route } from '@app/core/enums/route.enum';
 import { QuizPersistComponent } from '@app/modules/quizzes/pages/quiz-persist/quiz-persist.component';

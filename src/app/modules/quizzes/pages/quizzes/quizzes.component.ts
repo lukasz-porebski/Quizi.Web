@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { ModalService } from '@common/services/modal.service';
 import { QuizCopyModalComponent } from '@app/modules/quizzes/pages/quizzes/modals/copy-modal/quiz-copy-modal.component';
-import { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
-import { TableConfig } from '@common/components/table/models/table.config';
+import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
+import type { TableConfig } from '@common/components/table/models/table.config';
 
 @Component({
   selector: 'app-quizzes',
@@ -37,9 +37,9 @@ export class QuizzesComponent {
   }
 
   public async copyQuiz(): Promise<void> {
-    this._modalService.open<boolean>(QuizCopyModalComponent, (result) => {
-      if (result) {
-        this._table().refreshDataSource();
+    this._modalService.open<boolean>(QuizCopyModalComponent, async (result) => {
+      if (result === true) {
+        await this._table().refreshDataSource();
       }
     });
   }

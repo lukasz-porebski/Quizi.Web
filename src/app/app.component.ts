@@ -1,9 +1,11 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
+import { finalize, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,14 +26,14 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('pl');
     translate.use('pl');
 
-    effect(() => {
-      router.navigate([this._authenticationService.isUserLoggedIn() ? Route.Quizzes : Route.Login]);
+    effect(async () => {
+      await router.navigate([this._authenticationService.isUserLoggedIn() ? Route.Quizzes : Route.Login]);
     });
   }
 
-  public async ngOnInit(): Promise<void> {
-    await this._authenticationService.refresh().finally(() => {
-      this.isLoading = false;
-    });
+  public ngOnInit(): void {
+    from(this._authenticationService.refresh())
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe();
   }
 }

@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { IQuizPersistFormSingleChoiceQuestionAnswer } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question-answer.interface';
+import type { FormControl } from '@angular/forms';
+import type { IQuizPersistFormSingleChoiceQuestionAnswer } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question-answer.interface';
 
 export class QuizPersistSingleChoiceQuestionRadioOption {
   public readonly ordinalNumber: number;

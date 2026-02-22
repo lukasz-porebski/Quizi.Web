@@ -4,8 +4,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { UsersListApiService } from '@app/modules/users/pages/users/api/users-list-api.service';
 import { UsersDataSourceService } from '@app/modules/users/pages/users/services/users-data-source.service';
 import { UsersTableConfigFactory } from '@app/modules/users/pages/users/factories/users-table-config-factory.service';
-import { TableConfig } from '@common/components/table/models/table.config';
-import { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
+import type { TableConfig } from '@common/components/table/models/table.config';
+import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
 
 @Component({
   selector: 'app-users',

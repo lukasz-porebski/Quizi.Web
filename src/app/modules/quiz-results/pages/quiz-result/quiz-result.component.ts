@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isDefined } from '@common/utils/utils';
 import { Route } from '@app/core/enums/route.enum';
@@ -6,8 +7,8 @@ import { AsyncPageComponent } from '@common/components/async-page/async-page.com
 import { ButtonComponent } from '@common/components/button/button.component';
 import { ButtonStyle } from '@common/components/button/enums/style.enum';
 import { QuizResultApiService } from '@app/modules/quiz-results/pages/quiz-result/api/quiz-result-api.service';
-import { QuizResultDetailsResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
-import { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
+import type { QuizResultDetailsResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
+import type { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
 import { QuizResultQuestionsHelper } from '@app/modules/quiz-results/pages/quiz-result/helpers/quiz-result-questions.helper';
 import { QuizResultQuestionComponent } from '@app/modules/quiz-results/pages/quiz-result/components/question/question.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -16,6 +17,7 @@ import { TimeSpanUtils } from '@common/utils/time-span.utils';
 import { DatePipe } from '@angular/common';
 import { DateFormat } from '@common/enums/date-format.enum';
 import { sum } from 'remeda';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-result',
@@ -50,9 +52,9 @@ export class QuizResultComponent implements OnInit {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
 
-  public async ngOnInit(): Promise<void> {
+  public ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    this.response = await this._quizResultApiService.getDetails(id!);
+    from(this._quizResultApiService.getDetails(id!)).subscribe((value) => (this.response = value));
     this.questions = QuizResultQuestionsHelper.Merge(this.response);
   }
 

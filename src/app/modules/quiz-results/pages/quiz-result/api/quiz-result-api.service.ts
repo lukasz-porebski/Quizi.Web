@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
+import type {
   QuizResultDetailsRawResponse,
   QuizResultDetailsResponse,
 } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';

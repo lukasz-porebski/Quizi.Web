@@ -3,7 +3,7 @@ import { TextInputComponent } from '@common/components/inputs/text/text.componen
 import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
 import { ButtonComponent } from '@common/components/button/button.component';
 import { Icon } from '@common/enums/icon.enum';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
 

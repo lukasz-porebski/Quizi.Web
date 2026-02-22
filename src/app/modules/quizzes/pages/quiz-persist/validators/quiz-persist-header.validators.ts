@@ -1,6 +1,6 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { Optional } from '@common/types/optional.type';
-import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import type { Optional } from '@common/types/optional.type';
+import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
 import { isDefined } from '@common/utils/utils';
 
 export namespace QuizPersistHeaderValidators {

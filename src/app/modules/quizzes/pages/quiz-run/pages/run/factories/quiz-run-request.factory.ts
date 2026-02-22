@@ -1,18 +1,18 @@
-import { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
-import { QuizVerifyRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify.request';
-import { QuizVerifyOpenQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-open-question.request';
-import { QuizVerifySingleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-single-choice-question.request';
+import type { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
+import type { QuizVerifyRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify.request';
+import type { QuizVerifyOpenQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-open-question.request';
+import type { QuizVerifySingleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-single-choice-question.request';
 import { isDefined } from '@common/utils/utils';
-import { QuizVerifyClosedQuestionAnswerRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-closed-question-answer.request';
-import { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
-import { QuizRunMultipleChoiceQuestionFormArray } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-multiple-choice-question-form.array';
-import { QuizVerifyMultipleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-multiple-choice-question.request';
+import type { QuizVerifyClosedQuestionAnswerRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-closed-question-answer.request';
+import type { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
+import type { QuizRunMultipleChoiceQuestionFormArray } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-multiple-choice-question-form.array';
+import type { QuizVerifyMultipleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-multiple-choice-question.request';
 import { PeriodUtils } from '@common/utils/period.utils';
-import { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
-import { Optional } from '@common/types/optional.type';
-import { FormArray } from '@angular/forms';
-import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
-import { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
+import type { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
+import type { Optional } from '@common/types/optional.type';
+import type { FormArray } from '@angular/forms';
+import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
+import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
 
 export namespace QuizRunRequestFactory {
@@ -50,6 +50,8 @@ export namespace QuizRunRequestFactory {
         break;
       case QuizRunOpenQuestionVerificationResult.Incorrect:
         isCorrect = false;
+        break;
+      case QuizRunOpenQuestionVerificationResult.NoDecision:
         break;
     }
 

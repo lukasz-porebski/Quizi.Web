@@ -1,18 +1,18 @@
-import { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
+import type { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { QuizPersistFormOpenQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-open-question.factory';
 import { QuizPersistFormSingleChoiceQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-single-choice-question.factory';
 import { QuizPersistFormMultipleChoiceQuestionFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-form-multiple-choice-question.factory';
 import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
+import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
+import type { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
 import { TimeSpanValidators } from '@common/components/time-span/validators/time-span.validators';
 import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
 import { QuizPersistHeaderValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist-header.validators';
 import { QuizPersistValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist.validators';
-import { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
+import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistFormFactory {
   export function Create(response?: QuizDetailsResponse): QuizPersistFormGroup {

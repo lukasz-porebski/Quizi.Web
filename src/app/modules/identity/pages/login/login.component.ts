@@ -3,7 +3,7 @@ import { AsyncPageComponent } from '@common/components/async-page/async-page.com
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { TextInputComponent } from '@common/components/inputs/text/text.component';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ILoginForm } from '@app/modules/identity/pages/login/interfaces/login-form.interface';
+import type { ILoginForm } from '@app/modules/identity/pages/login/interfaces/login-form.interface';
 import { TextInputType } from '@common/components/inputs/text/enums/type.enum';
 import { ButtonComponent } from '@common/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { IdentityValidators } from '@app/modules/identity/validators/identity.va
 import { IdentityUtils } from '@app/modules/identity/utils/identity.utils';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { TextConfig } from '@common/models/text.config';
-import { Optional } from '@common/types/optional.type';
+import type { Optional } from '@common/types/optional.type';
 import { MatError } from '@angular/material/form-field';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 import { Router } from '@angular/router';

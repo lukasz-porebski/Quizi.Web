@@ -1,12 +1,12 @@
 import { TableConfig } from '@common/components/table/models/table.config';
-import { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
+import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
 import { QuizzesDataSourceService } from '@app/modules/quizzes/pages/quizzes/services/quizzes-data-source.service';
 import { Icon } from '@common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
-import { ITableColumnActionConfig } from '@common/components/table/models/columns/column-action.config';
+import type { ITableColumnActionConfig } from '@common/components/table/models/columns/column-action.config';
 import { NotificationService } from '@common/services/notification.service';
 
 @Injectable()
@@ -63,8 +63,8 @@ export class QuizzesTableConfigFactory {
           text: 'EDIT',
         },
         icon: Icon.Edit,
-        onClick: (rowValue): void => {
-          this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
+        onClick: async (rowValue): Promise<void> => {
+          await this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
         },
       },
       {
@@ -72,8 +72,8 @@ export class QuizzesTableConfigFactory {
           text: 'PREVIEW',
         },
         icon: Icon.Search,
-        onClick: (rowValue): void => {
-          this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
+        onClick: async (rowValue): Promise<void> => {
+          await this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
         },
       },
       {
@@ -81,8 +81,8 @@ export class QuizzesTableConfigFactory {
           text: 'COPY',
         },
         icon: Icon.Copy,
-        onClick: (rowValue): void => {
-          navigator.clipboard.writeText(rowValue.code).then(() => {
+        onClick: async (rowValue): Promise<void> => {
+          await navigator.clipboard.writeText(rowValue.code).then(() => {
             this._notificationService.info('CODE_FOR_COPYING_QUIZ_HAS_BEEN_COPIED');
           });
         },
@@ -92,8 +92,8 @@ export class QuizzesTableConfigFactory {
           text: 'START',
         },
         icon: Icon.PowerSettingsNew,
-        onClick: (rowValue): void => {
-          this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
+        onClick: async (rowValue): Promise<void> => {
+          await this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
         },
       },
       {
@@ -101,8 +101,8 @@ export class QuizzesTableConfigFactory {
           text: 'REMOVE',
         },
         icon: Icon.Delete,
-        onClick: (rowValue, table): void => {
-          this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
+        onClick: async (rowValue, table): Promise<void> => {
+          await this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
         },
       },
     ];

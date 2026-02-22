@@ -1,7 +1,7 @@
 import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
 import { isEmpty } from '@common/utils/utils';
-import { IQuizPersistFormMultipleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-multiple-choice-question.interface';
-import { IQuizPersistFormSingleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question.interface';
+import type { IQuizPersistFormMultipleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-multiple-choice-question.interface';
+import type { IQuizPersistFormSingleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question.interface';
 
 export namespace QuizPersistCloasedQuestionsHelper {
   export function RemoveAnswer(
@@ -13,8 +13,8 @@ export namespace QuizPersistCloasedQuestionsHelper {
     );
     question.answers.removeAt(index);
 
-    question.answers.controls.forEach((a, index) =>
-      a.controls.ordinalNumber.setValue(index + QuizPersistConstants.MinOrdinalNumber),
+    question.answers.controls.forEach((a, aIndex) =>
+      a.controls.ordinalNumber.setValue(aIndex + QuizPersistConstants.MinOrdinalNumber),
     );
   }
 

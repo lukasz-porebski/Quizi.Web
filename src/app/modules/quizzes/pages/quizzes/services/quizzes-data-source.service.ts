@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
-import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
+import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
+import type { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
 import { BaseTableApiDataSource } from '@common/components/table/data-source/base-api-data-source';
-import { PaginationRequest } from '@common/models/requests/pagination.request';
+import type { PaginationRequest } from '@common/models/requests/pagination.request';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
 
 @Injectable()

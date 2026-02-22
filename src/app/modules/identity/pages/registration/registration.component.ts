@@ -10,10 +10,10 @@ import { AuthenticationService } from '@common/identity/services/authentication.
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonStyle } from '@common/components/button/enums/style.enum';
 import { TextInputType } from '@common/components/inputs/text/enums/type.enum';
-import { IRegistrationForm } from '@app/modules/identity/pages/registration/interfaces/registration-form.interface';
+import type { IRegistrationForm } from '@app/modules/identity/pages/registration/interfaces/registration-form.interface';
 import { RegistrationApiService } from '@app/modules/identity/pages/registration/api/registration-api.service';
 import { RegistrationValidators } from '@app/modules/identity/pages/registration/validators/registration.validators';
-import { ITextConfig } from '@common/models/text.config';
+import type { ITextConfig } from '@common/models/text.config';
 import { isDefined } from '@common/utils/utils';
 import { Route } from '@app/core/enums/route.enum';
 import { Router } from '@angular/router';

@@ -1,4 +1,5 @@
-import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import type { AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { isEmpty } from '@common/utils/utils';
 
 export namespace IdentityValidators {

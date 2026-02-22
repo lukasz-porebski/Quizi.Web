@@ -1,7 +1,8 @@
-import { Component, input, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RadioComponent } from '@common/components/inputs/radio/radio.component';
-import { IQuizRunSingleChoiceQuestionRadioOption } from '@app/modules/quizzes/pages/quiz-run/pages/run/components/single-choice-question/interfaces/single-choice-question-radio-option.interface';
-import { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
+import type { IQuizRunSingleChoiceQuestionRadioOption } from '@app/modules/quizzes/pages/quiz-run/pages/run/components/single-choice-question/interfaces/single-choice-question-radio-option.interface';
+import type { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
 
 @Component({
   selector: 'app-quiz-run-single-choice-question',

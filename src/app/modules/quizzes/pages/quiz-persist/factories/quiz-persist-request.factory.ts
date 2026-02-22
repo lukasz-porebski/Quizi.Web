@@ -1,19 +1,19 @@
-import { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
-import { QuizCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-create.request';
-import { QuizSettingsPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-settings-persist.request';
+import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
+import type { QuizCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-create.request';
+import type { QuizSettingsPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-settings-persist.request';
 import { TimeSpanUtils } from '@common/utils/time-span.utils';
-import { QuizOpenQuestionPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-open-question-persist.request';
-import { QuizClosedQuestionCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-create.request';
-import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
-import { QuizClosedQuestionAnswerPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-answer-persist.request';
-import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question-answer.form-group';
-import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
-import { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question-answer.form-group';
-import { AggregateId } from '@common/types/aggregate-id.type';
-import { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
-import { QuizClosedQuestionUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-update.request';
-import { EntityPersistRequest } from '@common/models/responses/entity-persist.request';
-import { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
+import type { QuizOpenQuestionPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-open-question-persist.request';
+import type { QuizClosedQuestionCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-create.request';
+import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
+import type { QuizClosedQuestionAnswerPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-answer-persist.request';
+import type { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question-answer.form-group';
+import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
+import type { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question-answer.form-group';
+import type { AggregateId } from '@common/types/aggregate-id.type';
+import type { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
+import type { QuizClosedQuestionUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-update.request';
+import type { EntityPersistRequest } from '@common/models/responses/entity-persist.request';
+import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
 
 export namespace QuizPersistRequestFactory {
   export function CreateForCreate(form: QuizPersistFormGroup): QuizCreateRequest {
@@ -21,11 +21,11 @@ export namespace QuizPersistRequestFactory {
       title: form.value.title!,
       description: form.value.description!,
       settings: createSettings(form),
-      openQuestions: (form.controls.openQuestions.controls ?? []).map((q) => persistOpenQuestion(q)),
-      singleChoiceQuestions: (form.controls.singleChoiceQuestions.controls ?? []).map((q) =>
+      openQuestions: form.controls.openQuestions.controls.map((q) => persistOpenQuestion(q)),
+      singleChoiceQuestions: form.controls.singleChoiceQuestions.controls.map((q) =>
         createSingleChoiceQuestion(q),
       ),
-      multipleChoiceQuestions: (form.controls.multipleChoiceQuestions.controls ?? []).map((q) =>
+      multipleChoiceQuestions: form.controls.multipleChoiceQuestions.controls.map((q) =>
         createMultipleChoiceQuestion(q),
       ),
     };
@@ -37,17 +37,17 @@ export namespace QuizPersistRequestFactory {
       title: form.value.title!,
       description: form.value.description!,
       settings: createSettings(form),
-      openQuestions: (form.controls.openQuestions.controls ?? []).map((q) => {
+      openQuestions: form.controls.openQuestions.controls.map((q) => {
         const result: EntityPersistRequest<QuizOpenQuestionPersistRequest> = {
           no: q.no ?? undefined,
           data: persistOpenQuestion(q),
         };
         return result;
       }),
-      singleChoiceQuestions: (form.controls.singleChoiceQuestions.controls ?? []).map((q) =>
+      singleChoiceQuestions: form.controls.singleChoiceQuestions.controls.map((q) =>
         updateSingleChoiceQuestion(q),
       ),
-      multipleChoiceQuestions: (form.controls.multipleChoiceQuestions.controls ?? []).map((q) =>
+      multipleChoiceQuestions: form.controls.multipleChoiceQuestions.controls.map((q) =>
         updateMultipleChoiceQuestion(q),
       ),
     };
@@ -78,7 +78,7 @@ export namespace QuizPersistRequestFactory {
     return {
       ordinalNumber: form.value.ordinalNumber!,
       text: form.value.text!,
-      answers: (form.controls.answers.controls ?? []).map((a) =>
+      answers: form.controls.answers.controls.map((a) =>
         persistSingleChoiceQuestionAnswer(a, form.value.correctAnswerOrdinalNumber!),
       ),
     };
@@ -92,7 +92,7 @@ export namespace QuizPersistRequestFactory {
       data: {
         ordinalNumber: form.value.ordinalNumber!,
         text: form.value.text!,
-        answers: (form.controls.answers.controls ?? []).map((a) => {
+        answers: form.controls.answers.controls.map((a) => {
           const result: EntityPersistRequest<QuizClosedQuestionAnswerPersistRequest> = {
             no: a.no ?? undefined,
             data: persistSingleChoiceQuestionAnswer(a, form.value.correctAnswerOrdinalNumber!),
@@ -120,7 +120,7 @@ export namespace QuizPersistRequestFactory {
     return {
       ordinalNumber: form.value.ordinalNumber!,
       text: form.value.text!,
-      answers: (form.controls.answers.controls ?? []).map((a) => persistMultipleChoiceQuestionAnswer(a)),
+      answers: form.controls.answers.controls.map((a) => persistMultipleChoiceQuestionAnswer(a)),
     };
   }
 
@@ -132,7 +132,7 @@ export namespace QuizPersistRequestFactory {
       data: {
         ordinalNumber: form.value.ordinalNumber!,
         text: form.value.text!,
-        answers: (form.controls.answers.controls ?? []).map((a) => {
+        answers: form.controls.answers.controls.map((a) => {
           const result: EntityPersistRequest<QuizClosedQuestionAnswerPersistRequest> = {
             no: a.no ?? undefined,
             data: persistMultipleChoiceQuestionAnswer(a),

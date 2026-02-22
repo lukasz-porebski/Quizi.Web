@@ -1,6 +1,6 @@
 import { sortBy } from 'remeda';
-import { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
-import { QuizResultDetailsResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
+import type { IQuizResultQuestion } from '@app/modules/quiz-results/pages/quiz-result/components/question/interfaces/quiz-result-question.interface';
+import type { QuizResultDetailsResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
 import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 
 export namespace QuizResultQuestionsHelper {
