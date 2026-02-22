@@ -120,6 +120,9 @@ module.exports = tseslint.config(
       "@typescript-eslint/switch-exhaustiveness-check": "error",
       "@typescript-eslint/consistent-type-imports": "error",
       "@angular-eslint/no-async-lifecycle-method": "error",
+      "@typescript-eslint/no-unnecessary-type-assertion": "error",
+      eqeqeq: "error",
+      "@typescript-eslint/array-type": ["error", { default: "array" }],
     },
   },
   {
