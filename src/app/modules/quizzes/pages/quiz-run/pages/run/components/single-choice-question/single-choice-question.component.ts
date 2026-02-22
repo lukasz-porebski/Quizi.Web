@@ -12,9 +12,6 @@ import { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pag
 export class QuizPersistSingleChoiceQuestionComponent implements OnInit {
   public readonly question = input.required<QuizRunSingleChoiceQuestionFormControl>();
 
-  public readonly optionValue = (s: IQuizRunSingleChoiceQuestionRadioOption): number => s.no;
-  public readonly optionText = (s: IQuizRunSingleChoiceQuestionRadioOption): string => s.text;
-
   public options: IQuizRunSingleChoiceQuestionRadioOption[] = [];
 
   public ngOnInit(): void {
@@ -26,5 +23,13 @@ export class QuizPersistSingleChoiceQuestionComponent implements OnInit {
       };
       return result;
     });
+  }
+
+  public getOptionValue(s: IQuizRunSingleChoiceQuestionRadioOption): number {
+    return s.no;
+  }
+
+  public getOptionText(s: IQuizRunSingleChoiceQuestionRadioOption): string {
+    return s.text;
   }
 }

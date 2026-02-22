@@ -54,6 +54,46 @@ module.exports = tseslint.config(
       "@typescript-eslint/prefer-readonly": "error",
       "@angular-eslint/prefer-output-readonly": "error",
       "local/require-readonly-inputs": "error",
+      "@angular-eslint/prefer-signals": "error",
+      "@typescript-eslint/member-ordering": [
+        "error",
+        {
+          default: [
+            "public-decorated-field",
+            "protected-decorated-field",
+            "public-static-field",
+            "public-instance-field",
+            "private-static-field",
+            "private-instance-field",
+            "constructor",
+            "public-static-method",
+            "public-instance-method",
+            "private-static-method",
+            "private-instance-method",
+          ],
+        },
+      ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: "memberLike",
+          modifiers: ["private"],
+          format: ["camelCase"],
+          leadingUnderscore: "require",
+        },
+        {
+          selector: "memberLike",
+          modifiers: ["public"],
+          format: ["camelCase"],
+          leadingUnderscore: "forbid",
+        },
+        {
+          selector: "memberLike",
+          modifiers: ["public", "readonly"],
+          format: ["camelCase", "PascalCase"],
+          leadingUnderscore: "forbid",
+        },
+      ],
     },
   },
   {

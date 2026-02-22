@@ -11,7 +11,7 @@ export class QuizResultsTableConfigFactory {
   private readonly _dataSourceService = inject(QuizResultsDataSourceService);
   private readonly _router = inject(Router);
 
-  public Create(): TableConfig<QuizResultsListItemResponse> {
+  public create(): TableConfig<QuizResultsListItemResponse> {
     return new TableConfig<QuizResultsListItemResponse>({
       dataSource: this._dataSourceService,
       paginator: {},

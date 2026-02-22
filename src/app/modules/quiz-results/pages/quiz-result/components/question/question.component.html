@@ -24,9 +24,9 @@
               <app-radio
                 [value]="castToSingleChoiceQuestion().selectedAnswerOrdinalNumber"
                 [options]="options"
-                [optionValue]="optionValue"
-                [optionText]="optionText"
-                [optionColor]="optionColor"
+                [optionValue]="getOptionValue"
+                [optionText]="getOptionText"
+                [optionColor]="getOptionColor"
                 [readonly]="true"
               />
             }

@@ -17,11 +17,6 @@ import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/page
 export class QuizRunOpenQuestionVerificationComponent {
   public readonly question = input.required<QuizRunOpenQuestionVerificationFormControl>();
 
-  public readonly optionValue = (
-    s: IRadioOption<QuizRunOpenQuestionVerificationResult>,
-  ): QuizRunOpenQuestionVerificationResult => s.value;
-  public readonly optionText = (s: IRadioOption<QuizRunOpenQuestionVerificationResult>): TextConfig =>
-    s.label;
   public readonly options: IRadioOption<QuizRunOpenQuestionVerificationResult>[] = [
     {
       label: new TextConfig({ text: 'CORRECT_V2' }),
@@ -36,4 +31,14 @@ export class QuizRunOpenQuestionVerificationComponent {
       value: QuizRunOpenQuestionVerificationResult.NoDecision,
     },
   ];
+
+  public getOptionValue(
+    s: IRadioOption<QuizRunOpenQuestionVerificationResult>,
+  ): QuizRunOpenQuestionVerificationResult {
+    return s.value;
+  }
+
+  public getOptionText(s: IRadioOption<QuizRunOpenQuestionVerificationResult>): TextConfig {
+    return s.label;
+  }
 }

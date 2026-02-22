@@ -4,6 +4,8 @@ import { QuizResultsTableConfigFactory } from '@app/modules/quiz-results/pages/q
 import { QuizResultsListApiService } from '@app/modules/quiz-results/pages/quiz-results/api/quiz-results-list-api.service';
 import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/quiz-results/services/quiz-results-data-source.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
+import { TableConfig } from '@common/components/table/models/table.config';
 
 @Component({
   selector: 'app-quiz-results',
@@ -18,7 +20,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
 })
 export class QuizResultsComponent {
+  public config: TableConfig<QuizResultsListItemResponse>;
+
   private readonly _tableConfigFactory = inject(QuizResultsTableConfigFactory);
 
-  public config = this._tableConfigFactory.Create();
+  constructor() {
+    this.config = this._tableConfigFactory.create();
+  }
 }

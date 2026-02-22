@@ -30,10 +30,6 @@ import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '@app/modu
 export class QuizResultQuestionComponent implements OnInit {
   public readonly question = input.required<IQuizResultQuestion>();
 
-  public readonly optionValue = (s: IQuizResultSingleChoiceQuestionRadioOption): number => s.ordinalNumber;
-  public readonly optionText = (s: IQuizResultSingleChoiceQuestionRadioOption): string => s.text;
-  public readonly optionColor = (s: IQuizResultSingleChoiceQuestionRadioOption): InputColor =>
-    this.getClosedQuestionAnswerColor(s);
   public readonly QuestionType = QuizQuestionType;
 
   public type!: QuizQuestionType;
@@ -52,6 +48,18 @@ export class QuizResultQuestionComponent implements OnInit {
         return result;
       });
     }
+  }
+
+  public getOptionValue(s: IQuizResultSingleChoiceQuestionRadioOption): number {
+    return s.ordinalNumber;
+  }
+
+  public getOptionText(s: IQuizResultSingleChoiceQuestionRadioOption): string {
+    return s.text;
+  }
+
+  public getOptionColor(s: IQuizResultSingleChoiceQuestionRadioOption): InputColor {
+    return this.getClosedQuestionAnswerColor(s);
   }
 
   public castToOpenQuestion(): QuizResultDetailsOpenQuestionResponse {

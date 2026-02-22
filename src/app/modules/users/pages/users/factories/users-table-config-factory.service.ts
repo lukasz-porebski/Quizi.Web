@@ -7,7 +7,7 @@ import { UsersListItemResponse } from '@app/modules/users/pages/users/api/respon
 export class UsersTableConfigFactory {
   private readonly _dataSourceService = inject(UsersDataSourceService);
 
-  public Create(): TableConfig<UsersListItemResponse> {
+  public create(): TableConfig<UsersListItemResponse> {
     return new TableConfig<UsersListItemResponse>({
       dataSource: this._dataSourceService,
       paginator: {},

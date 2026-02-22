@@ -26,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
     provideNgxMask({
       patterns: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         G: {
           pattern: /[0-9a-fA-F]/,
         },

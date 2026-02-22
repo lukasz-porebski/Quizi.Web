@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   providers: [TranslatePipe],
 })
 export class QuizRunComponent implements OnInit {
-  public countDownComponent = viewChild.required(CountDownComponent);
+  public readonly countDownComponent = viewChild.required(CountDownComponent);
 
   public readonly response = input.required<QuizToRunResponse>();
   public readonly finished = output<QuizRunFinishedEvent>();
