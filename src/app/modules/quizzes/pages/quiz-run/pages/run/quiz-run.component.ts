@@ -26,7 +26,7 @@ export class QuizRunComponent implements OnInit {
   public countDownComponent = viewChild.required(CountDownComponent);
 
   public response = input.required<QuizToRunResponse>();
-  public onFinish = output<QuizRunFinishedEvent>();
+  public finished = output<QuizRunFinishedEvent>();
 
   public readonly ButtonStyle = ButtonStyle;
 
@@ -49,7 +49,7 @@ export class QuizRunComponent implements OnInit {
   }
 
   public finish(quizRunningPeriod: PeriodModel<Date>): void {
-    this.onFinish.emit({
+    this.finished.emit({
       form: this.form,
       quizRunningPeriod: quizRunningPeriod,
     });

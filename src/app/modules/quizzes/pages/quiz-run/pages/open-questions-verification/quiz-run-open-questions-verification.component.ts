@@ -23,7 +23,7 @@ export class QuizRunOpenQuestionsVerificationComponent implements OnInit {
 
   public quizId = input.required<AggregateId>();
   public questions = input.required<FormArray<QuizRunOpenQuestionFormControl>>();
-  public onFinish = output<FormArray<QuizRunOpenQuestionVerificationFormControl>>();
+  public finished = output<FormArray<QuizRunOpenQuestionVerificationFormControl>>();
 
   public form!: FormArray<QuizRunOpenQuestionVerificationFormControl>;
 

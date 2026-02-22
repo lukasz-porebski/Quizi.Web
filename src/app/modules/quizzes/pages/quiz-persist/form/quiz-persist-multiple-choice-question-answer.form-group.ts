@@ -5,7 +5,7 @@ import { IQuizPersistFormMultipleChoiceQuestionAnswer } from '@app/modules/quizz
 export class QuizPersistMultipleChoiceQuestionAnswerFormGroup extends FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer> {
   public readonly no: Optional<number>;
 
-  public constructor(controls: IQuizPersistFormMultipleChoiceQuestionAnswer, no: Optional<number>) {
+  constructor(controls: IQuizPersistFormMultipleChoiceQuestionAnswer, no: Optional<number>) {
     super(controls);
     this.no = no;
   }

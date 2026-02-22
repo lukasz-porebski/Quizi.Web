@@ -1,4 +1,4 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
@@ -14,11 +14,12 @@ import { Route } from '@app/core/enums/route.enum';
 export class AppComponent implements OnInit {
   public isLoading = true;
 
-  public constructor(
-    translate: TranslateService,
-    router: Router,
-    private readonly _authenticationService: AuthenticationService,
-  ) {
+  private readonly _authenticationService = inject(AuthenticationService);
+
+  constructor() {
+    const translate = inject(TranslateService);
+    const router = inject(Router);
+
     translate.addLangs(['pl']);
     translate.setDefaultLang('pl');
     translate.use('pl');

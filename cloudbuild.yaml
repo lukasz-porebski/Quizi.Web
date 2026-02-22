@@ -1,4 +1,11 @@
 steps:
+  # Lint
+  - name: 'node:22'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - 'npm ci && npx ng lint'
+
   # Budowa obrazu Docker
   - name: 'gcr.io/cloud-builders/docker'
     args:

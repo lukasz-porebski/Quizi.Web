@@ -19,7 +19,7 @@ export class QuizRunMultipleChoiceQuestionFormArray
   public readonly response: QuizToRunClosedQuestionResponse;
   public readonly type = QuizQuestionType.MultipleChoice;
 
-  public constructor(response: QuizToRunClosedQuestionResponse) {
+  constructor(response: QuizToRunClosedQuestionResponse) {
     super(response.answers.map((a) => new QuizRunMultipleChoiceQuestionAnswerFormControl(a)));
     this.response = response;
   }

@@ -11,7 +11,7 @@ import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-per
 import { Optional } from '@common/types/optional.type';
 
 export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
-  public constructor(controls: IQuizPersistForm, validatorOrOpts: ValidatorFn[]) {
+  constructor(controls: IQuizPersistForm, validatorOrOpts: ValidatorFn[]) {
     super(controls, validatorOrOpts);
   }
 
@@ -39,24 +39,27 @@ export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
 
   public removeQuestion(question: QuizPersistFormQuestion): void {
     switch (question.type) {
-      case QuizPersistFormQuestionType.Open:
+      case QuizPersistFormQuestionType.Open: {
         const openQuestionIndex = this.controls.openQuestions.controls.findIndex(
           (a) => a.controls.ordinalNumber.value === question.value.ordinalNumber,
         );
         this.controls.openQuestions.removeAt(openQuestionIndex);
         break;
-      case QuizPersistFormQuestionType.SingleChoice:
+      }
+      case QuizPersistFormQuestionType.SingleChoice: {
         const singleChoiceIndex = this.controls.singleChoiceQuestions.controls.findIndex(
           (a) => a.controls.ordinalNumber.value === question.value.ordinalNumber,
         );
         this.controls.singleChoiceQuestions.removeAt(singleChoiceIndex);
         break;
-      case QuizPersistFormQuestionType.MultipleChoice:
+      }
+      case QuizPersistFormQuestionType.MultipleChoice: {
         const multipleChoiceIndex = this.controls.multipleChoiceQuestions.controls.findIndex(
           (a) => a.controls.ordinalNumber.value === question.value.ordinalNumber,
         );
         this.controls.multipleChoiceQuestions.removeAt(multipleChoiceIndex);
         break;
+      }
     }
 
     this.getQuestions().forEach((q, index) =>

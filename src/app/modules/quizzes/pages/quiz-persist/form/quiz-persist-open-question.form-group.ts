@@ -6,7 +6,7 @@ import { IQuizPersistFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-pe
 export class QuizPersistOpenQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion> {
   public readonly no: Optional<number>;
 
-  public constructor(controls: IQuizPersistFormOpenQuestion, no: Optional<number>) {
+  constructor(controls: IQuizPersistFormOpenQuestion, no: Optional<number>) {
     super(controls, QuizPersistFormQuestionType.Open);
     this.no = no;
   }

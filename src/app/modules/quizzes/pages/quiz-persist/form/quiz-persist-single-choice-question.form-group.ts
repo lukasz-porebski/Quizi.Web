@@ -9,7 +9,7 @@ import { Optional } from '@common/types/optional.type';
 export class QuizPersistSingleChoiceQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion> {
   public readonly no: Optional<number>;
 
-  public constructor(
+  constructor(
     controls: IQuizPersistFormSingleChoiceQuestion,
     no: Optional<number>,
     validatorOrOpts: ValidatorFn[],

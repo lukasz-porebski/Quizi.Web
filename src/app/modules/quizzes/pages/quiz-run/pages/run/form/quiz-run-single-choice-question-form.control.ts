@@ -19,7 +19,7 @@ export class QuizRunSingleChoiceQuestionFormControl
   public readonly response: QuizToRunClosedQuestionResponse;
   public readonly type = QuizQuestionType.SingleChoice;
 
-  public constructor(response: QuizToRunClosedQuestionResponse) {
+  constructor(response: QuizToRunClosedQuestionResponse) {
     super(undefined);
     this.response = response;
   }

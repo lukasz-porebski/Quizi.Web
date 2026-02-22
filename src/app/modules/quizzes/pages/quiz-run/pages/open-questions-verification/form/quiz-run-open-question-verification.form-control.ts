@@ -3,9 +3,9 @@ import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/page
 import { QuizToRunOpenQuestionResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-open-question.response';
 import { Optional } from '@common/types/optional.type';
 
-// @ts-ignore
+// @ts-expect-error TS2510
 export class QuizRunOpenQuestionVerificationFormControl extends FormControl<QuizRunOpenQuestionVerificationResult> {
-  public constructor(
+  constructor(
     public readonly response: QuizToRunOpenQuestionResponse,
     public readonly correctAnswer: string,
     public readonly userAnswer: Optional<string>,
