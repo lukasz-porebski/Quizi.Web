@@ -21,9 +21,9 @@ export class QuizRunOpenQuestionsVerificationComponent implements OnInit {
     return isDefined(this.form);
   }
 
-  public quizId = input.required<AggregateId>();
-  public questions = input.required<FormArray<QuizRunOpenQuestionFormControl>>();
-  public finished = output<FormArray<QuizRunOpenQuestionVerificationFormControl>>();
+  public readonly quizId = input.required<AggregateId>();
+  public readonly questions = input.required<FormArray<QuizRunOpenQuestionFormControl>>();
+  public readonly finished = output<FormArray<QuizRunOpenQuestionVerificationFormControl>>();
 
   public form!: FormArray<QuizRunOpenQuestionVerificationFormControl>;
 

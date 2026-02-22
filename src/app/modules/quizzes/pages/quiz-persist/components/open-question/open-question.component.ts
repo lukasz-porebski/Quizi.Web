@@ -11,6 +11,6 @@ import { TextareaInputComponent } from '@common/components/inputs/textarea/texta
   styleUrl: './open-question.component.scss',
 })
 export class QuizPersistOpenQuestionComponent {
-  public formGroup = input.required<FormGroup<IQuizPersistFormOpenQuestion>>();
-  public isPreview = input.required<boolean>();
+  public readonly formGroup = input.required<FormGroup<IQuizPersistFormOpenQuestion>>();
+  public readonly isPreview = input.required<boolean>();
 }

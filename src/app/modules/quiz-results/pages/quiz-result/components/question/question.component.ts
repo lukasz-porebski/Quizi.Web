@@ -28,11 +28,11 @@ import { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '@app/modu
   styleUrl: './question.component.scss',
 })
 export class QuizResultQuestionComponent implements OnInit {
-  public question = input.required<IQuizResultQuestion>();
+  public readonly question = input.required<IQuizResultQuestion>();
 
-  public readonly optionValue = (s: IQuizResultSingleChoiceQuestionRadioOption) => s.ordinalNumber;
-  public readonly optionText = (s: IQuizResultSingleChoiceQuestionRadioOption) => s.text;
-  public readonly optionColor = (s: IQuizResultSingleChoiceQuestionRadioOption) =>
+  public readonly optionValue = (s: IQuizResultSingleChoiceQuestionRadioOption): number => s.ordinalNumber;
+  public readonly optionText = (s: IQuizResultSingleChoiceQuestionRadioOption): string => s.text;
+  public readonly optionColor = (s: IQuizResultSingleChoiceQuestionRadioOption): InputColor =>
     this.getClosedQuestionAnswerColor(s);
   public readonly QuestionType = QuizQuestionType;
 

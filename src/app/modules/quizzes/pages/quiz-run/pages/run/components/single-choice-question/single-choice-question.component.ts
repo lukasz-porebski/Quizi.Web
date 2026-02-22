@@ -10,10 +10,10 @@ import { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pag
   styleUrl: './single-choice-question.component.scss',
 })
 export class QuizPersistSingleChoiceQuestionComponent implements OnInit {
-  public question = input.required<QuizRunSingleChoiceQuestionFormControl>();
+  public readonly question = input.required<QuizRunSingleChoiceQuestionFormControl>();
 
-  public readonly optionValue = (s: IQuizRunSingleChoiceQuestionRadioOption) => s.no;
-  public readonly optionText = (s: IQuizRunSingleChoiceQuestionRadioOption) => s.text;
+  public readonly optionValue = (s: IQuizRunSingleChoiceQuestionRadioOption): number => s.no;
+  public readonly optionText = (s: IQuizRunSingleChoiceQuestionRadioOption): string => s.text;
 
   public options: IQuizRunSingleChoiceQuestionRadioOption[] = [];
 

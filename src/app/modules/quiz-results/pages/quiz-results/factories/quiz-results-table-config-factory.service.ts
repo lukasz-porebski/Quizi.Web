@@ -70,7 +70,7 @@ export class QuizResultsTableConfigFactory {
               text: 'PREVIEW',
             },
             icon: Icon.Search,
-            onClick: (rowValue) => {
+            onClick: (rowValue): void => {
               this._router.navigateByUrl(`${Route.QuizResult}${rowValue.id}`);
             },
           },

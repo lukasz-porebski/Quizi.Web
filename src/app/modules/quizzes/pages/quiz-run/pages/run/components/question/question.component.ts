@@ -24,7 +24,7 @@ import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.c
   styleUrl: './question.component.scss',
 })
 export class QuizRunQuestionComponent {
-  public question = input.required<IQuizRunFormOpenQuestion>();
+  public readonly question = input.required<IQuizRunFormOpenQuestion>();
 
   public readonly QuestionType = QuizQuestionType;
   public readonly Icon = Icon;

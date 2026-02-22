@@ -2,6 +2,7 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
+const localRules = require("./eslint-rules/require-readonly-inputs");
 
 module.exports = tseslint.config(
   {
@@ -13,6 +14,15 @@ module.exports = tseslint.config(
       ...angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
+    languageOptions: {
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: __dirname,
+      },
+    },
+    plugins: {
+      local: { rules: { "require-readonly-inputs": localRules } },
+    },
     rules: {
       "@angular-eslint/directive-selector": [
         "error",
@@ -40,6 +50,10 @@ module.exports = tseslint.config(
         },
       ],
       "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/prefer-readonly": "error",
+      "@angular-eslint/prefer-output-readonly": "error",
+      "local/require-readonly-inputs": "error",
     },
   },
   {

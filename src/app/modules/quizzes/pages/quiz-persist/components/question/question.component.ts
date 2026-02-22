@@ -30,9 +30,9 @@ import { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/qui
   styleUrl: './question.component.scss',
 })
 export class QuizPersistQuestionComponent {
-  public form = input.required<QuizPersistFormGroup>();
-  public question = input.required<QuizPersistFormQuestion>();
-  public isPreview = input.required<boolean>();
+  public readonly form = input.required<QuizPersistFormGroup>();
+  public readonly question = input.required<QuizPersistFormQuestion>();
+  public readonly isPreview = input.required<boolean>();
 
   public readonly QuestionType = QuizPersistFormQuestionType;
   public readonly Icon = Icon;

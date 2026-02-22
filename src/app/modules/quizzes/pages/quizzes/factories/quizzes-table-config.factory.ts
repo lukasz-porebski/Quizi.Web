@@ -63,7 +63,7 @@ export class QuizzesTableConfigFactory {
           text: 'EDIT',
         },
         icon: Icon.Edit,
-        onClick: (rowValue) => {
+        onClick: (rowValue): void => {
           this._router.navigateByUrl(`${Route.QuizEdit}${rowValue.id}`);
         },
       },
@@ -72,7 +72,7 @@ export class QuizzesTableConfigFactory {
           text: 'PREVIEW',
         },
         icon: Icon.Search,
-        onClick: (rowValue) => {
+        onClick: (rowValue): void => {
           this._router.navigateByUrl(`${Route.QuizPreview}${rowValue.id}`);
         },
       },
@@ -81,7 +81,7 @@ export class QuizzesTableConfigFactory {
           text: 'COPY',
         },
         icon: Icon.Copy,
-        onClick: (rowValue) => {
+        onClick: (rowValue): void => {
           navigator.clipboard.writeText(rowValue.code).then(() => {
             this._notificationService.info('CODE_FOR_COPYING_QUIZ_HAS_BEEN_COPIED');
           });
@@ -92,7 +92,7 @@ export class QuizzesTableConfigFactory {
           text: 'START',
         },
         icon: Icon.PowerSettingsNew,
-        onClick: (rowValue) => {
+        onClick: (rowValue): void => {
           this._router.navigateByUrl(`${Route.QuizRun}${rowValue.id}`);
         },
       },
@@ -101,7 +101,7 @@ export class QuizzesTableConfigFactory {
           text: 'REMOVE',
         },
         icon: Icon.Delete,
-        onClick: (rowValue, table) => {
+        onClick: (rowValue, table): void => {
           this._apiService.remove(rowValue.id).then(() => table.refreshDataSource());
         },
       },

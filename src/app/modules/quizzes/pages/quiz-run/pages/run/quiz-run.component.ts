@@ -25,8 +25,8 @@ import { Router } from '@angular/router';
 export class QuizRunComponent implements OnInit {
   public countDownComponent = viewChild.required(CountDownComponent);
 
-  public response = input.required<QuizToRunResponse>();
-  public finished = output<QuizRunFinishedEvent>();
+  public readonly response = input.required<QuizToRunResponse>();
+  public readonly finished = output<QuizRunFinishedEvent>();
 
   public readonly ButtonStyle = ButtonStyle;
 

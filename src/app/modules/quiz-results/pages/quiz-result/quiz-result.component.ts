@@ -33,7 +33,7 @@ import { sum } from 'remeda';
 })
 export class QuizResultComponent implements OnInit {
   public get isLoading(): boolean {
-    return !this.isInitialized || this._isSaving;
+    return !this.isInitialized;
   }
 
   public get isInitialized(): boolean {
@@ -49,8 +49,6 @@ export class QuizResultComponent implements OnInit {
   private readonly _quizResultApiService = inject(QuizResultApiService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
-
-  private _isSaving = false;
 
   public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id');

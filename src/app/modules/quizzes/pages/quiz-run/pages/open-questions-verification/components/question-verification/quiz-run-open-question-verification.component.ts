@@ -15,10 +15,13 @@ import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/page
   styleUrl: './quiz-run-open-question-verification.component.scss',
 })
 export class QuizRunOpenQuestionVerificationComponent {
-  public question = input.required<QuizRunOpenQuestionVerificationFormControl>();
+  public readonly question = input.required<QuizRunOpenQuestionVerificationFormControl>();
 
-  public readonly optionValue = (s: IRadioOption<QuizRunOpenQuestionVerificationResult>) => s.value;
-  public readonly optionText = (s: IRadioOption<QuizRunOpenQuestionVerificationResult>) => s.label;
+  public readonly optionValue = (
+    s: IRadioOption<QuizRunOpenQuestionVerificationResult>,
+  ): QuizRunOpenQuestionVerificationResult => s.value;
+  public readonly optionText = (s: IRadioOption<QuizRunOpenQuestionVerificationResult>): TextConfig =>
+    s.label;
   public readonly options: IRadioOption<QuizRunOpenQuestionVerificationResult>[] = [
     {
       label: new TextConfig({ text: 'CORRECT_V2' }),

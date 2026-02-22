@@ -14,8 +14,8 @@ import { MatError } from '@angular/material/form-field';
   styleUrl: './multiple-choice-question.component.scss',
 })
 export class QuizPersistMultipleChoiceQuestionComponent {
-  public formGroup = input.required<QuizPersistMultipleChoiceQuestionFormGroup>();
-  public isPreview = input.required<boolean>();
+  public readonly formGroup = input.required<QuizPersistMultipleChoiceQuestionFormGroup>();
+  public readonly isPreview = input.required<boolean>();
 
   public readonly Icon = Icon;
 }

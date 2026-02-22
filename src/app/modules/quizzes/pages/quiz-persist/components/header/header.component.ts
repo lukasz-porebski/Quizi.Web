@@ -24,8 +24,8 @@ import { TextareaInputComponent } from '@common/components/inputs/textarea/texta
   styleUrl: './header.component.scss',
 })
 export class QuizPersistHeaderComponent {
-  public form = input.required<QuizPersistFormGroup>();
-  public isPreview = input.required<boolean>();
+  public readonly form = input.required<QuizPersistFormGroup>();
+  public readonly isPreview = input.required<boolean>();
 
   public get maxQuestionsCountInRunningQuiz(): number {
     return this.form().getQuestions().length;

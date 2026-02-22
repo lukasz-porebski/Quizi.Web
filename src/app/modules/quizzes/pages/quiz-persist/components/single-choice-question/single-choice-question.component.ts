@@ -16,10 +16,10 @@ import { MatError } from '@angular/material/form-field';
   styleUrl: './single-choice-question.component.scss',
 })
 export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestroy {
-  public formGroup = input.required<QuizPersistSingleChoiceQuestionFormGroup>();
-  public isPreview = input.required<boolean>();
+  public readonly formGroup = input.required<QuizPersistSingleChoiceQuestionFormGroup>();
+  public readonly isPreview = input.required<boolean>();
 
-  public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption) => s.ordinalNumber;
+  public readonly optionValue = (s: QuizPersistSingleChoiceQuestionRadioOption): number => s.ordinalNumber;
   public readonly Icon = Icon;
 
   public options: QuizPersistSingleChoiceQuestionRadioOption[] = [];
