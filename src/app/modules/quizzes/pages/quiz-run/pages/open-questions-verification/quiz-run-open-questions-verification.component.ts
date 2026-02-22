@@ -9,8 +9,6 @@ import { QuizRunOpenQuestionVerificationComponent } from '@app/modules/quizzes/p
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '@common/components/button/button.component';
 import { isDefined } from '@common/utils/utils';
-import { from } from 'rxjs';
-import type { QuizOpenQuestionAnswerForVerificationResponse } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/api/responses/quiz-open-question-answer-for-verification.response';
 
 @Component({
   selector: 'app-quiz-run-open-questions-verification',
@@ -32,16 +30,13 @@ export class QuizRunOpenQuestionsVerificationComponent implements OnInit {
 
   private readonly _openQuestionsVerificationApiService = inject(QuizRunOpenQuestionsVerificationApiService);
 
-  public ngOnInit(): void {
-    let correctOpenQuestionsAnswer: QuizOpenQuestionAnswerForVerificationResponse[];
-    from(this._openQuestionsVerificationApiService.getOpenQuestionsAnswer(this.quizId())).subscribe(
-      (value) => (correctOpenQuestionsAnswer = value),
-    );
+  public async ngOnInit(): Promise<void> {
+    const responses = await this._openQuestionsVerificationApiService.getOpenQuestionsAnswer(this.quizId());
     this.form = new FormArray(
       this.questions()
         .controls.sort((q) => q.ordinalNumber)
         .map((q) => {
-          const answer = correctOpenQuestionsAnswer.find((a) => a.no === q.response.no);
+          const answer = responses.find((a) => a.no === q.response.no);
           return new QuizRunOpenQuestionVerificationFormControl(q.response, answer!.text, q.value);
         }),
     );

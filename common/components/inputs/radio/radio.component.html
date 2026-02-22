@@ -7,7 +7,7 @@
 }
 
 <mat-radio-group [class.d-flex]="!vertical()" [formControl]="innerFormControl">
-  @for (option of options(); track getOptionValue(option)) {
+  @for (option of options(); track $index) {
     <mat-radio-button
       [class.readonly]="readonly()"
       [class.disabled-radio-input]="innerFormControl.disabled"

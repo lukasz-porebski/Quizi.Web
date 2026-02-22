@@ -13,7 +13,6 @@ import { QuizRunOpenQuestionsVerificationComponent } from '@app/modules/quizzes/
 import type { FormArray } from '@angular/forms';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import type { Optional } from '@common/types/optional.type';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-run-core',
@@ -41,9 +40,9 @@ export class QuizRunCoreComponent implements OnInit {
 
   private _isSaving = false;
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    from(this._quizRunApiService.getQuizToRun(id!)).subscribe((response) => (this.response = response));
+    this.response = await this._quizRunApiService.getQuizToRun(id!);
   }
 
   public async tryPersist(event: QuizRunFinishedEvent): Promise<void> {

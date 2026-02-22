@@ -1,5 +1,4 @@
-import type { OnInit } from '@angular/core';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isDefined } from '@common/utils/utils';
 import { Route } from '@app/core/enums/route.enum';
@@ -17,7 +16,6 @@ import { TimeSpanUtils } from '@common/utils/time-span.utils';
 import { DatePipe } from '@angular/common';
 import { DateFormat } from '@common/enums/date-format.enum';
 import { sum } from 'remeda';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-result',
@@ -52,9 +50,9 @@ export class QuizResultComponent implements OnInit {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    from(this._quizResultApiService.getDetails(id!)).subscribe((value) => (this.response = value));
+    this.response = await this._quizResultApiService.getDetails(id!);
     this.questions = QuizResultQuestionsHelper.Merge(this.response);
   }
 

@@ -17,11 +17,9 @@ import { QuizPersistFormFactory } from '@app/modules/quizzes/pages/quiz-persist/
 import { FormUtils } from '@common/utils/form.utils';
 import { MatError } from '@angular/material/form-field';
 import type { AggregateId } from '@common/types/aggregate-id.type';
-import type { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
-import type { Optional } from '@common/types/optional.type';
 import { QuizPersistRequestFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-request.factory';
 import { Route } from '@app/core/enums/route.enum';
-import { from } from 'rxjs';
+import type { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
 
 @Component({
   selector: 'app-quiz-persist',
@@ -61,13 +59,13 @@ export class QuizPersistComponent implements OnInit {
   private _id?: AggregateId;
   private _isSaving = false;
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    let response: Optional<QuizDetailsResponse> = undefined;
+    let response: QuizDetailsResponse | undefined;
 
     if (isDefined(id)) {
       this._id = id;
-      from(this._persistApiService.getDetails(id)).subscribe((value) => (response = value));
+      response = await this._persistApiService.getDetails(id);
       this.isPreview = this._activatedRoute.snapshot.routeConfig?.path?.includes(Route.QuizPreview) ?? false;
     }
 

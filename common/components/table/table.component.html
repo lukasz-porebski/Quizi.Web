@@ -27,26 +27,30 @@
           [row]="row"
           [markRowCondition]="cfg.markRowCondition"
         >
-          @for (column of cfg.columns; track column.columnDef) {
-            <div class="mobile-card__row">
-              <span class="mobile-card__label">{{ column.header | textConfigTranslate }}</span>
-              <span class="mobile-card__value">
-                <app-table-row [column]="column" [row]="row" />
-              </span>
+          <div class="mobile-card__content">
+            <div class="mobile-card__fields">
+              @for (column of cfg.columns; track column.columnDef) {
+                <div class="mobile-card__row">
+                  <span class="mobile-card__label">{{ column.header | textConfigTranslate }}</span>
+                  <span class="mobile-card__value">
+                    <app-table-row [column]="column" [row]="row" />
+                  </span>
+                </div>
+              }
             </div>
-          }
 
-          @if (cfg.columnsWithIcon.length || cfg.actionsDefinition) {
-            <div class="mobile-card__actions">
-              <app-table-row-actions
-                [tableComponent]="this"
-                [data]="row.data!"
-                [columnsWithIcon]="cfg.columnsWithIcon"
-                [actionsDefinition]="cfg.actionsDefinition"
-                [disabled]="shouldShowSpinner"
-              />
-            </div>
-          }
+            @if (cfg.columnsWithIcon.length || cfg.actionsDefinition) {
+              <div class="mobile-card__actions">
+                <app-table-row-actions
+                  [tableComponent]="this"
+                  [data]="row.data!"
+                  [columnsWithIcon]="cfg.columnsWithIcon"
+                  [actionsDefinition]="cfg.actionsDefinition"
+                  [disabled]="shouldShowSpinner"
+                />
+              </div>
+            }
+          </div>
         </div>
       }
     </div>

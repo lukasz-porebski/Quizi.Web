@@ -5,7 +5,6 @@ import { AsyncPageComponent } from '@common/components/async-page/async-page.com
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
-import { finalize, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +30,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {
-    from(this._authenticationService.refresh())
-      .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe();
+  public async ngOnInit(): Promise<void> {
+    await this._authenticationService.refresh().finally(() => (this.isLoading = false));
   }
 }
