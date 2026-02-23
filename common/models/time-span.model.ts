@@ -22,7 +22,7 @@ export class TimeSpanModel {
     }
 
     const hours = Math.floor(value / 3600);
-    const minutes = Math.floor(value / 60);
+    const minutes = Math.floor((value % 3600) / 60);
     const seconds = Math.floor(value % 60);
 
     return new TimeSpanModel(hours, minutes, seconds);

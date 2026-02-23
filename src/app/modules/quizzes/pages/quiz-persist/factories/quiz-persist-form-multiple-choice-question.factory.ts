@@ -1,4 +1,11 @@
-import { FormArray, FormControl, Validators } from '@angular/forms';
+import {
+  type AbstractControl,
+  FormArray,
+  FormControl,
+  type ValidationErrors,
+  type ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import type { QuizDetailsClosedQuestionResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question.response';
 import type { QuizDetailsClosedQuestionAnswerResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question-answer.response';
 import { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
@@ -28,6 +35,7 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
       [
         QuizPersistClosedQuestionValidators.MinAnswersCount(),
         QuizPersistClosedQuestionValidators.AnswersAreUnique(),
+        selectedCorrectAnswer(),
       ],
     );
   }
@@ -53,5 +61,14 @@ export namespace QuizPersistFormMultipleChoiceQuestionFactory {
       },
       response?.no,
     );
+  }
+
+  function selectedCorrectAnswer(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const form = control as QuizPersistMultipleChoiceQuestionFormGroup;
+      const answers = form.value.answers?.map((a) => a) ?? [];
+
+      return answers.some((a) => a.isCorrect === true) ? null : { selectCorrectAnswer: true };
+    };
   }
 }
