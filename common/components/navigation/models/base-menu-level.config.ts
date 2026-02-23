@@ -10,7 +10,10 @@ export interface INavigationBaseMenuLevelConfig {
 }
 
 export abstract class NavigationBaseMenuLevelConfig {
-  public readonly isFinalActive = false;
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  public get isFinalActive(): boolean {
+    return false;
+  }
 
   public text: TranslationKey;
   public navigateUrl?: string;

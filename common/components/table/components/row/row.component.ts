@@ -16,7 +16,8 @@ import { TimeSpanUtils } from '@common/utils/time-span.utils';
   styleUrl: './row.component.scss',
 })
 export class TableRowComponent<TData> {
-  public readonly column = input.required<TableColumnConfig<TData, unknown>>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public readonly column = input.required<TableColumnConfig<TData, any>>();
   public readonly row = input.required<TableRow<TData>>();
 
   public readonly AppTableColumnType = TableColumnType;
@@ -34,7 +35,8 @@ export class TableRowComponent<TData> {
     return toPrice(value);
   }
 
-  public getEnumText(column: TableColumnConfig<TData, unknown>, enumValue: unknown): string {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public getEnumText(column: TableColumnConfig<TData, any>, enumValue: any): string {
     return column.enumDefinition.find((e) => e.value === enumValue)?.text ?? '';
   }
 }
