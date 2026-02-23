@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '@common/services/base-api.service';
-import { LoginRequest } from '@common/identity/api/requests/login.request';
-import { AuthenticateResponse } from '@common/identity/api/responses/authenticate.response';
+import type { LoginRequest } from '@common/identity/api/requests/login.request';
+import type { AuthenticateResponse } from '@common/identity/api/responses/authenticate.response';
 
 @Injectable({
   providedIn: 'root',

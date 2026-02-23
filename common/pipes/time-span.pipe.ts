@@ -1,4 +1,5 @@
-import { inject, Pipe, PipeTransform } from '@angular/core';
+import type { PipeTransform } from '@angular/core';
+import { inject, Pipe } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Pipe({

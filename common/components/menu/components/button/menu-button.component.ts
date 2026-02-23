@@ -8,5 +8,5 @@ import { MatMenuItem } from '@angular/material/menu';
   styleUrl: './menu-button.component.scss',
 })
 export class MenuButtonComponent {
-  public onClick = output<void>();
+  public readonly clocked = output<void>();
 }

@@ -22,6 +22,10 @@ import type { Optional } from '@common/types/optional.type';
   providers: [QuizRunApiService],
 })
 export class QuizRunCoreComponent implements OnInit {
+  private readonly _quizRunApiService = inject(QuizRunApiService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _router = inject(Router);
+
   public get isLoading(): boolean {
     return !this.isInitialized || this._isSaving;
   }
@@ -33,10 +37,6 @@ export class QuizRunCoreComponent implements OnInit {
   public response!: QuizToRunResponse;
   public quizRunFinishedEvent?: QuizRunFinishedEvent;
   public isOpenQuestionsVerification = false;
-
-  private readonly _quizRunApiService = inject(QuizRunApiService);
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _router = inject(Router);
 
   private _isSaving = false;
 

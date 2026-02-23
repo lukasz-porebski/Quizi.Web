@@ -1,12 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { catchError, from, Observable, switchMap, throwError } from 'rxjs';
+import type { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import type { Observable } from 'rxjs';
+import { catchError, from, switchMap, throwError } from 'rxjs';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { isEmpty } from '@common/utils/utils';
 
@@ -14,7 +10,7 @@ import { isEmpty } from '@common/utils/utils';
 export class AuthenticationInterceptor implements HttpInterceptor {
   public readonly service = inject(AuthenticationService);
 
-  public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.includes('identity/refresh-token')) {
       return next.handle(request);
     }

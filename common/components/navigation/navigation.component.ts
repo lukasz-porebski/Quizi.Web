@@ -1,14 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  effect,
-  inject,
-  Injector,
-  input,
-  OnDestroy,
-  OnInit,
-  viewChild,
-} from '@angular/core';
+import type { AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, effect, inject, Injector, input, viewChild } from '@angular/core';
 import {
   MatAccordion,
   MatExpansionPanel,
@@ -22,14 +13,14 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/mat
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
-import { NavigationConfig } from '@common/components/navigation/models/navigation.config';
+import type { NavigationConfig } from '@common/components/navigation/models/navigation.config';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { NgOptimizedImage } from '@angular/common';
 import { HasPermissionDirective } from '@common/identity/directives/has-permission.directive';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { NavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
-import { Optional } from '@common/types/optional.type';
+import type { NavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
+import type { Optional } from '@common/types/optional.type';
 import { ViewportService } from '@common/services/viewport.service';
 
 @Component({
@@ -55,20 +46,21 @@ import { ViewportService } from '@common/services/viewport.service';
   ],
 })
 export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
-  private readonly _snav = viewChild.required<MatSidenav>('snav');
-
   public readonly config = input.required<NavigationConfig>();
+
+  private readonly _snav = viewChild.required<MatSidenav>('snav');
 
   public readonly authenticationService = inject(AuthenticationService);
 
   private readonly _router = inject(Router);
   private readonly _breakpointObserver = inject(BreakpointObserver);
-  private readonly _subscription = new Subscription();
   private readonly _injector = inject(Injector);
   private readonly _viewportService = inject(ViewportService);
 
   public readonly isMobile = this._viewportService.isMobile;
   public readonly expandedHeight = '48px';
+
+  private readonly _subscription = new Subscription();
 
   public ngOnInit(): void {
     this._setActiveMenuElements(this._router.url);
@@ -84,9 +76,9 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     effect(
-      () => {
+      async () => {
         if (!this.isMobile()) {
-          this._snav().open();
+          await this._snav().open();
         }
       },
       { injector: this._injector },
@@ -97,19 +89,20 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
-  public onMenuHeaderClick(menuLevel: NavigationBaseMenuLevelConfig, snav: MatSidenav): void {
+  public async onMenuHeaderClick(menuLevel: NavigationBaseMenuLevelConfig, snav: MatSidenav): Promise<void> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const hasNextLevels = !isEmpty((menuLevel as any).nextLevels);
 
     if (!hasNextLevels && isDefined(menuLevel.navigateUrl)) {
       if (this._breakpointObserver.isMatched([Breakpoints.Handset, Breakpoints.Tablet])) {
-        snav.close();
+        await snav.close();
       }
-      this._router.navigateByUrl(menuLevel.navigateUrl);
+      await this._router.navigateByUrl(menuLevel.navigateUrl);
     }
   }
 
-  public navigateToHome(): void {
-    this._router.navigateByUrl('/');
+  public async navigateToHome(): Promise<void> {
+    await this._router.navigateByUrl('/');
   }
 
   private _setActiveMenuElements(url: string): void {
@@ -122,6 +115,7 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   private _setMenuLevelActive(levels: Optional<NavigationBaseMenuLevelConfig[]>, url: string): void {
     levels?.forEach((level) => {
       level.isActive = isDefined(level.navigateUrl) ? url.includes(level.navigateUrl) : false;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this._setMenuLevelActive((level as any).nextLevels, url);
     });
   }

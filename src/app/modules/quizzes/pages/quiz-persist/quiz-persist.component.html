@@ -18,11 +18,11 @@
         @if (!isPreview) {
           <div class="col d-flex justify-content-start">
             <app-menu [text]="{ text: 'ADD_QUESTION' }">
-              <app-menu-button (onClick)="form.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
-              <app-menu-button (onClick)="form.addSingleChoiceQuestion()">{{
+              <app-menu-button (clocked)="form.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
+              <app-menu-button (clocked)="form.addSingleChoiceQuestion()">{{
                 "SINGLE_CHOICE" | translate
               }}</app-menu-button>
-              <app-menu-button (onClick)="form.addMultipleChoiceQuestion()">{{
+              <app-menu-button (clocked)="form.addMultipleChoiceQuestion()">{{
                 "MULTIPLE_CHOICE" | translate
               }}</app-menu-button>
             </app-menu>
@@ -33,10 +33,10 @@
             class="me-2"
             [text]="{ text: isPreview ? 'BACK' : 'CANCEL' }"
             [style]="ButtonStyle.Outlined"
-            (onClick)="backToList()"
+            (clicked)="backToList()"
           />
           @if (!isPreview) {
-            <app-button [text]="{ text: 'SAVE' }" (onClick)="persist()" />
+            <app-button [text]="{ text: 'SAVE' }" (clicked)="persist()" />
           }
         </div>
       </div>

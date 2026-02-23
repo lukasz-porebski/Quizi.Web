@@ -7,19 +7,19 @@ export class NotificationService {
   private readonly _snackBar = inject(MatSnackBar);
   private readonly _translateService = inject(TranslateService);
 
-  public success(message: string, translate: boolean = true): void {
+  public success(message: string, translate = true): void {
     this._notify(message, 'success-snackbar', translate);
   }
 
-  public error(message: string, translate: boolean = true): void {
+  public error(message: string, translate = true): void {
     this._notify(message, 'error-snackbar', translate);
   }
 
-  public warning(message: string, translate: boolean = true): void {
+  public warning(message: string, translate = true): void {
     this._notify(message, 'warning-snackbar', translate);
   }
 
-  public info(message: string, translate: boolean = true): void {
+  public info(message: string, translate = true): void {
     this._notify(message, 'info-snackbar', translate);
   }
 

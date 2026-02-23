@@ -30,14 +30,14 @@ export class QuizRunComponent implements OnInit {
   public readonly response = input.required<QuizToRunResponse>();
   public readonly finished = output<QuizRunFinishedEvent>();
 
+  private readonly _router = inject(Router);
+
   public readonly ButtonStyle = ButtonStyle;
 
   public isInitialized = false;
   public form!: FormGroup<IQuizRunForm>;
   public questions!: IQuizRunFormOpenQuestion[];
   public durationInSeconds!: number;
-
-  private readonly _router = inject(Router);
 
   public ngOnInit(): void {
     this.form = QuizRunFormFactory.Create(this.response());

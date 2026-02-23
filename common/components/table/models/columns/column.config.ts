@@ -1,7 +1,8 @@
-import { TableColumnType } from '@common/components/table/enums/column-type.enum';
+import type { TableColumnType } from '@common/components/table/enums/column-type.enum';
 import { getProperty } from '@common/utils/utils';
-import { ValueTextPairModel } from '@common/models/value-text-pair-model';
-import { ITextConfig, TextConfig } from '@common/models/text.config';
+import type { ValueTextPairModel } from '@common/models/value-text-pair-model';
+import type { ITextConfig } from '@common/models/text.config';
+import { TextConfig } from '@common/models/text.config';
 
 export interface ITableColumnConfig<TData> {
   field: keyof TData;
@@ -31,7 +32,7 @@ export class TableColumnConfig<TData, TValue> {
   public enumDefinition: ReadonlyArray<ValueTextPairModel<TValue>>;
   public imgPatch?: (data: TData) => string;
 
-  public constructor(
+  constructor(
     config: ITableColumnConfig<TData>,
     type: TableColumnType,
     internalConfig?: ITableColumnInternalConfig<TData, TValue>,

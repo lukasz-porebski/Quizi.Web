@@ -1,4 +1,4 @@
-import { Icon } from '@common/enums/icon.enum';
+import type { Icon } from '@common/enums/icon.enum';
 
 export interface ITableColumnWithIconConfig<TData> {
   icon: Icon;

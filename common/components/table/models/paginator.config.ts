@@ -9,7 +9,7 @@ export class TablePaginatorConfig {
   public defaultPageSize: TablePaginatorPageSize;
   public showFirstLastButtons: boolean;
 
-  public constructor(config: ITablePaginatorConfig) {
+  constructor(config: ITablePaginatorConfig) {
     this.defaultPageSize = config.defaultPageSize ?? TablePaginatorPageSize.Ten;
     this.showFirstLastButtons = config.showFirstLastButtons ?? true;
   }

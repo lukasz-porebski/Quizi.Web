@@ -20,14 +20,15 @@ import { ButtonStyle } from '@common/components/button/enums/style.enum';
   providers: [QuizzesListApiService],
 })
 export class QuizCopyModalComponent {
+  private readonly _dialogRef = inject(MatDialogRef<QuizCopyModalComponent>);
+  private readonly _apiService = inject(QuizzesListApiService);
+  private readonly _notificationService = inject(NotificationService);
+
+  public readonly ButtonStyle = ButtonStyle;
   public readonly TextInputType = TextInputType;
   public readonly code = new FormControl<Guid>('', [Validators.required, TextInputValidator.Guid()]);
 
   public isLoading = false;
-
-  private readonly _dialogRef = inject(MatDialogRef<QuizCopyModalComponent>);
-  private readonly _apiService = inject(QuizzesListApiService);
-  private readonly _notificationService = inject(NotificationService);
 
   public cancel(): void {
     this._dialogRef.close();
@@ -47,6 +48,4 @@ export class QuizCopyModalComponent {
       })
       .finally(() => (this.isLoading = false));
   }
-
-  protected readonly ButtonStyle = ButtonStyle;
 }

@@ -39,6 +39,10 @@ import type { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persis
   providers: [QuizPersistApiService, TranslatePipe],
 })
 export class QuizPersistComponent implements OnInit {
+  private readonly _persistApiService = inject(QuizPersistApiService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _router = inject(Router);
+
   public get isLoading(): boolean {
     return !this.isInitialized || this._isSaving;
   }
@@ -51,10 +55,6 @@ export class QuizPersistComponent implements OnInit {
 
   public form!: QuizPersistFormGroup;
   public isPreview = false;
-
-  private readonly _persistApiService = inject(QuizPersistApiService);
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _router = inject(Router);
 
   private _id?: AggregateId;
   private _isSaving = false;

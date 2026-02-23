@@ -1,16 +1,16 @@
-import { Optional } from '@common/types/optional.type';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorResponse } from '@common/models/responses/error.response';
+import type { Optional } from '@common/types/optional.type';
+import type { HttpErrorResponse } from '@angular/common/http';
+import type { ErrorResponse } from '@common/models/responses/error.response';
 
 export function isDefined<T>(value: Optional<T>): value is T {
   return value !== null && value !== undefined;
 }
 
-export function toNumber(value: any): number {
+export function toNumber(value: unknown): number {
   return Number(value);
 }
 
-export function isEmpty(value: Optional<string> | Optional<any[]>): boolean {
+export function isEmpty(value: Optional<string> | Optional<unknown[]>): boolean {
   return !isDefined(value) || value.length === 0;
 }
 
@@ -22,8 +22,8 @@ export function emptyIfNotDefined<T>(value: T[]): T[] {
   return isDefined(value) ? value : [];
 }
 
-export function isNumeric(num: any): boolean {
-  return !isNaN(num);
+export function isNumeric(num: unknown): boolean {
+  return !isNaN(num as number);
 }
 
 export function createRandomString(length: number): string {
@@ -37,7 +37,7 @@ export function createRandomString(length: number): string {
   return result;
 }
 
-export function getPercent(value: number, hideZeros: boolean = true): string {
+export function getPercent(value: number, hideZeros = true): string {
   const result = value.toFixed(2);
   if (!hideZeros) {
     return result + '%';
@@ -69,7 +69,7 @@ export function getProperty<TObject, TPropertyValye extends keyof TObject>(
   return data[propertyName];
 }
 
-export function toPercent(value: number, hideZeros: boolean = true): string {
+export function toPercent(value: number, hideZeros = true): string {
   const result = value.toFixed(2);
   if (!hideZeros) {
     return result + '%';
@@ -88,7 +88,7 @@ export function toPercent(value: number, hideZeros: boolean = true): string {
   return resultWithoutZeros + '%';
 }
 
-export function toPrice(value: number, hideZeros: boolean = true): string {
+export function toPrice(value: number, hideZeros = true): string {
   const result = value.toFixed(2);
   if (!hideZeros) {
     return result + ' zł';

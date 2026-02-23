@@ -1,5 +1,5 @@
 export class SortRequest {
-  public constructor(
+  constructor(
     public readonly columnName: string,
     public readonly isAscending: boolean,
   ) {}

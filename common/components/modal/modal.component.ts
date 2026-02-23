@@ -1,10 +1,12 @@
-import { Component, effect, inject, input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import type { OnDestroy, OnInit } from '@angular/core';
+import { Component, effect, inject, input, Renderer2 } from '@angular/core';
 import { isDefined } from '@common/utils/utils';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { Optional } from '@common/types/optional.type';
+import type { Optional } from '@common/types/optional.type';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
-import { ITextConfig, TextConfig } from '@common/models/text.config';
+import type { ITextConfig } from '@common/models/text.config';
+import { TextConfig } from '@common/models/text.config';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -15,29 +17,29 @@ import { TranslatePipe } from '@ngx-translate/core';
   providers: [TranslatePipe],
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  public text = input.required<ITextConfig>();
-  public modalMaxWidth = input<number>();
-  public modalContentMaxWidth = input<number>();
-  public disable = input<boolean>();
-
-  public innerText?: TextConfig;
+  public readonly text = input.required<ITextConfig>();
+  public readonly modalMaxWidth = input<number>();
+  public readonly modalContentMaxWidth = input<number>();
+  public readonly disable = input<boolean>();
 
   private readonly _renderer2 = inject(Renderer2);
 
-  public constructor() {
+  public innerText?: TextConfig;
+
+  constructor() {
     effect(() => {
-      this.innerText = isDefined(this.text()) ? new TextConfig(this.text()!) : undefined;
+      this.innerText = isDefined(this.text()) ? new TextConfig(this.text()) : undefined;
     });
   }
 
   public ngOnInit(): void {
-    if (this.modalMaxWidth()) {
+    if (isDefined(this.modalMaxWidth())) {
       this.turnOnMaxModalWidth();
     }
   }
 
   public ngOnDestroy(): void {
-    if (this.modalMaxWidth()) {
+    if (isDefined(this.modalMaxWidth())) {
       this.turnOffMaxModalWidth();
     }
   }

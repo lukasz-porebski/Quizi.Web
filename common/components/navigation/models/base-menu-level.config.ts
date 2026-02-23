@@ -1,6 +1,6 @@
-import { Icon } from '@common/enums/icon.enum';
-import { TranslationKey } from '@common/types/translation.type';
-import { Permission } from '@app/core/enums/permission.enum';
+import type { Icon } from '@common/enums/icon.enum';
+import type { TranslationKey } from '@common/types/translation.type';
+import type { Permission } from '@app/core/enums/permission.enum';
 
 export interface INavigationBaseMenuLevelConfig {
   text: TranslationKey;
@@ -10,9 +10,7 @@ export interface INavigationBaseMenuLevelConfig {
 }
 
 export abstract class NavigationBaseMenuLevelConfig {
-  public get isFinalActive(): boolean {
-    return false;
-  }
+  public readonly isFinalActive = false;
 
   public text: TranslationKey;
   public navigateUrl?: string;

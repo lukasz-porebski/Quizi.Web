@@ -1,12 +1,8 @@
-import {
-  INavigationMenuThirdLevelConfig,
-  NavigationMenuThirdLevelConfig,
-} from '@common/components/navigation/models/menu-third-level.config';
+import type { INavigationMenuThirdLevelConfig } from '@common/components/navigation/models/menu-third-level.config';
+import { NavigationMenuThirdLevelConfig } from '@common/components/navigation/models/menu-third-level.config';
 import { isEmpty } from '@common/utils/utils';
-import {
-  INavigationBaseMenuLevelConfig,
-  NavigationBaseMenuLevelConfig,
-} from '@common/components/navigation/models/base-menu-level.config';
+import type { INavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
+import { NavigationBaseMenuLevelConfig } from '@common/components/navigation/models/base-menu-level.config';
 
 export interface INavigationMenuSecondLevelConfig extends INavigationBaseMenuLevelConfig {
   nextLevels?: INavigationMenuThirdLevelConfig[];
@@ -19,7 +15,7 @@ export class NavigationMenuSecondLevelConfig extends NavigationBaseMenuLevelConf
 
   public nextLevels?: NavigationMenuThirdLevelConfig[];
 
-  public constructor(config: INavigationMenuSecondLevelConfig) {
+  constructor(config: INavigationMenuSecondLevelConfig) {
     super(config);
     this.nextLevels = (config.nextLevels ?? []).map((l) => new NavigationMenuThirdLevelConfig(l));
   }

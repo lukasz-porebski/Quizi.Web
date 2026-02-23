@@ -1,5 +1,5 @@
 export class PeriodModel<T> {
-  public constructor(
+  constructor(
     public readonly start: T,
     public readonly end: T,
   ) {}

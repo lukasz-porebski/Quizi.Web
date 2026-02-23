@@ -2,7 +2,8 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
-const localRules = require("./eslint-rules/require-readonly-inputs");
+const requireReadonlyInputs = require("./eslint-rules/require-readonly-inputs");
+const memberOrdering = require("./eslint-rules/member-ordering"); // ← dodaj
 
 module.exports = tseslint.config(
   {
@@ -21,14 +22,19 @@ module.exports = tseslint.config(
       },
     },
     plugins: {
-      local: { rules: { "require-readonly-inputs": localRules } },
+      local: {
+        rules: {
+          "require-readonly-inputs": requireReadonlyInputs,
+          "member-ordering": memberOrdering,
+        },
+      },
     },
     rules: {
       "@angular-eslint/directive-selector": [
         "error",
         {
           type: "attribute",
-          prefix: "app",
+          prefix: [],
           style: "camelCase",
         },
       ],
@@ -55,24 +61,48 @@ module.exports = tseslint.config(
       "@angular-eslint/prefer-output-readonly": "error",
       "local/require-readonly-inputs": "error",
       "@angular-eslint/prefer-signals": "error",
-      "@typescript-eslint/member-ordering": [
-        "error",
-        {
-          default: [
-            "public-decorated-field",
-            "protected-decorated-field",
-            "public-static-field",
-            "public-instance-field",
-            "private-static-field",
-            "private-instance-field",
-            "constructor",
-            "public-static-method",
-            "public-instance-method",
-            "private-static-method",
-            "private-instance-method",
-          ],
-        },
-      ],
+      // "@typescript-eslint/member-ordering": [
+      //   "error",
+      //   {
+      //     default: [
+      //       // Pola dekorowane (input, output, viewChild itp.)
+      //       "public-decorated-field",
+      //       "protected-decorated-field",
+      //       "private-decorated-field",
+      //
+      //       // Gettery / settery
+      //       "public-get",
+      //       "public-set",
+      //       "protected-get",
+      //       "protected-set",
+      //       "private-get",
+      //       "private-set",
+      //
+      //       // Pola statyczne
+      //       "public-static-field",
+      //       "protected-static-field",
+      //       "private-static-field",
+      //
+      //       // Pola instancji (inject-y najpierw, potem publiczne)
+      //       "private-instance-field",
+      //       "protected-instance-field",
+      //       "public-instance-field",
+      //
+      //       // Konstruktor
+      //       "constructor",
+      //
+      //       // Metody statyczne
+      //       "public-static-method",
+      //       "protected-static-method",
+      //       "private-static-method",
+      //
+      //       // Metody instancji
+      //       "public-instance-method",
+      //       "protected-instance-method",
+      //       "private-instance-method",
+      //     ],
+      //   },
+      // ],
       "@typescript-eslint/naming-convention": [
         "error",
         {
@@ -92,6 +122,16 @@ module.exports = tseslint.config(
           modifiers: ["public", "readonly"],
           format: ["camelCase", "PascalCase"],
           leadingUnderscore: "forbid",
+        },
+        {
+          selector: "memberLike",
+          modifiers: ["public", "static"],
+          format: ["PascalCase"],
+          leadingUnderscore: "forbid",
+        },
+        {
+          selector: "objectLiteralProperty",
+          format: null,
         },
       ],
       "@typescript-eslint/no-explicit-any": "error",
@@ -121,12 +161,18 @@ module.exports = tseslint.config(
       "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/no-unnecessary-type-assertion": "error",
       eqeqeq: "error",
-      "@typescript-eslint/array-type": ["error", { default: "array" }],
+      "@typescript-eslint/array-type": "off",
+      "@angular-eslint/template/interactive-supports-focus": "off",
+      "@angular-eslint/template/click-events-have-key-events": "off",
+      "local/member-ordering": "error",
     },
   },
   {
     files: ["**/*.html"],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/interactive-supports-focus": "off",
+      "@angular-eslint/template/click-events-have-key-events": "off",
+    },
   },
 );

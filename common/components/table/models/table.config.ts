@@ -1,30 +1,23 @@
-import { TableColumnConfig } from '@common/components/table/models/columns/column.config';
-import {
-  ITableColumnActionsConfig,
-  TableColumnActionsConfig,
-} from '@common/components/table/models/columns/column-actions.config';
-import {
-  ITableColumnWithIconConfig,
-  TableColumnWithIconConfig,
-} from '@common/components/table/models/columns/column-with-icon.config';
-import {
-  ITablePaginatorConfig,
-  TablePaginatorConfig,
-} from '@common/components/table/models/paginator.config';
-import { ITableSearchConfig, TableSearchConfig } from '@common/components/table/models/search.config';
-import {
-  ITableRowSelectionConfig,
-  TableRowSelectionConfig,
-} from '@common/components/table/models/row-selection.config';
+import type { TableColumnConfig } from '@common/components/table/models/columns/column.config';
+import type { ITableColumnActionsConfig } from '@common/components/table/models/columns/column-actions.config';
+import { TableColumnActionsConfig } from '@common/components/table/models/columns/column-actions.config';
+import type { ITableColumnWithIconConfig } from '@common/components/table/models/columns/column-with-icon.config';
+import { TableColumnWithIconConfig } from '@common/components/table/models/columns/column-with-icon.config';
+import type { ITablePaginatorConfig } from '@common/components/table/models/paginator.config';
+import { TablePaginatorConfig } from '@common/components/table/models/paginator.config';
+import type { ITableSearchConfig } from '@common/components/table/models/search.config';
+import { TableSearchConfig } from '@common/components/table/models/search.config';
+import type { ITableRowSelectionConfig } from '@common/components/table/models/row-selection.config';
+import { TableRowSelectionConfig } from '@common/components/table/models/row-selection.config';
 import { TableColumnBuilder } from '@common/components/table/utils/column.builder';
 import { isDefined } from '@common/utils/utils';
-import { Optional } from '@common/types/optional.type';
-import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
-import { TableRow } from '@common/components/table/models/row.model';
+import type { Optional } from '@common/types/optional.type';
+import type { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
+import type { TableRow } from '@common/components/table/models/row.model';
 
 export interface ITableConfig<TData> {
   dataSource: BaseTableDataSource<TableRow<TData>>;
-  columns: (builder: TableColumnBuilder<TData>) => ReadonlyArray<TableColumnConfig<TData, any>>;
+  columns: (builder: TableColumnBuilder<TData>) => ReadonlyArray<TableColumnConfig<TData, unknown>>;
   columnsWithIcon?: ITableColumnWithIconConfig<TData>[];
   actionsDefinition?: ITableColumnActionsConfig<TData>;
   headerSticky?: boolean;
@@ -36,7 +29,7 @@ export interface ITableConfig<TData> {
 
 export class TableConfig<TData> {
   public readonly dataSource: BaseTableDataSource<TableRow<TData>>;
-  public readonly columns: ReadonlyArray<TableColumnConfig<TData, any>>;
+  public readonly columns: ReadonlyArray<TableColumnConfig<TData, unknown>>;
   public readonly columnsWithIcon: TableColumnWithIconConfig<TData>[];
   public readonly actionsDefinition?: TableColumnActionsConfig<TData>;
   public readonly columnNames: string[];
@@ -46,13 +39,11 @@ export class TableConfig<TData> {
   public readonly markRowCondition: (row: TData) => boolean;
   public readonly selection?: TableRowSelectionConfig<TData>;
 
-  public constructor(config: ITableConfig<TData>) {
+  constructor(config: ITableConfig<TData>) {
     this.dataSource = config.dataSource;
     this.columns = config.columns(new TableColumnBuilder<TData>());
 
-    this.columnsWithIcon = (config?.columnsWithIcon ?? []).map(
-      (c) => new TableColumnWithIconConfig<TData>(c),
-    );
+    this.columnsWithIcon = (config.columnsWithIcon ?? []).map((c) => new TableColumnWithIconConfig<TData>(c));
 
     if (isDefined(config.actionsDefinition)) {
       this.actionsDefinition = new TableColumnActionsConfig(config.actionsDefinition);
@@ -68,14 +59,14 @@ export class TableConfig<TData> {
       const fieldHeaders = config.search.fields.map((f) => this.columns.find((c) => c.field === f)!.header);
       this.search = new TableSearchConfig(fieldHeaders);
     }
-    this.markRowCondition = config.markRowCondition ?? (() => false);
+    this.markRowCondition = config.markRowCondition ?? ((): boolean => false);
     if (isDefined(config.selection)) {
       this.selection = new TableRowSelectionConfig<TData>(config.selection);
     }
   }
 
   private _getColumnNames(
-    columns: ReadonlyArray<TableColumnConfig<TData, any>>,
+    columns: ReadonlyArray<TableColumnConfig<TData, unknown>>,
     columnsWithIcon: TableColumnWithIconConfig<TData>[],
     actionsDefinition: Optional<TableColumnActionsConfig<TData>>,
   ): string[] {

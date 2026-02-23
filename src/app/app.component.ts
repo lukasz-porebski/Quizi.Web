@@ -13,9 +13,9 @@ import { Route } from '@app/core/enums/route.enum';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  public isLoading = true;
-
   private readonly _authenticationService = inject(AuthenticationService);
+
+  public isLoading = true;
 
   constructor() {
     const translate = inject(TranslateService);

@@ -9,7 +9,7 @@ export class TextConfig {
   public params?: object;
   public translate: boolean;
 
-  public constructor(config: ITextConfig) {
+  constructor(config: ITextConfig) {
     this.text = config.text;
     this.params = config.params;
     this.translate = config.translate ?? true;

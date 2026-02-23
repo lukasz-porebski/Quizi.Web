@@ -1,5 +1,7 @@
-import { ErrorHandler, inject } from '@angular/core';
-import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import type { ErrorHandler } from '@angular/core';
+import { inject } from '@angular/core';
+import type { HttpErrorResponse } from '@angular/common/http';
+import { HttpStatusCode } from '@angular/common/http';
 import { NotificationService } from '@common/services/notification.service';
 import { isEmpty, tryGetErrors } from '@common/utils/utils';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +16,7 @@ export class AppErrorHandler implements ErrorHandler {
         const errors = tryGetErrors(error);
         let message = '';
         if (!isEmpty(errors)) {
-          message = errors!.map((e) => e.Message).join('; ');
+          message = errors!.map((e) => e.message).join('; ');
         } else {
           message = this._translateService.instant('SOMETHING_WENT_WRONG');
         }

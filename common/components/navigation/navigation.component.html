@@ -8,7 +8,7 @@
     >
       <div class="logo-container">
         <div class="logo" (click)="navigateToHome()">
-          <img [ngSrc]="config().logoPath" [width]="100" [height]="99" priority />
+          <img [ngSrc]="config().logoPath" [width]="100" [height]="99" priority alt="Logo" />
         </div>
         @if (isMobile()) {
           <button mat-icon-button (click)="snav.close()" class="close-button">

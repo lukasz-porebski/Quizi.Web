@@ -1,7 +1,8 @@
-import { CanActivateFn, Router } from '@angular/router';
+import type { CanActivateFn} from '@angular/router';
+import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { Permission } from '@app/core/enums/permission.enum';
+import type { Permission } from '@app/core/enums/permission.enum';
 
 export const permissionGuard =
   (...permissions: Permission[]): CanActivateFn =>

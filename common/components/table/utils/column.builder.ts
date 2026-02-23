@@ -1,10 +1,11 @@
-import { ITableColumnConfig, TableColumnConfig } from '@common/components/table/models/columns/column.config';
+import type { ITableColumnConfig } from '@common/components/table/models/columns/column.config';
+import { TableColumnConfig } from '@common/components/table/models/columns/column.config';
 import { TableColumnType } from '@common/components/table/enums/column-type.enum';
-import { ITableEnumColumnConfig } from '@common/components/table/models/columns/enum-column.config';
-import { ITableImageColumnConfig } from '@common/components/table/models/columns/image-column.config';
+import type { ITableEnumColumnConfig } from '@common/components/table/models/columns/enum-column.config';
+import type { ITableImageColumnConfig } from '@common/components/table/models/columns/image-column.config';
 
 export class TableColumnBuilder<TData> {
-  private readonly _columns: TableColumnConfig<TData, any>[] = [];
+  private readonly _columns: TableColumnConfig<TData, unknown>[] = [];
 
   public addBoolean(config: ITableColumnConfig<TData>): this {
     this._columns.push(new TableColumnConfig(config, TableColumnType.Boolean));
@@ -74,7 +75,7 @@ export class TableColumnBuilder<TData> {
     return this;
   }
 
-  public build(): ReadonlyArray<TableColumnConfig<TData, any>> {
+  public build(): ReadonlyArray<TableColumnConfig<TData, unknown>> {
     return this._columns;
   }
 }

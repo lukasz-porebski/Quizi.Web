@@ -35,9 +35,9 @@
             class="me-2"
             [style]="ButtonStyle.Outlined"
             [text]="{ text: 'BACK' }"
-            (onClick)="redirectToLogin()"
+            (clicked)="redirectToLogin()"
           />
-          <app-button [text]="{ text: 'REGISTER' }" [disabled]="form.invalid" (onClick)="register()"/>
+          <app-button [text]="{ text: 'REGISTER' }" [disabled]="form.invalid" (clicked)="register()" />
         </div>
       </form>
     </mat-card-content>

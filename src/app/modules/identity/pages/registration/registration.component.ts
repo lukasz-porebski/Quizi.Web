@@ -20,18 +20,16 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
-  imports: [
-    AsyncPageComponent,
-    ButtonComponent,
-    MatCard,
-    MatCardContent,
-    TextInputComponent
-  ],
+  imports: [AsyncPageComponent, ButtonComponent, MatCard, MatCardContent, TextInputComponent],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
-  providers: [ TranslatePipe, RegistrationApiService ],
+  providers: [TranslatePipe, RegistrationApiService],
 })
 export class RegistrationComponent {
+  private readonly _router = inject(Router);
+  private readonly _registrationApiService = inject(RegistrationApiService);
+  private readonly _authenticationService = inject(AuthenticationService);
+
   public readonly TextInputType = TextInputType;
   public readonly ButtonStyle = ButtonStyle;
   public readonly Validators = IdentityValidators;
@@ -53,16 +51,12 @@ export class RegistrationComponent {
 
   public isLoading = false;
 
-  private readonly _router = inject(Router);
-  private readonly _registrationApiService = inject(RegistrationApiService);
-  private readonly _authenticationService = inject(AuthenticationService);
-
   public tryGetEmailAdditionalError(): ITextConfig | undefined {
     const control = this.form.controls.email;
     return control.hasError('emailIsTaken')
       ? {
-        text: 'EMAIL_IS_TAKEN',
-      }
+          text: 'EMAIL_IS_TAKEN',
+        }
       : undefined;
   }
 
@@ -75,8 +69,8 @@ export class RegistrationComponent {
 
     return control.hasError('confirmPassword')
       ? {
-        text: 'PASSWORDS_ARE_DIFFERENT',
-      }
+          text: 'PASSWORDS_ARE_DIFFERENT',
+        }
       : undefined;
   }
 
@@ -86,13 +80,14 @@ export class RegistrationComponent {
 
   public async register(): Promise<void> {
     this.isLoading = true;
-    await this._registrationApiService.register({
-      email: this.form.value.email!,
-      password: this.form.value.password!,
-    })
+    await this._registrationApiService
+      .register({
+        email: this.form.value.email!,
+        password: this.form.value.password!,
+      })
       .then(() => this._authenticationService.logIn(this.form.value.email!, this.form.value.password!))
       .catch(() => {
-        this.form.controls.email.setErrors({emailIsTaken: true});
+        this.form.controls.email.setErrors({ emailIsTaken: true });
       })
       .finally(() => {
         this.isLoading = false;

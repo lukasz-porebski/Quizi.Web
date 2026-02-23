@@ -33,6 +33,7 @@ export abstract class BaseApiService {
   ): Promise<TResponse> {
     return firstValueFrom(
       this._httpClient.post<TRawResponse>(`${this._apiUrl}${url}`, request, {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         responseType: options?.responseType ?? ('json' as any),
         withCredentials: options?.withCredentials,
       }),
@@ -58,19 +59,23 @@ export abstract class BaseApiService {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _toHttpParams(request: any, parentKey?: string, params = new HttpParams()): HttpParams {
-    if (request == null) return params;
+    if (request === null) {
+      return params;
+    }
 
-    const isPrimitive = (v: any): v is Primitive =>
-      ['string', 'number', 'boolean'].includes(typeof v) || v == null;
+    const isPrimitive = (v: unknown): v is Primitive =>
+      ['string', 'number', 'boolean'].includes(typeof v) || v === null;
 
     Object.keys(request).forEach((key) => {
       const value = request[key];
-      const fullKey = parentKey ? `${parentKey}.${key}` : key;
+      const fullKey = isDefined(parentKey) ? `${parentKey}.${key}` : key;
 
       if (Array.isArray(value)) {
         value.forEach((v) => {
           if (isPrimitive(v)) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             params = params.append(fullKey, v as any);
           } else {
             params = this._toHttpParams(v, `${fullKey}[${value.indexOf(v)}]`, params);
@@ -78,6 +83,7 @@ export abstract class BaseApiService {
         });
       } else if (isPrimitive(value)) {
         if (isDefined(value) && value !== '') {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           params = params.append(fullKey, value as any);
         }
       } else {

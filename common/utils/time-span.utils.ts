@@ -1,6 +1,6 @@
-import { TimeSpan } from '@common/types/time-span.type';
-import { TimeSpanModel } from '@common/models/time-span.model';
-import { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
+import type { TimeSpan } from '@common/types/time-span.type';
+import type { TimeSpanModel } from '@common/models/time-span.model';
+import type { ITimeSpanFormControl } from '@common/interfaces/time-span-form-control.interface';
 
 export namespace TimeSpanUtils {
   export function ToTimeSpanByModel(value: TimeSpanModel): TimeSpan {

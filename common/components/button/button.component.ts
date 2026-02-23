@@ -5,11 +5,12 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatStepperNext } from '@angular/material/stepper';
 import { isDefined } from '@common/utils/utils';
-import { Optional } from '@common/types/optional.type';
+import type { Optional } from '@common/types/optional.type';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
-import { ITextConfig, TextConfig } from '@common/models/text.config';
+import type { ITextConfig } from '@common/models/text.config';
+import { TextConfig } from '@common/models/text.config';
 import { ButtonStyle } from '@common/components/button/enums/style.enum';
-import { Icon } from '@common/enums/icon.enum';
+import type { Icon } from '@common/enums/icon.enum';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -19,21 +20,21 @@ import { MatIcon } from '@angular/material/icon';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  public text = input<ITextConfig>();
-  public color = input<ButtonColor>(ButtonColor.Primary);
-  public style = input<ButtonStyle>(ButtonStyle.Filled);
-  public disabled = input<boolean>();
-  public matStepperNext = input<boolean>();
-  public onClick = output<void>();
-  public tooltip = input<ITextConfig>();
-  public icon = input<Icon>();
+  public readonly text = input<ITextConfig>();
+  public readonly color = input<ButtonColor>(ButtonColor.Primary);
+  public readonly style = input<ButtonStyle>(ButtonStyle.Filled);
+  public readonly disabled = input<boolean>();
+  public readonly matStepperNext = input<boolean>();
+  public readonly clicked = output<void>();
+  public readonly tooltip = input<ITextConfig>();
+  public readonly icon = input<Icon>();
+
+  private readonly _translatePipe = inject(TranslatePipe);
 
   public innerText?: TextConfig;
   public innerTooltip?: TextConfig;
 
-  private readonly _translatePipe = inject(TranslatePipe);
-
-  public constructor() {
+  constructor() {
     effect(() => {
       this.innerText = isDefined(this.text()) ? new TextConfig(this.text()!) : undefined;
     });

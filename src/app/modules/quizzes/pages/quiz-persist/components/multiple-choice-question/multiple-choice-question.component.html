@@ -6,7 +6,7 @@
     [readonly]="isPreview()"
   />
   @if (!isPreview()) {
-    <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()"></app-button>
+    <app-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()"></app-button>
   }
 </div>
 
@@ -22,7 +22,7 @@
       @if (!isPreview()) {
         <app-button
           [icon]="Icon.Delete"
-          (onClick)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
+          (clicked)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
         ></app-button>
       }
     </div>

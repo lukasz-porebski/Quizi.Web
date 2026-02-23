@@ -18,17 +18,17 @@ import { isDefined } from '@common/utils/utils';
   providers: [QuizRunOpenQuestionsVerificationApiService, TranslatePipe],
 })
 export class QuizRunOpenQuestionsVerificationComponent implements OnInit {
-  public get isInitialized(): boolean {
-    return isDefined(this.form);
-  }
-
   public readonly quizId = input.required<AggregateId>();
   public readonly questions = input.required<FormArray<QuizRunOpenQuestionFormControl>>();
   public readonly finished = output<FormArray<QuizRunOpenQuestionVerificationFormControl>>();
 
-  public form!: FormArray<QuizRunOpenQuestionVerificationFormControl>;
-
   private readonly _openQuestionsVerificationApiService = inject(QuizRunOpenQuestionsVerificationApiService);
+
+  public get isInitialized(): boolean {
+    return isDefined(this.form);
+  }
+
+  public form!: FormArray<QuizRunOpenQuestionVerificationFormControl>;
 
   public async ngOnInit(): Promise<void> {
     const responses = await this._openQuestionsVerificationApiService.getOpenQuestionsAnswer(this.quizId());

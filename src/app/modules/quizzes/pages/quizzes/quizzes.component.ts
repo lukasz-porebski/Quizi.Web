@@ -20,13 +20,14 @@ import type { TableConfig } from '@common/components/table/models/table.config';
   providers: [QuizzesListApiService, QuizzesDataSourceService, QuizzesTableConfigFactory, TranslatePipe],
 })
 export class QuizzesComponent {
-  public config: TableConfig<QuizzesListItemResponse>;
+  private readonly _table = viewChild.required(TableComponent);
 
   private readonly _tableConfigFactory = inject(QuizzesTableConfigFactory);
   private readonly _router = inject(Router);
+
   private readonly _modalService = inject(ModalService);
 
-  private readonly _table = viewChild.required(TableComponent);
+  public config: TableConfig<QuizzesListItemResponse>;
 
   constructor() {
     this.config = this._tableConfigFactory.create();

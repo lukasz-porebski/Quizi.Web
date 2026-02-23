@@ -1,4 +1,4 @@
-import type { ApplicationConfig} from '@angular/core';
+import type { ApplicationConfig } from '@angular/core';
 import { ErrorHandler, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from '@app/app.routes';
@@ -27,7 +27,6 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
     provideNgxMask({
       patterns: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         G: {
           pattern: /[0-9a-fA-F]/,
         },

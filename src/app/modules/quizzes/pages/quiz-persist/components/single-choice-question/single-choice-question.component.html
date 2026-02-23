@@ -6,7 +6,7 @@
     [readonly]="isPreview()"
   />
   @if (!isPreview()) {
-    <app-button [icon]="Icon.Add" (onClick)="formGroup().addAnswer()" />
+    <app-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()" />
   }
 </div>
 
@@ -34,7 +34,7 @@
       [readonly]="isPreview()"
     />
     @if (!isPreview()) {
-      <app-button [icon]="Icon.Delete" (onClick)="formGroup().removeAnswer(option.ordinalNumber)" />
+      <app-button [icon]="Icon.Delete" (clicked)="formGroup().removeAnswer(option.ordinalNumber)" />
     }
   </div>
 </ng-template>

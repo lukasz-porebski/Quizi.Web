@@ -4,7 +4,7 @@ export interface PeriodRawViewModel {
 }
 
 export class PeriodViewModel<T> {
-  public constructor(
+  constructor(
     public readonly start: T,
     public readonly end: T,
   ) {}

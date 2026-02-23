@@ -20,9 +20,9 @@ import type { TableConfig } from '@common/components/table/models/table.config';
   ],
 })
 export class QuizResultsComponent {
-  public config: TableConfig<QuizResultsListItemResponse>;
-
   private readonly _tableConfigFactory = inject(QuizResultsTableConfigFactory);
+
+  public config: TableConfig<QuizResultsListItemResponse>;
 
   constructor() {
     this.config = this._tableConfigFactory.create();

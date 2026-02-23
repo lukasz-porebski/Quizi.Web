@@ -1,7 +1,8 @@
-import { Component, input, TemplateRef } from '@angular/core';
+import type { TemplateRef } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatHint } from '@angular/material/form-field';
 import { NgTemplateOutlet } from '@angular/common';
-import { HintConfig } from '@common/components/hint/models/hint.config';
+import type { HintConfig } from '@common/components/hint/models/hint.config';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 
 @Component({
@@ -11,6 +12,6 @@ import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.p
   styleUrl: './hint.component.scss',
 })
 export class HintComponent {
-  public config = input.required<HintConfig>();
-  public template = input<TemplateRef<unknown>>();
+  public readonly config = input.required<HintConfig>();
+  public readonly template = input<TemplateRef<unknown>>();
 }

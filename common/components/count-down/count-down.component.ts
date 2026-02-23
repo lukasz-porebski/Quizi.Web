@@ -1,4 +1,5 @@
-import { Component, effect, input, OnDestroy, output } from '@angular/core';
+import type { OnDestroy } from '@angular/core';
+import { Component, effect, input, output } from '@angular/core';
 import { map, Subscription, takeWhile, timer } from 'rxjs';
 import { PeriodModel } from '@common/models/period.model';
 import { TimeSpanModel } from '@common/models/time-span.model';
@@ -11,8 +12,8 @@ import { TimeSpanUtils } from '@common/utils/time-span.utils';
   styleUrl: './count-down.component.scss',
 })
 export class CountDownComponent implements OnDestroy {
-  public seconds = input.required<number>();
-  public onFinish = output<PeriodModel<Date>>();
+  public readonly seconds = input.required<number>();
+  public readonly finished = output<PeriodModel<Date>>();
 
   public get formatedHours(): string {
     return TimeSpanUtils.FormatPartOfTimeSpan(this._remainingTime.hours);
@@ -32,7 +33,7 @@ export class CountDownComponent implements OnDestroy {
   private _start!: Date;
   private _remainingTime = TimeSpanModel.CreateEmpty();
 
-  public constructor() {
+  constructor() {
     effect(() => {
       const observable = timer(0, this._interval).pipe(
         map((n) => (this.seconds() - n) * this._interval),
@@ -57,7 +58,7 @@ export class CountDownComponent implements OnDestroy {
   }
 
   public finish(): void {
-    this.onFinish.emit(this._getRunningPeriod(new Date()));
+    this.finished.emit(this._getRunningPeriod(new Date()));
     this._timeRemainingSub.unsubscribe();
   }
 

@@ -1,15 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  DestroyRef,
-  ElementRef,
-  inject,
-  input,
-  OnInit,
-  viewChild,
-} from '@angular/core';
-import { TableConfig } from '@common/components/table/models/table.config';
+import type { AfterViewInit, ElementRef, OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, viewChild } from '@angular/core';
+import type { TableConfig } from '@common/components/table/models/table.config';
 import {
   MatCell,
   MatCellDef,
@@ -26,8 +17,10 @@ import {
   MatRowDef,
   MatTable,
 } from '@angular/material/table';
-import { MatSortModule, Sort } from '@angular/material/sort';
-import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import type { Sort } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
+import type { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -36,19 +29,19 @@ import { MatInput } from '@angular/material/input';
 import { isDefined, isEmpty } from '@common/utils/utils';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { TablePaginatorIntl } from '@common/components/table/providers/paginator-intl';
-import { TableRow } from '@common/components/table/models/row.model';
+import type { TableRow } from '@common/components/table/models/row.model';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 import { TableRowComponent } from '@common/components/table/components/row/row.component';
 import { TableRowActionsComponent } from '@common/components/table/components/row-actions/row-actions.component';
 import { TableActionsDefinitionComponent } from '@common/components/table/components/actions-definition/actions-definition.component';
 import { TableRowInteractionDirective } from '@common/components/table/directives/row-interaction/row-interaction.directive';
-import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
+import type { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
 import { TableEmptyDataSource } from '@common/components/table/data-source/empty-data-source';
 import { TablePaginatorPageSize } from '@common/components/table/enums/paginator-page-size.enum';
 import { PaginationRequest } from '@common/models/requests/pagination.request';
 import { SortRequest } from '@common/models/requests/sort.request';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
-import { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
+import type { ITableComponent } from '@common/components/table/interfaces/table-component.interface';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { TableRowInteractionHandler } from '@common/components/table/directives/row-interaction/row-interaction-handler';
@@ -119,12 +112,12 @@ export class TableComponent<TData>
   }
 
   public ngAfterViewInit(): void {
-    const input = this._searchInput()?.nativeElement;
-    if (!input) {
+    const inputElement = this._searchInput()?.nativeElement;
+    if (!isDefined(inputElement)) {
       return;
     }
 
-    fromEvent<InputEvent>(input, 'input')
+    fromEvent<InputEvent>(inputElement, 'input')
       .pipe(
         map((event) => (event.target as HTMLInputElement).value),
         debounceTime(500),
@@ -154,7 +147,7 @@ export class TableComponent<TData>
     if (this.isSelectionEnable()) {
       this.selection.toggle(row);
       const selectedRow = this.selection.selected[0] ?? null;
-      this.config().selection?.onRowSelect(selectedRow?.data);
+      this.config().selection?.onRowSelect(selectedRow.data);
     }
   }
 

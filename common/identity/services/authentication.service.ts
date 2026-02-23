@@ -1,9 +1,9 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { IdentityApiService } from '@common/identity/api/identity-api.service';
-import { AuthenticateResponse } from '@common/identity/api/responses/authenticate.response';
+import type { AuthenticateResponse } from '@common/identity/api/responses/authenticate.response';
 import { isDefined, isEmpty } from '@common/utils/utils';
-import { Optional } from '@common/types/optional.type';
-import { Permission } from '@app/core/enums/permission.enum';
+import type { Optional } from '@common/types/optional.type';
+import type { Permission } from '@app/core/enums/permission.enum';
 
 interface JwtPayload {
   permissions: Optional<Permission | Permission[]>;
@@ -13,6 +13,8 @@ interface JwtPayload {
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private readonly _api = inject(IdentityApiService);
+
   public readonly response = computed(() => this._response());
   public readonly isUserLoggedIn = computed(() => isDefined(this._response()));
   public readonly permissions = computed<Permission[]>(() => {
@@ -26,10 +28,9 @@ export class AuthenticationService {
       return [];
     }
 
-    return Array.isArray(permission) ? permission! : [permission!];
+    return Array.isArray(permission) ? permission : [permission!];
   });
 
-  private readonly _api = inject(IdentityApiService);
   private readonly _response = signal<Optional<AuthenticateResponse>>(null);
 
   public hasPermission(permission: Permission): boolean {

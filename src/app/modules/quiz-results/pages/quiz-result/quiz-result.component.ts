@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isDefined } from '@common/utils/utils';
 import { Route } from '@app/core/enums/route.enum';
@@ -32,6 +33,10 @@ import { sum } from 'remeda';
   providers: [QuizResultApiService, TranslatePipe],
 })
 export class QuizResultComponent implements OnInit {
+  private readonly _quizResultApiService = inject(QuizResultApiService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _router = inject(Router);
+
   public get isLoading(): boolean {
     return !this.isInitialized;
   }
@@ -45,10 +50,6 @@ export class QuizResultComponent implements OnInit {
 
   public response!: QuizResultDetailsResponse;
   public questions!: IQuizResultQuestion[];
-
-  private readonly _quizResultApiService = inject(QuizResultApiService);
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _router = inject(Router);
 
   public async ngOnInit(): Promise<void> {
     const id = this._activatedRoute.snapshot.paramMap.get('id');

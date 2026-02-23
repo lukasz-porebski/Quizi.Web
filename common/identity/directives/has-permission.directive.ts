@@ -1,19 +1,19 @@
 import { Directive, effect, inject, input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthenticationService } from '@common/identity/services/authentication.service';
-import { Permission } from '@app/core/enums/permission.enum';
+import type { Permission } from '@app/core/enums/permission.enum';
 
 @Directive({
   selector: '[hasPermission]',
   standalone: true,
 })
 export class HasPermissionDirective {
+  public readonly hasPermission = input<Permission | Permission[]>([]);
+
   private readonly _authenticationService = inject(AuthenticationService);
   private readonly _templateRef = inject(TemplateRef);
   private readonly _viewContainerRef = inject(ViewContainerRef);
 
-  public readonly hasPermission = input<Permission | Permission[]>([]);
-
-  public constructor() {
+  constructor() {
     effect(() => {
       const perms = this.hasPermission();
       const required = Array.isArray(perms) ? perms : [perms];

@@ -15,9 +15,9 @@ import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/r
   providers: [UsersListApiService, UsersDataSourceService, UsersTableConfigFactory, TranslatePipe],
 })
 export class UsersComponent {
-  public config: TableConfig<UsersListItemResponse>;
-
   private readonly _tableConfigFactory = inject(UsersTableConfigFactory);
+
+  public config: TableConfig<UsersListItemResponse>;
 
   constructor() {
     this.config = this._tableConfigFactory.create();

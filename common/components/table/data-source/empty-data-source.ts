@@ -1,7 +1,8 @@
-import { BaseTableDataSource } from './base-data-source';
-import { CollectionViewer } from '@angular/cdk/collections';
-import { Observable, of } from 'rxjs';
-import { PaginationRequest } from '@common/models/requests/pagination.request';
+import { BaseTableDataSource } from '@common/components/table/data-source/base-data-source';
+import type { CollectionViewer } from '@angular/cdk/collections';
+import type { Observable } from 'rxjs';
+import { of } from 'rxjs';
+import type { PaginationRequest } from '@common/models/requests/pagination.request';
 import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
 
 export class TableEmptyDataSource<T> extends BaseTableDataSource<T> {
@@ -11,11 +12,18 @@ export class TableEmptyDataSource<T> extends BaseTableDataSource<T> {
 
   public readonly loading$: Observable<boolean> = of(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public connect(collectionViewer: CollectionViewer): Observable<T[]> {
     return of([]);
   }
 
-  public disconnect(collectionViewer: CollectionViewer): void {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public disconnect(collectionViewer: CollectionViewer): void {
+    /* empty */
+  }
 
-  public fetchData(request: PaginationRequest): void {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public fetchData(request: PaginationRequest): void {
+    /* empty */
+  }
 }

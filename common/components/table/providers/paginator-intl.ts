@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class TablePaginatorIntl extends MatPaginatorIntl {
   private readonly _translateService = inject(TranslateService);
 
-  public constructor() {
+  constructor() {
     super();
     this._translateService
       .get('NUMBER_OF_ROWS')
@@ -14,7 +14,7 @@ export class TablePaginatorIntl extends MatPaginatorIntl {
 
     this._translateService.get('OF').subscribe(
       (translate) =>
-        (this.getRangeLabel = (page: number, pageSize: number, length: number) => {
+        (this.getRangeLabel = (page: number, pageSize: number, length: number): string => {
           const of = translate;
           if (length === 0 || pageSize === 0) {
             return `0 ${of} ${length}`;

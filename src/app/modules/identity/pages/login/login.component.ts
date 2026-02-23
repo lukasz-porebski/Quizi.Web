@@ -32,9 +32,12 @@ import { Route } from '@app/core/enums/route.enum';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  providers: [ TranslatePipe ],
+  providers: [TranslatePipe],
 })
 export class LoginComponent {
+  private readonly _router = inject(Router);
+  private readonly _authenticationService = inject(AuthenticationService);
+
   public readonly TextInputType = TextInputType;
   public readonly ButtonStyle = ButtonStyle;
   public readonly Validators = IdentityValidators;
@@ -53,11 +56,8 @@ export class LoginComponent {
   public isLoading = false;
   public invalidAuthData = false;
 
-  private readonly _router = inject(Router);
-  private readonly _authenticationService = inject(AuthenticationService);
-
   public tryGetInvalidAuthDataError(): Optional<TextConfig> {
-    return this.invalidAuthData ? new TextConfig({text: 'INVALID_EMAIL_OR_PASSWORD'}) : undefined;
+    return this.invalidAuthData ? new TextConfig({ text: 'INVALID_EMAIL_OR_PASSWORD' }) : undefined;
   }
 
   public async redirectToRegistration(): Promise<void> {

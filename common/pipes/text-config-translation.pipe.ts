@@ -1,6 +1,7 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { TextConfig } from '@common/models/text.config';
-import { Optional } from '@common/types/optional.type';
+import type { PipeTransform } from '@angular/core';
+import { Pipe } from '@angular/core';
+import type { TextConfig } from '@common/models/text.config';
+import type { Optional } from '@common/types/optional.type';
 import { TranslatePipe } from '@ngx-translate/core';
 import { isDefined } from 'remeda';
 
@@ -9,7 +10,7 @@ import { isDefined } from 'remeda';
   pure: false,
 })
 export class TextConfigTranslatePipe extends TranslatePipe implements PipeTransform {
-  // @ts-ignore
+  // @ts-expect-error: TS2416 - signature mismatch with base TranslatePipe
   public override transform(value: Optional<TextConfig> | TextConfig[]): string {
     if (!isDefined(value)) {
       return '';

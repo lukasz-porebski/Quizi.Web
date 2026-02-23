@@ -1,4 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import type { PipeTransform } from '@angular/core';
+import { Pipe } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { isEmpty } from '@common/utils/utils';
 

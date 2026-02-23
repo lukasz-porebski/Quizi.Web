@@ -1,7 +1,7 @@
-import { TimeSpan } from '@common/types/time-span.type';
+import type { TimeSpan } from '@common/types/time-span.type';
 
 export class TimeSpanModel {
-  public constructor(
+  constructor(
     public readonly hours: number,
     public readonly minutes: number,
     public readonly seconds: number,

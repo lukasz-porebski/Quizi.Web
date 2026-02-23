@@ -1,7 +1,8 @@
 import { Component, effect, input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
-import { ITextConfig, TextConfig } from '@common/models/text.config';
+import type { ITextConfig } from '@common/models/text.config';
+import { TextConfig } from '@common/models/text.config';
 import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.pipe';
 
 @Component({
@@ -11,13 +12,13 @@ import { TextConfigTranslatePipe } from '@common/pipes/text-config-translation.p
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  public text = input.required<ITextConfig>();
+  public readonly text = input.required<ITextConfig>();
 
   public innerText!: TextConfig;
 
-  public constructor() {
+  constructor() {
     effect(() => {
-      this.innerText = new TextConfig(this.text()!);
+      this.innerText = new TextConfig(this.text());
     });
   }
 }

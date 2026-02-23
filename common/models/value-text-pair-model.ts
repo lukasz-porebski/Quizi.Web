@@ -1,5 +1,5 @@
 export class ValueTextPairModel<TValue> {
-  public constructor(
+  constructor(
     public value: TValue,
     public text: string,
   ) {}

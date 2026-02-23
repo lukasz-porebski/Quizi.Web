@@ -1,6 +1,6 @@
 export class TableRow<TData> {
-  public constructor(
+  constructor(
     public readonly data: TData,
-    public hovered: boolean = false,
+    public hovered = false,
   ) {}
 }
