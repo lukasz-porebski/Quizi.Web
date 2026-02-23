@@ -15,9 +15,11 @@ export abstract class BaseApiService {
     map: (response: TRawResponse) => TResponse,
     request?: object,
   ): Promise<TResponse> {
+    const finalUrl = `${this._apiUrl}${url}`;
+    const params = this._toHttpParams(isDefined(request) ? { ...request } : {});
     return firstValueFrom(
-      this._httpClient.get<TRawResponse>(`${this._apiUrl}${url}`, {
-        params: this._toHttpParams(isDefined(request) ? { ...request } : {}),
+      this._httpClient.get<TRawResponse>(finalUrl, {
+        params,
       }),
     ).then((r) => map(r));
   }
@@ -61,12 +63,12 @@ export abstract class BaseApiService {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _toHttpParams(request: any, parentKey?: string, params = new HttpParams()): HttpParams {
-    if (request === null) {
+    if (!isDefined(request)) {
       return params;
     }
 
     const isPrimitive = (v: unknown): v is Primitive =>
-      ['string', 'number', 'boolean'].includes(typeof v) || v === null;
+      ['string', 'number', 'boolean', 'undefined'].includes(typeof v) || v === null;
 
     Object.keys(request).forEach((key) => {
       const value = request[key];
