@@ -21,8 +21,6 @@ export class AppComponent implements OnInit {
     const translate = inject(TranslateService);
     const router = inject(Router);
 
-    translate.addLangs(['pl']);
-    translate.setDefaultLang('pl');
     translate.use('pl');
 
     effect(async () => {
