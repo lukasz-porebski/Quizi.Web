@@ -1,16 +1,8 @@
 import type { Routes } from '@angular/router';
-import { QuizzesComponent } from '@app/modules/quizzes/pages/quizzes/quizzes.component';
 import { Route } from '@app/core/enums/route.enum';
-import { QuizPersistComponent } from '@app/modules/quizzes/pages/quiz-persist/quiz-persist.component';
-import { QuizRunCoreComponent } from '@app/modules/quizzes/pages/quiz-run/quiz-run-core.component';
-import { QuizResultComponent } from '@app/modules/quiz-results/pages/quiz-result/quiz-result.component';
-import { QuizResultsComponent } from '@app/modules/quiz-results/pages/quiz-results/quiz-results.component';
-import { LoginComponent } from '@app/modules/identity/pages/login/login.component';
+import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
 import { authenticatedGuard } from '@common/identity/guards/authenticated.guard';
 import { unauthenticatedGuard } from '@common/identity/guards/unauthenticated.guard';
-import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
-import { RegistrationComponent } from '@app/modules/identity/pages/registration/registration.component';
-import { UsersComponent } from '@app/modules/users/pages/users/users.component';
 import { permissionGuard } from '@common/identity/guards/permission.guard';
 import { Permission } from '@app/core/enums/permission.enum';
 
@@ -20,20 +12,73 @@ export const routes: Routes = [
     canActivateChild: [authenticatedGuard],
     component: AuthenticatedComponent,
     children: [
-      { path: Route.Quizzes, component: QuizzesComponent },
-      { path: Route.QuizCreate, component: QuizPersistComponent },
-      { path: `${Route.QuizEdit}:id`, component: QuizPersistComponent },
-      { path: `${Route.QuizPreview}:id`, component: QuizPersistComponent },
-      { path: `${Route.QuizRun}:id`, component: QuizRunCoreComponent },
-      { path: Route.QuizResults, component: QuizResultsComponent },
-      { path: `${Route.QuizResult}:id`, component: QuizResultComponent },
+      {
+        path: Route.Quizzes,
+        loadComponent: () =>
+          import('@app/modules/quizzes/pages/quizzes/quizzes.component').then((m) => m.QuizzesComponent),
+      },
+      {
+        path: Route.QuizCreate,
+        loadComponent: () =>
+          import('@app/modules/quizzes/pages/quiz-persist/quiz-persist.component').then(
+            (m) => m.QuizPersistComponent,
+          ),
+      },
+      {
+        path: `${Route.QuizEdit}:id`,
+        loadComponent: () =>
+          import('@app/modules/quizzes/pages/quiz-persist/quiz-persist.component').then(
+            (m) => m.QuizPersistComponent,
+          ),
+      },
+      {
+        path: `${Route.QuizPreview}:id`,
+        loadComponent: () =>
+          import('@app/modules/quizzes/pages/quiz-persist/quiz-persist.component').then(
+            (m) => m.QuizPersistComponent,
+          ),
+      },
+      {
+        path: `${Route.QuizRun}:id`,
+        loadComponent: () =>
+          import('@app/modules/quizzes/pages/quiz-run/quiz-run-core.component').then(
+            (m) => m.QuizRunCoreComponent,
+          ),
+      },
+      {
+        path: Route.QuizResults,
+        loadComponent: () =>
+          import('@app/modules/quiz-results/pages/quiz-results/quiz-results.component').then(
+            (m) => m.QuizResultsComponent,
+          ),
+      },
+      {
+        path: `${Route.QuizResult}:id`,
+        loadComponent: () =>
+          import('@app/modules/quiz-results/pages/quiz-result/quiz-result.component').then(
+            (m) => m.QuizResultComponent,
+          ),
+      },
       {
         path: Route.Users,
-        component: UsersComponent,
+        loadComponent: () =>
+          import('@app/modules/users/pages/users/users.component').then((m) => m.UsersComponent),
         canActivate: [permissionGuard(Permission.UsersList)],
       },
     ],
   },
-  { path: Route.Login, component: LoginComponent, canActivateChild: [unauthenticatedGuard] },
-  { path: Route.Registration, component: RegistrationComponent, canActivateChild: [unauthenticatedGuard] },
+  {
+    path: Route.Login,
+    loadComponent: () =>
+      import('@app/modules/identity/pages/login/login.component').then((m) => m.LoginComponent),
+    canActivateChild: [unauthenticatedGuard],
+  },
+  {
+    path: Route.Registration,
+    loadComponent: () =>
+      import('@app/modules/identity/pages/registration/registration.component').then(
+        (m) => m.RegistrationComponent,
+      ),
+    canActivateChild: [unauthenticatedGuard],
+  },
 ];
