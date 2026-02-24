@@ -32,6 +32,19 @@ export class QuizResultQuestionComponent implements OnInit {
   public readonly question = input.required<IQuizResultQuestion>();
 
   public readonly QuestionType = QuizQuestionType;
+  public readonly getOptionValue = (s: IQuizResultSingleChoiceQuestionRadioOption): number => s.ordinalNumber;
+  public readonly getOptionText = (s: IQuizResultSingleChoiceQuestionRadioOption): string => s.text;
+  public readonly getOptionColor = (s: IQuizResultSingleChoiceQuestionRadioOption): InputColor =>
+    this.getClosedQuestionAnswerColor(s);
+  public readonly getClosedQuestionAnswerColor = (
+    data: QuizResultDetailsMultipleChoiceQuestionAnswerResponse | IQuizResultSingleChoiceQuestionRadioOption,
+  ): InputColor => {
+    if (data.isCorrect) {
+      return InputColor.Green;
+    }
+
+    return data.isSelected ? InputColor.Red : InputColor.Default;
+  };
 
   public type!: QuizQuestionType;
   public options: IQuizResultSingleChoiceQuestionRadioOption[] = [];
@@ -49,18 +62,6 @@ export class QuizResultQuestionComponent implements OnInit {
         return result;
       });
     }
-  }
-
-  public getOptionValue(s: IQuizResultSingleChoiceQuestionRadioOption): number {
-    return s.ordinalNumber;
-  }
-
-  public getOptionText(s: IQuizResultSingleChoiceQuestionRadioOption): string {
-    return s.text;
-  }
-
-  public getOptionColor(s: IQuizResultSingleChoiceQuestionRadioOption): InputColor {
-    return this.getClosedQuestionAnswerColor(s);
   }
 
   public castToOpenQuestion(): QuizResultDetailsOpenQuestionResponse {
@@ -84,15 +85,5 @@ export class QuizResultQuestionComponent implements OnInit {
     }
 
     return 'open-question-color-' + color;
-  }
-
-  public getClosedQuestionAnswerColor(
-    data: QuizResultDetailsMultipleChoiceQuestionAnswerResponse | IQuizResultSingleChoiceQuestionRadioOption,
-  ): InputColor {
-    if (data.isCorrect) {
-      return InputColor.Green;
-    }
-
-    return data.isSelected ? InputColor.Red : InputColor.Default;
   }
 }

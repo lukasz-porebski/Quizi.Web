@@ -21,6 +21,7 @@ export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestr
   public readonly isPreview = input.required<boolean>();
 
   public readonly Icon = Icon;
+  public readonly getOptionValue = (s: QuizPersistSingleChoiceQuestionRadioOption): number => s.ordinalNumber;
 
   public options: QuizPersistSingleChoiceQuestionRadioOption[] = [];
 
@@ -33,10 +34,6 @@ export class QuizPersistSingleChoiceQuestionComponent implements OnInit, OnDestr
 
   public ngOnDestroy(): void {
     this._answersSub.unsubscribe();
-  }
-
-  public getOptionValue(s: QuizPersistSingleChoiceQuestionRadioOption): number {
-    return s.ordinalNumber;
   }
 
   private _setOptions(): void {

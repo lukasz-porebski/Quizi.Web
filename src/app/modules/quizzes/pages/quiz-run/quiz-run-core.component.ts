@@ -5,7 +5,6 @@ import { QuizRunApiService } from '@app/modules/quizzes/pages/quiz-run/pages/run
 import type { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
 import { isDefined, isEmpty } from '@common/utils/utils';
 import { QuizRunRequestFactory } from '@app/modules/quizzes/pages/quiz-run/pages/run/factories/quiz-run-request.factory';
-import { Route } from '@app/core/enums/route.enum';
 import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
 import { QuizRunComponent } from '@app/modules/quizzes/pages/quiz-run/pages/run/quiz-run.component';
 import type { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
@@ -13,6 +12,7 @@ import { QuizRunOpenQuestionsVerificationComponent } from '@app/modules/quizzes/
 import type { FormArray } from '@angular/forms';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import type { Optional } from '@common/types/optional.type';
+import { Route } from '@app/core/enums/route.enum';
 
 @Component({
   selector: 'app-quiz-run-core',

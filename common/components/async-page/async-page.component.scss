@@ -3,7 +3,9 @@
   height: 100%;
   position: absolute;
   z-index: 999;
-  background: rgba(25, 25, 25, 0.4);
+  background: rgba(25, 25, 25, 0.2);
+  top: var(--mat-toolbar-standard-height, 64px);
+  left: 0;
 
   > .center-container {
     z-index: 1000;
