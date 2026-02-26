@@ -4,7 +4,6 @@
   position: absolute;
   z-index: 999;
   background: rgba(25, 25, 25, 0.2);
-  top: var(--mat-toolbar-standard-height, 64px);
   left: 0;
 
   > .center-container {
@@ -14,4 +13,9 @@
 
 .container {
   padding: 0;
+}
+
+.navigation-page {
+  height: calc(100vh - var(--mat-toolbar-standard-height, 4rem));
+  top: - var(--mat-toolbar-standard-height, 4rem);
 }

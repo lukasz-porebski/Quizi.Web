@@ -9,13 +9,14 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 })
 export class AsyncPageComponent {
   public readonly showSpinner = input.required<boolean>();
+  public readonly isNavigationPage = input<boolean>(true);
 
-  private readonly _cdr = inject(ChangeDetectorRef);
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
   constructor() {
     effect(() => {
       this.showSpinner();
-      this._cdr.detectChanges();
+      this._changeDetectorRef.detectChanges();
     });
   }
 }

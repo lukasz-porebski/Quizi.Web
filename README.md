@@ -24,8 +24,8 @@ Aplikacja internetowa do przeprowadzania quizów.
 - Uruchamianie quizu
 - Historia wyników quizów
 - Lista użytkowników
+- Podgląd quizów
 
 ## Planowane funkcje
-- Podgląd quizów
 - Dzielenie się quizami
 - Statystyki quizów
