@@ -24,7 +24,7 @@ export class TableRowComponent<TData> {
   public readonly DateFormat = DateFormat;
 
   public getTimeSpan(value: TimeSpanModel): string {
-    return TimeSpanUtils.ToTimeSpanByModel(value);
+    return TimeSpanUtils.ToDisplayValue(value);
   }
 
   public getPercent(value: number): string {

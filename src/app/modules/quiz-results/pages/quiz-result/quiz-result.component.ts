@@ -75,9 +75,9 @@ export class QuizResultComponent implements OnInit {
 
   public getDuration(): string {
     return (
-      TimeSpanUtils.ToTimeSpanByModel(this.response.duration) +
+      TimeSpanUtils.ToDisplayValue(this.response.duration) +
       '/' +
-      TimeSpanUtils.ToTimeSpanByModel(this.response.maxDuration)
+      TimeSpanUtils.ToDisplayValue(this.response.maxDuration)
     );
   }
 
