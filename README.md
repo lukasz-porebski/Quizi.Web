@@ -32,7 +32,7 @@ Quizi to samodzielnie rozwijany projekt portfolio, będący trzecią iteracją a
 
 ## 🏗️ Architektura
 
-![Diagram architektury](Assets/architecture_diagram.svg)
+![Diagram architektury](assets/architecture_diagram.svg)
 
 ---
 
