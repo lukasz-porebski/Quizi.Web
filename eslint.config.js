@@ -3,7 +3,7 @@ const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
 const requireReadonlyInputs = require("./eslint-rules/require-readonly-inputs");
-const memberOrdering = require("./eslint-rules/member-ordering"); // ← dodaj
+const memberOrdering = require("./eslint-rules/member-ordering");
 
 module.exports = tseslint.config(
   {
@@ -61,48 +61,6 @@ module.exports = tseslint.config(
       "@angular-eslint/prefer-output-readonly": "error",
       "local/require-readonly-inputs": "error",
       "@angular-eslint/prefer-signals": "error",
-      // "@typescript-eslint/member-ordering": [
-      //   "error",
-      //   {
-      //     default: [
-      //       // Pola dekorowane (input, output, viewChild itp.)
-      //       "public-decorated-field",
-      //       "protected-decorated-field",
-      //       "private-decorated-field",
-      //
-      //       // Gettery / settery
-      //       "public-get",
-      //       "public-set",
-      //       "protected-get",
-      //       "protected-set",
-      //       "private-get",
-      //       "private-set",
-      //
-      //       // Pola statyczne
-      //       "public-static-field",
-      //       "protected-static-field",
-      //       "private-static-field",
-      //
-      //       // Pola instancji (inject-y najpierw, potem publiczne)
-      //       "private-instance-field",
-      //       "protected-instance-field",
-      //       "public-instance-field",
-      //
-      //       // Konstruktor
-      //       "constructor",
-      //
-      //       // Metody statyczne
-      //       "public-static-method",
-      //       "protected-static-method",
-      //       "private-static-method",
-      //
-      //       // Metody instancji
-      //       "public-instance-method",
-      //       "protected-instance-method",
-      //       "private-instance-method",
-      //     ],
-      //   },
-      // ],
       "@typescript-eslint/naming-convention": [
         "error",
         {
