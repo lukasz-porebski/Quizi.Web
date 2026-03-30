@@ -11,7 +11,7 @@ import { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/p
 import type { QuizDetailsClosedQuestionAnswerResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question-answer.response';
 import { QuizPersistClosedQuestionValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist-closed-question.validators';
 import { QuizPersistSingleChoiceQuestionAnswerFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question-answer.form-group';
-import { isEmpty } from 'lp-common';
+import { isEmpty } from '@lukasz-porebski/lp-common';
 
 export namespace QuizPersistFormSingleChoiceQuestionFactory {
   export function CreateQuestion(

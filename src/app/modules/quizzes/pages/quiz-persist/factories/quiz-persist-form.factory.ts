@@ -11,8 +11,8 @@ import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/co
 import { QuizPersistHeaderValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist-header.validators';
 import { QuizPersistValidators } from '@app/modules/quizzes/pages/quiz-persist/validators/quiz-persist.validators';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
-import type { ITimeSpanFormControl } from 'lp-common';
-import { TimeSpanValidators } from 'lp-common';
+import type { ITimeSpanFormControl } from '@lukasz-porebski/lp-common';
+import { TimeSpanValidators } from '@lukasz-porebski/lp-common';
 
 export namespace QuizPersistFormFactory {
   export function Create(response?: QuizDetailsResponse): QuizPersistFormGroup {

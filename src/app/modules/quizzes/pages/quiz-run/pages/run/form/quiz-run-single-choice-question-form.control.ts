@@ -2,7 +2,7 @@ import type { QuizToRunClosedQuestionResponse } from '@app/modules/quizzes/pages
 import { FormControl } from '@angular/forms';
 import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 import type { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
-import type { Optional } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
 
 export class QuizRunSingleChoiceQuestionFormControl
   extends FormControl<Optional<number>>

@@ -8,8 +8,8 @@ import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/co
 import type { QuizPersistFormQuestion } from '@app/modules/quizzes/pages/quiz-persist/types/quiz-persist-form-question.type';
 import { QuizPersistQuestionsHelper } from '@app/modules/quizzes/pages/quiz-persist/helpers/quiz-persist-questions.helper';
 import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
-import type { Optional } from 'lp-common';
-import { isDefined, isEmpty } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
+import { isDefined, isEmpty } from '@lukasz-porebski/lp-common';
 
 export class QuizPersistFormGroup extends FormGroup<IQuizPersistForm> {
   constructor(controls: IQuizPersistForm, validatorOrOpts: ValidatorFn[]) {

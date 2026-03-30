@@ -5,7 +5,7 @@ import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quiz
 import type { Subscription } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
-import { ButtonComponent, Icon, RadioComponent, TextInputComponent } from 'lp-common';
+import { ButtonComponent, Icon, RadioComponent, TextInputComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-persist-single-choice-question',

@@ -6,7 +6,7 @@ import type {
 import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
 import type { QuizCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-create.request';
 import type { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
-import { BaseApiService, TimeSpanModel } from 'lp-common';
+import { BaseApiService, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizPersistApiService extends BaseApiService {

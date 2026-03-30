@@ -11,7 +11,7 @@ import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persi
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
-import { ButtonComponent, Icon } from 'lp-common';
+import { ButtonComponent, Icon } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-persist-question',

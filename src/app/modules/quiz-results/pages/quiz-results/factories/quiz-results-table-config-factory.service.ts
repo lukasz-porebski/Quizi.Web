@@ -3,7 +3,7 @@ import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/qu
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
-import { Icon, TableConfig } from 'lp-common';
+import { Icon, TableConfig } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizResultsTableConfigFactory {

@@ -4,8 +4,8 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
-import type { ITableColumnActionConfig } from 'lp-common';
-import { Icon, NotificationService, TableConfig } from 'lp-common';
+import type { ITableColumnActionConfig } from '@lukasz-porebski/lp-common';
+import { Icon, NotificationService, TableConfig } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizzesTableConfigFactory {

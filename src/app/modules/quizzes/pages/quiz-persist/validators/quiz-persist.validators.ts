@@ -7,8 +7,8 @@ import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quiz
 import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import { unique } from 'remeda';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
-import type { Optional } from 'lp-common';
-import { isDefined, isEmpty } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
+import { isDefined, isEmpty } from '@lukasz-porebski/lp-common';
 
 export namespace QuizPersistValidators {
   export function ThereIsAtLeastOneQuestion(): ValidatorFn {

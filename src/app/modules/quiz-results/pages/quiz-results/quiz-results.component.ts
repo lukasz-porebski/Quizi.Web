@@ -4,8 +4,8 @@ import { QuizResultsListApiService } from '@app/modules/quiz-results/pages/quiz-
 import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/quiz-results/services/quiz-results-data-source.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import type { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
-import type { TableConfig } from 'lp-common';
-import { TableComponent } from 'lp-common';
+import type { TableConfig } from '@lukasz-porebski/lp-common';
+import { TableComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-results',

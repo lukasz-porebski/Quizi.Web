@@ -12,8 +12,8 @@ import type { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/page
 import type { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
 import { Route } from '@app/core/enums/route.enum';
 import { Router } from '@angular/router';
-import type { PeriodModel } from 'lp-common';
-import { ButtonComponent, ButtonStyle, CountDownComponent } from 'lp-common';
+import type { PeriodModel } from '@lukasz-porebski/lp-common';
+import { ButtonComponent, ButtonStyle, CountDownComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-run',

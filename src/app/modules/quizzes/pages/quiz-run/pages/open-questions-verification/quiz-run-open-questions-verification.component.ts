@@ -6,8 +6,8 @@ import { FormArray, FormsModule } from '@angular/forms';
 import { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import { QuizRunOpenQuestionVerificationComponent } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/components/question-verification/quiz-run-open-question-verification.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import type { AggregateId } from 'lp-common';
-import { ButtonComponent, isDefined } from 'lp-common';
+import type { AggregateId } from '@lukasz-porebski/lp-common';
+import { ButtonComponent, isDefined } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-run-open-questions-verification',

@@ -4,6 +4,9 @@
 .yalc/
 yalc.lock
 
+# Remote common package
+.npmrc
+
 # Compiled output
 /dist
 /tmp

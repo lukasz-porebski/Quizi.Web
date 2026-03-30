@@ -4,7 +4,7 @@ import { QuizPersistFormSingleChoiceQuestionFactory } from '@app/modules/quizzes
 import { QuizPersistCloasedQuestionsHelper } from '@app/modules/quizzes/pages/quiz-persist/helpers/quiz-persist-cloased-questions.helper';
 import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
 import type { ValidatorFn } from '@angular/forms';
-import type { Optional } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
 
 export class QuizPersistSingleChoiceQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormSingleChoiceQuestion> {
   public readonly no: Optional<number>;

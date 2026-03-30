@@ -4,8 +4,8 @@ import type {
   QuizzesListItemResponse,
 } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
 import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import type { AggregateId, Guid, PaginationRequest } from 'lp-common';
-import { BaseApiService, PaginatedListResponse, TimeSpanModel } from 'lp-common';
+import type { AggregateId, Guid, PaginationRequest } from '@lukasz-porebski/lp-common';
+import { BaseApiService, PaginatedListResponse, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizzesListApiService extends BaseApiService {

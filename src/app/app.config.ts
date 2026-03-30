@@ -6,7 +6,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideNgxMask } from 'ngx-mask';
-import { API_URL, AppErrorHandler, authenticationInterceptor } from 'lp-common';
+import { API_URL, AppErrorHandler, authenticationInterceptor } from '@lukasz-porebski/lp-common';
 import { environment } from '@env/environment';
 
 export const appConfig: ApplicationConfig = {

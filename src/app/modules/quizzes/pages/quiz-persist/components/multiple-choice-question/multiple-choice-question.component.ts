@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
-import { ButtonComponent, CheckboxComponent, Icon, TextInputComponent } from 'lp-common';
+import { ButtonComponent, CheckboxComponent, Icon, TextInputComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-persist-multiple-choice-question',

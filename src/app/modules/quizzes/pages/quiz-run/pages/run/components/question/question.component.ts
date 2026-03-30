@@ -6,7 +6,7 @@ import type { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizze
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import type { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
-import { CheckboxComponent, Icon, TextareaInputComponent } from 'lp-common';
+import { CheckboxComponent, Icon, TextareaInputComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-run-question',

@@ -10,7 +10,7 @@ import {
   TextareaInputComponent,
   TextInputComponent,
   TimeSpanComponent,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-persist-header',

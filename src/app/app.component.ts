@@ -3,7 +3,7 @@ import { Component, effect, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
-import { AsyncPageComponent, AuthenticationService } from 'lp-common';
+import { AsyncPageComponent, AuthenticationService } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-root',

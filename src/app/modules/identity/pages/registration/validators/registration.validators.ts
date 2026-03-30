@@ -1,7 +1,7 @@
 import type { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { IdentityValidators } from '@app/modules/identity/validators/identity.validators';
 import type { IRegistrationForm } from '@app/modules/identity/pages/registration/interfaces/registration-form.interface';
-import { isEmpty } from 'lp-common';
+import { isEmpty } from '@lukasz-porebski/lp-common';
 
 export namespace RegistrationValidators {
   export function ConfirmedPassword(): ValidatorFn[] {

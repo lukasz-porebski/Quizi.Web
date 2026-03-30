@@ -18,7 +18,7 @@ import {
   DateFormat,
   isDefined,
   TimeSpanUtils,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-result',

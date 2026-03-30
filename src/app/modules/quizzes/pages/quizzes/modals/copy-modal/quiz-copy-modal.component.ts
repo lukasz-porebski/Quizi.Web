@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import type { Guid } from 'lp-common';
+import type { Guid } from '@lukasz-porebski/lp-common';
 import {
   AsyncPageComponent,
   ButtonComponent,
@@ -12,7 +12,7 @@ import {
   TextInputComponent,
   TextInputType,
   TextInputValidator,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-copy-modal',

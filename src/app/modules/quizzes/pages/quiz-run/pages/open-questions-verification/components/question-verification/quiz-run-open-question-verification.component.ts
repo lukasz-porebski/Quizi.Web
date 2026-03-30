@@ -4,8 +4,8 @@ import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/qu
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
-import type { IRadioOption } from 'lp-common';
-import { RadioComponent, TextConfig } from 'lp-common';
+import type { IRadioOption } from '@lukasz-porebski/lp-common';
+import { RadioComponent, TextConfig } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-run-open-question-verification',

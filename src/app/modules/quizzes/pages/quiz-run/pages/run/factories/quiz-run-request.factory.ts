@@ -11,8 +11,8 @@ import type { FormArray } from '@angular/forms';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
-import type { Optional } from 'lp-common';
-import { isDefined, PeriodUtils } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
+import { isDefined, PeriodUtils } from '@lukasz-porebski/lp-common';
 
 export namespace QuizRunRequestFactory {
   export function Create(

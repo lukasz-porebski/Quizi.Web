@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
-import type { PaginatedListResponse, PaginationRequest } from 'lp-common';
-import { BaseTableApiDataSource } from 'lp-common';
+import type { PaginatedListResponse, PaginationRequest } from '@lukasz-porebski/lp-common';
+import { BaseTableApiDataSource } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizzesDataSourceService extends BaseTableApiDataSource<QuizzesListItemResponse> {

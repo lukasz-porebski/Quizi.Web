@@ -3,8 +3,8 @@ import type {
   QuizResultsListItemRawResponse,
   QuizResultsListItemResponse,
 } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
-import type { PaginationRequest } from 'lp-common';
-import { BaseApiService, PaginatedListResponse, TimeSpanModel } from 'lp-common';
+import type { PaginationRequest } from '@lukasz-porebski/lp-common';
+import { BaseApiService, PaginatedListResponse, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizResultsListApiService extends BaseApiService {

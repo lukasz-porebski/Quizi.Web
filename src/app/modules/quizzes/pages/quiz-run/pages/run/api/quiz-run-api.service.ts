@@ -4,8 +4,8 @@ import type {
   QuizToRunResponse,
 } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
 import type { QuizVerifyRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify.request';
-import type { AggregateId } from 'lp-common';
-import { BaseApiService, TimeSpanModel } from 'lp-common';
+import type { AggregateId } from '@lukasz-porebski/lp-common';
+import { BaseApiService, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class QuizRunApiService extends BaseApiService {

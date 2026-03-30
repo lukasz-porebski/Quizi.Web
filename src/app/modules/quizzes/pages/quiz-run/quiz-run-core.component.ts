@@ -10,7 +10,7 @@ import { QuizRunOpenQuestionsVerificationComponent } from '@app/modules/quizzes/
 import type { FormArray } from '@angular/forms';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import { Route } from '@app/core/enums/route.enum';
-import { AsyncPageComponent, isDefined, isEmpty, Optional } from 'lp-common';
+import { AsyncPageComponent, isDefined, isEmpty, Optional } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-run-core',

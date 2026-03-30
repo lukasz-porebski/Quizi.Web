@@ -11,8 +11,8 @@ import type { QuizPersistMultipleChoiceQuestionAnswerFormGroup } from '@app/modu
 import type { QuizUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-update.request';
 import type { QuizClosedQuestionUpdateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-update.request';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
-import type { AggregateId, EntityPersistRequest } from 'lp-common';
-import { TimeSpanUtils } from 'lp-common';
+import type { AggregateId, EntityPersistRequest } from '@lukasz-porebski/lp-common';
+import { TimeSpanUtils } from '@lukasz-porebski/lp-common';
 
 export namespace QuizPersistRequestFactory {
   export function CreateForCreate(form: QuizPersistFormGroup): QuizCreateRequest {

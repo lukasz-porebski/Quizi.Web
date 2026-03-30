@@ -2,7 +2,7 @@ import type { Routes } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { AuthenticatedComponent } from '@app/core/components/authenticated/authenticated.component';
 import { Permission } from '@app/core/enums/permission.enum';
-import { authenticatedGuard, permissionGuard, unauthenticatedGuard } from 'lp-common';
+import { authenticatedGuard, permissionGuard, unauthenticatedGuard } from '@lukasz-porebski/lp-common';
 
 export const routes: Routes = [
   {

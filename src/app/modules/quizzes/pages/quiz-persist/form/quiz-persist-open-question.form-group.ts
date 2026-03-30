@@ -1,7 +1,7 @@
 import { QuizPersistQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-question.form-group';
 import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
 import type { IQuizPersistFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-open-question.interface';
-import type { Optional } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
 
 export class QuizPersistOpenQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormOpenQuestion> {
   public readonly no: Optional<number>;

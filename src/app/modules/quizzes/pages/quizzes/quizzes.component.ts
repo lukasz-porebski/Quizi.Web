@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
 import { QuizCopyModalComponent } from '@app/modules/quizzes/pages/quizzes/modals/copy-modal/quiz-copy-modal.component';
 import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
-import type { TableConfig } from 'lp-common';
-import { ButtonComponent, ModalService, TableComponent } from 'lp-common';
+import type { TableConfig } from '@lukasz-porebski/lp-common';
+import { ButtonComponent, ModalService, TableComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quizzes',

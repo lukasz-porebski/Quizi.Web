@@ -1,6 +1,6 @@
 import type { QuizToRunClosedQuestionResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-closed-question.response';
 import type { QuizToRunOpenQuestionResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-open-question.response';
-import type { AggregateId, TimeSpan, TimeSpanModel } from 'lp-common';
+import type { AggregateId, TimeSpan, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 export type QuizToRunRawResponse = Omit<QuizToRunResponse, 'duration' | 'copyMode'> & {
   duration: TimeSpan;

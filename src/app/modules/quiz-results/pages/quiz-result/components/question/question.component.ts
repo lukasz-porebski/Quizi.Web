@@ -10,7 +10,7 @@ import type { IQuizResultSingleChoiceQuestionRadioOption } from '@app/modules/qu
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
 import type { QuizResultDetailsMultipleChoiceQuestionAnswerResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question-answer.response';
-import { CheckboxComponent, InputColor, RadioComponent } from 'lp-common';
+import { CheckboxComponent, InputColor, RadioComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-result-question',

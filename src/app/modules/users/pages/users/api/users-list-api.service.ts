@@ -3,8 +3,8 @@ import type {
   UsersListItemRawResponse,
   UsersListItemResponse,
 } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
-import type { PaginationRequest } from 'lp-common';
-import { BaseApiService, PaginatedListResponse } from 'lp-common';
+import type { PaginationRequest } from '@lukasz-porebski/lp-common';
+import { BaseApiService, PaginatedListResponse } from '@lukasz-porebski/lp-common';
 
 @Injectable()
 export class UsersListApiService extends BaseApiService {

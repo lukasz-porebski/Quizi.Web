@@ -1,7 +1,7 @@
 import type { QuizClosedQuestionCreateRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-closed-question-create.request';
 import type { QuizOpenQuestionPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-open-question-persist.request';
 import type { QuizSettingsPersistRequest } from '@app/modules/quizzes/pages/quiz-persist/api/requests/quiz-settings-persist.request';
-import type { Optional } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
 
 export interface QuizCreateRequest {
   readonly title: string;

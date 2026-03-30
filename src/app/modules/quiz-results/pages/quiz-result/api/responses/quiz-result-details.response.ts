@@ -1,7 +1,13 @@
 import type { QuizResultDetailsMultipleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-multiple-choice-question.response';
 import type { QuizResultDetailsOpenQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-open-question.response';
 import type { QuizResultDetailsSingleChoiceQuestionResponse } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details-single-choice-question.response';
-import type { AggregateId, PeriodRawViewModel, PeriodViewModel, TimeSpan, TimeSpanModel } from 'lp-common';
+import type {
+  AggregateId,
+  PeriodRawViewModel,
+  PeriodViewModel,
+  TimeSpan,
+  TimeSpanModel,
+} from '@lukasz-porebski/lp-common';
 
 export type QuizResultDetailsRawResponse = Omit<
   QuizResultDetailsResponse,

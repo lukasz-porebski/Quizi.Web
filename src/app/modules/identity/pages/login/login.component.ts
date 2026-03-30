@@ -8,7 +8,7 @@ import { IdentityUtils } from '@app/modules/identity/utils/identity.utils';
 import { MatError } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
-import type { Optional } from 'lp-common';
+import type { Optional } from '@lukasz-porebski/lp-common';
 import {
   AsyncPageComponent,
   AuthenticationService,
@@ -18,7 +18,7 @@ import {
   TextConfigTranslatePipe,
   TextInputComponent,
   TextInputType,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-login',

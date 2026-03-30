@@ -9,7 +9,7 @@ import { RegistrationApiService } from '@app/modules/identity/pages/registration
 import { RegistrationValidators } from '@app/modules/identity/pages/registration/validators/registration.validators';
 import { Route } from '@app/core/enums/route.enum';
 import { Router } from '@angular/router';
-import type { ITextConfig } from 'lp-common';
+import type { ITextConfig } from '@lukasz-porebski/lp-common';
 import {
   AsyncPageComponent,
   AuthenticationService,
@@ -18,7 +18,7 @@ import {
   isDefined,
   TextInputComponent,
   TextInputType,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-registration',

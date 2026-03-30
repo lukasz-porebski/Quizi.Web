@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Route } from '@app/core/enums/route.enum';
 import { RouterOutlet } from '@angular/router';
 import { Permission } from '@app/core/enums/permission.enum';
-import { Icon, NavigationComponent, NavigationConfig } from 'lp-common';
+import { Icon, NavigationComponent, NavigationConfig } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-authenticated',

@@ -3,7 +3,7 @@ import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quiz
 import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import type { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
-import type { ITimeSpanFormControl, Optional } from 'lp-common';
+import type { ITimeSpanFormControl, Optional } from '@lukasz-porebski/lp-common';
 
 export interface IQuizPersistForm {
   title: FormControl<string>;

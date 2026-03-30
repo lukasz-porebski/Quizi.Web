@@ -12,7 +12,7 @@ import { MatError } from '@angular/material/form-field';
 import { QuizPersistRequestFactory } from '@app/modules/quizzes/pages/quiz-persist/factories/quiz-persist-request.factory';
 import { Route } from '@app/core/enums/route.enum';
 import type { QuizDetailsResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details.response';
-import type { AggregateId } from 'lp-common';
+import type { AggregateId } from '@lukasz-porebski/lp-common';
 import {
   AsyncPageComponent,
   ButtonComponent,
@@ -21,7 +21,7 @@ import {
   isDefined,
   MenuButtonComponent,
   MenuComponent,
-} from 'lp-common';
+} from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-quiz-persist',

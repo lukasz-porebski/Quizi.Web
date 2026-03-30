@@ -1,4 +1,4 @@
-import type { AggregateId, TimeSpan, TimeSpanModel } from 'lp-common';
+import type { AggregateId, TimeSpan, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 export type QuizResultsListItemRawResponse = Omit<
   QuizResultsListItemResponse,

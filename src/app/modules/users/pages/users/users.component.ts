@@ -4,8 +4,8 @@ import { UsersListApiService } from '@app/modules/users/pages/users/api/users-li
 import { UsersDataSourceService } from '@app/modules/users/pages/users/services/users-data-source.service';
 import { UsersTableConfigFactory } from '@app/modules/users/pages/users/factories/users-table-config-factory.service';
 import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
-import type { TableConfig } from 'lp-common';
-import { TableComponent } from 'lp-common';
+import type { TableConfig } from '@lukasz-porebski/lp-common';
+import { TableComponent } from '@lukasz-porebski/lp-common';
 
 @Component({
   selector: 'app-users',

@@ -1,5 +1,5 @@
 import type { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import type { AggregateId, Guid, TimeSpan, TimeSpanModel } from 'lp-common';
+import type { AggregateId, Guid, TimeSpan, TimeSpanModel } from '@lukasz-porebski/lp-common';
 
 export type QuizzesListItemRawResponse = Omit<QuizzesListItemResponse, 'duration' | 'copyMode'> & {
   duration: TimeSpan;
