@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <app-text-input
+    <lp-text-input
       [formControl]="form().controls.title"
       [label]="{ text: 'TITLE' }"
       [minLength]="Constants.MinTitleLength"
@@ -11,7 +11,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <app-textarea-input
+    <lp-textarea-input
       [formControl]="form().controls.description"
       [label]="{ text: 'DESCRIPTION' }"
       [maxLength]="Constants.MaxDescriptionLength"
@@ -21,7 +21,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <app-time-span
+    <lp-time-span
       class="d-block mb-2"
       [formGroup]="form().controls.duration"
       [maxHours]="3"
@@ -31,7 +31,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <app-number-input
+    <lp-number-input
       [formControl]="form().controls.questionsCountInRunningQuiz"
       [min]="Constants.MinQuestionsCountInRunningQuiz"
       [max]="maxQuestionsCountInRunningQuiz"
@@ -40,7 +40,7 @@
     />
   </div>
   <div class="col">
-    <app-select
+    <lp-select
       [formControl]="form().controls.copyMode"
       [readonly]="isPreview()"
       [label]="{ text: 'COPY_MODE' }"
@@ -50,21 +50,21 @@
 </div>
 <div class="row mb-2">
   <div class="col">
-    <app-checkbox
+    <lp-checkbox
       [formControl]="form().controls.randomQuestions"
       [label]="{ text: 'RANDOM_QUESTIONS' }"
       [readonly]="isPreview()"
     />
   </div>
   <div class="col">
-    <app-checkbox
+    <lp-checkbox
       [formControl]="form().controls.randomAnswers"
       [label]="{ text: 'RANDOM_ANSWERS' }"
       [readonly]="isPreview()"
     />
   </div>
   <div class="col">
-    <app-checkbox
+    <lp-checkbox
       [formControl]="form().controls.negativePoints"
       [label]="{ text: 'NEGATIVE_POINTS' }"
       [readonly]="isPreview()"

@@ -1,10 +1,9 @@
 import type { OnInit } from '@angular/core';
 import { Component, effect, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
-import { AuthenticationService } from '@common/identity/services/authentication.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
+import { AsyncPageComponent, AuthenticationService } from 'lp-common';
 
 @Component({
   selector: 'app-root',

@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '@common/services/base-api.service';
 import type {
   QuizzesListItemRawResponse,
   QuizzesListItemResponse,
 } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
-import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
-import type { PaginationRequest } from '@common/models/requests/pagination.request';
-import type { AggregateId } from '@common/types/aggregate-id.type';
-import { TimeSpanModel } from '@common/models/time-span.model';
 import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import type { Guid } from '@common/types/guid.type';
+import type { AggregateId, Guid, PaginationRequest } from 'lp-common';
+import { BaseApiService, PaginatedListResponse, TimeSpanModel } from 'lp-common';
 
 @Injectable()
 export class QuizzesListApiService extends BaseApiService {

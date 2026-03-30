@@ -1,8 +1,8 @@
 import type { QuizToRunOpenQuestionResponse } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run-open-question.response';
 import { FormControl } from '@angular/forms';
-import type { Optional } from '@common/types/optional.type';
 import type { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
 import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
+import type { Optional } from 'lp-common';
 
 export class QuizRunOpenQuestionFormControl
   extends FormControl<Optional<string>>

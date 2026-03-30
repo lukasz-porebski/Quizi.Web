@@ -1,7 +1,7 @@
 import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import type { Optional } from '@common/types/optional.type';
 import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
-import { isDefined } from '@common/utils/utils';
+import type { Optional } from 'lp-common';
+import { isDefined } from 'lp-common';
 
 export namespace QuizPersistHeaderValidators {
   export function MaxQuestionsCountInRunningQuiz(): ValidatorFn {

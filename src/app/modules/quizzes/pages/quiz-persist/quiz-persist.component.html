@@ -1,4 +1,4 @@
-<app-async-page [showSpinner]="isLoading">
+<lp-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
     @if (isInitialized) {
       <form>
@@ -17,29 +17,29 @@
       <div class="row mt-2">
         @if (!isPreview) {
           <div class="col d-flex justify-content-start">
-            <app-menu [text]="{ text: 'ADD_QUESTION' }">
-              <app-menu-button (clocked)="form.addOpenQuestion()">{{ "OPEN" | translate }}</app-menu-button>
-              <app-menu-button (clocked)="form.addSingleChoiceQuestion()">{{
+            <lp-menu [text]="{ text: 'ADD_QUESTION' }">
+              <lp-menu-button (clocked)="form.addOpenQuestion()">{{ "OPEN" | translate }}</lp-menu-button>
+              <lp-menu-button (clocked)="form.addSingleChoiceQuestion()">{{
                 "SINGLE_CHOICE" | translate
-              }}</app-menu-button>
-              <app-menu-button (clocked)="form.addMultipleChoiceQuestion()">{{
+              }}</lp-menu-button>
+              <lp-menu-button (clocked)="form.addMultipleChoiceQuestion()">{{
                 "MULTIPLE_CHOICE" | translate
-              }}</app-menu-button>
-            </app-menu>
+              }}</lp-menu-button>
+            </lp-menu>
           </div>
         }
         <div class="col d-flex justify-content-end">
-          <app-button
+          <lp-button
             class="me-2"
             [text]="{ text: isPreview ? 'BACK' : 'CANCEL' }"
             [style]="ButtonStyle.Outlined"
             (clicked)="backToList()"
           />
           @if (!isPreview) {
-            <app-button [text]="{ text: 'SAVE' }" (clicked)="persist()" />
+            <lp-button [text]="{ text: 'SAVE' }" (clicked)="persist()" />
           }
         </div>
       </div>
     }
   </div>
-</app-async-page>
+</lp-async-page>

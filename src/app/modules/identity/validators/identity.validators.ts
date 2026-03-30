@@ -1,6 +1,6 @@
-import type { AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { isEmpty } from '@common/utils/utils';
+import { isEmpty } from 'lp-common';
 
 export namespace IdentityValidators {
   export const PasswordMinLength = 10;

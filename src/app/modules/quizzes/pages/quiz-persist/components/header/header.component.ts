@@ -1,24 +1,26 @@
 import { Component, input } from '@angular/core';
-import { NumberInputComponent } from '@common/components/inputs/number/number.component';
-import { TextInputComponent } from '@common/components/inputs/text/text.component';
 import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
-import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
-import { SelectComponent } from '@common/components/select/select.component';
-import { SelectOptionModel } from '@common/components/select/models/select-option.model';
 import { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
-import { TimeSpanComponent } from '@common/components/time-span/time-span.component';
 import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
-import { TextareaInputComponent } from '@common/components/inputs/textarea/textarea.component';
+import {
+  CheckboxComponent,
+  NumberInputComponent,
+  SelectComponent,
+  SelectOptionModel,
+  TextareaInputComponent,
+  TextInputComponent,
+  TimeSpanComponent,
+} from 'lp-common';
 
 @Component({
   selector: 'app-quiz-persist-header',
   imports: [
-    NumberInputComponent,
     TextInputComponent,
     CheckboxComponent,
-    SelectComponent,
     TimeSpanComponent,
     TextareaInputComponent,
+    NumberInputComponent,
+    SelectComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

@@ -1,4 +1,4 @@
-import type { AggregateId } from '@common/types/aggregate-id.type';
+import type { AggregateId } from 'lp-common';
 
 export type UsersListItemRawResponse = UsersListItemResponse & {
   createdAt: string;

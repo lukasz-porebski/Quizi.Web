@@ -4,11 +4,9 @@ import { QuizQuestionType } from '@app/core/enums/quiz-question-type.enum';
 import type { QuizRunMultipleChoiceQuestionFormArray } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-multiple-choice-question-form.array';
 import type { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import { Icon } from '@common/enums/icon.enum';
 import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import type { IQuizRunFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-run/pages/run/interfaces/quiz-run-form-question.interface';
-import { TextareaInputComponent } from '@common/components/inputs/textarea/textarea.component';
-import { CheckboxComponent } from '@common/components/inputs/checkbox/checkbox.component';
+import { CheckboxComponent, Icon, TextareaInputComponent } from 'lp-common';
 
 @Component({
   selector: 'app-quiz-run-question',

@@ -1,4 +1,4 @@
-<app-async-page [showSpinner]="isLoading">
+<lp-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
     @if (isInitialized) {
       <h1>{{ response.title }}</h1>
@@ -17,21 +17,21 @@
 
       <div class="row">
         <div class="col">
-          <app-checkbox
+          <lp-checkbox
             [value]="response.randomQuestions"
             [label]="{ text: 'RANDOM_QUESTIONS' }"
             [readonly]="true"
           />
         </div>
         <div class="col">
-          <app-checkbox
+          <lp-checkbox
             [value]="response.randomAnswers"
             [label]="{ text: 'RANDOM_ANSWERS' }"
             [readonly]="true"
           />
         </div>
         <div class="col">
-          <app-checkbox
+          <lp-checkbox
             [value]="response.negativePoints"
             [label]="{ text: 'NEGATIVE_POINTS' }"
             [readonly]="true"
@@ -44,7 +44,7 @@
       }
       <div class="row mt-2">
         <div class="col d-flex justify-content-end">
-          <app-button
+          <lp-button
             class="me-2 mb-2"
             [text]="{ text: 'BACK' }"
             [style]="ButtonStyle.Outlined"
@@ -54,4 +54,4 @@
       </div>
     }
   </div>
-</app-async-page>
+</lp-async-page>

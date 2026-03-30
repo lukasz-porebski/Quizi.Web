@@ -4,16 +4,16 @@
       @if (!isPreview()) {
         <div>
           @if (!form().isFirstQuestion(question())) {
-            <app-button
+            <lp-button
               [icon]="Icon.ArrowUpward"
               (clicked)="form().moveForwardQuestion(question())"
-            ></app-button>
+            ></lp-button>
           }
           @if (!form().isLastQuestion(question())) {
-            <app-button
+            <lp-button
               [icon]="Icon.ArrowDownward"
               (clicked)="form().moveBackQuestion(question())"
-            ></app-button>
+            ></lp-button>
           }
         </div>
       }
@@ -43,7 +43,7 @@
         </mat-card-content>
       </mat-card>
       @if (!isPreview()) {
-        <app-button [icon]="Icon.Delete" (clicked)="form().removeQuestion(question())" />
+        <lp-button [icon]="Icon.Delete" (clicked)="form().removeQuestion(question())" />
       }
     </div>
   </div>

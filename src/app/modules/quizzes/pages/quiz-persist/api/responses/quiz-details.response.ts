@@ -1,9 +1,7 @@
-import type { AggregateId } from '@common/types/aggregate-id.type';
 import type { QuizCopyMode } from '@app/modules/quizzes/pages/quizzes/enums/quiz-copy-mode.enum';
 import type { QuizDetailsClosedQuestionResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-closed-question.response';
 import type { QuizDetailsOpenQuestionResponse } from '@app/modules/quizzes/pages/quiz-persist/api/responses/quiz-details-open-question.response';
-import type { TimeSpanModel } from '@common/models/time-span.model';
-import type { TimeSpan } from '@common/types/time-span.type';
+import type { AggregateId, TimeSpan, TimeSpanModel } from 'lp-common';
 
 export type QuizDetailsRawResponse = Omit<QuizDetailsResponse, 'duration' | 'copyMode'> & {
   duration: TimeSpan;

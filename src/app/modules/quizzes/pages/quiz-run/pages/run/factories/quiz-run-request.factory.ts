@@ -2,18 +2,17 @@ import type { QuizToRunResponse } from '@app/modules/quizzes/pages/quiz-run/page
 import type { QuizVerifyRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify.request';
 import type { QuizVerifyOpenQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-open-question.request';
 import type { QuizVerifySingleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-single-choice-question.request';
-import { isDefined } from '@common/utils/utils';
 import type { QuizVerifyClosedQuestionAnswerRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-closed-question-answer.request';
 import type { QuizRunSingleChoiceQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-single-choice-question-form.control';
 import type { QuizRunMultipleChoiceQuestionFormArray } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-multiple-choice-question-form.array';
 import type { QuizVerifyMultipleChoiceQuestionRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify-multiple-choice-question.request';
-import { PeriodUtils } from '@common/utils/period.utils';
 import type { QuizRunFinishedEvent } from '@app/modules/quizzes/pages/quiz-run/pages/run/models/quiz-run-finished.event';
-import type { Optional } from '@common/types/optional.type';
 import type { FormArray } from '@angular/forms';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import type { QuizRunOpenQuestionFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/run/form/quiz-run-open-question-form.control';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
+import type { Optional } from 'lp-common';
+import { isDefined, PeriodUtils } from 'lp-common';
 
 export namespace QuizRunRequestFactory {
   export function Create(

@@ -1,20 +1,18 @@
 import { Component, inject, viewChild } from '@angular/core';
-import { TableComponent } from '@common/components/table/table.component';
 import { QuizzesTableConfigFactory } from '@app/modules/quizzes/pages/quizzes/factories/quizzes-table-config.factory';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
 import { QuizzesDataSourceService } from '@app/modules/quizzes/pages/quizzes/services/quizzes-data-source.service';
-import { ButtonComponent } from '@common/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
-import { ModalService } from '@common/services/modal.service';
 import { QuizCopyModalComponent } from '@app/modules/quizzes/pages/quizzes/modals/copy-modal/quiz-copy-modal.component';
 import type { QuizzesListItemResponse } from '@app/modules/quizzes/pages/quizzes/api/responses/quizzes-list-Item.response';
-import type { TableConfig } from '@common/components/table/models/table.config';
+import type { TableConfig } from 'lp-common';
+import { ButtonComponent, ModalService, TableComponent } from 'lp-common';
 
 @Component({
   selector: 'app-quizzes',
-  imports: [TableComponent, ButtonComponent],
+  imports: [ButtonComponent, TableComponent],
   templateUrl: './quizzes.component.html',
   styleUrl: './quizzes.component.scss',
   providers: [QuizzesListApiService, QuizzesDataSourceService, QuizzesTableConfigFactory, TranslatePipe],

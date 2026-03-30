@@ -4,7 +4,7 @@ import type { IQuizPersistFormMultipleChoiceQuestion } from '@app/modules/quizze
 import { QuizPersistCloasedQuestionsHelper } from '@app/modules/quizzes/pages/quiz-persist/helpers/quiz-persist-cloased-questions.helper';
 import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-persist/enums/quiz-persist-question-type.enum';
 import type { ValidatorFn } from '@angular/forms';
-import type { Optional } from '@common/types/optional.type';
+import type { Optional } from 'lp-common';
 
 export class QuizPersistMultipleChoiceQuestionFormGroup extends QuizPersistQuestionFormGroup<IQuizPersistFormMultipleChoiceQuestion> {
   public readonly no: Optional<number>;

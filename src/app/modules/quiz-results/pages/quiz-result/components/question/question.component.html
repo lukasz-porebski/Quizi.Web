@@ -21,7 +21,7 @@
               </div>
             }
             @case (QuestionType.SingleChoice) {
-              <app-radio
+              <lp-radio
                 [value]="castToSingleChoiceQuestion().selectedAnswerOrdinalNumber"
                 [options]="options"
                 [optionValue]="getOptionValue"
@@ -32,7 +32,7 @@
             }
             @case (QuestionType.MultipleChoice) {
               @for (answer of castToMultipleChoiceQuestion().answers; track answer.ordinalNumber) {
-                <app-checkbox
+                <lp-checkbox
                   [value]="answer.isSelected"
                   [readonly]="true"
                   [label]="{ text: answer.text }"

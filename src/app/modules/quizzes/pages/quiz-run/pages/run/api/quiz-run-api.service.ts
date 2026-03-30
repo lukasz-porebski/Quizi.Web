@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '@common/services/base-api.service';
 import type {
   QuizToRunRawResponse,
   QuizToRunResponse,
 } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/responses/quiz-to-run.response';
-import { TimeSpanModel } from '@common/models/time-span.model';
 import type { QuizVerifyRequest } from '@app/modules/quizzes/pages/quiz-run/pages/run/api/requests/quiz-verify.request';
-import type { AggregateId } from '@common/types/aggregate-id.type';
+import type { AggregateId } from 'lp-common';
+import { BaseApiService, TimeSpanModel } from 'lp-common';
 
 @Injectable()
 export class QuizRunApiService extends BaseApiService {

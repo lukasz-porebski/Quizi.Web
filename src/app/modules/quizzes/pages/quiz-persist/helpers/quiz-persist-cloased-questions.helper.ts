@@ -1,7 +1,7 @@
 import { QuizPersistConstants } from '@app/modules/quizzes/pages/quiz-persist/constants/quiz-persist.constants';
-import { isEmpty } from '@common/utils/utils';
 import type { IQuizPersistFormMultipleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-multiple-choice-question.interface';
 import type { IQuizPersistFormSingleChoiceQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-single-choice-question.interface';
+import { isEmpty } from 'lp-common';
 
 export namespace QuizPersistCloasedQuestionsHelper {
   export function RemoveAnswer(

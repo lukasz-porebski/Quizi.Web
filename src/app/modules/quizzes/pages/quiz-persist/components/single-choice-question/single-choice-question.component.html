@@ -1,16 +1,16 @@
 <div class="d-flex align-items-center">
-  <app-text-input
+  <lp-text-input
     class="w-100"
     [formControl]="formGroup().controls.text"
     [label]="{ text: 'QUESTION' }"
     [readonly]="isPreview()"
   />
   @if (!isPreview()) {
-    <app-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()" />
+    <lp-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()" />
   }
 </div>
 
-<app-radio
+<lp-radio
   [formControl]="formGroup().controls.correctAnswerOrdinalNumber"
   [options]="options"
   [optionTemplate]="optionAnswerTemplate"
@@ -29,14 +29,14 @@
 
 <ng-template #optionAnswerTemplate let-option>
   <div class="d-flex align-items-center">
-    <app-text-input
+    <lp-text-input
       class="w-100"
       [formControl]="option.control"
       [label]="{ text: 'ANSWER' }"
       [readonly]="isPreview()"
     />
     @if (!isPreview()) {
-      <app-button [icon]="Icon.Delete" (clicked)="formGroup().removeAnswer(option.ordinalNumber)" />
+      <lp-button [icon]="Icon.Delete" (clicked)="formGroup().removeAnswer(option.ordinalNumber)" />
     }
   </div>
 </ng-template>

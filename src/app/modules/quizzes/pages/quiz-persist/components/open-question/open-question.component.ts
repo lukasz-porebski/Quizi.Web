@@ -1,8 +1,7 @@
 import { Component, input } from '@angular/core';
 import type { FormGroup } from '@angular/forms';
 import type { IQuizPersistFormOpenQuestion } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-open-question.interface';
-import { TextInputComponent } from '@common/components/inputs/text/text.component';
-import { TextareaInputComponent } from '@common/components/inputs/textarea/textarea.component';
+import { TextareaInputComponent, TextInputComponent } from 'lp-common';
 
 @Component({
   selector: 'app-quiz-persist-open-question',

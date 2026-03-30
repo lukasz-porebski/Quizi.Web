@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { TableComponent } from '@common/components/table/table.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UsersListApiService } from '@app/modules/users/pages/users/api/users-list-api.service';
 import { UsersDataSourceService } from '@app/modules/users/pages/users/services/users-data-source.service';
 import { UsersTableConfigFactory } from '@app/modules/users/pages/users/factories/users-table-config-factory.service';
-import type { TableConfig } from '@common/components/table/models/table.config';
 import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
+import type { TableConfig } from 'lp-common';
+import { TableComponent } from 'lp-common';
 
 @Component({
   selector: 'app-users',

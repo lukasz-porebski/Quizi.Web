@@ -1,9 +1,9 @@
-<app-async-page [showSpinner]="isLoading" class="center-container-2" [isNavigationPage]="false">
+<lp-async-page [showSpinner]="isLoading" class="center-container-2" [isNavigationPage]="false">
   <mat-card>
     <mat-card-content>
       <form>
         <div class="mb-2">
-          <app-text-input
+          <lp-text-input
             [label]="{ text: 'EMAIL' }"
             [formControl]="form.controls.email"
             [type]="TextInputType.Email"
@@ -11,7 +11,7 @@
           />
         </div>
         <div class="mb-3">
-          <app-text-input
+          <lp-text-input
             [label]="{ text: 'PASSWORD' }"
             [formControl]="form.controls.password"
             [type]="TextInputType.Password"
@@ -21,7 +21,7 @@
           />
         </div>
         <div class="mb-3">
-          <app-text-input
+          <lp-text-input
             [label]="{ text: 'CONFIRM_PASSWORD' }"
             [formControl]="form.controls.confirmedPassword"
             [type]="TextInputType.Password"
@@ -31,15 +31,15 @@
           />
         </div>
         <div class="col d-flex justify-content-end">
-          <app-button
+          <lp-button
             class="me-2"
             [style]="ButtonStyle.Outlined"
             [text]="{ text: 'BACK' }"
             (clicked)="redirectToLogin()"
           />
-          <app-button [text]="{ text: 'REGISTER' }" [disabled]="form.invalid" (clicked)="register()" />
+          <lp-button [text]="{ text: 'REGISTER' }" [disabled]="form.invalid" (clicked)="register()" />
         </div>
       </form>
     </mat-card-content>
   </mat-card>
-</app-async-page>
+</lp-async-page>

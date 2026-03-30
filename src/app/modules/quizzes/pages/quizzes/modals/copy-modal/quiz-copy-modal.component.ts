@@ -1,20 +1,22 @@
 import { Component, inject } from '@angular/core';
-import { ModalComponent } from '@common/components/modal/modal.component';
-import { TextInputComponent } from '@common/components/inputs/text/text.component';
-import { TextInputType } from '@common/components/inputs/text/enums/type.enum';
 import { FormControl, Validators } from '@angular/forms';
-import { ButtonComponent } from '@common/components/button/button.component';
 import { QuizzesListApiService } from '@app/modules/quizzes/pages/quizzes/api/quizzes-list-api.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NotificationService } from '@common/services/notification.service';
-import { AsyncPageComponent } from '@common/components/async-page/async-page.component';
-import { TextInputValidator } from '@common/components/inputs/text/validators/text-input.validator';
-import type { Guid } from '@common/types/guid.type';
-import { ButtonStyle } from '@common/components/button/enums/style.enum';
+import type { Guid } from 'lp-common';
+import {
+  AsyncPageComponent,
+  ButtonComponent,
+  ButtonStyle,
+  ModalComponent,
+  NotificationService,
+  TextInputComponent,
+  TextInputType,
+  TextInputValidator,
+} from 'lp-common';
 
 @Component({
   selector: 'app-quiz-copy-modal',
-  imports: [ModalComponent, TextInputComponent, ButtonComponent, AsyncPageComponent],
+  imports: [AsyncPageComponent, ModalComponent, ButtonComponent, TextInputComponent],
   templateUrl: './quiz-copy-modal.component.html',
   styleUrl: './quiz-copy-modal.component.scss',
   providers: [QuizzesListApiService],

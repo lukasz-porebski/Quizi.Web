@@ -1,4 +1,4 @@
-<app-async-page [showSpinner]="isLoading">
+<lp-async-page [showSpinner]="isLoading">
   <div class="container mt-2 mb-2">
     @if (isInitialized && !isOpenQuestionsVerification) {
       <app-quiz-run [response]="response" (finished)="tryPersist($event)" />
@@ -12,4 +12,4 @@
       />
     }
   </div>
-</app-async-page>
+</lp-async-page>

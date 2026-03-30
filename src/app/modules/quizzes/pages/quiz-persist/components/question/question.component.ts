@@ -7,12 +7,11 @@ import { QuizPersistFormQuestionType } from '@app/modules/quizzes/pages/quiz-per
 import type { QuizPersistMultipleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-multiple-choice-question.form-group';
 import type { QuizPersistSingleChoiceQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-single-choice-question.form-group';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { ButtonComponent } from '@common/components/button/button.component';
-import { Icon } from '@common/enums/icon.enum';
 import type { QuizPersistFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist.form-group';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError } from '@angular/material/form-field';
 import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/pages/quiz-persist/form/quiz-persist-open-question.form-group';
+import { ButtonComponent, Icon } from 'lp-common';
 
 @Component({
   selector: 'app-quiz-persist-question',
@@ -22,9 +21,9 @@ import type { QuizPersistOpenQuestionFormGroup } from '@app/modules/quizzes/page
     QuizPersistMultipleChoiceQuestionComponent,
     MatCard,
     MatCardContent,
-    ButtonComponent,
     MatError,
     TranslatePipe,
+    ButtonComponent,
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss',

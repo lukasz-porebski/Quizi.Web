@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
-import type { Optional } from '@common/types/optional.type';
 import type { IQuizPersistFormMultipleChoiceQuestionAnswer } from '@app/modules/quizzes/pages/quiz-persist/interfaces/quiz-persist-form-multiple-choice-question-answer.interface';
+import type { Optional } from 'lp-common';
 
 export class QuizPersistMultipleChoiceQuestionAnswerFormGroup extends FormGroup<IQuizPersistFormMultipleChoiceQuestionAnswer> {
   public readonly no: Optional<number>;

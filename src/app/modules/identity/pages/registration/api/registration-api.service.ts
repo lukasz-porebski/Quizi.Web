@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '@common/services/base-api.service';
 import type { RegisterRequest } from '@app/modules/identity/pages/registration/api/requests/register.request';
+import { BaseApiService } from 'lp-common';
 
 @Injectable()
 export class RegistrationApiService extends BaseApiService {

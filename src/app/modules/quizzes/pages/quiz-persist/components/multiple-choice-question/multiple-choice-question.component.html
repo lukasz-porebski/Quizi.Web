@@ -1,32 +1,32 @@
 <div class="d-flex align-items-center">
-  <app-text-input
+  <lp-text-input
     class="w-100"
     [formControl]="formGroup().controls.text"
     [label]="{ text: 'QUESTION' }"
     [readonly]="isPreview()"
   />
   @if (!isPreview()) {
-    <app-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()"></app-button>
+    <lp-button [icon]="Icon.Add" (clicked)="formGroup().addAnswer()"></lp-button>
   }
 </div>
 
 @for (answer of formGroup().controls.answers.controls; track answer) {
-  <app-checkbox [formControl]="answer.controls.isCorrect" [disableLabelClick]="true" [readonly]="isPreview()">
+  <lp-checkbox [formControl]="answer.controls.isCorrect" [disableLabelClick]="true" [readonly]="isPreview()">
     <div class="d-flex align-items-center">
-      <app-text-input
+      <lp-text-input
         class="w-100"
         [formControl]="answer.controls.text"
         [label]="{ text: 'ANSWER' }"
         [readonly]="isPreview()"
       />
       @if (!isPreview()) {
-        <app-button
+        <lp-button
           [icon]="Icon.Delete"
           (clicked)="formGroup().removeAnswer(answer.controls.ordinalNumber.value)"
-        ></app-button>
+        ></lp-button>
       }
     </div>
-  </app-checkbox>
+  </lp-checkbox>
 }
 
 @if (formGroup().hasError("minAnswersCount")) {

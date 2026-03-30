@@ -1,11 +1,11 @@
 import type { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { isEmpty } from '@common/utils/utils';
 import { IdentityValidators } from '@app/modules/identity/validators/identity.validators';
 import type { IRegistrationForm } from '@app/modules/identity/pages/registration/interfaces/registration-form.interface';
+import { isEmpty } from 'lp-common';
 
 export namespace RegistrationValidators {
   export function ConfirmedPassword(): ValidatorFn[] {
-    return [ ...IdentityValidators.Password(), confirmPassword() ];
+    return [...IdentityValidators.Password(), confirmPassword()];
   }
 
   function confirmPassword(): ValidatorFn {
@@ -15,9 +15,7 @@ export namespace RegistrationValidators {
         return null;
       }
 
-      return parent.value.password !== control.value
-        ? {confirmPassword: true}
-        : null;
+      return parent.value.password !== control.value ? { confirmPassword: true } : null;
     };
   }
 }

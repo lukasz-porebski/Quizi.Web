@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '@common/services/base-api.service';
 import type {
   QuizResultsListItemRawResponse,
   QuizResultsListItemResponse,
 } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
-import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
-import type { PaginationRequest } from '@common/models/requests/pagination.request';
-import { TimeSpanModel } from '@common/models/time-span.model';
+import type { PaginationRequest } from 'lp-common';
+import { BaseApiService, PaginatedListResponse, TimeSpanModel } from 'lp-common';
 
 @Injectable()
 export class QuizResultsListApiService extends BaseApiService {

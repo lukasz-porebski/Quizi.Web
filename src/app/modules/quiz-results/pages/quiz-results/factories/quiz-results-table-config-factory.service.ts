@@ -1,10 +1,9 @@
-import { TableConfig } from '@common/components/table/models/table.config';
 import type { QuizResultsListItemResponse } from '@app/modules/quiz-results/pages/quiz-results/api/responses/quiz-results-list-item.response';
 import { QuizResultsDataSourceService } from '@app/modules/quiz-results/pages/quiz-results/services/quiz-results-data-source.service';
-import { Icon } from '@common/enums/icon.enum';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Route } from '@app/core/enums/route.enum';
+import { Icon, TableConfig } from 'lp-common';
 
 @Injectable()
 export class QuizResultsTableConfigFactory {

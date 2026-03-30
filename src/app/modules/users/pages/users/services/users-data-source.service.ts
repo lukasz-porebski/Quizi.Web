@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import type { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
-import { BaseTableApiDataSource } from '@common/components/table/data-source/base-api-data-source';
-import type { PaginationRequest } from '@common/models/requests/pagination.request';
 import type { UsersListItemResponse } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
 import { UsersListApiService } from '@app/modules/users/pages/users/api/users-list-api.service';
+import type { PaginatedListResponse, PaginationRequest } from 'lp-common';
+import { BaseTableApiDataSource } from 'lp-common';
 
 @Injectable()
 export class UsersDataSourceService extends BaseTableApiDataSource<UsersListItemResponse> {

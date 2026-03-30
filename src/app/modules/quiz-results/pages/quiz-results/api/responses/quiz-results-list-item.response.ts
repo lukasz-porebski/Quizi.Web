@@ -1,6 +1,4 @@
-import type { TimeSpan } from '@common/types/time-span.type';
-import type { AggregateId } from '@common/types/aggregate-id.type';
-import type { TimeSpanModel } from '@common/models/time-span.model';
+import type { AggregateId, TimeSpan, TimeSpanModel } from 'lp-common';
 
 export type QuizResultsListItemRawResponse = Omit<
   QuizResultsListItemResponse,

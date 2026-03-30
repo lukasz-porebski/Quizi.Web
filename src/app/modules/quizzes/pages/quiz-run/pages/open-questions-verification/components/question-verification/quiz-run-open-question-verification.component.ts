@@ -3,10 +3,9 @@ import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import type { QuizRunOpenQuestionVerificationFormControl } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/form/quiz-run-open-question-verification.form-control';
 import { MatDivider } from '@angular/material/divider';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RadioComponent } from '@common/components/inputs/radio/radio.component';
-import type { IRadioOption } from '@common/components/inputs/radio/interfaces/radio-option.interface';
-import { TextConfig } from '@common/models/text.config';
 import { QuizRunOpenQuestionVerificationResult } from '@app/modules/quizzes/pages/quiz-run/pages/open-questions-verification/enums/quiz-run-open-question-verification-result.enum';
+import type { IRadioOption } from 'lp-common';
+import { RadioComponent, TextConfig } from 'lp-common';
 
 @Component({
   selector: 'app-quiz-run-open-question-verification',

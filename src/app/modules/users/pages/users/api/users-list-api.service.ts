@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '@common/services/base-api.service';
-import { PaginatedListResponse } from '@common/models/responses/paginated-list.response';
-import type { PaginationRequest } from '@common/models/requests/pagination.request';
 import type {
   UsersListItemRawResponse,
   UsersListItemResponse,
 } from '@app/modules/users/pages/users/api/responses/users-list-item.response';
+import type { PaginationRequest } from 'lp-common';
+import { BaseApiService, PaginatedListResponse } from 'lp-common';
 
 @Injectable()
 export class UsersListApiService extends BaseApiService {

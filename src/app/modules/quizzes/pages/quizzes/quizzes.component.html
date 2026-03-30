@@ -1,10 +1,10 @@
 <div class="col d-flex justify-content-start">
-  <app-button
+  <lp-button
     [text]="{ text: 'CREATE_QUIZ' }"
     (clicked)="navigateToQuizCreation()"
     class="d-block mb-2 me-2"
   />
-  <app-button [text]="{ text: 'COPY_QUIZ' }" (clicked)="copyQuiz()" class="d-block mb-2" />
+  <lp-button [text]="{ text: 'COPY_QUIZ' }" (clicked)="copyQuiz()" class="d-block mb-2" />
 </div>
 
-<app-table [config]="config"></app-table>
+<lp-table [config]="config"></lp-table>

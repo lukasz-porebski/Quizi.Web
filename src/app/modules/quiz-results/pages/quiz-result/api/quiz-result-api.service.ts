@@ -3,9 +3,7 @@ import type {
   QuizResultDetailsRawResponse,
   QuizResultDetailsResponse,
 } from '@app/modules/quiz-results/pages/quiz-result/api/responses/quiz-result-details.response';
-import { BaseApiService } from '@common/services/base-api.service';
-import { TimeSpanModel } from '@common/models/time-span.model';
-import { PeriodViewModel } from '@common/models/views/period.view-model';
+import { BaseApiService, PeriodViewModel, TimeSpanModel } from 'lp-common';
 
 @Injectable()
 export class QuizResultApiService extends BaseApiService {

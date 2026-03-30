@@ -5,9 +5,9 @@ import { routes } from '@app/app.routes';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { authenticationInterceptor } from '@common/identity/interceptors/authentication.interceptor';
-import { AppErrorHandler } from '@common/handlers/error.handler';
 import { provideNgxMask } from 'ngx-mask';
+import { API_URL, AppErrorHandler, authenticationInterceptor } from 'lp-common';
+import { environment } from '@env/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,5 +29,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    { provide: API_URL, useValue: environment.apiUrl },
   ],
 };

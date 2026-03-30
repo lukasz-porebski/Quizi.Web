@@ -1,5 +1,5 @@
 @if (isInitialized) {
-  <app-count-down [seconds]="durationInSeconds" (finished)="finish($event)" />
+  <lp-count-down [seconds]="durationInSeconds" (finished)="finish($event)" />
   <form>
     @for (question of questions; track question.ordinalNumber) {
       <app-quiz-run-question [question]="question" />
@@ -7,13 +7,13 @@
   </form>
   <div class="row mt-2">
     <div class="col d-flex justify-content-end">
-      <app-button
+      <lp-button
         class="me-2"
         [text]="{ text: 'CANCEL' }"
         [style]="ButtonStyle.Outlined"
         (clicked)="backToList()"
       />
-      <app-button [text]="{ text: 'FINISH' }" (clicked)="finishCounting()" />
+      <lp-button [text]="{ text: 'FINISH' }" (clicked)="finishCounting()" />
     </div>
   </div>
 }
