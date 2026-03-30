@@ -2,7 +2,12 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+
+ARG GITHUB_TOKEN
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc && \
+    echo "@lukasz-porebski:registry=https://npm.pkg.github.com" >> .npmrc && \
+    npm ci && \
+    rm .npmrc
 
 COPY . .
 RUN npm run build -- --configuration production

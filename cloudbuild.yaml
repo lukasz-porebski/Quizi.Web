@@ -2,15 +2,22 @@ steps:
   # Lint
   - name: 'node:22'
     entrypoint: 'sh'
+    secretEnv: ['GITHUB_COMMON_PACKAGES_ACCESS_TOKEN']
     args:
       - '-c'
-      - 'npm ci && npx ng lint'
+      - |
+        echo "//npm.pkg.github.com/:_authToken=$$GITHUB_COMMON_PACKAGES_ACCESS_TOKEN" >> .npmrc
+        echo "@lukasz-porebski:registry=https://npm.pkg.github.com" >> .npmrc
+        npm ci && npx ng lint
+        rm .npmrc
 
   # Budowa obrazu Docker
   - name: 'gcr.io/cloud-builders/docker'
+    secretEnv: ['GITHUB_COMMON_PACKAGES_ACCESS_TOKEN']
     args:
       [
         'build',
+        '--build-arg', 'GITHUB_TOKEN=$$GITHUB_COMMON_PACKAGES_ACCESS_TOKEN',
         '-t', 'gcr.io/$PROJECT_ID/quizi-web',
         '.'
       ]
@@ -23,7 +30,7 @@ steps:
         'gcr.io/$PROJECT_ID/quizi-web'
       ]
 
-  # Deploy do Cloud Run z użyciem konta serwisowego zdefiniowanego w triggerze
+  # Deploy do Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -40,9 +47,15 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/quizi-web'
 
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/github-common-packages-access-token/versions/latest
+      env: 'GITHUB_COMMON_PACKAGES_ACCESS_TOKEN'
+
 options:
   logging: CLOUD_LOGGING_ONLY
 
 substitutions:
   _SERVICE_ACCOUNT: ''
   _API_URL: ''
+  _REGION: ''
