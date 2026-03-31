@@ -14,13 +14,14 @@ steps:
   # Budowa obrazu Docker
   - name: 'gcr.io/cloud-builders/docker'
     secretEnv: ['GITHUB_COMMON_PACKAGES_ACCESS_TOKEN']
+    entrypoint: 'bash'
     args:
-      [
-        'build',
-        '--build-arg', 'GITHUB_TOKEN=$$GITHUB_COMMON_PACKAGES_ACCESS_TOKEN',
-        '-t', 'gcr.io/$PROJECT_ID/quizi-web',
-        '.'
-      ]
+      - '-c'
+      - |
+        docker build \
+          --build-arg GITHUB_TOKEN=$$GITHUB_COMMON_PACKAGES_ACCESS_TOKEN \
+          -t gcr.io/$PROJECT_ID/quizi-web:latest \
+          .
 
   # Push do Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
