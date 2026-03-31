@@ -78,6 +78,7 @@ Install dependencies → Build produkcyjny → Build obrazu Docker → Push → 
 
 | Repozytorium | Opis |
 |---|---|
+| 📦 [lp-common](https://github.com/lukasz-porebski/lp-common) | Moja biblioteka (paczka NPM) ze wspólnymi komponentami |
 | ⚙️ [Quizi.API](https://github.com/lukasz-porebski/Quizi.API) | Warstwa backendowa aplikacji (.NET 10) |
 
 ---
